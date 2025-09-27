@@ -1,0 +1,117 @@
+---
+title: "FIP-06: Merge Mining"
+description: FIP-06 details Lokichain merge mining via AuxPoW, covering payload structure, validation rules, and activation plans.
+sidebar_position: 5
+---
+
+Author: Izimmerma &lt;izimer@ohstr.com&gt;  
+Status: Final   
+Created: 2025-08-15
+
+## Abstract
+
+Lokichain adopts Auxiliary Proof-of-Work (AuxPoW) so miners can reuse work found on a parent proof-of-work chain. The AuxPoW envelope supplies the parent header, coinbase commitment, and merkle proofs needed to show that the Lokichain block header was embedded in the parent block’s work.
+
+## Motivation
+
+Merge mining allows Lokichain to inherit a larger network’s hashrate without demanding miners split their effort. Following established AuxPoW conventions reduces the integration burden for mining pools while preserving consensus clarity.
+
+## Terminology
+
+- **Parent blockchain:** The network whose valid block header and proof-of-work are reused by Lokichain (e.g., any scrypt-family PoW chain).
+- **Auxiliary blockchain:** Lokichain, which validates AuxPoW data and accepts the parent work as its own.
+- **AuxPoW block:** A Lokichain block that may not satisfy the child difficulty target on its own but includes proofs that the parent block’s work does.
+- **Aux work merkle tree:** The commitment structure rooted in the parent coinbase that yields both the coinbase branch (into the parent merkle root) and the chain branch (down to the Lokichain header commitment), enabling multiple auxiliary chains to share a single parent block.
+
+## Specification
+
+Lokichain marks a header as AuxPoW-enabled by setting bit 8 of the version field (`VersionAuxPow`) and writing the six-bit chain identifier into bits [16..21]. When this flag is present the node appends the following payload immediately after the 80-byte base header and before the transaction vector:
+
+| Field | Type | Purpose |
+| --- | --- | --- |
+| `aux_version` | 1 byte | AuxPoW payload version. Lokichain uses `0x00`. |
+| `parent_coinbase_tx` | Serialized transaction | Full parent coinbase transaction containing the merge-mining commitment. |
+| `coinbase_branch` | Merkle branch (`var_int` length, 32-byte hashes, 32-bit side mask) | Proves the coinbase transaction is included in the parent merkle root. |
+| `chain_branch` | Merkle branch (optional) | Proves the Lokichain commitment within the Aux work merkle tree; empty when the parent block services only Lokichain. |
+| `parent_header` | 80-byte serialized header | Parent chain header whose proof-of-work will be validated against Lokichain’s requirement. |
+
+### Aux proof-of-work block
+
+Fields serialize in the table order above. `aux_version` is fixed at `0x00`; `coinbase_branch` must have a side mask of `0` because the coinbase resides at index 0; `chain_branch` may be length zero when Lokichain is the only auxiliary chain. Lokichain omits the legacy standalone `block_hash` element—nodes recompute it from the provided header and merkle data.
+
+### Parent coinbase commitment
+
+Miners place the merged-mining marker `0xfa 0xbe 'm' 'm'` in the `scriptSig` of `parent_coinbase_tx`, immediately followed by:
+
+1. `chain_root` — the double-SHA256 root obtained by folding `chain_branch` over the current Lokichain block hash, encoded little-endian in the script.
+2. `tree_size` — a little-endian `uint32` that must equal `1 << chain_branch.Size()`.
+3. `merkle_nonce` — a little-endian `uint32` mixed with the AuxPoW `chain_id` to pick Lokichain’s deterministic slot in the Aux work tree.
+
+:::tip
+Lokichain uses `0x21` as its AuxPoW `chain_id`.
+:::
+
+When only Lokichain participates, `chain_branch` is length zero and `chain_root` is just the current Lokichain block hash. With multiple auxiliary chains, miners supply the branch proving Lokichain’s leaf inside the shared Aux work tree.
+
+### Validation rules
+
+Lokichain consensus validates AuxPoW blocks as follows:
+
+- Require the AuxPoW header bit and correct `ChainID` encoding for the current network parameters.
+- Hash `parent_header` and ensure the resulting proof-of-work meets or exceeds the Lokichain difficulty target for the block height.
+- Recalculate the parent merkle root using `parent_coinbase_tx` and `coinbase_branch`, ensuring it matches the root in `parent_header`.
+- Verify `coinbase_branch.SideMask` is zero and the coinbase transaction size stays within consensus limits.
+- Combine the current Lokichain block hash with `chain_branch` (if present) to derive `chain_root`, and verify the little-endian bytes appear in the parent coinbase exactly after the merged-mining marker.
+- Check that `tree_size` equals `1 << chain_branch.Size()` and that the `SideMask` from `chain_branch` matches the deterministic index `getExpectedIndex(merkle_nonce, chain_id, branch_size)`.
+- Confirm standard Lokichain consensus rules on the current block header (previous-hash linkage, difficulty bits, median time, and contextual checks).
+- Reject AuxPoW payloads that include the deprecated `block_hash` field or otherwise mismatch the expected serialization.
+
+
+:::important
+**Activation (mainnet):** block 115,840.
+:::
+
+## Rationale
+
+Reusing the long-standing merged-mining structure keeps BIP-compliant semantics while the omission of the redundant `block_hash` field delivers a modest bandwidth and storage optimisation. The structure is compatible with existing pool software that already supports AuxPoW networks.
+
+## Reference Implementation
+
+Implemented in `go-flokicoin` (wire + consensus). See release [0.25.7-beta](/lokichain/releases/0.25.7-beta) for activation parameters and wire structs.
+
+### RPC Support
+
+AuxPoW mining is exposed over the standard RPC interface:
+
+```
+createauxblock <payout_address>
+```
+
+Returns an object containing:
+
+- `hash` — identifier miners must hash in the parent chain coinbase.
+- `chainid` — Lokichain’s chain identifier (decimal `33`, hex `0x21`).
+- `previousblockhash`, `height`, `bits`, `target` — child-chain context and work target.
+- `coinbasevalue` — child-chain coinbase payout in atomic units.
+
+Example response:
+
+```
+{
+  "hash": "0c63598bf66646ee9bf80797a40d607d12db9a6bc97fd4b98da70c904dd250c8",
+  "chainid": 33,
+  "previousblockhash": "94f1f588f620713ef99dfb1b2f3079a0f4545d4e15035e8227c5534dea965f33",
+  "coinbasevalue": 100000000000,
+  "bits": "202f725e",
+  "height": 13,
+  "target": "2f725e0000000000000000000000000000000000000000000000000000000000"
+}
+```
+
+Miners call:
+
+```
+submitauxblock <hash> <auxpow_hex>
+```
+
+Where `auxpow_hex` is the serialized AuxPoW payload built from the parent block template.

@@ -1,0 +1,31 @@
+---
+title: 0.25.5-beta
+description: Highlights of Flokicoin Core 0.25.5-beta including PSBT upgrades, new checkpoints, and renamed CLI downloads.
+sidebar_position: 3
+---
+
+Please report bugs using the issue tracker at GitHub:
+
+https://github.com/flokiorg/go-flokicoin/issues
+
+## Notable changes
+
+- Added new blockchain checkpoints, including at block 0 and later heights.
+- Enhanced PSBT handling: support for extended public keys (XPubs) and path validation.
+- Added PSBT test coverage for BIP32 path serialization/deserialization.
+- Improved validation of PSBT path minimum length.
+- Improved block header timestamp validation.
+- Updated mempool, txscript, and wallet to use `maps.Copy` for safer and cleaner map handling.
+- Fixed typo: corrected PSBT constant from `XpubType` to `XPubType`.
+- Fixed minor issues in PSBT encoding/decoding and comments.
+- Renamed `flokicoin-cli` to `flokicoind-cli` across all binaries, config paths, and documentation.
+
+## Assets
+
+| OS/Arch | Asset |
+| --- | --- |
+| macOS (Apple Silicon) | https://github.com/flokiorg/go-flokicoin/releases/download/0.25.5-beta/flokicoind-darwin-arm64-v0.25.5-beta.tar.gz |
+| macOS (Intel) | https://github.com/flokiorg/go-flokicoin/releases/download/0.25.5-beta/flokicoind-darwin-amd64-v0.25.5-beta.tar.gz |
+| Linux x86_64 | https://github.com/flokiorg/go-flokicoin/releases/download/0.25.5-beta/flokicoind-linux-amd64-v0.25.5-beta.tar.gz |
+| Linux arm64 | https://github.com/flokiorg/go-flokicoin/releases/download/0.25.5-beta/flokicoind-linux-arm64-v0.25.5-beta.tar.gz |
+| Windows x86_64 | https://github.com/flokiorg/go-flokicoin/releases/download/0.25.5-beta/flokicoind-windows-amd64-v0.25.5-beta.zip |

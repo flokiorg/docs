@@ -1,0 +1,144 @@
+---
+title: Gminer
+slug: /mining/gminer
+description: Step-by-step guide for installing, configuring, and monitoring the Gminer CPU miner for Flokicoin testnet practice.
+---
+
+:::warning CPU miner notice
+Gminer is a CPU miner. CPU mining is only practical on test networks; on mainnet it is not competitive. Use GPU or scrypt ASIC for mainnet.
+:::
+
+This guide provides step-by-step instructions to download, configure, and begin mining Flokicoin with Gminer.
+
+- [Download and Installation](#download-and-installation): Guide to download and install `gminer`
+- [Configuration](#configuration): Instructions for configuring `gminer.conf`.
+- [How to Run](#how-to-run): Guide to start mining Flokicoin.
+- [Monitoring](#monitoring): Monitor mining performance and status information
+- [Troubleshooting and recommendations](#troubleshooting-and-recommendations): Common issues and their solutions
+- [Support](#support)
+---
+
+
+## Download and Installation
+
+Download the latest miner release:
+
+- Go to the [releases](https://github.com/flokiorg/grpc-miner/releases/tag/v0.1.1-beta) page.
+- Download the version suitable for your operating system and architecture.
+
+gminer is available on:
+- Mac
+- Linux
+- Windows
+
+
+
+
+
+### Install `gminer` on Mac
+#### **Mac with apple silicon**
+Download [gminer-darwin-arm64-v0.1.1-beta.tar.gz](https://github.com/flokiorg/grpc-miner/releases/download/v0.1.1-beta/gminer-darwin-arm64-v0.1.1-beta.tar.gz) then extract the archive:
+
+```bash
+tar -xvf gminer-darwin-arm64-v0.1.0-alpha.tar.gz
+chmod +x gminer
+```
+
+#### **Mac with Intel chip**
+Download [gminer-darwin-amd64-v0.1.1-beta.tar.gz](https://github.com/flokiorg/grpc-miner/releases/download/v0.1.1-beta/gminer-darwin-amd64-v0.1.1-beta.tar.gz) then extract the archive:
+
+```bash
+tar -xvf gminer-darwin-amd64-v0.1.0-alpha.tar.gz
+chmod +x gminer
+```
+&nbsp;
+
+### Install on Linux
+Download [gminer-linux-amd64-v0.1.1-beta.tar.gz
+](https://github.com/flokiorg/grpc-miner/releases/download/v0.1.1-beta/gminer-linux-amd64-v0.1.1-beta.tar.gz) then extract the archive:
+
+```bash
+tar -xvf gminer-linux-amd64-v0.1.0-alpha.tar.gz
+chmod +x gminer
+```
+
+&nbsp;
+
+### Install on Windows
+Download [gminer-windows-386-v0.1.1-beta.zip](https://github.com/flokiorg/grpc-miner/releases/download/v0.1.1-beta/gminer-windows-386-v0.1.1-beta.zip) then extract the archive.
+
+&nbsp;
+
+## Configuration
+Before running the miner, ensure a configuration file (`gminer.conf`) exists in the same directory as the `gminer` executable file. You can download a [sample config file](https://raw.githubusercontent.com/flokiorg/grpc-miner/refs/heads/main/sample-gminer.conf) from grpc-miner repository.
+
+You need to update the following parameters:
+
+**Mining pool endpoint**
+```ini
+pool = solo.example.com:5055
+```
+
+Find below the list of community-known pools:
+| Author | Dev fee | Pool | Port |
+| --- | --- | --- | --- |
+| myf | - | gpool.myfloki.com | 5055 |
+
+You’re encouraged to create your own pool, set a developer fee if desired, and share it with the Flokicoin community in **#Mining** channel on [Discord](https://flokicoin.org/discord).
+
+**Mining addresses**
+
+You can specify one or more mining addresses:
+```ini
+miningaddr = YOUR_FLOKICOIN_ADDRESS_1
+miningaddr = YOUR_FLOKICOIN_ADDRESS_2
+```
+
+**Threads**
+
+Set the number of CPU threads to dedicate for mining. By default, if unspecified, gminer uses all available threads.
+```ini
+threads = 16
+```
+
+&nbsp;
+
+## How to run
+**On Mac and Linux:** Navigate to the directory containing the extracted binary and run:
+
+```bash
+./gminer
+```
+
+💡 On macOS, authorize `gminer` by navigating to System Settings → Privacy & Security → General and click “Open Anyway” to trust the developer.
+
+
+**On Windows:** Navigate to the directory containing the extracted `gminer.exe` and double-click it or run it from the command line:
+```bash
+gminer.exe
+```
+
+💡 If Windows Defender or another antivirus blocks `gminer.exe`, you might need to explicitly allow or unblock it.
+
+&nbsp;
+
+## Monitoring
+You can monitor the mining performance and status directly in the terminal. The information includes:
+
+- Hashrate
+- Blocks found
+- Possible errors
+
+&nbsp;
+
+## Troubleshooting and recommendations
+- Verify that your `gminer.conf` file is in the correct directory and that pool addresses, mining addresses, and ports match your intended configuration.
+- On macOS, authorize `gminer` in System Settings and mark the developer as trusted.
+- Verify the server address and port in `gminer.conf`.
+- Ensure your internet connection is active.
+- Regularly update the `gminer` from the releases page.
+
+&nbsp;
+
+## Support
+For further assistance, join the `#mining` channel in the [Flokicoin Discord Community](https://flokicoin.org/discord).

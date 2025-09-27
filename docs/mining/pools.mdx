@@ -1,0 +1,30 @@
+---
+title: Pools
+slug: /mining/pools
+description: Directory of Flokicoin-compatible mining pools, recommended scrypt miners, Stratum basics, and safety tips.
+---
+
+Disclaimer
+- Pools and miners listed here are third‑party. Verify binaries and configs yourself and prefer sandboxed testing before production use.
+
+Fpool
+- Fpool offers solo and shared mining options and publishes examples and configuration help: https://fpool.net
+
+Compatible Miners (scrypt)
+- ccminer (NVIDIA): https://github.com/tpruvot/ccminer
+- CGMiner (ASIC/GPU): https://github.com/ckolivas/cgminer
+- BFGMiner (ASIC/GPU): https://github.com/luke-jr/bfgminer
+- nevermore (GPU): https://github.com/brian112358/nevermore-miner
+- cpuminer (CPU; testnet/learning only): https://github.com/pooler/cpuminer
+
+Notes
+- Mainnet: use GPU or scrypt ASIC. CPU mining is not competitive; reserve cpuminer for testnet or experimentation.
+- AuxPoW: If the pool supports merge mining with a scrypt‑family parent (e.g., LTC/DOGE) and forwards AuxPoW to Flokicoin, follow the pool’s specific instructions. Details vary by pool.
+
+Stratum Basics
+- URL: `stratum+tcp://POOL_HOST:PORT`
+- Username: your Flokicoin payout address (or pool account)
+- Password: often `x` or pool‑specific token
+
+Support
+- Join the #mining channel on Discord for help: https://flokicoin.org/discord

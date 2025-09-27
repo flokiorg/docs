@@ -1,0 +1,53 @@
+---
+slug: /wof/sharenote
+title: Sharenote
+description: Transparent mining work providers
+
+
+
+---
+
+
+
+import ScratchReveal from '@site/src/components/ScratchReveal'; // eslint-disable-line no-unused-vars
+
+## Abstract
+
+Sharenote is a miner-controlled proof-of-work note: every accepted share mints a signed sharenote, a bearer record of the work the miner resolved. Sharenotes can be spent on social engagements, resolving coin-mining blocks, buying intelligence, and more. Miners keep control of template selection and payout accounting. Learn more at [sharenote.xyz](https://sharenote.xyz).
+
+## Motivation
+
+Even with hashpower growing, miners still rely on a handful of work-provider giants (<ScratchReveal>Foundry USA</ScratchReveal> · <ScratchReveal>AntPool</ScratchReveal> · <ScratchReveal>F2Pool</ScratchReveal> · <ScratchReveal>ViaBTC</ScratchReveal>). Two glaring issues stand out:
+
+**Opaque payouts**
+- Outside of solo mining, miners rarely know how their submitted shares translate into rewards. Payout logic lives inside proprietary dashboards.
+- Third-party tools estimate earnings, yet miners must trust that their shares were counted correctly, not reprioritized for another client.
+
+**Hidden block-template value**
+- Pools can embed auxiliary chains or custom policies into block templates without disclosing the additional rewards.
+- Miners have no channel to inspect or propose changes before work is assembled, even if extra value is minted using their hashpower.
+
+WoF aims to redesign everyday internet services around Nostr and work-backed incentives. Without transparent payouts and templates, miners stay dependent on centralized work providers, undermining WoF’s mission of participant-controlled engagement.
+
+## Sharenote Concept Summary (Draft)
+
+Sharenote acts as the connective tissue between the Web of Fun (WoF) vision for playful, work-backed services and the daily routines of miners. Each accepted share becomes a signed receipt the miner can point to, redirect, or burn. The receipt is a sharenote: tangible proof that computational work happened and a programmable ticket that can be spent on social engagements, resolving coin-mining blocks, buying intelligence, and more.
+
+The lifecycle is intentionally simple:
+- **Mint** – The miner accepts a template from a work provider, performs the hashing work, and sees the resulting share captured as a sharenote.
+- **Record** – A sidecar app signs the sharenote and publishes it as a Notes and Other Stuff Transmitted by Relays (Nostr) event so anyone the miner authorizes can audit the stream.
+- **Spend** – The miner redeems the sharenote for social engagements, resolving coin-mining blocks, buying intelligence, and more; burns it; or keeps it as an auditable receipt for payouts.
+
+Sharenote keeps the miner, not the pool, in the driver’s seat. Miners can compare templates, track how many sharenotes each template minted, and decide which ones to support. Pool operators gain a channel to publish template changes, payout adjustments, and anomaly alerts without leaving the miner guessing. Observers—wallet builders, accounting tools, or community auditors—can follow the Nostr feed to build dashboards without depending on closed dashboards or web scraping.
+
+Because this Fun Enhancement Possibility (FEP) is still a draft, Sharenote sticks to a Without Breaking Existing Things (WBET) rollout. Stratum traffic keeps flowing, and the sidecar listens in, signs shares, and broadcasts them without interrupting the main client. That incremental path lets miners test Sharenote privately, pool by pool, before committing to public relays or template governance rituals.
+
+## Status & Next Steps
+
+Sharenote is currently a draft FEP. Immediate work includes:
+- Finalizing the NIP references or creating a new NIP for Sharenote-specific events.
+- Building a prototype relay/client stack to test with a volunteer pool.
+- Following the WBET stage so Sharenote keeps working cleanly alongside existing mining workflows.
+
+If you want to participate, drop into the WoF Discord (#WoF) and look for the Sharenote thread.
+Learn more at [sharenote.xyz](https://sharenote.xyz).

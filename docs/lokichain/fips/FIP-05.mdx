@@ -1,0 +1,62 @@
+---
+title: "FIP-05: Difficulty Adjustment"
+description: Specification for FIP-05 introducing a Digishield-style per-block difficulty retarget with motivation and activation details.
+sidebar_position: 6
+---
+
+
+Author: Thiniboy  
+Status: Final  
+Created: 2025-07-18
+
+
+## Summary
+
+Adopt a per-block, Digishield-style difficulty retarget using an exponential moving average (EMA) toward the one-minute target spacing. The algorithm improves responsiveness to hashrate shocks while damping oscillations and reducing variance.
+
+## Motivation
+
+Long retarget windows allow exploitable oscillations and long periods of off-target difficulty. A per-block EMA responds quickly to changes while preserving stability.
+
+## Specification
+
+- Target spacing T = 60 seconds.
+- At each block n, update an EMA of observed spacings with amplitude divisor 8 (effectively an 8-sample EWMA).
+- Apply bounded damping on each step to limit the effective spacing influence to the range [0.75·T, 1.5·T].
+- Compute the next target by scaling the previous target by the ratio of clamped spacing to T, subject to consensus limits.
+- Allow minimum-difficulty blocks when the observed spacing exceeds a chain-parameterized threshold (where enabled).
+
+:::important
+**Activation (mainnet):** block 115,000.
+:::
+
+## Rationale
+
+Per-block EMA reduces lag compared to long-window retargets while the clamp prevents over-reaction to outliers. Similar approaches were proven in other UTXO chains under the “Digishield” family.
+
+## Reference Implementation
+
+Implemented in `go-flokicoin` and enabled via chain parameters. See release [0.25.7-beta](/lokichain/releases/0.25.7-beta) and consensus changes therein.
+
+```text
+Inputs:
+  T           := 60 seconds (target spacing)
+  Divisor     := DigishieldAmplitudeDivisor (8 in Flokicoin)
+  ClampMin    := 0.75 × T
+  ClampMax    := 1.50 × T
+  prevTarget  := last difficulty target (integer)
+  actualSpan  := timestamp_n - timestamp_{n-1}
+
+Algorithm:
+  1. modulatedSpan ← T + (actualSpan - T) / Divisor
+  2. modulatedSpan ← clamp(modulatedSpan, ClampMin, ClampMax)
+  3. nextTarget ← prevTarget × modulatedSpan / T
+  4. nextTarget ← min(nextTarget, PowLimit)
+
+Result:
+  Convert nextTarget back to compact bits for the header.
+
+Note: when ReduceMinDifficulty is enabled, a separate rule mints a
+minimum-difficulty block if actualSpan exceeds DigishieldLateBlockMultiple × T.
+That shortcut is orthogonal to the per-block EMA above.
+```

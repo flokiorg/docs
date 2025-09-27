@@ -1,0 +1,85 @@
+---
+slug: /economy
+title: Economy
+description: Track Flokicoin issuance, halving cadence, tail emission, inflation projections, and live supply metrics.
+---
+import EconomyNow from '@site/src/components/EconomyNow'; // eslint-disable-line no-unused-vars
+import Amount from '@site/src/components/Amount'; // eslint-disable-line no-unused-vars
+import rewardOverTimeImage from './reward_over_time.webp';
+import supplyOverTimeImage from './supply_over_time.webp';
+import inflationRateImage from './inflation_rate_over_10_years.webp';
+
+
+## Overview
+
+Flokicoin uses a decreasing block subsidy that halves on a fixed block interval and then transitions to a fixed tail emission. The goal is predictable issuance with long‑term, stable miner incentives. For live metrics, see [Now](#now).
+
+## Parameters
+
+- Block interval: 1 minute
+- Halving interval: 210,000 blocks
+- Initial block reward: <Amount value={1000} />
+- Tail emission (no hard cap): <Amount value={21} /> per block once the reward would fall below 21
+- Coinbase maturity: 300 blocks (~5 hours)
+
+
+## Issuance Schedule
+
+The initial block reward is <Amount value={1000} /> and halves every 210,000 blocks (~5 months at 1‑minute blocks).
+
+After the reward would drop below <Amount value={21} />, the subsidy remains fixed at <Amount value={21} /> per block (tail emission). This avoids a fee‑only regime and provides a steady, predictable security budget.
+
+:::note
+Block counts are exact. Calendar dates below assume an average 1‑minute interval and are approximate.
+:::
+
+
+Block ranges, reward per block, and approximate calendar timing.
+
+| Blocks              | Reward                        | Approx. Halving Date | Cumulative Supply (million FLC) |
+|---------------------|------------------------------:|-----------------------|--------------------------------:|
+| → 210,000           | <Amount value={1000} />        | 2025-08-28            | 210.00                          |
+| 210,000 → 420,000   | <Amount value={500} />         | 2026-01-20            | 315.00                          |
+| 420,000 → 630,000   | <Amount value={250} />         | 2026-06-15            | 367.50                          |
+| 630,000 → 840,000   | <Amount value={125} />         | 2026-11-08            | 393.75                          |
+| 840,000 → 1,050,000 | <Amount value={62.5} decimals={1} />  | 2027-04-03            | 406.88                          |
+| 1,050,000 → 1,260,000 | <Amount value={31.25} decimals={2} /> | 2027-08-27            | 413.44                          |
+| 1,260,000+          | <Amount value={21} /> (fixed)  | —                     | -                               |
+
+<img src={rewardOverTimeImage.src ?? rewardOverTimeImage} alt="Reward over Time" className="themed-graph" />
+
+<img src={supplyOverTimeImage.src ?? supplyOverTimeImage} alt="Supply over Time" className="themed-graph" />
+
+
+## Inflation After Tail Emission
+
+- Annual issuance remains constant at <Amount value={11037600} /> (<Amount value={21} /> × 525,600 blocks/year).
+- As total supply grows, the annual inflation rate declines.
+
+### Definitions
+
+- Annual issuance E = R × B, where R is the per‑block reward (<Amount value={21} />) and B is blocks per year (525,600).
+- Annual inflation (%) = (E ÷ total supply at year start) × 100.
+
+:::note
+Projections assume the average block interval stays close to 1 minute. Real‑world issuance varies with network conditions.
+:::
+
+| Year | Total Supply<br />(million FLC) | Annual Inflation Rate<br />(%) |
+|-----:|-------------------------------:|-----------------------------:|
+| 1    | 424.48                         | 2.67                          |
+| 2    | 435.51                         | 2.60                          |
+| 3    | 446.55                         | 2.53                          |
+| 4    | 457.59                         | 2.47                          |
+| 5    | 468.63                         | 2.41                          |
+| 6    | 479.67                         | 2.36                          |
+| 7    | 490.70                         | 2.30                          |
+| 8    | 501.74                         | 2.25                          |
+| 9    | 512.78                         | 2.20                          |
+| 10   | 523.82                         | 2.15                          |
+
+<img src={inflationRateImage.src ?? inflationRateImage} alt="Projection: Inflation rate over 10 years" className="themed-graph" />
+
+## Now
+
+<EconomyNow />

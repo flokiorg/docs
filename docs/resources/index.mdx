@@ -1,0 +1,94 @@
+---
+slug: /resources
+title: Resources
+description: Discover vetted Lokichain explorers, faucets, mining pools, and tooling that keep Flokicoin nodes and workflows on track.
+sidebar_position: 3
+hide_title: true
+hide_table_of_contents: true
+hideContributors: true
+---
+import resourcesImage from './resources.webp';
+import Link from '@docusaurus/Link'; // eslint-disable-line no-unused-vars
+import Heading from '@theme/Heading'; // eslint-disable-line no-unused-vars
+
+
+<div className="resources-page">
+<section className="resources-hero">
+  <div className="container">
+    <div className="resources-hero__panel">
+      <div className="resources-hero__content">
+        <div className="resources-hero__copy">
+          <p className="resources-kicker">Community Ecosystem • Maintained &amp; Supported</p>
+          <Heading as="h1">Lokichain Resources</Heading>
+          <p className="resources-hero__blurb">
+            Browse community explorers, faucets, mining pools, and helper tooling. Every link here is maintained by trusted operators to keep your nodes, tests, and monitoring on track.
+          </p>
+          <div className="resources-hero__cta">
+            <p><Link className="button button--primary button--lg resources-cta" to="https://flokicoin.org/discord" target="_blank" rel="noreferrer">Suggest via Discord</Link></p>
+            <p><Link className="button button--outline button--lg resources-cta-secondary" to="https://github.com/flokiorg/docs/edit/main/docs/resources/index.mdx" target="_blank" rel="noreferrer">Open a pull request</Link></p>
+          </div>
+        </div>
+        <div className="resources-hero__illustration" aria-hidden="true">
+          <img src={resourcesImage.src ?? resourcesImage} alt="Illustration highlighting Lokichain community resources" loading="eager" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section className="resources-section">
+  <div className="container">
+    <div className="resources-grid">
+      <article className="resource-card resource-card--explorer">
+        <div className="resource-card__icon" aria-hidden="true">🔭</div>
+        <Heading as="h2">Network Explorers</Heading>
+        <p>Track blocks, transactions, and address balances on mainnet and testnet.</p>
+        <ul className="resource-card__links">
+          <li><Link to="https://flokichain.info" target="_blank" rel="noreferrer">flokichain.info</Link> <span>• Mainnet</span></li>
+          <li><Link to="https://testnet.flokichain.info" target="_blank" rel="noreferrer">testnet.flokichain.info</Link> <span>• Testnet</span></li>
+        </ul>
+      </article>
+
+      <article className="resource-card resource-card--faucet">
+        <div className="resource-card__icon" aria-hidden="true">🎮</div>
+        <Heading as="h2">Faucet &amp; Mini-Game</Heading>
+        <p>Collect testnet coins by playing a short community mini-game.</p>
+        <ul className="resource-card__links">
+          <li><Link to="https://lokirace.com" target="_blank" rel="noreferrer">lokirace.com</Link></li>
+        </ul>
+      </article>
+
+      <article className="resource-card resource-card--mining">
+        <div className="resource-card__icon" aria-hidden="true">⛏️</div>
+        <Heading as="h2">Mining Pool</Heading>
+        <p>Pool that accepts Lokichain workshares and offers both solo and shared payouts.</p>
+        <ul className="resource-card__links">
+          <li><Link to="https://fpool.net" target="_blank" rel="noreferrer">fpool.net</Link> <span>• Solo &amp; PPLNS</span></li>
+        </ul>
+      </article>
+
+      <article className="resource-card resource-card--tooling">
+        <div className="resource-card__icon" aria-hidden="true">🛠️</div>
+        <Heading as="h2">Community Tooling</Heading>
+        <p>Ready-to-run bundles and services that streamline node operations and improve everyday Lokichain workflows.</p>
+        <ul className="resource-card__links">
+          <li><Link to="https://myfloki.com" target="_blank" rel="noreferrer">myfloki.com</Link> <span>• Plug-and-play stack</span></li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section className="resources-footer">
+  <div className="container">
+    <Heading as="h2">Keep the list fresh</Heading>
+    <p>
+      Run a new explorer, tooling bundle, or pool? Open a pull request or drop a link in <Link to="https://flokicoin.org/discord" target="_blank" rel="noreferrer">#builders on Discord</Link> and we’ll review it.
+    </p>
+  </div>
+</section>
+
+
+
+
+</div>
