@@ -1,0 +1,112 @@
+---
+slug: /wallets/twallet/v0
+title: tWallet v0 (Electrum)
+description: Setup guide for tWallet v0 Electrum mode with configuration samples, limitations, and release downloads.
+sidebar_position: 1
+---
+
+v0 is the legacy tWallet line. It connects to an Electrum server that indexes the blockchain and serves wallet queries.
+
+## Electrum
+- Electrum is a light-client protocol: the server maintains an index; clients query balances, history, and broadcast transactions.
+- Simplicity: Quick to get started, minimal sync.
+- Trade-offs: You trust the server’s view of the chain. Public servers also see your query patterns.
+
+### Electrum Setup
+:::note
+Guide coming soon. Community plug-and-play option: https://myfloki.com/operator
+:::
+
+## tWallet Limitations v0 vs v1
+
+- Addresses: legacy Flokicoin address format only (no segwit/taproot generation).
+- No built‑in Lightning daemon (FLND is not included).
+- Seed format: [BIP39](https://bips.dev/39/) mnemonic (different from v1’s aezeed).
+
+:::tip
+Restoring an existing [BIP39](https://bips.dev/39/) seed? Use v0. v1 (aezeed) is not compatible with [BIP39](https://bips.dev/39/).
+:::
+
+**Status:** Public Electrum endpoints previously listed are deprecated. Prefer your own server or a trusted community provider.
+
+## Install
+
+Latest known v0 build: 0.1.1-alpha
+
+| OS/Arch | Asset |
+| --- | --- |
+| macOS (Apple Silicon) | https://github.com/flokiorg/tWallet/releases/download/0.1.1-alpha/twallet-darwin-arm64-v0.1.1-alpha.tar.gz |
+| macOS (Intel) | https://github.com/flokiorg/tWallet/releases/download/0.1.1-alpha/twallet-darwin-amd64-v0.1.1-alpha.tar.gz |
+| Linux x86_64 | https://github.com/flokiorg/tWallet/releases/download/0.1.1-alpha/twallet-linux-amd64-v0.1.1-alpha.tar.gz |
+| Linux arm64 (Raspberry Pi) | https://github.com/flokiorg/tWallet/releases/download/0.1.1-alpha/twallet-linux-arm64-v0.1.1-alpha.tar.gz |
+| Windows x86_64 | https://github.com/flokiorg/tWallet/releases/download/0.1.1-alpha/twallet-windows-amd64-v0.1.1-alpha.zip |
+
+Extract and make the binary executable where applicable:
+
+```bash
+tar -xvf twallet-*.tar.gz
+chmod +x twallet
+```
+
+## Configure
+
+Create a `twallet.conf` next to the binary and point it to your Electrum server:
+
+```ini title="twallet.conf (v0 minimal)"
+electserver = electrum.example.com:50001
+# timeout = 10s
+```
+
+Full sample (annotated):
+
+```ini title="Full sample (v0)"
+; Directory for the wallet database
+; walletdir = /private/link/flc/db
+
+; Network settings (only one can be true)
+; If both regtest and testnet are false, mainnet will be used by default.
+; Use the regression test network
+; regtest = false
+; Use the test network
+; testnet = false
+
+; Database connection timeout (in seconds)
+timeout = 10s
+
+; Electrum server configuration (host:port)
+electserver = electrum.example.com:50001
+
+# Fee for slow transactions (in loki/vB)
+# feeslow = 1
+
+# Fee for medium transactions (in loki/vB)
+# feemedium = 2
+
+# Fee for fast transactions (in loki/vB) # available on v0.1.1
+# feefast = 3
+```
+
+## Run
+
+On macOS/Linux:
+
+```bash
+./twallet
+```
+
+On Windows:
+
+```powershell
+twallet.exe
+```
+
+If your OS flags the binary, allow it explicitly.
+
+## Releases
+
+See the sidebar for the latest v0 release notes and assets.
+
+## Security
+- Back up your seed phrase (24 words recommended) and test recovery.
+- Set a spending passphrase and lock your wallet when idle.
+- Keep tWallet up to date: https://github.com/flokiorg/tWallet/releases

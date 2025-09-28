@@ -1,0 +1,164 @@
+---
+slug: /wallets/twallet/v1
+title: tWallet v1 (Neutrino)
+description: Installation, configuration, and security guide for the Neutrino-powered tWallet v1 with Lightning integrations.
+sidebar_position: 1
+---
+
+v1 is the recommended tWallet line. It uses the Neutrino light‑client protocol ([BIP157](https://bips.dev/157/)/[BIP158](https://bips.dev/158/)) to sync without relying on a third‑party Electrum server.
+
+## Capabilities
+
+- Built‑in FLND (Flokicoin Lightning Network Daemon) for integrated Lightning operations.
+- Address types: segwit ([BIP173](https://bips.dev/173/)) and taproot ([BIP341](https://bips.dev/341/), [BIP342](https://bips.dev/342/)).
+- Seed format: aezeed (LND seed, new format) for backup and recovery.
+
+:::note
+Default address type is `segwit`. You can switch via `addresstype=segwit|nested-segwit|taproot` in `twallet.conf`.
+:::
+
+:::important
+Seed compatibility: v1 uses aezeed and cannot import [BIP39](https://bips.dev/39/) mnemonics. To restore a [BIP39](https://bips.dev/39/) seed, use v0 (Electrum) instead.
+:::
+
+Why Neutrino
+- Built-in: Neutrino is integrated directly into tWallet, no external server required.
+- Trust‑minimized: You verify headers and use compact block filters; no single server dictates your view of the chain.
+- Privacy: Queries are not centralized at an Electrum server.
+
+## Install
+
+:::tip
+Install via [myFloki plug-and-play](https://myfloki.com):
+```bash
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/myfloki/community-tools/main/downloader.sh)"
+```
+
+After installation, run `twallet`.  
+See [myfloki.com](https://myfloki.com) for details on the bundled components.
+:::
+
+Download the latest v1 release assets from GitHub and extract them.
+
+Latest known build: **1.0.5-beta**
+Latest known build: 1.0.5-beta
+
+| OS/Arch | Asset |
+| --- | --- |
+| macOS (Apple Silicon) | https://github.com/flokiorg/tWallet/releases/download/1.0.5-beta/twallet-darwin-arm64-v1.0.5-beta.tar.gz |
+| macOS (Intel) | https://github.com/flokiorg/tWallet/releases/download/1.0.5-beta/twallet-darwin-amd64-v1.0.5-beta.tar.gz |
+| Linux x86_64 | https://github.com/flokiorg/tWallet/releases/download/1.0.5-beta/twallet-linux-amd64-v1.0.5-beta.tar.gz |
+| Linux arm64 (Raspberry Pi) | https://github.com/flokiorg/tWallet/releases/download/1.0.5-beta/twallet-linux-arm64-v1.0.5-beta.tar.gz |
+| Windows x86_64 | https://github.com/flokiorg/tWallet/releases/download/1.0.5-beta/twallet-windows-amd64-v1.0.5-beta.zip |
+
+Extract and make the binary executable where applicable:
+
+```bash
+tar -xvf twallet-*.tar.gz
+chmod +x twallet
+```
+
+## Configure
+
+Create a `twallet.conf` file next to the binary or in your app data directory. Minimal example:
+
+```ini title="twallet.conf (v1 minimal)"
+# walletdir = ./loki
+# addresstype = segwit          # segwit | nested-segwit | taproot
+# feeurl = https://flokichain.info/api/v1/fees/recommended
+# debuglevel = info
+# connectiontimeout = 50s
+# rpclisten = 127.0.0.1:10005   # RPC API
+# restlisten = 127.0.0.1:5050   # REST API
+# restcors = *                  # CORS for REST API
+```
+
+Full sample (annotated):
+
+```ini title="Full sample (v1)"
+; Directory for the wallet database
+# walletdir = ./loki
+
+; Network settings (only one can be true)
+; If both regtest and testnet are false, mainnet will be used by default.
+; Use the regression test network
+; regtest = false
+; Use the test network
+; testnet = false
+
+; The timeout value for network connections {ms, s, m, h}
+; Default is '50s'
+;connectiontimeout = 50s
+
+; Logging level for all subsystems {trace, debug, info, warn, error, critical}
+; Default is 'info'
+;debuglevel=info
+
+; Connect only to the specified peers at startup
+; connect=node.example.org
+
+; Use default passphrase for locking (TESTING ONLY, DO NOT USE IN MAINNET OR PRODUCTION ENVIRONMENTS)
+# defaultpassword=pass
+
+
+; Address type to generate (taproot, segwit, or nested-segwit)
+; Default is 'segwit'
+# addresstype=segwit
+
+; Custom fee estimation API endpoint (Recommended on mainnet)
+# feeurl=https://flokichain.info/api/v1/fees/recommended
+
+
+; Adds an extra IP to the generated certificate. One IP per line.
+# tlsextraip=0.0.0.0
+
+; Adds an extra domain to the generated certificate. One domain per line.
+# tlsextradomain=localhost
+
+; Re-generate TLS certificate and key if the IPs or domains are changed.
+# tlsautorefresh=true
+
+; Add an interface/port/socket to listen for RPC connections.
+; One listen address per line. Example: rpclisten=0.0.0.0:10005
+# rpclisten=0.0.0.0:10005
+
+; Add an interface/port/socket to listen for REST connections.
+; One listen address per line. Example: restlisten=0.0.0.0:5050
+# restlisten=0.0.0.0:5050
+
+; Add an interface/port to listen for peer connections.
+; One listen address per line. Example: listen=0.0.0.0:5521
+# listen=0.0.0.0:5521
+
+; Add an ip:port or hostname to allow cross-origin access to the REST API.
+; One entry per line. To allow all origins, use: restcors=*
+; Examples:
+; restcors=http://localhost:3000
+; restcors=https://mydomain.com
+# restcors=*
+```
+
+## Run
+
+On macOS/Linux:
+
+```bash
+./twallet
+```
+
+On Windows:
+
+```powershell
+twallet.exe
+```
+
+If your OS flags the binary, allow it explicitly.
+
+## Releases
+
+See the sidebar for the latest v1 release notes and assets.
+
+## Security
+- Back up your seed phrase (24 words recommended) and test recovery.
+- Set a spending passphrase and lock your wallet when idle.
+- Keep tWallet up to date: https://github.com/flokiorg/tWallet/releases

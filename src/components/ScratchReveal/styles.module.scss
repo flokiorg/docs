@@ -1,0 +1,166 @@
+
+.reveal {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: baseline;
+  padding: 0.12rem 0.55rem;
+  margin: 0.12rem 0.18rem;
+  width: clamp(84px, var(--scratch-reveal-width, 24vw), 110px);
+  
+  border-radius: 999px;
+  background: linear-gradient(140deg, #000000 0%, #000000 45%, #000000 100%);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.6), 0 2px 6px rgba(40, 40, 60, 0.18);
+  overflow: hidden;
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='36' viewBox='0 0 28 36'%3E%3Ccircle cx='14' cy='11' r='9' fill='%23f7b733' stroke='%23c77966' stroke-width='2'/%3E%3Ctext x='14' y='28' font-size='9' text-anchor='middle' fill='%23000000' font-family='Arial'%3EPOW%3C/text%3E%3C/svg%3E") 14 12, pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+  outline: none;
+  touch-action: none;
+}
+
+.reveal::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(125deg, rgba(255, 255, 255, 0.55) 25%, rgba(255, 255, 255, 0) 45%),
+    url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="150" height="70" viewBox="0 0 150 70" preserveAspectRatio="none"%3E%3Cpath fill="%23ffffff" fill-opacity="0.88" d="M0 20c24 10 50-14 76-10s54 32 74 22V70H0Z"/%3E%3C/svg%3E') center/140% 110% no-repeat;
+  mix-blend-mode: screen;
+  opacity: 0.85;
+  pointer-events: none;
+  transition: opacity 0.24s ease;
+}
+
+.reveal::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.55) 0px,
+      rgba(255, 255, 255, 0.55) 1px,
+      rgba(210, 210, 220, 0.25) 3px,
+      rgba(210, 210, 220, 0.25) 6px
+    );
+  mix-blend-mode: overlay;
+  opacity: 0.55;
+  pointer-events: none;
+  transition: opacity 0.24s ease;
+}
+
+.reveal:hover:not(.revealed) {
+  transform: translateY(-1px);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.75), 0 6px 14px rgba(214, 82, 82, 0.2);
+}
+
+.reveal:focus-visible {
+  box-shadow: 0 0 0 2px rgba(214, 82, 82, 0.32), inset 0 1px 2px rgba(255, 255, 255, 0.7);
+}
+
+
+.text {
+  position: relative;
+  z-index: 1;
+  font-weight: 600;
+  white-space: nowrap;
+  color: transparent;
+  transition: color 0.18s ease, opacity 0.18s ease;
+  opacity: 0;
+}
+
+
+.hint {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.5rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #534c4c;
+  pointer-events: none;
+  z-index: 2;
+  mix-blend-mode: multiply;
+  white-space: pre-line;
+  line-height: 1;
+  text-align: center;
+}
+
+.canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  touch-action: none;
+}
+
+
+.revealed {
+  display: inline;
+  cursor: default;
+  background: none;
+  box-shadow: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+
+  .hint,
+  .canvas {
+    display: none;
+  }
+
+  .text {
+    color: inherit;
+    opacity: 1;
+    font-weight: inherit;
+    margin: 0;
+    padding: 0;
+  }
+
+  &::before {
+    opacity: 0;
+  }
+
+  &::after {
+    opacity: 0;
+  }
+}
+
+html[data-theme='dark'] .reveal {
+  background: linear-gradient(140deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.35));
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.35);
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='36' viewBox='0 0 28 36'%3E%3Ccircle cx='14' cy='11' r='9' fill='%23f7b733' stroke='%23c77966' stroke-width='2'/%3E%3Ctext x='14' y='30' font-size='9' text-anchor='middle' fill='%23ffffff' font-family='Arial'%3EPOW%3C/text%3E%3C/svg%3E") 14 12, pointer;
+
+}
+
+html[data-theme='dark'] .reveal::after {
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.25) 0px,
+      rgba(255, 255, 255, 0.25) 1px,
+      rgba(80, 80, 110, 0.35) 3px,
+      rgba(80, 80, 110, 0.35) 6px
+    );
+  opacity: 0.45;
+}
+
+html[data-theme='dark'] .reveal:hover:not(.revealed) {
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.45), 0 6px 14px rgba(214, 82, 82, 0.18);
+}
+
+html[data-theme='dark'] .reveal:focus-visible {
+  box-shadow: 0 0 0 2px rgba(214, 82, 82, 0.24), inset 0 1px 2px rgba(0, 0, 0, 0.45);
+}
+
+html[data-theme='dark'] .hint {
+  color: #c2b8b8;
+  mix-blend-mode: screen;
+}
+
+html[data-theme='dark'] .revealed {
+  background: transparent;
+}

@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"prettier.prettierPath": ".yarn/sdks/prettier",
+		"typescript.tsdk": ".yarn/sdks/typescript/lib",
+		"typescript.enablePromptUseWorkspaceTsdk": true,
+		"cSpell.words": [
+			"deflist",
+			"iconify",
+			"katex",
+			"rehype"
+		],
+		"discord.enabled": true
+	}
+}

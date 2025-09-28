@@ -1,0 +1,52 @@
+---
+slug: /mining
+title: Mining
+description: Comprehensive Flokicoin mining guide covering hardware requirements, AuxPoW merge mining, setup steps, and operational security.
+---
+
+
+## Overview
+- Flokicoin uses proof‑of‑work with the scrypt algorithm and a 1‑minute target block interval.
+- Auxiliary proof‑of‑work (AuxPoW, merge mining) is enabled from block 115,840, allowing Flokicoin to be merge‑mined alongside scrypt‑family networks (for example, Litecoin, Dogecoin) where pool support exists.
+- On mainnet, effective mining requires GPU or scrypt ASIC hardware. CPU mining is only practical on test networks.
+
+## Disclaimer
+
+:::caution Security: Zero-trust and sandbox first
+This page references third-party miners, pools, and guides.
+
+- Verify binaries and checksums; prefer reproducible builds.
+- Test in a sandbox or VM before production use.
+- Keep miners isolated from wallets and any sensitive data.
+
+Proceed carefully and assume untrusted defaults.
+:::
+
+## Parameters
+- Algorithm: scrypt (PoW)
+- Target block interval: 1 minute
+- AuxPoW: active since block 115,840
+
+## Hardware
+- GPU: Use a scrypt‑capable miner for your vendor (e.g., ccminer‑family for NVIDIA). Tune power/thermals conservatively.
+- ASIC: Scrypt ASICs (Litecoin‑class) deliver the best efficiency; follow vendor firmware and safety guidance.
+- CPU: Testnet only. On mainnet, CPU hashrate is not competitive.
+
+## Mining Modes
+- Pool mining (recommended): Connect to a Stratum‑compatible pool to receive steady payouts. See [Pools](/mining/pools).
+- Solo mining (advanced): Operate your own infrastructure and accept variance; ensure reliable connectivity and monitoring.
+- Merge mining (AuxPoW): Mine a scrypt‑family parent chain (e.g., LTC/DOGE) on a pool that forwards AuxPoW to Flokicoin, or use a Flokicoin pool that integrates AuxPoW. Configuration varies by pool—follow the pool’s instructions.
+
+## Getting Started
+1. Choose hardware: scrypt‑capable GPU or scrypt ASIC.
+2. Choose mode: a reputable pool (recommended) or solo.
+3. Configure your miner for scrypt and Stratum per your pool’s guide (e.g., `stratum+tcp://host:port`, wallet address as username).
+4. For merge mining, ensure your chosen scrypt‑family parent pool explicitly supports AuxPoW forwarding to Flokicoin and follow its aux configuration.
+
+## Testnet CPU Mining
+- For learning and testing only, a CPU miner can be used on testnet. See [Gminer](/mining/gminer) and restrict to test networks.
+
+## Security & Ops
+- Isolate miners from wallets and personal machines; use dedicated hosts or containers.
+- Keep firmware and miners up to date; monitor temperatures, hashrate, and rejects.
+- Never expose miner dashboards or RPC to the public internet; use firewalls and VPNs.

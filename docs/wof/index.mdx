@@ -1,0 +1,171 @@
+---
+slug: /wof
+title: The WoF Paper
+description: Explore WoF, the community movement designing the next web through Fun Enhancement Possibilities (FEPs).
+hideContributors: true
+hide_table_of_contents: true
+
+---
+import wofBookImage from './wof_book.png';
+import Heading from '@theme/Heading'; // eslint-disable-line no-unused-vars
+
+
+
+<div className="wofOverview ">
+  <div className="wofOverview__copy">
+    <Heading as="h2" id="overview">Overview</Heading>
+    <blockquote>
+      <div><em>“You never change things by fighting the existing reality. To change something, build a new model that makes the existing model obsolete.”</em> — Buckminster Fuller</div>
+    </blockquote>
+    <div>
+       The internet’s first age connected peers and shared static pages. Services followed, shaped by centralized interfaces that traded convenience for control over our data. Bitcoin reintroduced a public, decentralized mindset, yet the promise of Web3 tangled with speculation, token printing, and platforms that owned the experience.
+    </div>
+    <div>
+WoF is the movement to build the next web by redesigning everyday services so people decide how their data, identity, engagement, and contributions circulate in a work-based economy. If you believe the web can be cooperative, trustless, and permissionless, you belong here.
+   </div>
+
+:::warning[Asking about Flokicoin and WoF?]
+WoF stands on its own—no coin, no chain, a movement to reimagine the web through [FEPs](#what-is-a-fep).
+:::
+
+ 
+  </div>
+  <figure className="wofOverview__figure">
+    <img
+      src={wofBookImage.src ?? wofBookImage}
+      loading="eager"
+      alt="Illustration of the Book of WoF riding a wave of energy"
+      className="wofBookImage"
+    />
+    <figcaption className="wofBookCaption">
+      <p className="wofBookQuote">
+        The next web is transforming energy into shared value and returning ownership to its source.
+      </p>
+    </figcaption>
+  </figure>
+</div>
+
+## Web2, Web3… and the Next Web
+
+- **Web1** let us publish static pages, but expression was limited.
+- **Web2** layered rich interfaces, yet every login, review, and dataset collapsed into walled platforms hungry for our data.
+- **Bitcoin** showed a different path. Value could move without middlemen.
+- **Web3** made wallets and tokens mainstream but mostly printed assets around the same middlemen; everyday web engagements never changed.
+
+WoF is the reset button. We focus on everyday internet services—maps, messaging, media, commerce—and reimagine them with transparent economics, data ownership, sovereign identity, cohesive collaboration, and measurable engagement. The goal isn’t to decorate the old web; it’s to invent a humane one.
+
+## Why Nostr + POW Are WoF’s Backbone
+
+Most people hear “[Nostr](https://jump.ohstr.com/)” and picture a decentralized social app popularized by Jack Dorsey. In reality, Nostr is a lightweight communication layer—think of it as HTTP for the next web: simple, open, and portable. Proof-of-work is the economic layer that keeps that next web honest. You either spend previously earned work-backed coins to access services, or you contribute fresh work that other people can rely on.
+
+Core principles WoF leans on:
+
+- **Proof-of-work**: offerings price access in energy-backed coins—people can spend previously mined work or pick up new work to earn their way in.
+- **Keys as identity**: public/private pairs replace platform-bound usernames, keeping reputation portable.
+- **Signed notes**: every interaction is an immutable, timestamped event any client can read, verify, or extend.
+- **Relay choice**: participants pick or run relays to route events, so no single intermediary controls communication.
+
+WoF builds on Nostr so every service speaks the same language from day one, and on proof-of-work so every economic promise traces back to real effort. Communication, coordination, and engagement travel through Nostr, while pricing, access, and governance lean on verifiable work.
+
+
+## What is a FEP?
+
+**FEP** stands for **Fun Enhancement Possibility**.
+A FEP is WoF’s proposal blueprint. It lays out the experience issues you want to ease, the journey you’re inviting people into, and the economy that will support it.
+
+It’s not a feature request.
+It’s not a pump scheme.
+It’s a design challenge that invites anyone to remix the rules of the web.
+
+A clear FEP usually covers:
+
+- What’s happening today and what you want to redesign.
+- Who’s involved now and how their experience improves.
+- The economic design: how value circulates, what work backs it, and how participants stay aligned.
+- The Nostr primitives or new NIP drafts the service depends on.
+
+It isn’t a roadmap—it’s a launchpad. Submit your FEP and let’s buckle in.
+
+:::tip[Need a concrete example?]
+Check the [Sharenote case study](/wof/sharenote) for how one mining service is taking shape.
+:::
+
+
+## Who WoF is For
+
+<div className="row">
+  <div className="col col--3 margin-bottom--lg" style={{display: 'flex'}}>
+    <div className="card" style={{flex: '1'}}>
+      <div className="card__header"><Heading as="h3">Builders</Heading></div>
+      <div className="card__body">
+        Prototype services on top of the Nostr protocol, proof-of-work incentives, and expressive UX that hand ownership back to people.
+      </div>
+    </div>
+  </div>
+  <div className="col col--3 margin-bottom--lg" style={{display: 'flex'}}>
+    <div className="card" style={{flex: '1'}}>
+      <div className="card__header"><Heading as="h3">Marketers</Heading></div>
+      <div className="card__body">
+        Craft narratives, campaigns, and rituals that onboard everyday users into decentralized services without losing their sense of wonder.
+      </div>
+    </div>
+  </div>
+  <div className="col col--3 margin-bottom--lg" style={{display: 'flex'}}>
+    <div className="card" style={{flex: '1'}}>
+      <div className="card__header"><Heading as="h3">Infrastructure Backers</Heading></div>
+      <div className="card__body">
+        Spot teams and concepts worth funding early. Use FEPs to evaluate adoption models, work-based economies, and resilient infrastructure bets.
+      </div>
+    </div>
+  </div>
+  <div className="col col--3 margin-bottom--lg" style={{display: 'flex'}}>
+    <div className="card" style={{flex: '1'}}>
+      <div className="card__header"><Heading as="h3">Donors</Heading></div>
+      <div className="card__body">
+        Fund experiments that create public goods, art, or education. Help teams cross the gap from idea to live prototype with mission-aligned resources.
+      </div>
+    </div>
+  </div>
+</div>
+
+
+## Why Build on Top, Not Against?
+
+We’re not here to torch the current web. The habits, networks, and tooling people rely on every day are the launch ramps for what comes next. WoF experiments extend what already works instead of forcing everyone to migrate overnight.
+
+We build on top because:
+
+- **Familiar entry points** let people try new experiences without abandoning their existing workflows.
+- **Incremental upgrades** allow teams to ship, measure, and iterate faster than a ground-up rewrite.
+- **Interoperability** keeps bridges open between legacy services.
+
+That is why WoF projects plug into today’s services, add transparent communication through Nostr, and weave in work-backed incentives. Evolution beats isolation.
+
+## Ready to Submit Your First FEP?
+
+Start with a question:
+> *“Wouldn’t it be fun if…?”*
+
+Sketch the outline using the FEP checklist above, then publish it where the community already gathers. Use the discussion to refine the idea, gather feedback, and find collaborators who want to explore it with you.
+
+Because the only thing better than **thinking outside the box** is **turning the box into a game console**.
+
+:::note[Need a starting point?]
+Join the WoF Discord and drop into the discussion channels to swap notes and sharpen your concept.
+:::
+
+
+# WoF is Not a Feature. It’s a Philosophy.
+
+If you're here to speculate, that's okay.
+If you're here to innovate — welcome home.
+
+Let’s make the web courageous again.
+Let’s make online life resilient again.
+Let’s build with intention.
+
+**Let’s create Fun on Purpose.**
+
+- Join the #WoF Discord forum. Post a FEP.
+- Launch an experiment.
+- And above all—**don’t ask for permission. Ask: what’s the most meaningful move we could make right now?**

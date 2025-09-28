@@ -1,0 +1,117 @@
+---
+title: 0.25.7-beta
+description: Release notes for Flokicoin Core 0.25.7-beta introducing Digishield difficulty tuning, AuxPoW activation, and platform builds.
+sidebar_position: 1
+---
+
+Please report bugs using the issue tracker at GitHub:
+
+https://github.com/flokiorg/go-flokicoin/issues
+
+This is a minor beta release of Flokicoin Core with a new per-block difficulty retarget algorithm (Digishield-style), AuxPoW header and consensus support, testnet feature updates, RPC corrections, and build/test improvements. This release schedules `MAINNET ACTIVATION` for both Digishield and AuxPoW via chain parameters. All mainnet nodes must upgrade before the activation heights below to avoid chain splits.
+
+## Notable changes
+
+- Consensus: Digishield difficulty retarget
+  - Introduces a per-block exponential moving average retarget toward the target spacing with amplitude divisor 8.
+  - Applies bounded damping each step (min 0.75x, max 1.5x of target spacing influence) to reduce volatility.
+  - Supports min-difficulty on late blocks where enabled by chain parameters.
+  - Integrates into validation and mining (next-required-bits, block template target) and expands unit/full-block tests.
+
+- P2P/Wire: AuxPoW header support
+  - Adds AuxPoW structures (coinbase, merkle branches, parent header) and serialization helpers.
+  - Extends `BlockHeader` with AuxPoW flag and ChainID utilities plus optional AuxPoW payload encode/decode.
+  - Updates `MsgBlock` decoding to parse AuxPoW payloads when present; adds coverage for read/write paths.
+  - Consensus: AuxPoW is activated on mainnet at the height listed below.
+
+- Testnet/regtest updates
+  - Enables SegWit and Taproot features on testnet where configured.
+  - Tunes `MinHighPriority` and increases the `MaxLoki` bound used in RPC amount validation.
+
+- RPC fixes and improvements
+  - Aligns reported P2P protocol version with `wire.ProtocolVersion` and fills `getinfo` fields (subversion, localservices, connections_in/out, localaddresses) from live server state.
+
+- Tooling and tests
+  - Adds `make testexport` target and a deterministic test-data exporter.
+  - Unifies block dataset loader with mandatory network-magic validation; refactors call sites.
+  - Adds an end-to-end difficulty validation over curated datasets and emits steady-state tuning metrics.
+
+- Build and configuration
+  - Drops local `replace` override for `flokicoin-neutrino` to avoid developer-only paths.
+  - Prints a single startup banner with semantic version during config load; refactors ASCII-art constants.
+
+## Compatibility
+
+- Mainnet will activate Digishield and AuxPoW at fixed heights (below). These are consensus changes and constitute a hard fork at activation. All miners, validators, and services must upgrade before those heights.
+- AuxPoW wire support remains backward compatible for non-AuxPoW headers until activation height.
+- No database format changes are introduced.
+
+## Activation schedule (mainnet)
+
+- Digishield difficulty retarget: activates at height 115,000 (`DigishieldActivationHeight` in `chaincfg/params.go`).
+- AuxPoW consensus: activates at height 115,840 (`AuxpowHeightEffective` in `chaincfg/params.go`).
+
+These activations are parameterized in `repos/flokiorg/go-flokicoin/chaincfg/params.go` under `MainNetParams`.
+
+## Upgrade notices
+
+- Mainnet node operators: upgrade to 0.25.7-beta before heights 115,000 (Digishield) and 115,840 (AuxPoW) to remain on the canonical chain.
+- Testnet/regtest operators should upgrade to participate in the updated difficulty and feature policies.
+- Application developers should re-vendor/update to pick up RPC schema fixes and wire additions related to AuxPoW.
+
+## RPC changes
+
+- `getinfo` now reports accurate `subversion`, `localservices`, `localservicesnames`, `connections_in`, `connections_out`, and `localaddresses`.
+- Reported max protocol version aligns with `wire.ProtocolVersion` (70016).
+
+## Build system and tooling
+
+- New `make testexport` target to export block datasets for deterministic tests.
+- Removed local `replace` for `flokicoin-neutrino` to produce clean module graphs in builds.
+
+## Tests and QA
+
+- Unified block loader enforces network magic and uses buffered, full-length reads.
+- Added E2E difficulty validation with metrics output for steady-state analysis.
+- Curated, smaller test datasets improve determinism and CI time.
+
+## Changelog since [v0.25.6-beta](/lokichain/releases/0.25.6-beta)
+
+- b4f439e consensus: add Digishield difficulty retarget
+- dec0948 wire: integrate AuxPoW header support
+- 31eff16 chore: repo updates for rpc/db, tests, fixtures
+- e2ac6e7 tests: validate difficulty dataset and expose tuning metrics
+- 735410f tests: unify block loader to enforce network magic; refactor call sites
+- 0e5dcd3 make: add testexport target for exporting block datasets
+- 651a453 rpc: report correct p2p protocol and fill getinfo fields
+- bea6a7a build: drop local replace for flokicoin-neutrino
+- 2e92497 config: print startup banner with version; refactor art constants
+- b24e870 wire: remove stale TODO comment in protocol.go
+- 60460f8 enable segiwit/taproot for testnet
+- f9bf3ae increase maxloki const
+- 712355d update MinHighPriority const
+- fa96bbd bump version 0.25.7-dev
+- 4523b79 version: bump to 0.25.7-beta
+
+## Credits
+
+Thanks to everyone who directly contributed to this release:
+
+- naliyi
+- izimmerma
+- mechion
+- repins
+- nanovex
+- liarpo11
+- arowqo
+- thiniboy
+
+## Assets
+
+| OS/Arch | Asset |
+| --- | --- |
+| macOS (Apple Silicon) | https://github.com/flokiorg/go-flokicoin/releases/download/0.25.7-beta/flokicoind-darwin-arm64-v0.25.7-beta.tar.gz |
+| macOS (Intel) | https://github.com/flokiorg/go-flokicoin/releases/download/0.25.7-beta/flokicoind-darwin-amd64-v0.25.7-beta.tar.gz |
+| Linux x86_64 | https://github.com/flokiorg/go-flokicoin/releases/download/0.25.7-beta/flokicoind-linux-amd64-v0.25.7-beta.tar.gz |
+| Linux arm64 | https://github.com/flokiorg/go-flokicoin/releases/download/0.25.7-beta/flokicoind-linux-arm64-v0.25.7-beta.tar.gz |
+| Windows x86_64 | https://github.com/flokiorg/go-flokicoin/releases/download/0.25.7-beta/flokicoind-windows-amd64-v0.25.7-beta.zip |
