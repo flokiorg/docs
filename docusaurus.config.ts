@@ -294,6 +294,9 @@ const config: Config = {
       {
         generateLLMsTxt: true,
         generateLLMsFullTxt: true,
+        pathTransformation: {
+          ignorePaths: ['docs'],
+        }
       },
     ],
     [
