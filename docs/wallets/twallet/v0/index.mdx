@@ -12,10 +12,54 @@ v0 is the legacy tWallet line. It connects to an Electrum server that indexes th
 - Simplicity: Quick to get started, minimal sync.
 - Trade-offs: You trust the server’s view of the chain. Public servers also see your query patterns.
 
+
+
 ### Electrum Setup
+
 :::note
-Guide coming soon. Community plug-and-play option: https://myfloki.com/operator
+Don’t want to run your own?  
+Community plug-and-play option: https://myfloki.com/operator
 :::
+
+:::tip
+Need help or want a ready-made Electrum endpoint?  
+Join the **Flokicoin Discord** and ask in the `#tWallet` channel — community members sometimes share public Electrum instances.  
+👉 [Join Discord](https://flokicoin.org/discord)
+:::
+
+To use **tWallet v0**, you must run your own Electrum-compatible server.  
+For Flokicoin, the reference implementation is [`flokicoin-electrs`](https://github.com/flokiorg/flokicoin-electrs), a fork of `electrs` that indexes the chain and serves both Electrum and Esplora APIs.
+
+#### Requirements
+- A **fully synced Flokicoin full node daemon** (`flokicoind`)  
+- RPC credentials for your node (`rpcuser` / `rpcpassword`)  
+- Disk space for the Electrum index database (`--db-dir`)  
+
+#### Example run command
+```bash
+electrs -vvv \
+  --network mainnet \
+  --db-dir /data \
+  --jsonrpc-import \
+  --daemon-rpc-addr <FLOKICOIN_NODE_HOST>:15213 \
+  --electrum-rpc-addr 0.0.0.0:50001 \
+  --http-addr 0.0.0.0:3000 \
+  --cookie <RPCUSER>:<RPCPASS> \
+  --enable-json-rpc-logging \
+  --index-unspendables
+```
+
+Replace:
+- `<FLOKICOIN_NODE_HOST>` → hostname or IP of your `flokicoind`  
+- `<RPCUSER>` / `<RPCPASS>` → your daemon RPC credentials  
+
+Once running, point `twallet.conf` to your server:
+
+```ini title="twallet.conf (example)"
+electserver = 127.0.0.1:50001
+```
+
+
 
 ## tWallet Limitations v0 vs v1
 
