@@ -5,11 +5,13 @@ description: Overview of tWallet with guidance on choosing between the Neutrino 
 sidebar_position: 0
 ---
 
-Welcome to tWallet — a terminal UI (TUI) wallet for Flokicoin focused on speed, clarity, and self‑custody.
+import Link from '@docusaurus/Link';
+
+Welcome to tWallet — a terminal UI (TUI) wallet for Flokicoin focused on speed, clarity, and self-custody.
 
 Two major lines are available:
 
-- v1 (Neutrino light client): Latest, trust‑minimized, no external Electrum server required.
+- v1 (Neutrino light client): Latest, trust-minimized, no external Electrum server required.
 - v0 (Electrum client): Legacy, requires you to point at an Electrum server.
 
 If you’re unsure which to use, choose v1.
@@ -18,6 +20,16 @@ If you’re unsure which to use, choose v1.
 Currently, tWallet is the only available wallet. More wallets will be listed here as they become available.
 :::
 
+{/* --- Responsive version chooser --- */}
+<div className="version-chooser" role="region" aria-label="Version chooser">
+  <div className="version-chooser__content">
+    <div className="version-chooser__text">Choose your version</div>
+    <div className="version-chooser__actions">
+      <Link className="button button--primary" to="/wallets/twallet/v1" aria-label="Install v1 (Neutrino)">Install v1 (Neutrino)</Link>
+      <Link className="button button--secondary" to="/wallets/twallet/v0" aria-label="Install v0 (Electrum)">Install v0 (Electrum)</Link>
+    </div>
+  </div>
+</div>
 
 ## What “t” stands for
 
@@ -27,22 +39,27 @@ Currently, tWallet is the only available wallet. More wallets will be listed her
 
 ### v1 — Neutrino (recommended)
 
-Neutrino ([BIP157](https://bips.dev/157/)/[BIP158](https://bips.dev/158/)) downloads compact block filters and only fetches full blocks as needed.
-
-- Trust‑minimized: No third‑party server dictates your view of the chain.
-- Better privacy: Queries are not centralized on a single Electrum server.
-- Simple setup: No Electrum URL to configure.
-
-What’s new in v1
-- Built‑in FLND (Flokicoin Lightning Network Daemon) for integrated Lightning operations.
-- Modern addresses: segwit ([BIP173](https://bips.dev/173/)) and taproot ([BIP341](https://bips.dev/341/), [BIP342](https://bips.dev/342/)).
-- Seed format: aezeed (LND seed, new format). Not compatible with [BIP39](https://bips.dev/39/).
-
 :::important
 Have a [BIP39](https://bips.dev/39/) seed? Use v0 to restore. v1 does not import [BIP39](https://bips.dev/39/).
 :::
 
-[Get started with v1 →](/wallets/twallet/v1)
+Neutrino ([BIP157](https://bips.dev/157/)/[BIP158](https://bips.dev/158/)) downloads compact block filters and only fetches full blocks as needed.
+
+- Trust-minimized: No third-party server dictates your view of the chain.
+- Better privacy: Queries are not centralized on a single Electrum server.
+- Simple setup: No Electrum URL to configure.
+
+**What’s new in v1**
+- Built-in FLND (Flokicoin Lightning Network Daemon) for integrated Lightning operations.
+- Modern addresses: segwit ([BIP173](https://bips.dev/173/)) and taproot ([BIP341](https://bips.dev/341/), [BIP342](https://bips.dev/342/)).
+- Seed format: aezeed (LND seed, new format). Not compatible with [BIP39](https://bips.dev/39/).
+
+<div className="section-footer">
+  <div className="section-footer__divider" />
+  <div className="section-footer__actions">
+    <Link className="button button--primary button--lg section-footer__btn" to="/wallets/twallet/v1" aria-label="Install v1 (Neutrino)">Install v1</Link>
+  </div>
+</div>
 
 ### v0 — Electrum (legacy)
 
@@ -50,14 +67,95 @@ v0 connects to an Electrum server you specify (a server indexes the chain and an
 
 - You must configure `electserver = <host>:<port>`.
 - Public Electrum endpoints previously listed are deprecated; run your own or use a trusted provider.
-- Trade‑off: Simpler sync but you trust the server for your balance/tx history view.
+- Trade-off: Simpler sync but you trust the server for your balance/tx history view.
 
-Limitations in v0
+**Limitations in v0**
 - Addresses: legacy Flokicoin addresses only (no segwit/taproot generation).
 - Seed format: [BIP39](https://bips.dev/39/) mnemonic (not compatible with v1’s aezeed).
 
-[Use v0 (Electrum) →](/wallets/twallet/v0)
+<div className="section-footer">
+  <div className="section-footer__divider" />
+  <div className="section-footer__actions">
+    <Link className="button button--secondary button--lg section-footer__btn" to="/wallets/twallet/v0" aria-label="Install v0 (Electrum)">Install v0</Link>
+  </div>
+</div>
 
 ## Support
 
 For help, join the #tWallet channel on Discord: https://flokicoin.org/discord
+
+<style>
+{`
+/* ---- Responsive version chooser ---- */
+.version-chooser {
+  margin: 1rem 0 1.5rem 0;
+  border: 1px solid var(--ifm-toc-border-color);
+  border-radius: 0.5rem;
+  background: var(--ifm-background-surface-color);
+}
+.version-chooser__content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .75rem;
+  padding: .9rem 1rem;
+}
+.version-chooser__text {
+  font-weight: 600;
+  flex: 1 1 240px;
+  min-width: 160px;
+}
+.version-chooser__actions {
+  display: flex;
+  gap: .5rem;
+  flex: 1 1 auto;
+  justify-content: flex-end;
+}
+.version-chooser__actions .button {
+  white-space: nowrap;
+}
+
+/* Mobile: stack actions full width */
+@media (max-width: 640px) {
+  .version-chooser__actions {
+    width: 100%;
+    justify-content: stretch;
+    flex-direction: column;
+  }
+  .version-chooser__actions .button {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* ---- Section footers ---- */
+.section-footer {
+  margin-top: 1rem;
+}
+.section-footer__divider {
+  height: 2px;
+  background: var(--ifm-color-emphasis-200);
+  margin: 1.25rem 0 .9rem 0;
+  border-radius: 1px;
+}
+
+/* Right-aligned on desktop, full-width on mobile */
+.section-footer__actions {
+  display: flex;
+  justify-content: flex-end;
+}
+.section-footer__btn { /* allow full-width on small screens */
+  max-width: 20rem;
+}
+@media (max-width: 640px) {
+  .section-footer__actions {
+    justify-content: stretch;
+  }
+  .section-footer__btn {
+    width: 100%;
+    max-width: none;
+    text-align: center;
+  }
+}
+`}
+</style>
