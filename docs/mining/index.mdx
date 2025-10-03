@@ -43,10 +43,24 @@ Proceed carefully and assume untrusted defaults.
 3. Configure your miner for scrypt and Stratum per your pool’s guide (e.g., `stratum+tcp://host:port`, wallet address as username).
 4. For merge mining, ensure your chosen scrypt‑family parent pool explicitly supports AuxPoW forwarding to Flokicoin and follow its aux configuration.
 
-## Testnet CPU Mining
-- For learning and testing only, a CPU miner can be used on testnet. See [Gminer](/mining/gminer) and restrict to test networks.
+## Miners
+- ccminer (NVIDIA): https://github.com/tpruvot/ccminer
+- CGMiner (ASIC/GPU): https://github.com/ckolivas/cgminer
+- BFGMiner (ASIC/GPU): https://github.com/luke-jr/bfgminer
+- nevermore (GPU): https://github.com/brian112358/nevermore-miner
+- cpuminer (CPU; testnet/learning only): https://github.com/pooler/cpuminer
+
+## Testnet Mining
+For learning and testing purposes, you can use a CPU miner on the testnet network:
+
+- [Gminer](/mining/gminer): A CPU gRPC mining client  
+- [Fminer](https://github.com/fpoolnet/fminer): A Stratum CPU mining client
 
 ## Security & Ops
 - Isolate miners from wallets and personal machines; use dedicated hosts or containers.
 - Keep firmware and miners up to date; monitor temperatures, hashrate, and rejects.
 - Never expose miner dashboards or RPC to the public internet; use firewalls and VPNs.
+
+
+## Support
+Join the [#mining](https://flokicoin.org/discord) channel on Discord for help.
