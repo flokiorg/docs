@@ -120,6 +120,45 @@ html[data-theme='dark'] .github-link {
   }
 }
 
+.release-header-meta {
+  display: inline-flex;
+  align-items: center;
+  margin: -0.1rem 0 0.75rem;
+}
+
+.release-header-left {
+  justify-content: flex-start;
+}
+
+.release-header-meta .release-github {
+  padding: 0.25rem 0.65rem 0.25rem 0.35rem;
+  border-radius: 999px;
+  background: rgba(208, 151, 15, 0.1);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  transition: background 0.15s ease, transform 0.15s ease;
+  text-decoration: none;
+}
+
+.release-header-meta .release-github::before {
+  margin: 0;
+  height: 22px;
+  width: 22px;
+}
+
+.release-header-meta .release-github:hover {
+  background: rgba(208, 151, 15, 0.18);
+  transform: translateY(-1px);
+}
+
+.release-header-label {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--ifm-navbar-link-color);
+  letter-spacing: 0.01em;
+}
+
 .navbar__title {
   font-size: 1.25rem;
   font-weight: 700;
