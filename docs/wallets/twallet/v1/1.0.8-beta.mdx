@@ -1,0 +1,66 @@
+---
+title: 1.0.8-beta
+description: Release notes for tWallet v1.0.8-beta with guided recovery, steadier onboarding, UI polish, and refreshed Lightning dependencies.
+sidebar_position: 19
+---
+
+<div className="release-header-meta release-header-left">
+  <a className="github-link release-github no-external-icon" href="https://github.com/flokiorg/tWallet/releases/tag/v1.0.8-beta" target="_blank" rel="noreferrer" title="View v1.0.8-beta on GitHub">
+    <span className="release-header-label">GitHub</span>
+  </a>
+</div>
+
+Please report bugs using the issue tracker on GitHub:  
+https://github.com/flokiorg/tWallet/issues
+
+This beta focuses on smoother startup/recovery flows, clearer onboarding, UI refinements, stronger caching, and refreshed dependencies.
+
+## Changes
+
+### Startup and recovery
+- Added a guided recovery path that clears Neutrino cache files and restarts the wallet service when boot fails (press R on the splash screen).
+- Startup now blocks until the service reports a healthy state; down/EOF conditions surface clear instructions to recover or exit.
+
+### Restore and onboarding
+- Restore flow monitors recovery progress, shows toast updates, and waits for RPC readiness before entering the main app.
+- Seed create/restore transitions avoid premature navigation by tracking restore state and waiting for wallet availability.
+
+### Wallet UI
+- Switches/buttons gained configurable colors and keep active styling in sync with state.
+- Copying the cipher now confirms via toast; receive flow messaging is clearer.
+- TUI skips draws when the terminal reports zero dimensions and clears the screen after a valid size returns, preventing resize panics and stale frames.
+- Balance header always shows unconfirmed funds even when locked funds are present to keep pending exposure consistent.
+
+### Configuration and defaults
+- Sample config documents `transactiondisplaylimit`, clarifying it caps the number of transactions shown (not fetched).
+- CLI defaults now set a transaction display limit and clarify fee URL guidance; sample config documents the expected fee API response.
+
+### Stability, caching, and monitoring
+- Load cache now tracks balances and chain tip height; notifications update the tip on new blocks/transactions.
+- Recovery monitoring retries until the wallet RPC is ready and reports recovery completion.
+
+### Dependencies
+- Bumped to `flnd` **v0.1.8-beta** and `walletd` **v0.1.5-beta**.
+- VERSION set to **1.0.8-beta**.
+
+## Config example
+
+```ini title="twallet.conf snippet"
+; Limit how many transactions are displayed (fetched set is unchanged)
+transactiondisplaylimit=50
+; Recommended fee endpoint format remains the same
+feeurl=https://flokichain.info/api/v1/fees/recommended
+```
+
+## Assets
+
+| OS/Arch | Asset |
+| --- | --- |
+| macOS (Apple Silicon) | https://github.com/flokiorg/tWallet/releases/download/v1.0.8-beta/twallet-darwin-arm64-v1.0.8-beta.tar.gz |
+| macOS (Intel) | https://github.com/flokiorg/tWallet/releases/download/v1.0.8-beta/twallet-darwin-amd64-v1.0.8-beta.tar.gz |
+| Linux x86_64 | https://github.com/flokiorg/tWallet/releases/download/v1.0.8-beta/twallet-linux-amd64-v1.0.8-beta.tar.gz |
+| Linux arm64 (Raspberry Pi) | https://github.com/flokiorg/tWallet/releases/download/v1.0.8-beta/twallet-linux-arm64-v1.0.8-beta.tar.gz |
+| Windows x86_64 | https://github.com/flokiorg/tWallet/releases/download/v1.0.8-beta/twallet-windows-amd64-v1.0.8-beta.zip |
+| Windows 32-bit | https://github.com/flokiorg/tWallet/releases/download/v1.0.8-beta/twallet-windows-386-v1.0.8-beta.zip |
+
+Additional builds (ppc64, mips, and *BSD) are available on the [GitHub release page](https://github.com/flokiorg/tWallet/releases/tag/v1.0.8-beta).

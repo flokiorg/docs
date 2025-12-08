@@ -30,7 +30,7 @@ To use **tWallet v0**, you must run your own Electrum-compatible server.
 For Flokicoin, the reference implementation is [`flokicoin-electrs`](https://github.com/flokiorg/flokicoin-electrs), a fork of `electrs` that indexes the chain and serves both Electrum and [Esplora APIs](https://github.com/Blockstream/esplora/blob/master/API.md).
 
 #### Requirements
-- A **fully synced Flokicoin full node daemon** (`flokicoind`)  
+- A **fully synced Flokicoin full node daemon** (`lokid`)  
 - RPC credentials for your node (`rpcuser` / `rpcpassword`)  
 - Disk space for the Electrum index database (`--db-dir`)  
 
@@ -49,7 +49,7 @@ electrs -vvv \
 ```
 
 Replace:
-- `<FLOKICOIN_NODE_HOST>` → hostname or IP of your `flokicoind`  
+- `<FLOKICOIN_NODE_HOST>` → hostname or IP of your `lokid`  
 - `<RPCUSER>` / `<RPCPASS>` → your daemon RPC credentials  
 
 Once running, point `twallet.conf` to your server:

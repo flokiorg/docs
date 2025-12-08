@@ -38,18 +38,16 @@ After installation, run `twallet`.
 See [myfloki.com](https://myfloki.com) for details on the bundled components.
 :::
 
-Download the latest v1 release assets from GitHub and extract them.
-
-Latest known build: **1.0.5-beta**
-Latest known build: 1.0.5-beta
+Download the latest [1.0.8-beta release assets](https://github.com/flokiorg/tWallet/releases/tag/v1.0.8-beta) from GitHub and extract them.
 
 | OS/Arch | Asset |
 | --- | --- |
-| macOS (Apple Silicon) | https://github.com/flokiorg/tWallet/releases/download/v1.0.5-beta/twallet-darwin-arm64-v1.0.5-beta.tar.gz |
-| macOS (Intel) | https://github.com/flokiorg/tWallet/releases/download/v1.0.5-beta/twallet-darwin-amd64-v1.0.5-beta.tar.gz |
-| Linux x86_64 | https://github.com/flokiorg/tWallet/releases/download/v1.0.5-beta/twallet-linux-amd64-v1.0.5-beta.tar.gz |
-| Linux arm64 (Raspberry Pi) | https://github.com/flokiorg/tWallet/releases/download/v1.0.5-beta/twallet-linux-arm64-v1.0.5-beta.tar.gz |
-| Windows x86_64 | https://github.com/flokiorg/tWallet/releases/download/v1.0.5-beta/twallet-windows-amd64-v1.0.5-beta.zip |
+| macOS (Apple Silicon) | https://github.com/flokiorg/tWallet/releases/download/v1.0.8-beta/twallet-darwin-arm64-v1.0.8-beta.tar.gz |
+| macOS (Intel) | https://github.com/flokiorg/tWallet/releases/download/v1.0.8-beta/twallet-darwin-amd64-v1.0.8-beta.tar.gz |
+| Linux x86_64 | https://github.com/flokiorg/tWallet/releases/download/v1.0.8-beta/twallet-linux-amd64-v1.0.8-beta.tar.gz |
+| Linux arm64 (Raspberry Pi) | https://github.com/flokiorg/tWallet/releases/download/v1.0.8-beta/twallet-linux-arm64-v1.0.8-beta.tar.gz |
+| Windows x86_64 | https://github.com/flokiorg/tWallet/releases/download/v1.0.8-beta/twallet-windows-amd64-v1.0.8-beta.zip |
+| Windows 32-bit | https://github.com/flokiorg/tWallet/releases/download/v1.0.8-beta/twallet-windows-386-v1.0.8-beta.zip |
 
 Extract and make the binary executable where applicable:
 
@@ -60,7 +58,10 @@ chmod +x twallet
 
 ## Configure
 
+You can run `twallet` without a config file; add one only when you need custom settings (for example, running a second wallet).
+
 Create a `twallet.conf` file next to the binary or in your app data directory. Minimal example:
+
 
 ```ini title="twallet.conf (v1 minimal)"
 # walletdir = ./loki
@@ -71,8 +72,8 @@ Create a `twallet.conf` file next to the binary or in your app data directory. M
 # rpclisten = 127.0.0.1:10005   # RPC API
 # restlisten = 127.0.0.1:5050   # REST API
 # restcors = *                  # CORS for REST API
+# transactiondisplaylimit=121
 ```
-
 Full sample (annotated):
 
 ```ini title="Full sample (v1)"
@@ -94,6 +95,10 @@ Full sample (annotated):
 ; Default is 'info'
 ;debuglevel=info
 
+; Logging level for the twallet application {trace, debug, info, warn, error, fatal, panic}
+; Default is 'info'
+;loglevel=info
+
 ; Connect only to the specified peers at startup
 ; connect=node.example.org
 
@@ -105,7 +110,10 @@ Full sample (annotated):
 ; Default is 'segwit'
 # addresstype=segwit
 
-; Custom fee estimation API endpoint (Recommended on mainnet)
+# Custom fee estimation API endpoint (optional).
+# The URL below is only an example — you can replace it with your own fee provider.
+# Expected response format:
+# {"fastestFee":1,"halfHourFee":1,"hourFee":1,"economyFee":0,"minimumFee":0}
 # feeurl=https://flokichain.info/api/v1/fees/recommended
 
 
@@ -136,6 +144,11 @@ Full sample (annotated):
 ; restcors=http://localhost:3000
 ; restcors=https://mydomain.com
 # restcors=*
+
+; Maximum number of transactions to display.
+; This does NOT affect how many transactions are fetched internally;
+; it only limits how many are presented at once.
+# transactiondisplaylimit=121
 ```
 
 ## Run
