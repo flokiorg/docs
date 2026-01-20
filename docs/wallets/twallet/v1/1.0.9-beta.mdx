@@ -1,0 +1,51 @@
+---
+title: 1.0.9-beta
+description: Release notes for tWallet v1.0.9-beta featuring an internal Lightning connector, new configuration modal, and first-run auto-unlock.
+sidebar_position: -1
+---
+
+<div className="release-header-meta release-header-left">
+  <a className="github-link release-github no-external-icon" href="https://github.com/flokiorg/tWallet/releases/tag/v1.0.9-beta" target="_blank" rel="noreferrer" title="View v1.0.9-beta on GitHub">
+    <span className="release-header-label">GitHub</span>
+  </a>
+</div>
+
+Please report bugs using the issue tracker at GitHub:
+
+https://github.com/flokiorg/tWallet/issues
+
+This release integrates a dedicated internal Lightning connector and adds a configuration view for node management.
+
+## Notable Changes
+
+### Internal Lightning Connector
+The wallet now implements an internal connector strategy. The connection management and service logic have been moved internally to `tWallet`, decoupling the application from the external `FLND` repository. This provides a stable, application-specific interface for all Lightning operations.
+
+### Configuration Updates
+- Added mapping for additional `flnd` configuration options and synchronized default values to ensure consistency with the core Lightning implementation.
+
+### New: Lightning Configuration Modal
+A new configuration modal is accessible via the `Ctrl+N` shortcut.
+
+- **Connection Details**: Displays RPC Address, Peer Address, and Identity PubKey.
+- **Credentials**: Exports Macaroon and TLS Certificate in hex format for configuring external tools like `LokiHub`, `flncli`, or web dashboards.
+- **Clipboard**: Implements a new cross-platform copy mechanism with robust fallback support (OSC 52, native OS commands) for seamless use in local and remote environments.
+
+### First Run Auto-Unlock
+To support automated deployments and Ops workflows, a new `autounlock` configuration option has been added.
+- **Automated Startup**: When enabled alongside `defaultpassword`, the wallet silently unlocks on the initial application run without requiring user interaction.
+- **Stealth UI**: The unlock form is hidden during the automatic process, displaying only a status indicator.
+- **Security**: This behavior is restricted to the first run only; subsequent manual locking/unlocking operations retain the standard password prompt for security.
+
+## Assets
+
+| OS/Arch | Asset |
+| --- | --- |
+| macOS (Apple Silicon) | https://github.com/flokiorg/tWallet/releases/download/v1.0.9-beta/twallet-darwin-arm64-v1.0.9-beta.tar.gz |
+| macOS (Intel) | https://github.com/flokiorg/tWallet/releases/download/v1.0.9-beta/twallet-darwin-amd64-v1.0.9-beta.tar.gz |
+| Linux x86_64 | https://github.com/flokiorg/tWallet/releases/download/v1.0.9-beta/twallet-linux-amd64-v1.0.9-beta.tar.gz |
+| Linux arm64 (Raspberry Pi) | https://github.com/flokiorg/tWallet/releases/download/v1.0.9-beta/twallet-linux-arm64-v1.0.9-beta.tar.gz |
+| Windows x86_64 | https://github.com/flokiorg/tWallet/releases/download/v1.0.9-beta/twallet-windows-amd64-v1.0.9-beta.zip |
+| Windows 32-bit | https://github.com/flokiorg/tWallet/releases/download/v1.0.9-beta/twallet-windows-386-v1.0.9-beta.zip |
+
+Additional builds (ppc64, mips, and *BSD) are available on the [GitHub release page](https://github.com/flokiorg/tWallet/releases/tag/v1.0.9-beta).
