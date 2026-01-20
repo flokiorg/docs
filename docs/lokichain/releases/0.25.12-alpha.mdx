@@ -1,0 +1,49 @@
+---
+title: 0.25.12-alpha
+description: Release notes for go-flokicoin v0.25.12-alpha covering fee estimation improvements, persistence updates, and other highlights.
+sidebar_position: -1
+---
+
+<div className="release-header-meta release-header-left">
+  <a className="github-link release-github no-external-icon" href="https://github.com/flokiorg/go-flokicoin/releases/tag/v0.25.12-alpha" target="_blank" rel="noreferrer" title="View v0.25.12-alpha on GitHub">
+    <span className="release-header-label">GitHub</span>
+  </a>
+</div>
+
+Please report bugs using the issue tracker at GitHub:
+
+https://github.com/flokiorg/go-flokicoin/issues
+
+This release introduces significant improvements to fee estimation logic, including atomic persistence to disk, better history tracking, and smarter handling of removal reasons.
+
+## Upgrade notes
+
+- Fee estimator snapshots now live on disk as `fee_estimates.dat` under the data dir (atomic write/read). Ensure the daemon can write there on shutdown; stale files older than ~60h are ignored on startup.
+
+## Highlights
+
+- **Fee estimation**
+  - Tracks up to 1008 blocks of history and caps long-horizon queries instead of rejecting them, aligning with Bitcoin Core behavior (`mempool/estimatefee.go`).
+  - Records mempool removal reasons so unconfirmed drops (conflicts, reorgs, evictions, rejects) clear estimator state and reduce stale observations (`mempool` plumbing, `netsync/manager.go`, `rpcserver.go`).
+  - `estimatesmartfee` accepts `economical` or `conservative` modes (defaults conservative) and reports invalid modes cleanly; result now includes an explicit `errors` field (`rpcserver.go`).
+- **Persistence**
+  - Fee estimator state is saved atomically to disk on shutdown and restored on startup when fresh; stale data surfaces an error and is skipped. Helpers and tests cover the binary format and max-age enforcement (`mempool/fee_persist*.go`, `server.go`).
+
+## Notable commits (planned batch)
+
+- mempool: track removal reasons in fee estimation; widen history to 1008 blocks and cap queries.
+- mempool: persist fee estimator to disk with atomic writes and staleness checks.
+- Added aggregated nonce signing flow for MuSig2, including updated context handling and comprehensive tests.
+
+## Assets
+
+| OS/Arch | Asset |
+| --- | --- |
+| macOS (Apple Silicon) | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.12-alpha/lokid-darwin-arm64-v0.25.12-alpha.tar.gz |
+| macOS (Intel) | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.12-alpha/lokid-darwin-amd64-v0.25.12-alpha.tar.gz |
+| Linux x86_64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.12-alpha/lokid-linux-amd64-v0.25.12-alpha.tar.gz |
+| Linux arm64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.12-alpha/lokid-linux-arm64-v0.25.12-alpha.tar.gz |
+| Windows x86_64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.12-alpha/lokid-windows-amd64-v0.25.12-alpha.zip |
+| Windows 32-bit | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.12-alpha/lokid-windows-386-v0.25.12-alpha.zip |
+
+Additional builds (ppc64, mips, *BSD, illumos/solaris) are available on the [GitHub release page](https://github.com/flokiorg/go-flokicoin/releases/tag/v0.25.12-alpha).
