@@ -1,0 +1,75 @@
+---
+title: Features
+description: Overview of Lokihub capabilities including wallet management, channels, NWC, and service configuration.
+sidebar_position: 4
+---
+
+# Features
+
+Lokihub provides everything you need to run a self-custodial Lightning node.
+
+## Lightning Wallet
+
+Send and receive funds through Lightning channels and on-chain transactions.
+
+**Capabilities:**
+- **Send & Receive** — Create Lightning invoices and pay others
+- **On-Chain** — Regular Flokicoin transactions
+- **Sub-Wallets** — Separate wallets for different uses
+- **History** — View all on-chain and Lightning transactions
+
+:::tip
+Lokihub's default currency unit is **Loki**. `1 FLC = 100,000,000 Loki`.
+:::
+
+## Channel Management
+
+Lightning channels let you send and receive instant payments. Lokihub helps you manage them.
+
+**Features:**
+- **Open Channels** — Connect to other nodes to enable routing
+- **Close Channels** — Shut down channels and return funds on-chain
+- **Manual Control** — Open/close channels to specific peers
+- **Liquidity Visualization** — See how much you can send (outbound) vs receive (inbound)
+
+
+
+## Peer Management
+
+View and manage your connections to the Lightning Network.
+
+- See connected peers
+- Add new peers manually
+- Disconnect from peers you no longer need
+- Update node alias
+
+## App Connections (NWC)
+
+Connect external apps to your Lightning node using [**Nostr WalletConnect**](https://nwc.dev) (NWC).
+
+NWC is an open standard that lets apps request payments from your wallet without holding your keys. You grant permissions and can revoke access anytime.
+
+**How it works:**
+1. Open an app that supports NWC
+2. In Lokihub, generate a connection string
+3. Scan the QR code or paste the connection string in the app
+4. Grant permissions (read-only, send up to X amount, etc.)
+5. Use the app—it can now request payments from your node
+
+**Examples of what you can connect:**
+- Social apps that need zapping/tipping
+- Services that need payment authorization
+- Any NWC-compatible application
+
+Learn more about the NWC standard at [nwc.dev](https://nwc.dev).
+
+## Service Freedom
+
+Lokihub is community-driven by design. Users can submit PRs to add their own services. You choose.
+
+**Configurable Services:**
+- **LSP** — Lightning Service Provider for inbound liquidity
+- **Nostr Relay** — Message routing for NWC connections
+- **Block Explorer** — Transaction lookup and monitoring
+
+Switch providers anytime in the Services settings. [Learn more →](/lokihub/services)

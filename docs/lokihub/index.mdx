@@ -1,0 +1,232 @@
+---
+slug: /lokihub
+title: Lokihub
+description: Self-custodial Lightning node manager. Create sub-wallets, connect apps, and manage your peers.
+sidebar_position: 1
+hideContributors: true
+hide_table_of_contents: true
+displayed_sidebar: null
+---
+
+import Link from '@docusaurus/Link';
+
+**Lokihub** is a self-custodial interface for managing your Lightning node. Connect to the FLND (Flokicoin Lightning Network Daemon) node integrated within [tWallet](/wallets/twallet/v1), create sub-wallets, handle channels, connect apps via [NWC](https://nwc.dev), and manage your peers.
+
+<div className="download-box">
+  <div className="download-box__content">
+    <div className="download-box__text">
+      <strong>Latest:</strong> v0.1.2-alpha
+    </div>
+    <div className="download-box__actions">
+      <Link className="button button--primary" to="/lokihub/downloads">Download</Link>
+      <Link className="button button--secondary" to="/lokihub/setup">Setup Guide</Link>
+    </div>
+  </div>
+</div>
+
+## Getting Started
+
+<div className="guide-grid">
+
+<div className="guide-card">
+
+### 1. Download & Install
+Get Lokihub for your platform and install the binary.
+
+[Downloads →](/lokihub/downloads)
+
+</div>
+
+<div className="guide-card">
+
+### 2. Connect Your Node
+Connect Lokihub to the FLND node integrated within [tWallet](/wallets/twallet/v1).
+
+[Setup Guide →](/lokihub/setup)
+
+</div>
+
+<div className="guide-card">
+
+### 3. Start Using
+Manage wallets, open channels, connect apps.
+
+[Features →](/lokihub/features)
+
+</div>
+
+</div>
+
+import { Zap, Droplet } from 'lucide-react';
+
+## What You Can Do
+
+<div className="capabilities-list">
+
+<div className="cap-row">
+  <div className="cap-icon"><Zap size={24} /></div>
+  <div className="cap-content">
+    <h3>Manage Lightning Funds</h3>
+    <p>Send and receive payments through Lightning channels. Create sub-wallets for different apps or purposes.</p>
+  </div>
+</div>
+
+<div className="cap-row">
+  <div className="cap-icon"><Droplet size={24} /></div>
+  <div className="cap-content">
+    <h3>Control Channels</h3>
+    <p>Open channels to other nodes, close channels, and view your liquidity. Manual control for advanced users.</p>
+  </div>
+</div>
+
+<div className="cap-row cap-highlight">
+  <div className="cap-content">
+    <h3>Connect Apps</h3>
+    <p>Connect external applications to your node using NWC. Grant specific permissions and revoke access when needed.</p>
+    <Link to="/lokihub/store" className="cap-action">Browse App Store →</Link>
+  </div>
+</div>
+
+<div className="cap-row cap-highlight">
+  <div className="cap-content">
+    <h3>Choose Services</h3>
+    <p>Self-custody means you choose your own providers. Configure your LSP, Nostr relay, block explorer, and messageboards.</p>
+    <Link to="/lokihub/services" className="cap-action">View Services →</Link>
+  </div>
+</div>
+
+</div>
+
+## Documentation
+
+- **[Downloads](/lokihub/downloads)** — Get the latest release
+- **[Setup](/lokihub/setup)** — Connect to your node
+- **[Features](/lokihub/features)** — Wallet, channels, NWC
+- **[App Store](/lokihub/store)** — Connect external apps
+- **[Services](/lokihub/services)** — LSP, relay, explorer
+- **[Resources](/lokihub/resources)** — Explorers, faucets, tools
+
+Need help? Join [Discord](https://flokicoin.org/discord) #lokihub
+
+<style>
+{`
+.download-box {
+  margin: 1.5rem 0 2.5rem 0;
+  border: 2px solid var(--ifm-color-primary);
+  border-radius: 8px;
+  background: var(--ifm-background-surface-color);
+}
+.download-box__content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .75rem;
+  padding: 1rem 1.25rem;
+}
+.download-box__text {
+  flex: 1 1 180px;
+  font-size: 1.05rem;
+}
+.download-box__actions {
+  display: flex;
+  gap: .5rem;
+  flex: 0 0 auto;
+}
+
+@media (max-width: 640px) {
+  .download-box__actions {
+    width: 100%;
+    flex-direction: column;
+  }
+  .download-box__actions .button {
+    width: 100%;
+  }
+}
+
+.guide-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+  margin: 2rem 0;
+}
+
+.guide-card {
+  padding: 1.5rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  background: var(--ifm-background-surface-color);
+}
+
+.guide-card h3 {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  color: var(--ifm-color-primary);
+}
+
+.guide-card p {
+  margin-bottom: 0.5rem;
+}
+
+.capabilities-list {
+  margin: 2rem 0;
+  max-width: 800px;
+}
+
+.cap-row {
+  display: flex;
+  gap: 1.25rem;
+  padding: 1.75rem 0;
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.cap-row:last-child {
+  border-bottom: none;
+}
+
+.cap-icon {
+  font-size: 1.75rem;
+  line-height: 1;
+  flex-shrink: 0;
+  padding-top: 0.1rem;
+}
+
+.cap-content {
+  flex: 1;
+}
+
+.cap-row h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.2rem;
+  color: var(--ifm-heading-color);
+}
+
+.cap-row p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.cap-highlight {
+  padding-left: 1.5rem;
+  border-left: 3px solid var(--ifm-color-primary);
+  border-bottom-color: var(--ifm-color-primary);
+}
+
+.cap-highlight h3 {
+  color: var(--ifm-color-primary);
+}
+
+.cap-action {
+  display: inline-block;
+  margin-top: 0.75rem;
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.cap-action:hover {
+  text-decoration: underline;
+}
+`}
+</style>

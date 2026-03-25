@@ -1,0 +1,129 @@
+---
+title: App Store
+description: Browse and connect community apps to your Lokihub node via NWC.
+sidebar_position: 5
+---
+
+# Lokihub App Store
+
+The Lokihub App Store is a community-maintained directory of applications that work with your Lightning node through [NWC (Nostr WalletConnect)](https://nwc.dev).
+
+## How Apps Connect
+
+Apps listed in the store connect to your Lokihub node using NWC. This means:
+
+1. **No Installation** — Apps don't install on Lokihub itself
+2. **Permission-Based** — You grant specific permissions (read balance, send up to X amount, etc.)
+3. **Revocable** — Remove app access anytime
+
+## Using Apps from the Store
+
+1. Browse available apps in Lokihub
+2. Click an app to view details
+3. Click "Connect"
+4. Review and grant permissions
+5. Scan the QR code or copy the connection string into the app
+
+## App Categories
+
+The store organizes apps into categories:
+
+- **Wallet Interfaces** — Alternative wallet UIs
+- **Social Media** — Nostr clients, tipping platforms
+- **Merchant Tools** — Point-of-sale, invoicing
+- **Payment Tools** — Budgeting, accounting
+- **Shopping** — E-commerce integrations
+- **Nostr Tools** — Nostr-specific utilities
+- **Games** — Lightning-enabled games
+- **AI** — AI services with Lightning payments
+- **Music** — Streaming, tipping artists
+- **Blogging** — Content platforms
+- **Misc** — Other applications
+
+## For Developers: Submit Your App
+
+The App Store is open-source and community-driven. Anyone can submit an app.
+
+### Repository Structure
+
+The store data lives at: [flokiorg/lokihub-store](https://github.com/flokiorg/lokihub-store)
+
+```
+lokihub-store/
+├── apps.json          # All app metadata
+└── logos/             # App logos (PNG/SVG)
+```
+
+### Submission Steps
+
+**1. Fork the Repository**
+
+Fork [flokiorg/lokihub-store](https://github.com/flokiorg/lokihub-store) on GitHub.
+
+**2. Add Your App Logo**
+
+- Place a high-quality logo in the `logos/` directory
+- Format: PNG or SVG
+- Recommended size: 512x512 pixels
+- Filename: `your-app-id.png` (e.g., `my-lightning-app.png`)
+
+**3. Edit `apps.json`**
+
+Add your app entry to the array:
+
+```json
+{
+  "id": "my-app",
+  "title": "My App",
+  "description": "Short description (max 100 chars)",
+  "extendedDescription": "Longer description explaining the integration",
+  "webLink": "https://myapp.com",
+  "playLink": "https://play.google.com/store/apps/details?id=com.myapp",
+  "appleLink": "https://apps.apple.com/us/app/my-app/id123456",
+  "categories": ["social-media"],
+  "logo": "my-app.png",
+  "installGuide": "How to install/setup the app",
+  "finalizeGuide": "How to connect to Lokihub (where to paste NWC string)",
+  "version": "1.0.0",
+  "createdAt": 1709251200,
+  "updatedAt": 1709251200
+}
+```
+
+**Required Fields:**
+- `id` — Unique identifier (lowercase, dashes only)
+- `title` — Display name
+- `description` — Short tagline
+- `version` — Semantic version (e.g., `1.0.0`)
+- `createdAt` — Unix timestamp (seconds)
+- `updatedAt` — Unix timestamp (seconds)
+
+**Optional Fields:**
+- `extendedDescription` — Detailed explanation
+- `webLink` — App website
+- `playLink` — Google Play Store URL
+- `appleLink` — Apple App Store URL
+- `logo` — Filename from `logos/` directory
+- `installGuide` — Setup instructions before connecting
+- `finalizeGuide` — Connection instructions (where to paste NWC secret)
+- `categories` — Array of categories (see list above)
+
+**4. Create Pull Request**
+
+Submit your changes for review. The maintainers will review and merge if everything looks good.
+
+### Review Process
+
+Pull requests are reviewed for:
+- Valid JSON structure
+- Logo quality and file size
+- Accurate app information
+- Working NWC implementation
+
+Once merged, your app appears in all Lokihub instances automatically.
+
+## Questions?
+
+- Repository: [flokiorg/lokihub-store](https://github.com/flokiorg/lokihub-store)
+- Issues: [GitHub Issues](https://github.com/flokiorg/lokihub-store/issues)
+- Community: [Discord](https://flokicoin.org/discord) #lokihub

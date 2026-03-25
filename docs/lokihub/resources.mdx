@@ -1,0 +1,169 @@
+---
+title: Resources
+description: Discover vetted Lokichain explorers, faucets, mining pools, and tooling.
+sidebar_position: 7
+hide_table_of_contents: true
+hideContributors: true
+hide_title: true
+---
+import resourcesImage from './resources.webp';
+import Link from '@docusaurus/Link'; // eslint-disable-line no-unused-vars
+import Heading from '@theme/Heading'; // eslint-disable-line no-unused-vars
+import { Telescope, Gamepad2, Pickaxe, Sparkles, Zap } from 'lucide-react';
+
+
+<div className="resources-page">
+<section className="resources-hero">
+  <div className="container">
+    <div className="resources-hero__panel">
+      <div className="resources-hero__content">
+        <div className="resources-hero__copy">
+          <p className="resources-kicker">Community Ecosystem • Maintained &amp; Supported</p>
+          <Heading as="h1">Lokichain Resources</Heading>
+          <p className="resources-hero__blurb">
+            Browse community explorers, faucets, mining pools, and helper tooling. Every link here is maintained by trusted operators to keep your nodes, tests, and monitoring on track.
+          </p>
+          <div className="resources-hero__cta">
+            <p><Link className="button button--primary button--lg resources-cta" to="https://flokicoin.org/discord" target="_blank" rel="noreferrer">Suggest via Discord</Link></p>
+            <p><Link className="button button--outline button--lg resources-cta-secondary" to="https://github.com/flokiorg/docs/edit/main/docs/lokihub/resources.mdx" target="_blank" rel="noreferrer">Open a pull request</Link></p>
+          </div>
+        </div>
+        <div className="resources-hero__illustration" aria-hidden="true">
+          <img src={resourcesImage.src ?? resourcesImage} alt="Illustration highlighting Lokichain community resources" loading="eager" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section className="resources-section">
+  <div className="container">
+    <div className="resources-grid">
+      <article className="resource-card resource-card--explorer">
+        <div className="resource-card__icon" aria-hidden="true"><Telescope size={32} /></div>
+        <Heading as="h2">Network Explorers</Heading>
+        <p>Track blocks, transactions, and address balances on mainnet and testnet.</p>
+        <ul className="resource-card__links">
+          <li><Link to="https://flokichain.info" target="_blank" rel="noreferrer">flokichain</Link> <span>• Mainnet</span></li>
+          <li><Link to="https://lokichain.info" target="_blank" rel="noreferrer">lokichain</Link> <span>• Mainnet</span></li>
+          <li><Link to="https://testnet.flokichain.info" target="_blank" rel="noreferrer">testnet.flokichain.info</Link> <span>• Testnet</span></li>
+        </ul>
+      </article>
+
+      <article className="resource-card resource-card--faucet">
+        <div className="resource-card__icon" aria-hidden="true"><Gamepad2 size={32} /></div>
+        <Heading as="h2">Faucet &amp; Mini-Game</Heading>
+        <p>Collect testnet coins by playing a short community mini-game.</p>
+        <ul className="resource-card__links">
+          <li><Link to="https://lokirace.com" target="_blank" rel="noreferrer">lokirace.com</Link></li>
+        </ul>
+      </article>
+
+      <article className="resource-card resource-card--mining">
+        <div className="resource-card__icon" aria-hidden="true"><Pickaxe size={32} /></div>
+        <Heading as="h2">Mining Pool</Heading>
+        <p>Community pools for Lokichain mining.</p>
+        <ul className="resource-card__links">
+          <li><Link to="https://fpool.net" target="_blank" rel="noreferrer">fpool.net</Link> <span>• Mining has never been so easy 🐟</span></li>
+          <li><Link to="https://viaflc.com" target="_blank" rel="noreferrer">viaflc.com</Link> <span>• More Coins Same Power</span></li>
+          <li><Link to="https://hash2.cash" target="_blank" rel="noreferrer">hash2.cash</Link> <span>• Where every share counts.</span></li>
+        </ul>
+      </article>
+
+      <article className="resource-card resource-card--tooling">
+        <div className="resource-card__icon" aria-hidden="true"><Sparkles size={32} /></div>
+        <Heading as="h2">Lokiapps</Heading>
+        <p>Community-built apps and bundles for Lokichain ecosystem.</p>
+        <ul className="resource-card__links">
+          <li><Link to="https://myfloki.com" target="_blank" rel="noreferrer">myfloki.com</Link> <span>• Full node + Electrum bundle</span></li>
+
+          <li><Link to="https://lokimap.com" target="_blank" rel="noreferrer">lokimap.com</Link> <span>• Live node map</span></li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<section className="resources-section features-section--electrum">
+  <div className="container">
+    <Heading as="h2" className="text--center">Electrum Servers</Heading>
+    <p className="text--center">Community hosted endpoints for your wallets.</p>
+    <div className="resources-grid">
+      <article className="resource-card resource-card--electrum">
+        <div className="resource-card__icon" aria-hidden="true"><Zap size={32} /></div>
+        <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '0.5rem'}}>
+          <Heading as="h2" style={{marginBottom: 0}}>myfloki.com</Heading>
+        </div>
+        <p style={{fontSize: '0.9em', opacity: 0.8, marginBottom: '1.5rem'}}>
+          <a href="mailto:electrum@myfloki.com">electrum@myfloki.com</a>
+        </p>
+        
+        <div style={{display: 'flex', flexDirection: 'column', gap: '0.8rem'}}>
+          <div>
+            <div style={{display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.2rem'}}>
+              <span className="badge badge--success" style={{minWidth: '50px', textAlign: 'center'}}>SSL</span>
+            </div>
+            <code style={{display: 'block', padding: '0.4rem 0.6rem', background: 'var(--ifm-pre-background)', borderRadius: '6px', fontSize: '0.9em'}}>electrum.myfloki.com:50002</code>
+          </div>
+          <div>
+            <div style={{display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.2rem'}}>
+              <span className="badge badge--secondary" style={{minWidth: '50px', textAlign: 'center'}}>TCP</span>
+            </div>
+            <code style={{display: 'block', padding: '0.4rem 0.6rem', background: 'var(--ifm-pre-background)', borderRadius: '6px', fontSize: '0.9em'}}>electrum.myfloki.com:50001</code>
+          </div>
+          <div>
+            <div style={{display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.2rem'}}>
+              <span className="badge badge--primary" style={{minWidth: '50px', textAlign: 'center'}}>WSS</span>
+            </div>
+            <code style={{display: 'block', padding: '0.4rem 0.6rem', background: 'var(--ifm-pre-background)', borderRadius: '6px', fontSize: '0.9em'}}>electrum.myfloki.com:50004</code>
+          </div>
+        </div>
+      </article>
+
+      <article className="resource-card resource-card--electrum">
+        <div className="resource-card__icon" aria-hidden="true"><Zap size={32} /></div>
+        <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '0.5rem'}}>
+          <Heading as="h2" style={{marginBottom: 0}}>hashboard.space</Heading>
+        </div>
+        <p style={{fontSize: '0.9em', opacity: 0.8, marginBottom: '1.5rem'}}>
+          <a href="mailto:listing@hashboard.space">listing@hashboard.space</a>
+        </p>
+
+        <div style={{display: 'flex', flexDirection: 'column', gap: '0.8rem'}}>
+           <div>
+            <div style={{display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.2rem'}}>
+              <span className="badge badge--success" style={{minWidth: '50px', textAlign: 'center'}}>SSL</span>
+            </div>
+            <code style={{display: 'block', padding: '0.4rem 0.6rem', background: 'var(--ifm-pre-background)', borderRadius: '6px', fontSize: '0.9em'}}>electrum-flc.hashboard.space:50002</code>
+          </div>
+          <div>
+            <div style={{display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.2rem'}}>
+              <span className="badge badge--secondary" style={{minWidth: '50px', textAlign: 'center'}}>TCP</span>
+            </div>
+            <code style={{display: 'block', padding: '0.4rem 0.6rem', background: 'var(--ifm-pre-background)', borderRadius: '6px', fontSize: '0.9em'}}>electrum-flc.hashboard.space:50001</code>
+          </div>
+          <div>
+            <div style={{display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.2rem'}}>
+              <span className="badge badge--primary" style={{minWidth: '50px', textAlign: 'center'}}>WSS</span>
+            </div>
+            <code style={{display: 'block', padding: '0.4rem 0.6rem', background: 'var(--ifm-pre-background)', borderRadius: '6px', fontSize: '0.9em'}}>electrum-flc.hashboard.space:50004</code>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+<section className="resources-footer">
+  <div className="container">
+    <Heading as="h2">Keep the list fresh</Heading>
+    <p>
+      Run a new explorer, tooling bundle, or pool? Open a pull request or drop a link in <Link to="https://flokicoin.org/discord" target="_blank" rel="noreferrer">#builders on Discord</Link> and we’ll review it.
+    </p>
+  </div>
+</section>
+
+
+
+
+</div>
