@@ -196,9 +196,9 @@ const config: Config = {
           },
           {
             type: 'doc',
-            docId: 'resources/index',
+            docId: 'lokihub/index',
             position: 'left',
-            label: 'Resources',
+            label: 'Lokihub',
             className: 'navbar__link--resources',
           },
           {
