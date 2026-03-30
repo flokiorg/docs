@@ -412,7 +412,27 @@ twallet.exe
 
 If your OS flags the binary, allow it explicitly.
 
-## Maintenance
+---
+
+## Managing with Lokihub
+
+While **tWallet** provides the core FLND node, most users prefer a dedicated interface for managing Lightning operations. **Lokihub** is the recommended companion app for this purpose.
+
+### Quick Connection
+To connect Lokihub to your running tWallet node:
+1.  **Open Lokihub** on the same computer.
+2.  Choose **"Automated Connection"** (or select **"Local Node"**).
+3.  Lokihub will automatically retrieve the necessary credentials from your tWallet data directory.
+
+### Manual Configuration
+If you are connecting from a different machine or the automated connection fails, you will need your node's credentials:
+- Press <kbd>CTRL</kbd> + <kbd>N</kbd> (or <kbd>Cmd</kbd> + <kbd>N</kbd> on macOS) inside tWallet.
+- This opens a window displaying your **gRPC Address**, **Macaroon Hex**, and **TLS Certificate**.
+- Copy these into the Lokihub setup wizard.
+
+[View the Lokihub Setup Guide →](/lokihub/setup#automated-connection)
+
+---
 
 ### Data Locations
 By default, **tWallet** stores its configuration, logs, and all underlying **FLND** node data (including channel databases and wallet files) in the application data directory of your operating system.
