@@ -10,7 +10,12 @@ displayed_sidebar: null
 
 import Link from '@docusaurus/Link';
 
-**Lokihub** is a self-custodial interface for managing your Lightning node. Connect to the FLND (Flokicoin Lightning Network Daemon) node integrated within [tWallet](/wallets/twallet), create sub-wallets, handle channels, connect apps via [NWC](https://nwc.dev), and manage your peers.
+**Lokihub** is a self-custodial interface for managing your Lightning node. Connect to the FLND node integrated within [tWallet](/wallets/twallet), create sub-wallets, handle channels, and connect apps via NWC.
+
+:::caution[CRITICAL: BACKUP RISK]
+**Lightning channel funds are NOT stored on the blockchain.** A 24-word seed phrase only recovers your on-chain balance. To avoid total loss of channel funds, you must back up your **Static Channel Backups (SCB)**.
+[Learn how to protect your node →](/wallets/twallet/v1#critical-lightning-backups)
+:::
 
 <div className="download-box">
   <div className="download-box__content">

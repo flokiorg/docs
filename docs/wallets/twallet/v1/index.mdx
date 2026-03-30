@@ -415,7 +415,7 @@ If your OS flags the binary, allow it explicitly.
 ## Maintenance
 
 ### Data Locations
-By default, **tWallet** stores your encrypted database, configuration, and logs in the application data directory of your operating system.
+By default, **tWallet** stores its configuration, logs, and all underlying **FLND** node data (including channel databases and wallet files) in the application data directory of your operating system.
 
 | OS | Default Path |
 | :--- | :--- |
@@ -423,8 +423,19 @@ By default, **tWallet** stores your encrypted database, configuration, and logs 
 | **macOS** | `~/Library/Application Support/Flnd/` |
 | **Windows** | `%APPDATA%\Flnd\` |
 
-:::tip[The loki/ Folder]
-Within these directories, you will find a `loki/` subfolder. This contains your active wallet database. **Always back up this folder before making system changes.**
+The `.flnd/` directory is the unified home for both your on-chain wallet and your Lightning node state. **Always back up the entire `.flnd/` directory before making system changes or migrations.**
+
+### CRITICAL: Lightning Backups
+Unlike traditional wallets, **a 24-word seed phrase DOES NOT recover your Lightning channel funds.** The seed only recovers funds in your on-chain (on-chain) wallet.
+
+To protect your channel liquidity, you must understand the following:
+
+1.  **Static Channel Backups (SCB)**: Your node generates a `channel.backup` file (found in `.flnd/data/chain/flokicoin/mainnet/`). This file is required to recover funds from open channels in the event of hardware failure.
+2.  **Seed + SCB**: To fully restore a node, you need **both** your 24-word seed and your most recent `channel.backup` file.
+3.  **The channel.db Risk**: **NEVER** attempt to restore an old copy of your `channel.db` file. If you broadcast an outdated channel state to the network, your peers may trigger a "penalty transaction," which results in the **total loss of your funds** in that channel. 
+
+:::danger[DATA LOSS RISK]
+Always ensure you have an automated or frequent backup of your `channel.backup` file. Without it, funds locked in Lightning channels cannot be recovered if your local data is lost.
 :::
 
 ### Custom Data Location

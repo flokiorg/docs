@@ -88,8 +88,19 @@ Join the community on [Discord](https://flokicoin.org/discord) in #lokihub
 
 ## Next Steps
 
-Once connected, you can:
+### 1. Secure Your Backups (Immediate)
+Before opening any channels, ensure you have a recovery plan in place. 
 
+:::important[CHANNEL BACKUP IS NOT AUTOMATIC]
+Your 24-word seed **ONLY** recovers on-chain funds. To recover channel liquidity if your computer crashes, you MUST have a copy of your `channel.backup` file.
+:::
+
+1.  **Locate**: On Linux, this is typically in `~/.flnd/data/chain/flokicoin/mainnet/channel.backup`.
+2.  **Backup**: Copy this file to a separate device (USB, Cloud, etc.) every time you open or close a channel.
+3.  **Learn More**: Read the full [Lightning Backup Guide](/wallets/twallet/v1#critical-lightning-backups).
+
+### 2. Further Reading
+Once connected, you can:
 - [Manage your wallet and channels](/lokihub/features)
 - [Connect external apps via NWC](/lokihub/store)
 - [Configure service providers](/lokihub/services)
