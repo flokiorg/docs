@@ -9,7 +9,7 @@ import setupFlndImage from './setup-flnd.png';
 
 # Setup Guide
 
-Get Lokihub connected to your node in a few simple steps.
+Connect Lokihub to your node and start managing your Lightning liquidity in minutes.
 
 ## Before you start
 
@@ -19,7 +19,7 @@ To use Lokihub, you'll need:
 - **tWallet v1**: Your Lightning node (FLND) must be running. If you haven't set it up yet, follow the [tWallet guide](/wallets/twallet).
 
 :::tip
-If you're running **tWallet v1** on the same computer, Lokihub will find it for you automatically. Use the "Easy Setup" option!
+If you're running **tWallet v1** on the same computer, Lokihub will find it for you automatically. Use the [Automated Connection](#automated-connection) option!
 :::
 
 ## First Launch
@@ -48,11 +48,11 @@ Lokihub connects to the Lightning node built into **tWallet v1**.
 
 <img src={setupFlndImage.src ?? setupFlndImage} alt="Local Node Setup" style={{ display: 'block', margin: '1.5rem auto', width: '450px', borderRadius: '8px', boxShadow: '0 4px 12px rgba(0,0,0,0.3)' }} />
 
-#### Option A: One-Click Setup (Recommended)
+#### Option A: Automated Connection (Recommended) {#automated-connection}
 
 If tWallet is running on the **same machine**:
-1. Choose **"Local Node"**.
-2. Lokihub will automatically link with tWallet.
+1. Choose **"Local Node"** during the setup wizard.
+2. Lokihub will automatically link with your tWallet credentials.
 3. You're ready to go!
 
 #### Option B: Custom tWallet configuration (Advanced)
@@ -68,8 +68,8 @@ If you're running [tWallet](/wallets/twallet) on another machine (VPS, Raspberry
 3. Click "Connect"
 
 :::tip[How to find these credentials]
-In tWallet, press **CTRL+N** to open the Lightning configuration.
-This key combination opens a window displaying your **gRPC Address**, **Macaroon Hex**, and **TLS Certificate Hex**. Simply copy and paste them into Lokihub.
+In tWallet, press <kbd>CTRL</kbd> + <kbd>N</kbd> (or <kbd>Cmd</kbd> + <kbd>N</kbd> on macOS) to open the Lightning configuration window.
+This displays your **gRPC Address**, **Macaroon Hex**, and **TLS Certificate Hex**. Simply copy and paste them into Lokihub.
 :::
 
 ## Troubleshooting
@@ -88,11 +88,11 @@ Join the community on [Discord](https://flokicoin.org/discord) in #lokihub
 
 ## Next Steps
 
-### 1. Secure Your Backups (Immediate)
-Before opening any channels, ensure you have a recovery plan in place. 
+### 1. Secure Your Sovereignty (Required)
+Before you open your first channel, you must establish a reliable recovery plan. Unlike traditional on-chain funds, Lightning liquidity needs active protection.
 
-:::important[CHANNEL BACKUP IS NOT AUTOMATIC]
-Your 24-word seed **ONLY** recovers on-chain funds. To recover channel liquidity if your computer crashes, you MUST have a copy of your `channel.backup` file.
+:::important[CHANNEL BACKUPS ARE NOT AUTOMATIC]
+Your 24-word seed phrase **ONLY** recovers funds on the blockchain. To protect your channel liquidity from system failures, you MUST maintain a copy of your `channel.backup` file.
 :::
 
 1.  **Locate**: On Linux, this is typically in `~/.flnd/data/chain/flokicoin/mainnet/channel.backup`.
