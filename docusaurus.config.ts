@@ -63,7 +63,7 @@ const googleAnalyticsId = process.env.GOOGLE_ANALYTICS_ID ?? 'G-1TW1G5P62E';
 /** @type {import('@docusaurus/types').Config} */
 const config: Config = {
   title: 'Lokiwiki - Flokicoin Knowledge Source',
-  tagline: 'Guides for Lokichain, the Flokicoin economy, wallets, and mining ops',
+  tagline: 'Technical guides for Flokicoin, Lokichain, and the Lokihub ecosystem.',
   favicon: 'favicon.ico',
   url: 'https://docs.flokicoin.org',
   baseUrl: '/',
@@ -100,6 +100,12 @@ const config: Config = {
           filename: 'sitemap.xml',
           ignorePatterns: ['/tags/**'],
         },
+        ...(googleAnalyticsId && {
+          gtag: {
+            trackingID: googleAnalyticsId,
+            anonymizeIP: true,
+          },
+        }),
       } satisfies Preset.Options,
     ],
   ],
@@ -109,12 +115,12 @@ const config: Config = {
     {
       breadcrumbs: true,
       metadata: [
-        { name: 'description', content: 'Lokiwiki is the living knowledge base for Lokichain, covering network operations, the Flokicoin economy, wallets, and mining.' },
-        { name: 'keywords', content: 'Flokicoin,Lokichain,Loki wiki,Floki wallet,Floki mining,Floki documentation' },
+        { name: 'description', content: 'Explore the Lokiwiki: the official guide for Flokicoin, Lokihub node management, and decentralized mining.' },
+        { name: 'keywords', content: 'Flokicoin, Lokihub, tWallet, crypto wallet, scrypt mining, blockchain guide' },
         { property: 'og:type', content: 'website' },
         { property: 'og:site_name', content: 'Lokiwiki' },
-        { property: 'og:title', content: 'Lokiwiki – Flokicoin Knowledge Source' },
-        { property: 'og:description', content: 'Guides for Lokichain operations, Flokicoin economics, wallets, mining, and community resources.' },
+        { property: 'og:title', content: 'Lokiwiki - Flokicoin & Lokihub Guide' },
+        { property: 'og:description', content: 'Simple and technical guides for setting up your Flokicoin wallet, managing your node with Lokihub, and securing the network through mining.' },
         { property: 'og:url', content: 'https://docs.flokicoin.org' },
         { property: 'og:image', content: 'https://docs.flokicoin.org/og-image.png' },
         { property: 'og:image:alt', content: 'Lokiwiki social card featuring the Flokicoin community.' },
@@ -139,32 +145,11 @@ const config: Config = {
         hideOnScroll: false,
         items: [
           {
-            type: 'dropdown',
-            label: 'Knowledge',
+            type: 'doc',
+            docId: 'wallets/index',
             position: 'left',
-            className: 'knowledge-dropdown__toggle',
-            items: [
-              {
-                type: 'doc',
-                docId: 'lokichain/index',
-                label: 'Lokichain',
-              },
-              {
-                type: 'doc',
-                docId: 'economy/index',
-                label: 'Economy',
-              },
-              {
-                type: 'doc',
-                docId: 'wallets/twallet/index',
-                label: 'Wallets',
-              },
-              {
-                type: 'doc',
-                docId: 'mining/index',
-                label: 'Mining',
-              },
-            ],
+            label: 'Wallets',
+            className: 'navbar__link--doc-section',
           },
           {
             type: 'doc',
@@ -178,13 +163,6 @@ const config: Config = {
             docId: 'economy/index',
             position: 'left',
             label: 'Economy',
-            className: 'navbar__link--doc-section',
-          },
-          {
-            type: 'doc',
-            docId: 'wallets/twallet/index',
-            position: 'left',
-            label: 'Wallets',
             className: 'navbar__link--doc-section',
           },
           {
@@ -227,12 +205,52 @@ const config: Config = {
             target: '_blank',
             className: 'github-link no-external-icon',
           },
+          {
+            to: 'https://njump.me/nprofile1qqsvj806upqwfsqaza7lar7c2dmj2ey3f8r8p93kags5zvvl3cet3ygnn7h5f',
+            position: 'right',
+            target: '_blank',
+            className: 'nostr-link no-external-icon',
+          },
         ],
       },
       footer: {
         links: [
           {
-            title: 'Wiki',
+            items: [
+              {
+                html: `
+                  <div class="footer-brand">
+                    <div class="footer-brand__container">
+                      <img src="/img/loki.svg" alt="Flokicoin Logo" class="footer-brand__logo" />
+                      <span class="footer-brand__title">Lokiwiki</span>
+                    </div>
+                    <p class="footer-brand__desc">
+                      Maintained with <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px; margin: 0 2px; color: #e9669e;"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg> by the Flokicoin Community.
+                    </p>
+                  </div>
+                `,
+              }
+            ],
+          },
+          {
+            title: 'Setup',
+            items: [
+              {
+                label: 'Get a Wallet',
+                to: '/wallets',
+              },
+              {
+                label: 'Run a Node',
+                to: '/lokihub/setup',
+              },
+              {
+                label: 'Start Mining',
+                to: '/mining',
+              },
+            ],
+          },
+          {
+            title: 'Ecosystem',
             items: [
               {
                 label: 'Lokichain',
@@ -241,14 +259,6 @@ const config: Config = {
               {
                 label: 'Economy',
                 to: '/economy',
-              },
-              {
-                label: 'Wallets',
-                to: '/wallets/twallet',
-              },
-              {
-                label: 'Mining',
-                to: '/mining',
               },
               {
                 label: 'Web of Fun',
@@ -264,22 +274,16 @@ const config: Config = {
                 to: 'https://flokicoin.org/discord',
               },
               {
-                label: 'Flokicoin.org',
-                to: 'https://flokicoin.org',
+                label: 'Nostr',
+                to: 'https://njump.me/nprofile1qqsvj806upqwfsqaza7lar7c2dmj2ey3f8r8p93kags5zvvl3cet3ygnn7h5f',
               },
-            ],
-          },
-          {
-            title: 'More',
-            items: [
               {
-                label: 'GitHub',
-                to: 'https://github.com/flokiorg',
+                label: 'Donate',
+                to: 'https://flokicoin.org/donate',
               },
             ],
           },
         ],
-        copyright: `<span>Maintained with ❤️ by Lokichain community.</span>`,
       },
       prism: {
         theme: lightCodeTheme,
@@ -310,17 +314,6 @@ const config: Config = {
       },
     ],
     'docusaurus-plugin-sass',
-    ...(googleAnalyticsId
-      ? [
-          [
-            '@docusaurus/plugin-google-gtag',
-            {
-              trackingID: googleAnalyticsId,
-              anonymizeIP: true,
-            },
-          ],
-        ]
-      : []),
   ],
   themes: [
     [
