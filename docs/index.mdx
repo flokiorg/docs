@@ -1,6 +1,6 @@
 ---
-title: "Lokiwiki - Flokicoin Knowledge Source"
-description: "Start here to explore the Flokicoin economy, manage wallet, and mining stack."
+title: "Lokiwiki — Flokicoin Documentation & Guides"
+description: "Set up your wallet, start mining, run a node, and learn how Flokicoin works. The complete Flokicoin documentation."
 hide_title: true
 hide_table_of_contents: true
 hideContributors: true
@@ -11,84 +11,127 @@ slug: /
 import heroImage from './hero.webp';
 import Link from '@docusaurus/Link'; // eslint-disable-line no-unused-vars
 import Heading from '@theme/Heading'; // eslint-disable-line no-unused-vars
+import { Wallet, Zap, Pickaxe, Code, TrendingUp, Server } from 'lucide-react';
 
 
-<div className="container" style={{paddingTop: '0.75rem', paddingBottom: '0.75rem'}}>
-  <div className="text--center">
-    <Heading as="h1" style={{marginBottom: '0.25rem'}}>Such Wiki</Heading>
-    <p className="hero__subtitle">Practical docs for the Flokicoin ecosystem.</p>
-    <div style={{marginTop: '1rem'}}>
+<div className="hero-modern__wrapper">
+  <div className="container hero-modern">
+    <div className="hero-modern__content">
+      <Heading as="h1" className="hero-modern__title">Such Wiki</Heading>
+      <p className="hero-modern__subtitle">Practical docs for the Flokicoin ecosystem.</p>
+      
+      <div className="hero-modern__actions">
+        <Link className="hero-button hero-button--wallet" to="/wallets">
+          <span><Wallet size={20} /></span><span>Get a Wallet</span>
+        </Link>
+        <Link className="hero-button hero-button--node" to="/lokihub/setup">
+          <span><Server size={20} /></span><span>Run a Node</span>
+        </Link>
+        <Link className="hero-button hero-button--lokihub" to="/lokihub">
+          <span><Zap size={20} /></span><span>Explore Lokihub</span>
+        </Link>
+      </div>
+    </div>
+    <div className="hero-modern__image">
       <img
-        src={heroImage.src ?? heroImage} loading="eager"
+        src={heroImage.src ?? heroImage} 
+        loading="eager"
         alt="Flokicoin hero"
-        style={{maxWidth: '960px', width: '100%', height: 'auto', borderRadius: '8px', boxShadow: '0 2px 10px rgba(0,0,0,0.15)'}}
       />
     </div>
   </div>
 </div>
 
-<div className="container" style={{marginTop: '1.5rem'}}>
+<div className="container" id="onboarding" style={{marginTop: '3rem'}}>
+  <div className="text--center" style={{marginBottom: '2rem'}}>
+    <Heading as="h2">How to Participate</Heading>
+    <p style={{fontSize: '1.2rem'}}>Pick a path and get started.</p>
+  </div>
+
   <div className="row">
+    {/* --- Wallets Path --- */}
     <div className="col col--4 margin-bottom--lg" style={{display: 'flex'}}>
-      <Link className="card card--link" to="/lokichain">
-        <div className="card__header"><Heading as="h3">Lokichain</Heading></div>
-        <div className="card__body" style={{flex: '1 1 auto'}}>
-          Flokicoin Core (go-flokicoin): full node, consensus, RPCs, and FIPs.
-        </div>
-      </Link>
-    </div>
-    <div className="col col--4 margin-bottom--lg" style={{display: 'flex'}}>
-      <Link className="card card--link" to="/economy">
-        <div className="card__header"><Heading as="h3">Economy</Heading></div>
-        <div className="card__body" style={{flex: '1 1 auto'}}>
-          Track issuance, halving schedule, supply growth, and inflation projections.
-        </div>
-      </Link>
-    </div>
-    <div className="col col--4 margin-bottom--lg" style={{display: 'flex'}}>
-      <Link className="card card--link" to="/wallets/twallet">
-        <div className="card__header"><Heading as="h3">Wallets</Heading></div>
-        <div className="card__body" style={{flex: '1 1 auto'}}>
-          Guides covering wallet setup, daily operations, and recovery.
-        </div>
-      </Link>
-    </div>
-    <div className="col col--4 margin-bottom--lg" style={{display: 'flex'}}>
-      <Link className="card card--link" to="/mining">
-        <div className="card__header"><Heading as="h3">Mining</Heading></div>
-        <div className="card__body" style={{flex: '1 1 auto'}}>
-          PoW mining, AuxPoW merge-mining, pools, GPU/ASIC guides, and testnet CPU.
-        </div>
-      </Link>
-    </div>
-    <div className="col col--4 margin-bottom--lg" style={{display: 'flex'}}>
-      <Link className="card card--link" to="/resources">
+      <Link className="card card--link" to="/wallets">
         <div className="card__header">
           <Heading as="h3">
-            <span className="home-icon home-icon--resources" aria-hidden="true">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
-                <g fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="9" cy="3.5" r="2.5" />
-                  <circle cx="4" cy="12.5" r="2.5" />
-                  <circle cx="14" cy="12.5" r="2.5" />
-                  <path d="M7.75 4.9 5.3 11.1M10.25 4.9 12.7 11.1" />
-                </g>
-              </svg>
-            </span>
-            <span>Resources</span>
+            <span className="card-icon-wrapper"><Wallet size={28} /></span>
+            <span>Wallets</span>
           </Heading>
         </div>
         <div className="card__body" style={{flex: '1 1 auto'}}>
-          Explorers, faucets, mining pools, and community-maintained tooling.
+          <strong>Secure your assets.</strong> Find the perfect wallet for your needs, including the recommended tWallet with Lightning support.
         </div>
       </Link>
     </div>
+
+    {/* --- Lokihub Path --- */}
+    <div className="col col--4 margin-bottom--lg" style={{display: 'flex'}}>
+      <Link className="card card--link" to="/lokihub/setup">
+        <div className="card__header">
+          <Heading as="h3">
+            <span className="card-icon-wrapper"><Zap size={28} /></span>
+            <span>Lokihub</span>
+          </Heading>
+        </div>
+        <div className="card__body" style={{flex: '1 1 auto'}}>
+          <strong>Run your Lightning node.</strong> Manage funds, channels, and apps from a single dashboard.
+        </div>
+      </Link>
+    </div>
+
+    {/* --- Miner Path --- */}
+    <div className="col col--4 margin-bottom--lg" style={{display: 'flex'}}>
+      <Link className="card card--link" to="/mining">
+        <div className="card__header">
+          <Heading as="h3">
+            <span className="card-icon-wrapper"><Pickaxe size={28} /></span>
+            <span>Mining</span>
+          </Heading>
+        </div>
+        <div className="card__body" style={{flex: '1 1 auto'}}>
+          <strong>Start earning rewards.</strong> Help secure the network with GPU or ASIC mining and join community pools.
+        </div>
+      </Link>
+    </div>
+
+    {/* --- Developer Path --- */}
+    <div className="col col--4 margin-bottom--lg" style={{display: 'flex'}}>
+      <Link className="card card--link" to="/lokichain">
+        <div className="card__header">
+          <Heading as="h3">
+            <span className="card-icon-wrapper"><Code size={28} /></span>
+            <span>Builders</span>
+          </Heading>
+        </div>
+        <div className="card__body" style={{flex: '1 1 auto'}}>
+          <strong>Build the future.</strong> Explore RPC parameters, FIPs, and the core reference implementation for Lokichain.
+        </div>
+      </Link>
+    </div>
+
+    {/* --- Economy Path --- */}
+    <div className="col col--4 margin-bottom--lg" style={{display: 'flex'}}>
+      <Link className="card card--link" to="/economy">
+        <div className="card__header">
+          <Heading as="h3">
+            <span className="card-icon-wrapper"><TrendingUp size={28} /></span>
+            <span>Economy</span>
+          </Heading>
+        </div>
+        <div className="card__body" style={{flex: '1 1 auto'}}>
+          <strong>Understand scarcity.</strong> Track the issuance schedule, halving cadence, and the long-term tail emission model.
+        </div>
+      </Link>
+    </div>
+
+
+    {/* --- WoF Path --- */}
     <div className="col col--4 margin-bottom--lg" style={{display: 'flex'}}>
       <Link className="card card--link" to="/wof">
         <div className="card__header">
           <Heading as="h3">
-            <span className="home-icon home-icon--wof" aria-hidden="true">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+            <span className="card-icon-wrapper home-icon--wof">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 18 18">
                 <g fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M9 2.2 10.3 5l3 .22-2.3 2.02.7 2.93L9 9.82l-2.7 1.35.7-2.93L4.7 5.22 7.7 5z" />
                   <path d="M12.8 13.4c1.2-.56 2.2-1.52 2.7-2.82M2.5 10.6c.5 1.3 1.5 2.26 2.7 2.82M9 14.8v-2.3" />
@@ -99,12 +142,15 @@ import Heading from '@theme/Heading'; // eslint-disable-line no-unused-vars
           </Heading>
         </div>
         <div className="card__body" style={{flex: '1 1 auto'}}>
-          WoF movement drafting FEPs that rebuild everyday services with Nostr protocol, work-backed economies, and joyful UX.
+          <strong>Explore apps.</strong> Build and use everyday services powered by the Nostr protocol and decentralized work.
         </div>
       </Link>
     </div>
   </div>
 </div>
+
+
+
 
 
 <section className="resources-footer">
