@@ -5,6 +5,9 @@ description: Setup guide for tWallet v0 Electrum mode with configuration samples
 sidebar_position: 1
 ---
 
+import Link from '@docusaurus/Link';
+import { History } from 'lucide-react';
+
 v0 is the legacy tWallet line. It connects to an Electrum server that indexes the blockchain and serves wallet queries.
 
 ## Electrum
@@ -100,7 +103,8 @@ electserver = electrum.example.com:50001
 # timeout = 10s
 ```
 
-Full sample (annotated):
+<details>
+<summary><b>Full sample (v0) — Click to expand</b></summary>
 
 ```ini title="Full sample (v0)"
 ; Directory for the wallet database
@@ -129,6 +133,8 @@ electserver = electrum.example.com:50001
 # feefast = 3
 ```
 
+</details>
+
 ## Run
 
 On macOS/Linux:
@@ -145,9 +151,15 @@ twallet.exe
 
 If your OS flags the binary, allow it explicitly.
 
-## Releases
-
-See the sidebar for the latest v0 release notes and assets.
+<div className="wallet-releases-card">
+  <div className="wallet-releases-content">
+    <h3>Legacy Release History</h3>
+    <p>Access full technical notes and cross-platform binary assets for all historical tWallet v0 (Electrum) versions.</p>
+  </div>
+  <div className="wallet-releases-action">
+    <Link className="wallet-action-button" to="/wallets/twallet/v0/releases"><span><History size={18} /></span><span>View Archive</span></Link>
+  </div>
+</div>
 
 ## Security
 - Back up your seed phrase (24 words recommended) and test recovery.

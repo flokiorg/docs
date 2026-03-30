@@ -5,6 +5,9 @@ description: Installation, configuration, and security guide for the Neutrino-po
 sidebar_position: 1
 ---
 
+import Link from '@docusaurus/Link';
+import { History } from 'lucide-react';
+
 v1 is the recommended tWallet line. It uses the Neutrino light‑client protocol ([BIP157](https://bips.dev/157/)/[BIP158](https://bips.dev/158/)) to sync without relying on a third‑party Electrum server.
 
 ## Capabilities
@@ -74,7 +77,8 @@ Create a `twallet.conf` file next to the binary or in your app data directory. M
 # restcors = *                  # CORS for REST API
 # transactiondisplaylimit=121
 ```
-Full sample (annotated):
+<details>
+<summary><b>Full sample (annotated) — Click to expand</b></summary>
 
 ```ini title="Full sample (v1)"
 ; ============================================================================
@@ -390,6 +394,8 @@ Full sample (annotated):
 ; hodl.expiry-delta=0
 ```
 
+</details>
+
 ## Run
 
 On macOS/Linux:
@@ -406,9 +412,87 @@ twallet.exe
 
 If your OS flags the binary, allow it explicitly.
 
-## Releases
+## Maintenance
 
-See the sidebar for the latest v1 release notes and assets.
+### Data Locations
+By default, **tWallet** stores your encrypted database, configuration, and logs in the application data directory of your operating system.
+
+| OS | Default Path |
+| :--- | :--- |
+| **Linux** | `~/.flnd/` |
+| **macOS** | `~/Library/Application Support/Flnd/` |
+| **Windows** | `%APPDATA%\Flnd\` |
+
+:::tip[The loki/ Folder]
+Within these directories, you will find a `loki/` subfolder. This contains your active wallet database. **Always back up this folder before making system changes.**
+:::
+
+### Custom Data Location
+If you want to store your wallet on an external drive or a specific partition, use the `walletdir` flag or config option:
+
+```bash
+./twallet --walletdir /path/to/custom/folder
+```
+
+---
+
+## Advanced Usage
+
+### Running Multiple Instances
+You can run multiple independent wallets on the same machine by specifying unique data directories and ports.
+
+1.  **Create a second directory**: `mkdir ~/twallet-alt`
+2.  **Launch with custom ports**:
+    ```bash
+    ./twallet --walletdir ~/twallet-alt --rpclisten 127.0.0.1:11005 --restlisten 127.0.0.1:6060
+    ```
+3.  **Unique Identity**: Ensure each instance has a different `alias` in its respective `twallet.conf`.
+
+---
+
+## Uninstallation
+
+To cleanly remove tWallet from your system:
+
+1.  **Remove the Binary**: Delete the `twallet` (or `twallet.exe`) file.
+2.  **Purge Data**: Delete the default data directory (see [Data Locations](#data-locations) above).
+3.  **Clean Logs**: If you configured custom logging paths, ensure those files are also removed.
+
+:::warning[IRREVERSIBLE]
+Uninstalling and deleting the data directory will permanently remove your local encrypted database. Ensure you have your **24-word seed phrase** before doing this.
+:::
+
+---
+
+## FAQ & Troubleshooting
+
+### Why is the initial sync taking so long?
+tWallet v1 uses the **Neutrino protocol**. During the first run, it must download "Block Filters" to scan for your transactions. This is a one-time process. If it seems stuck:
+*   Ensure your internet connection is stable.
+*   Check `debuglevel=info` in your logs to see if it's still processing filters.
+
+### "Permission Denied" on Linux/macOS
+If you cannot run the binary, you may need to grant execution permissions:
+```bash
+chmod +x twallet
+```
+
+### Can I use my tWallet v0 seed?
+**No.** v1 uses the `aezeed` format (compatible with LND), while v0 uses `BIP39`. To use your v0 funds, you must either:
+1.  Continue using [**tWallet v0**](/wallets/twallet/v0).
+2.  Send your funds from v0 to a new v1 address.
+
+---
+
+<div className="wallet-releases-card">
+  <div className="wallet-releases-content">
+    <h3>Full Release History</h3>
+    <p>Access detailed technical notes, cryptographic checksums, and cross-platform installation assets for all historical tWallet v1 versions.</p>
+  </div>
+  <div className="wallet-releases-action">
+    <Link className="wallet-action-button" to="/wallets/twallet/v1/releases"><span><History size={18} /></span><span>View Archive</span></Link>
+  </div>
+</div>
 
 ## Security
 - Back up your seed phrase (24 words recommended) and test recovery.
