@@ -6,68 +6,58 @@ sidebar_position: 3
 
 import setupFlndImage from './setup-flnd.png';
 
+
 # Setup Guide
 
-Get Lokihub connected to your Lightning node in a few simple steps.
+Get Lokihub connected to your node in a few simple steps.
 
-## Prerequisites
+## Before you start
 
-Before starting, make sure you have:
+To use Lokihub, you'll need:
 
-- Downloaded and installed Lokihub ([Downloads](/lokihub/downloads))
-- [tWallet](/wallets/twallet/v1) running (which powers FLND, your Lightning node)
+- **Lokihub App**: [Download it here](/lokihub/downloads).
+- **tWallet v1**: Your Lightning node (FLND) must be running. If you haven't set it up yet, follow the [tWallet guide](/wallets/twallet).
 
 :::tip
-If you're running [tWallet](/wallets/twallet/v1) locally, Lokihub will auto-detect it. No manual configuration needed!
+If you're running **tWallet v1** on the same computer, Lokihub will find it for you automatically. Use the "Easy Setup" option!
 :::
 
 ## First Launch
 
-1. Run Lokihub
-2. You'll see the first-time setup wizard
+1. Open Lokihub.
+2. Follow the setup wizard to get started.
 
-## Setup Steps
+## Step-by-Step Setup
 
-### Step 1: Create Unlock Password
+### 1. Create a Password
 
-Set a strong password to encrypt your local data. This password protects your connection credentials and app permissions.
+Set a strong password to protect your data. This password encrypts your connection details and app settings.
 
+> **Important**: We cannot recover this password for you. Please write it down and keep it safe.
 
+### 2. Choose Your Services
 
-> **Important**: There is no password recovery. Write it down and store it securely.
+Lokihub uses specific services to interact with the network:
+- **Nostr Relay**: Connects your node to external apps.
+- **Block Explorer**: Shows you transaction details.
+- **Optional**: You can also add Liquidity (LSP) or Swap services later.
 
+### 3. Connect to tWallet
 
-### Step 2: Choose Services
-
-Lokihub uses external services to power your node.
-
-**Core Services:**
-- **Nostr Relay** — Routes [NWC](https://nwc.dev) messages to connect apps.
-- **Block Explorer** — Looks up transactions and node stats.
-
-**Optional Services:**
-- **LSP** — Buy inbound/outbound channel liquidity.
-- **Swap Service** — Swap between on-chain funds and Lightning balance.
-- **Message Board** — Connect to community chat widgets via Nostr URL.
-
-### Step 3: Connect to Your Node
-
-Lokihub connects to the FLND built into [tWallet](/wallets/twallet/v1). You have two options:
+Lokihub connects to the Lightning node built into **tWallet v1**.
 
 <img src={setupFlndImage} alt="Local Node Setup" style={{ display: 'block', margin: '1.5rem auto', width: '450px', borderRadius: '8px', boxShadow: '0 4px 12px rgba(0,0,0,0.3)' }} />
 
+#### Option A: One-Click Setup (Recommended)
 
-#### Option A: Local Node with default configuration (Easy)
-
-If [tWallet](/wallets/twallet/v1) is running on the same machine:
-
-1. Select "Local Node"
-2. Lokihub will auto-detect the FLND connection
-3. Done!
+If tWallet is running on the **same machine**:
+1. Choose **"Local Node"**.
+2. Lokihub will automatically link with tWallet.
+3. You're ready to go!
 
 #### Option B: Custom tWallet configuration (Advanced)
 
-If you're running [tWallet](/wallets/twallet/v1) on another machine (VPS, Raspberry Pi, etc.):
+If you're running [tWallet](/wallets/twallet) on another machine (VPS, Raspberry Pi, etc.):
 
 1. Select "Advanced Mode"
 2. Enter connection details:

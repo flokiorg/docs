@@ -5,46 +5,52 @@ description: Overview of Lokichain operations covering node setup, wallets, deve
 sidebar_position: 0
 ---
 
-Lokichain is the public, permissionless blockchain that secures Flokicoin. Flokicoin Core is the reference node software: it validates blocks and transactions, enforces consensus rules, and exposes network and wallet interfaces.
+import Link from '@docusaurus/Link';
+import { Rocket } from 'lucide-react';
+
+Lokichain is the blockchain behind Flokicoin. It validates every transaction, enforces the consensus rules, and keeps everything decentralized. If you want to understand the engine under the hood, you're in the right place.
 
 :::release
-Latest Flokicoin Core [v0.25.12-alpha Read the release notes →](/lokichain/releases/0.25.12-alpha)
+**Latest release**: Flokicoin Core [v0.25.12-alpha](/lokichain/releases/0.25.12-alpha) — our current reference implementation.
 :::
 
+## Run a Node
+Running a full node is the most direct way to support the network. Your node verifies the entire chain independently and serves RPCs for wallets, miners, and apps.
 
-## Run a node
-
-- Verifies the chain and serves RPCs for apps, operators, and miners.
-
-:::note
-Guide coming soon. Community plug‑and‑play option: https://myfloki.com/fullnode
+:::tip[Quick option]
+Want a simpler setup? Try the community plug‑and‑play node at [myfloki.com/fullnode](https://myfloki.com/fullnode).
 :::
 
-## Wallets
+## Build on Lokichain
+Whether you're building a wallet, an explorer, or something new — here's where to start:
 
-- tWallet v1 (Neutrino, recommended) → [/wallets/twallet/v1](/wallets/twallet/v1)
+- **FIPs** — See how the protocol evolves via [Flokicoin Improvement Proposals](/lokichain/fips).
+- **Releases** — Track every [software version](/lokichain/releases).
+- **Source code** — Browse and contribute to [go-flokicoin](https://github.com/flokiorg/go-flokicoin).
 
-## Developers
+## Deploy to Lokihub
+The Lokihub App Store is the central hub for community applications. If you've built a Lightning-enabled app, you can deploy it directly to the ecosystem via our open-source store.
 
-- Use a local node for RPCs and tests
-- FIPs → [/lokichain/fips](/lokichain/fips)
-- Releases → [/lokichain/releases](/lokichain/releases)
-- Source → https://github.com/flokiorg/go-flokicoin
+<div className="wallet-releases-card">
+  <div className="wallet-releases-content">
+    <h3>Ready to Launch?</h3>
+    <p>Learn how to submit your application to the Lokihub App Store and reach thousands of node operators instantly.</p>
+  </div>
+  <div className="wallet-releases-action">
+    <Link className="wallet-action-button" to="/lokihub/store#for-developers-submit-your-app">
+      <span><Rocket size={18} /></span><span>Submit Your App</span>
+    </Link>
+  </div>
+</div>
 
-## Miners
+## Mine
+Miners provide the hashpower that makes the chain immutable. You'll need the latest node software and a Scrypt ASIC or GPU.
 
-- Fully‑synced node required
-- Mining → [/mining](/mining)
+- **Get started** — [Mining setup guide](/mining).
 
+## How It Works
+Lokichain is a peer-to-peer network. Every node enforces the same rules, so there's no single point of failure. The consensus rules are updated through FIPs — think of them as the "laws" of the network.
 
-## How Lokichain works
-
-- Network: peer-to-peer protocol for block and transaction propagation.
-- Consensus: rule set governing block validity and chain selection, evolved via FIPs.
-- Node software: Flokicoin Core implements validation, mempool, mining RPCs, and wallet/RPC interfaces.
-- Interfaces: P2P, JSON‑RPC, and streaming where applicable.
-## Community and support
-
-
-- Questions and discussion: Discord → https://flokicoin.org/discord
-- Report bugs in Flokicoin Core via GitHub issues → https://github.com/flokiorg/go-flokicoin/issues
+## Get Help
+- **Discord** — Join the conversation in [#dev](https://flokicoin.org/discord).
+- **GitHub** — Report bugs or suggest features via [Issues](https://github.com/flokiorg/go-flokicoin/issues).
