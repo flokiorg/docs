@@ -8,7 +8,7 @@ description: Step-by-step guide for installing, configuring, and monitoring the 
 Gminer is a CPU miner. CPU mining is only practical on test networks; on mainnet it is not competitive. Use GPU or scrypt ASIC for mainnet.
 :::
 
-This guide provides step-by-step instructions to download, configure, and begin mining Flokicoin with Gminer.
+This guide walks you through downloading, configuring, and running Gminer. By the end, you'll have a working CPU miner connected to a Flokicoin testnet pool.
 
 - [Download and Installation](#download-and-installation): Guide to download and install `gminer`
 - [Configuration](#configuration): Instructions for configuring `gminer.conf`.
@@ -40,7 +40,7 @@ gminer is available on:
 Download [gminer-darwin-arm64-v0.1.1-beta.tar.gz](https://github.com/flokiorg/grpc-miner/releases/download/v0.1.1-beta/gminer-darwin-arm64-v0.1.1-beta.tar.gz) then extract the archive:
 
 ```bash
-tar -xvf gminer-darwin-arm64-v0.1.0-alpha.tar.gz
+tar -xvf gminer-darwin-arm64-v0.1.1-beta.tar.gz
 chmod +x gminer
 ```
 
@@ -48,7 +48,7 @@ chmod +x gminer
 Download [gminer-darwin-amd64-v0.1.1-beta.tar.gz](https://github.com/flokiorg/grpc-miner/releases/download/v0.1.1-beta/gminer-darwin-amd64-v0.1.1-beta.tar.gz) then extract the archive:
 
 ```bash
-tar -xvf gminer-darwin-amd64-v0.1.0-alpha.tar.gz
+tar -xvf gminer-darwin-amd64-v0.1.1-beta.tar.gz
 chmod +x gminer
 ```
 &nbsp;
@@ -58,7 +58,7 @@ Download [gminer-linux-amd64-v0.1.1-beta.tar.gz
 ](https://github.com/flokiorg/grpc-miner/releases/download/v0.1.1-beta/gminer-linux-amd64-v0.1.1-beta.tar.gz) then extract the archive:
 
 ```bash
-tar -xvf gminer-linux-amd64-v0.1.0-alpha.tar.gz
+tar -xvf gminer-linux-amd64-v0.1.1-beta.tar.gz
 chmod +x gminer
 ```
 
@@ -103,6 +103,9 @@ threads = 16
 
 &nbsp;
 
+import { Lightbulb } from 'lucide-react';
+
+
 ## How to run
 **On Mac and Linux:** Navigate to the directory containing the extracted binary and run:
 
@@ -110,7 +113,7 @@ threads = 16
 ./gminer
 ```
 
-💡 On macOS, authorize `gminer` by navigating to System Settings → Privacy & Security → General and click “Open Anyway” to trust the developer.
+<div style={{display: 'flex', alignItems: 'center', gap: '0.4rem', marginTop: '0.5rem', fontSize: '0.9rem', opacity: 0.8}}><Lightbulb size={16} /> On macOS, authorize <code>gminer</code> by navigating to System Settings → Privacy & Security → General and click “Open Anyway” to trust the developer.</div>
 
 
 **On Windows:** Navigate to the directory containing the extracted `gminer.exe` and double-click it or run it from the command line:
@@ -118,7 +121,7 @@ threads = 16
 gminer.exe
 ```
 
-💡 If Windows Defender or another antivirus blocks `gminer.exe`, you might need to explicitly allow or unblock it.
+<div style={{display: 'flex', alignItems: 'center', gap: '0.4rem', marginTop: '0.5rem', fontSize: '0.9rem', opacity: 0.8}}><Lightbulb size={16} /> If Windows Defender or another antivirus blocks <code>gminer.exe</code>, you might need to explicitly allow or unblock it.</div>
 
 &nbsp;
 
