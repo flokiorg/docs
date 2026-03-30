@@ -10,31 +10,25 @@ import supplyOverTimeImage from './supply_over_time.webp';
 import inflationRateImage from './inflation_rate_over_10_years.webp';
 
 
-## Overview
+## How the Money Works
+Flokicoin's monetary policy is hard-coded. Every number on this page is verifiable on-chain — no surprises, no changes behind closed doors.
 
-Flokicoin uses a decreasing block subsidy that halves on a fixed block interval and then transitions to a fixed tail emission. The goal is predictable issuance with long‑term, stable miner incentives. For live metrics, see [Now](#now).
+## Key Numbers
 
-## Parameters
+- **Block time** — 1 minute.
+- **Halving** — Every 210,000 blocks (~5 months).
+- **Starting reward** — <Amount value={1000} /> FLC per block.
+- **Tail emission** — A permanent <Amount value={21} /> FLC per block once halvings finish.
+- **Coinbase maturity** — 300 blocks (~5 hours before you can spend mined coins).
 
-- Block interval: 1 minute
-- Halving interval: 210,000 blocks
-- Initial block reward: <Amount value={1000} />
-- Tail emission (no hard cap): <Amount value={21} /> per block once the reward would fall below 21
-- Coinbase maturity: 300 blocks (~5 hours)
+## How the Block Reward Changes Over Time
+The reward starts high and halves on a fixed schedule. Once it would drop below <Amount value={21} />, it stays there forever. That's the tail emission — a permanent security budget that keeps miners incentivized indefinitely.
 
-
-## Issuance Schedule
-
-The initial block reward is <Amount value={1000} /> and halves every 210,000 blocks (~5 months at 1‑minute blocks).
-
-After the reward would drop below <Amount value={21} />, the subsidy remains fixed at <Amount value={21} /> per block (tail emission). This avoids a fee‑only regime and provides a steady, predictable security budget.
-
-:::note
-Block counts are exact. Calendar dates below assume an average 1‑minute interval and are approximate.
+:::important[Why tail emission matters]
+Most chains with a hard cap will eventually rely only on transaction fees to pay miners. Flokicoin avoids that gamble with a small, constant block reward that never stops.
 :::
 
-
-Block ranges, reward per block, and approximate calendar timing.
+## Reward Schedule
 
 | Blocks              | Reward                        | Approx. Halving Date | Cumulative Supply (million FLC) |
 |---------------------|------------------------------:|-----------------------|--------------------------------:|
@@ -51,10 +45,9 @@ Block ranges, reward per block, and approximate calendar timing.
 <img src={supplyOverTimeImage.src ?? supplyOverTimeImage} alt="Supply over Time" className="themed-graph" />
 
 
-## Inflation After Tail Emission
+## Long-Term Inflation
 
-- Annual issuance remains constant at <Amount value={11037600} /> (<Amount value={21} /> × 525,600 blocks/year).
-- As total supply grows, the annual inflation rate declines.
+Once tail emission kicks in, new coins are minted at a fixed rate of <Amount value={11037600} /> FLC per year. Because the total supply keeps growing, the inflation rate drops every year:
 
 ### Definitions
 
@@ -80,6 +73,8 @@ Projections assume the average block interval stays close to 1 minute. Real‑wo
 
 <img src={inflationRateImage.src ?? inflationRateImage} alt="Projection: Inflation rate over 10 years" className="themed-graph" />
 
-## Now
+## Live Metrics
+
+Real-time numbers from the Flokicoin network:
 
 <EconomyNow />
