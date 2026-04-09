@@ -1,9 +1,16 @@
 
+build:
+	yarn build:all
+
+serve:
+	yarn serve
 
 dev:
-	corepack enable && yarn start --host 0.0.0.0
+	./scripts/dev-all.sh
 
-package:
-	docker build --target caddy -t ghcr.io/flokiorg/docs:latest .
-	docker push ghcr.io/flokiorg/docs:latest
-	
+dev-single:
+	yarn start --host 0.0.0.0
+
+clean:
+	yarn clear
+	rm -rf build .docusaurus
