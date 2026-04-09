@@ -7,6 +7,7 @@ sidebar_position: 1
 
 import Link from '@docusaurus/Link';
 import { History } from 'lucide-react';
+import Heading from '@theme/Heading';
 
 v1 es la línea recomendada de tWallet. Utiliza el protocolo de cliente ligero Neutrino ([BIP157](https://bips.dev/157/)/[BIP158](https://bips.dev/158/)) para sincronizarse sin depender de un servidor Electrum de terceros.
 
@@ -428,7 +429,7 @@ Si se está conectando desde una máquina diferente o la conexión automatizada 
 
 ---
 
-### Ubicaciones de datos
+<Heading as="h3" id="data-locations">Ubicaciones de datos</Heading>
 Por defecto, **tWallet** almacena su configuración, registros y todos los datos del nodo **FLND** subyacente (incluyendo las bases de datos de canales y archivos de cartera) en el directorio de datos de aplicaciones de su sistema operativo.
 
 | SO | Ruta por defecto |
@@ -439,7 +440,7 @@ Por defecto, **tWallet** almacena su configuración, registros y todos los datos
 
 El directorio `.flnd/` es el hogar unificado tanto para su cartera on-chain como para el estado de su nodo Lightning. **Siempre respalde el directorio `.flnd/` completo antes de realizar cambios en el sistema o migraciones.**
 
-### CRÍTICO: Respaldos de Lightning
+<Heading as="h3" id="critical-lightning-backups">CRÍTICO: Respaldos de Lightning</Heading>
 A diferencia de las carteras tradicionales, **una frase semilla de 24 palabras NO recupera los fondos de sus canales Lightning.** La semilla solo recupera los fondos en su cartera on-chain.
 
 Para proteger la liquidez de sus canales, debe entender lo siguiente:
@@ -480,7 +481,7 @@ Puede ejecutar múltiples carteras independientes en la misma máquina especific
 Para eliminar limpiamente tWallet de su sistema:
 
 1.  **Elimine el binario**: Borre el archivo `twallet` (o `twallet.exe`).
-2.  **Purgue los datos**: Borre el directorio de datos por defecto (vea [Ubicaciones de datos](#ubicaciones-de-datos) más arriba).
+2.  **Purgue los datos**: Borre el directorio de datos por defecto (vea [Ubicaciones de datos](#data-locations) más arriba).
 3.  **Limpie los registros**: Si configuró rutas de registro personalizadas, asegúrese de que esos archivos también se eliminen.
 
 :::warning[IRREVERSIBLE]

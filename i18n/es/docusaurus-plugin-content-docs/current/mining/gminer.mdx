@@ -18,9 +18,10 @@ Esta guía le acompañará a través de la descarga, configuración y ejecución
 - [Solución de problemas y recomendaciones](#troubleshooting-and-recommendations): Problemas comunes y sus soluciones.
 - [Soporte](#support)
 ---
+import Heading from '@theme/Heading';
 
 
-## Descarga e Instalación
+<Heading as="h2" id="download-and-installation">Descarga e Instalación</Heading>
 
 Descargue la última versión del minero:
 
@@ -69,7 +70,7 @@ Descargue [gminer-windows-386-v0.1.1-beta.zip](https://github.com/flokiorg/grpc-
 
 &nbsp;
 
-## Configuración
+<Heading as="h2" id="configuration">Configuración</Heading>
 Antes de ejecutar el minero, asegúrese de que exista un archivo de configuración (`gminer.conf`) en el mismo directorio que el archivo ejecutable `gminer`. Puede descargar un [archivo de configuración de ejemplo](https://raw.githubusercontent.com/flokiorg/grpc-miner/refs/heads/main/sample-gminer.conf) desde el repositorio de grpc-miner.
 
 Debe actualizar los siguientes parámetros:
@@ -106,7 +107,7 @@ threads = 16
 import { Lightbulb } from 'lucide-react';
 
 
-## Cómo ejecutarlo
+<Heading as="h2" id="how-to-run">Cómo ejecutarlo</Heading>
 **En Mac y Linux:** Navegue hasta el directorio que contiene el binario extraído y ejecute:
 
 ```bash
@@ -125,7 +126,7 @@ gminer.exe
 
 &nbsp;
 
-## Monitorización
+<Heading as="h2" id="monitoring">Monitorización</Heading>
 Puede monitorizar el rendimiento y el estado de la minería directamente en el terminal. La información incluye:
 
 - Hashrate (Tasa de hash)
@@ -134,7 +135,7 @@ Puede monitorizar el rendimiento y el estado de la minería directamente en el t
 
 &nbsp;
 
-## Solución de problemas y recomendaciones
+<Heading as="h2" id="troubleshooting-and-recommendations">Solución de problemas y recomendaciones</Heading>
 - Verifique que su archivo `gminer.conf` esté en el directorio correcto y que las direcciones del pool, las direcciones de minería y los puertos coincidan con la configuración prevista.
 - En macOS, autorice `gminer` en Ajustes del Sistema y marque al desarrollador como de confianza.
 - Verifique la dirección del servidor y el puerto en `gminer.conf`.
@@ -143,5 +144,5 @@ Puede monitorizar el rendimiento y el estado de la minería directamente en el t
 
 &nbsp;
 
-## Soporte
+<Heading as="h2" id="support">Soporte</Heading>
 Para más ayuda, únase al canal `#mining` en la [Comunidad Discord de Flokicoin](https://flokicoin.org/discord).
