@@ -97,7 +97,7 @@
       "unplugged": true
     }
   },
-  "resolutions": {
+  "overrides": {
     "webpack": "5.98.0"
   }
 }
