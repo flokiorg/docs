@@ -1,0 +1,110 @@
+---
+sourceTitle: "Setup Guide"
+title: "安装指南"
+description: "将 Lokihub 连接到 tWallet 中集成的 FLND 节点的快速设置指南。"
+sidebar_position: 3
+---
+import Heading from '@theme/Heading';
+
+import setupFlndImage from '@site/docs/lokihub/setup-flnd.png';
+
+
+# 安装指南
+
+在几分钟内将 Lokihub 连接到您的节点，并开始管理您的闪电网络流动性。
+
+## 在您开始之前
+
+要使用 Lokihub，您需要：
+
+- **Lokihub 应用**：[在此下载](/lokihub/downloads)。
+- **tWallet v1**：您的闪电网络节点 (FLND) 必须正在运行。如果您尚未设置，请遵循 [tWallet 指南](/wallets/twallet)。
+
+:::tip
+如果您在同一台计算机上运行 **tWallet v1**，Lokihub 将为您自动找到它。请使用 [自动连接](#automated-connection) 选项！
+:::
+
+## 首次启动
+
+1. 打开 Lokihub。
+2. 按照设置向导开始操作。
+
+## 逐步设置
+
+### 1. 创建密码
+
+设置一个强密码来保护您的数据。此密码将加密您的连接详情和应用设置。
+
+> **重要提示**：我们无法为您找回此密码。请务必将其记录下来并妥善保管。
+
+### 2. 选择您的服务
+
+Lokihub 使用特定服务与网络进行交互：
+- **Nostr Relay**：将您的节点连接到外部应用。
+- **区块浏览器 (Block Explorer)**：显示您的交易详情。
+- **可选**：您稍后还可以添加流动性 (LSP) 或 Swap 服务。
+
+### 3. 连接到 tWallet
+
+Lokihub 连接到内置于 **tWallet v1** 的闪电网络节点。
+
+<img src={setupFlndImage.src ?? setupFlndImage} alt="Local Node Setup" style={{ display: 'block', margin: '1.5rem auto', width: '450px', borderRadius: '8px', boxShadow: '0 4px 12px rgba(0,0,0,0.3)' }} />
+
+<Heading as="h4" id="automated-connection">选项 A：自动连接（推荐）</Heading>
+
+如果 tWallet 在 **同一台机器** 上运行：
+1. 在设置向导中选择 **"Local Node"**。
+2. Lokihub 将自动连接到您的 tWallet 凭据。
+3. 您已准备就绪！
+
+#### 选项 B：自定义 tWallet 配置（高级）
+
+如果您在另一台机器（VPS、树莓派等）上运行 [tWallet](/wallets/twallet)：
+
+1. 选择 "Advanced Mode"
+2. 输入连接详情：
+   - **gRPC 地址**：IP 和端口（例如：`127.0.0.1:10005`）
+   - **Macaroon**：粘贴 `admin.macaroon` 的十六进制内容
+   - **TLS 证书**：粘贴 `tls.cert` 的十六进制内容（可选）
+
+3. 点击 "Connect"
+
+:::tip[如何找到这些凭据]
+在 tWallet 中，按 <kbd>CTRL</kbd> + <kbd>N</kbd> 打开闪电网络配置窗口。
+这将显示您的 **gRPC 地址**、**Macaroon 十六进制** 和 **TLS 证书十六进制**。只需将它们复制并粘贴到 Lokihub 即可。
+:::
+
+## 故障排除
+
+**无法连接到本地 tWallet？**
+- 确保 tWallet 正在运行
+- 检查防火墙是否阻止了相关端口
+
+**远程连接失败？**
+- 验证 gRPC 地址是否正确
+- 确保您的节点可以从网络访问
+- 检查 Macaroon 和 TLS 证书的十六进制字符串是否正确
+
+**需要帮助？**  
+加入 [Discord](https://flokicoin.org/discord) 社区的 #lokihub 频道。
+
+## 下一步
+
+### 1. 确保您的主权（必填）
+
+在您开设第一个通道之前，您必须建立可靠的恢复计划。与传统的链上资金不同，闪电网络的流动性需要主动保护。
+
+:::important[通道备份不是自动的]
+您的 24 个助记词 **仅** 用于恢复区块链上的资金。为了保护您的通道流动性免受系统故障的影响，您必须保留 `channel.backup` 文件的副本。
+:::
+
+1.  **定位**：在 Linux 上，这通常位于 `~/.flnd/data/chain/flokicoin/mainnet/channel.backup`。
+2.  **备份**：每次打开或关闭通道时，将此文件复制到另一个设备（USB、云端等）。
+3.  **了解更多**：阅读完整的 [闪电网络备份指南](/wallets/twallet/v1#critical-lightning-backups)。
+
+### 2. 延伸阅读
+
+连接后，您可以：
+- [管理您的钱包和通道](/lokihub/features)
+- [通过 NWC 连接外部应用](/lokihub/store)
+- [配置服务提供商](/lokihub/services)

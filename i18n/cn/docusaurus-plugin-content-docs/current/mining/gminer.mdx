@@ -1,0 +1,148 @@
+---
+sourceTitle: "Gminer"
+title: "GMiner"
+slug: /mining/gminer
+description: "有关 Flokicoin 测试网练习的 GMiner CPU 矿工的安装、配置和监控的分步指南。"
+---
+
+:::warning[CPU 矿工注意事项]
+GMiner 是一个 CPU 矿工。CPU 挖矿仅在测试网络上实用；在主网上它不具备竞争力。主网请使用 GPU 或 Scrypt ASIC 矿机。
+:::
+
+本指南将引导您完成下载、配置和运行 GMiner 的过程。最后，您将拥有一个连接到 Flokicoin 测试网矿池的、可以正常工作的 CPU 矿工。
+
+- [下载与安装](#download-and-installation)：下载并安装 `gminer` 的指南
+- [配置](#configuration)：配置 `gminer.conf` 的说明。
+- [如何运行](#how-to-run)：开始挖掘 Flokicoin 的指南。
+- [监控](#monitoring)：监控挖矿性能和状态信息
+- [故障排除与建议](#troubleshooting-and-recommendations)：常见问题及其解决方案
+- [支持](#support)
+---
+import Heading from '@theme/Heading';
+
+
+<Heading as="h2" id="download-and-installation">下载与安装</Heading>
+
+下载最新的矿工版本：
+
+- 前往 [releases](https://github.com/flokiorg/grpc-miner/releases/tag/v0.1.1-beta) 页面。
+- 下载适合您的操作系统和架构的版本。
+
+GMiner 适用于：
+- Mac
+- Linux
+- Windows
+
+
+
+
+
+### 在 Mac 上安装 `gminer`
+#### **配备 Apple 芯片的 Mac**
+下载 [gminer-darwin-arm64-v0.1.1-beta.tar.gz](https://github.com/flokiorg/grpc-miner/releases/download/v0.1.1-beta/gminer-darwin-arm64-v0.1.1-beta.tar.gz) 然后解压：
+
+```bash
+tar -xvf gminer-darwin-arm64-v0.1.1-beta.tar.gz
+chmod +x gminer
+```
+
+#### **配备 Intel 芯片的 Mac**
+下载 [gminer-darwin-amd64-v0.1.1-beta.tar.gz](https://github.com/flokiorg/grpc-miner/releases/download/v0.1.1-beta/gminer-darwin-amd64-v0.1.1-beta.tar.gz) 然后解压：
+
+```bash
+tar -xvf gminer-darwin-amd64-v0.1.1-beta.tar.gz
+chmod +x gminer
+```
+&nbsp;
+
+### 在 Linux 上安装
+下载 [gminer-linux-amd64-v0.1.1-beta.tar.gz](https://github.com/flokiorg/grpc-miner/releases/download/v0.1.1-beta/gminer-linux-amd64-v0.1.1-beta.tar.gz) 然后解压：
+
+```bash
+tar -xvf gminer-linux-amd64-v0.1.1-beta.tar.gz
+chmod +x gminer
+```
+
+&nbsp;
+
+### 在 Windows 上安装
+下载 [gminer-windows-386-v0.1.1-beta.zip](https://github.com/flokiorg/grpc-miner/releases/download/v0.1.1-beta/gminer-windows-386-v0.1.1-beta.zip) 然后解压。
+
+&nbsp;
+
+<Heading as="h2" id="configuration">配置</Heading>
+在运行矿工之前，请确保 `gminer.conf` 配置文件与 `gminer` 可执行文件位于同一目录中。您可以从 grpc-miner 存储库下载[示例配置文件](https://raw.githubusercontent.com/flokiorg/grpc-miner/refs/heads/main/sample-gminer.conf)。
+
+您需要更新以下参数：
+
+**矿池地址**
+```ini
+pool = solo.example.com:5055
+```
+
+以下是社区已知的矿池列表：
+| 作者 | 开发费用 | 矿池 | 端口 |
+| --- | --- | --- | --- |
+| myf | - | gpool.myfloki.com | 5055 |
+
+我们鼓励您创建自己的矿池，根据需要设置开发人员费用，并在 [Discord](https://flokicoin.org/discord) 的 **#Mining** 频道中与 Flokicoin 社区分享。
+
+**挖矿地址**
+
+您可以指定一个或多个挖矿地址：
+```ini
+miningaddr = 您的_FLOKICOIN_地址_1
+miningaddr = 您的_FLOKICOIN_地址_2
+```
+
+**线程**
+
+设置专用于挖矿的 CPU 线程数。默认情况下，如果未指定，GMiner 使用所有可用线程。
+```ini
+threads = 16
+```
+
+&nbsp;
+
+import { Lightbulb } from 'lucide-react';
+
+
+<Heading as="h2" id="how-to-run">如何运行</Heading>
+**在 Mac 和 Linux 上：** 导航到包含解压后的二进制文件的目录并运行：
+
+```bash
+./gminer
+```
+
+<div style={{display: 'flex', alignItems: 'center', gap: '0.4rem', marginTop: '0.5rem', fontSize: '0.9rem', opacity: 0.8}}><Lightbulb size={16} /> 在 macOS 上，通过导航到“系统设置”→“隐私与安全”→“通用”，然后点击“仍要打开”来信任开发人员，从而授权 <code>gminer</code>。</div>
+
+
+**在 Windows 上：** 导航到包含解压后的 <code>gminer.exe</code> 的目录，然后双击它或从命令行运行它：
+```bash
+gminer.exe
+```
+
+<div style={{display: 'flex', alignItems: 'center', gap: '0.4rem', marginTop: '0.5rem', fontSize: '0.9rem', opacity: 0.8}}><Lightbulb size={16} /> 如果 Windows Defender 或其他防病毒软件阻止了 <code>gminer.exe</code>，您可能需要明确允许或取消阻止它。</div>
+
+&nbsp;
+
+<Heading as="h2" id="monitoring">监控</Heading>
+您可以直接在终端中监控挖矿性能和状态。包含的信息有：
+
+- 算力 (Hashrate)
+- 已发现的区块
+- 可能的错误
+
+&nbsp;
+
+<Heading as="h2" id="troubleshooting-and-recommendations">故障排除与建议</Heading>
+- 验证您的 `gminer.conf` 文件是否在正确的目录中，并且矿池地址、挖矿地址和端口与您的预期配置相匹配。
+- 在 macOS 上，在系统设置中授权 `gminer` 并将开发人员标记为受信任。
+- 验证 `gminer.conf` 中的服务器地址和端口。
+- 确保您的互联网连接处于活动状态。
+- 定期从发布页面更新 `gminer`。
+
+&nbsp;
+
+<Heading as="h2" id="support">支持</Heading>
+如需进一步协助，请加入 [Flokicoin Discord 社区](https://flokicoin.org/discord) 中的 `#mining` 频道。

@@ -1,0 +1,519 @@
+---
+slug: /wallets/twallet/v1
+title: tWallet v1 (Neutrino)
+description: "由 Neutrino 驱动的 tWallet v1 安装、配置与安全指南，包含闪电网络集成。"
+sidebar_position: 1
+---
+
+import Link from '@docusaurus/Link';
+import { History } from 'lucide-react';
+import Heading from '@theme/Heading';
+
+v1 是推荐使用的 tWallet 系列。它使用 Neutrino 轻客户端协议 ([BIP157](https://bips.dev/157/)/[BIP158](https://bips.dev/158/)) 进行同步，无需依赖第三方 Electrum 服务器。
+
+## 功能
+
+- **内置 FLND**: (Flokicoin Lightning Network Daemon) 用于集成闪电网络操作。
+- **地址类型**: 支持 SegWit ([BIP173](https://bips.dev/173/)) 和 Taproot ([BIP341](https://bips.dev/341/), [BIP342](https://bips.dev/342/))。
+- **种子格式**: aezeed (LND 种子，新格式)，用于备份和恢复。
+
+:::note
+默认地址类型为 `segwit`。您可以通过在 `twallet.conf` 中设置 `addresstype=segwit|nested-segwit|taproot` 进行切换。
+:::
+
+:::important[种子兼容性]
+v1 使用 aezeed 格式，**无法**导入 [BIP39](https://bips.dev/39/) 助记词。要恢复 [BIP39](https://bips.dev/39/) 种子，请改为使用 v0 (Electrum) 版本。
+:::
+
+### 为什么选择 Neutrino？
+- **内置支持**: Neutrino 直接集成在 tWallet 中，无需外部服务器。
+- **信任最小化**: 您亲自验证区块头并使用紧凑区块过滤器；没有任何一个单一服务器能控制您看到的链数据。
+- **隐私性**: 查询不会集中发送到 Electrum 服务器。
+
+## 安装
+
+:::tip[通过 myFloki 即插即用安装]
+```bash
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/myfloki/community-tools/main/downloader.sh)"
+```
+
+安装完成后，运行 `twallet`。  
+请访问 [myfloki.com](https://myfloki.com) 了解捆绑组件的详细信息。
+:::
+
+从 GitHub 下载最新的 [1.0.9-beta 发布资源](https://github.com/flokiorg/tWallet/releases/tag/v1.0.9-beta) 并解压。
+
+| 操作系统/架构 | 资源链接 |
+| --- | --- |
+| macOS (Apple Silicon) | https://github.com/flokiorg/tWallet/releases/download/v1.0.9-beta/twallet-darwin-arm64-v1.0.9-beta.tar.gz |
+| macOS (Intel) | https://github.com/flokiorg/tWallet/releases/download/v1.0.9-beta/twallet-darwin-amd64-v1.0.9-beta.tar.gz |
+| Linux x86_64 | https://github.com/flokiorg/tWallet/releases/download/v1.0.9-beta/twallet-linux-amd64-v1.0.9-beta.tar.gz |
+| Linux arm64 (树莓派) | https://github.com/flokiorg/tWallet/releases/download/v1.0.9-beta/twallet-linux-arm64-v1.0.9-beta.tar.gz |
+| Windows x86_64 | https://github.com/flokiorg/tWallet/releases/download/v1.0.9-beta/twallet-windows-amd64-v1.0.9-beta.zip |
+| Windows 32位 | https://github.com/flokiorg/tWallet/releases/download/v1.0.9-beta/twallet-windows-386-v1.0.9-beta.zip |
+
+解压并赋予二进制文件执行权限（如适用）：
+
+```bash
+tar -xvf twallet-*.tar.gz
+chmod +x twallet
+```
+
+## 配置
+
+您可以不使用配置文件直接运行 `twallet`；只有在需要自定义设置（例如运行第二个钱包）时才添加。
+
+在二进制文件旁边或应用数据目录中创建一个 `twallet.conf` 文件。最小化配置示例：
+
+```ini title="twallet.conf (v1 最小配置)"
+# walletdir = ./loki
+# addresstype = segwit          # segwit | nested-segwit | taproot
+# feeurl = https://lokichain.info/api/v1/fees/recommended
+# debuglevel = info
+# connectiontimeout = 50s
+# rpclisten = 127.0.0.1:10005   # RPC API
+# restlisten = 127.0.0.1:5050   # REST API
+# restcors = *                  # REST API 的跨域设置
+# transactiondisplaylimit=121
+```
+
+<details>
+<summary><b>完整示例（带注释）—— 点击展开</b></summary>
+
+```ini title="完整示例 (v1)"
+; ============================================================================
+; 通用应用程序选项
+; ============================================================================
+
+; 钱包数据库目录。
+; walletdir=./loki
+
+; 所有子系统的日志级别 {trace, debug, info, warn, error, critical}。
+; 默认为 'info'。
+; debuglevel=info
+
+; twallet 应用程序的日志级别 {trace, debug, info, warn, error, fatal, panic}。
+; 默认为 'info'。
+; loglevel=info
+
+; 使用默认密码进行锁定。
+; 如果 'autounlock' 设置为 true，则必须设置此项。
+; defaultpassword=pass
+
+; 启动时使用 defaultpassword 自动解锁钱包。
+; 警告：这会将您的密码以明文形式存储在此配置文件中。
+; 请谨慎使用，并仅在安全环境中使用。
+; autounlock=false
+
+; 最大显示的交易数量。
+; 这不会影响内部获取交易的数量；它仅限制一次呈现的数量。
+; transactiondisplaylimit=121
+
+; 启动时重置钱包交易以触发全量重扫。
+; 如果您怀疑有交易遗漏，请使用此项。
+; resetwallettransactions=false
+
+; ============================================================================
+; 链与链上配置
+; ============================================================================
+
+; 网络设置（只能有一个为 true）。
+; 如果 regtest 和 testnet 均为 false，则默认使用 mainnet。
+; 使用回归测试网络。
+; regtest=false
+
+; 使用测试网络。
+; testnet=false
+
+; 生成的地址类型（taproot, segwit 或 nested-segwit）。
+; 默认为 'segwit'。
+; addresstype=segwit
+
+; 自定义费率估算 API 端点（可选）。
+; 下方的 URL 仅为示例 —— 您可以将其替换为您自己的费率提供商。
+; 期望的响应格式：
+; {"fastestFee":1,"halfHourFee":1,"hourFee":1,"economyFee":0,"minimumFee":0}
+; feeurl=https://lokichain.info/api/v1/fees/recommended
+
+; ============================================================================
+; 节点身份
+; ============================================================================
+
+; 节点别名（最大 32 个 UTF-8 字符）。
+; 这是您的节点在网络上向他人显示的名称。
+; 默认为 'MyLokiNode'。
+; alias=MyLokiNode
+
+; 节点的十六进制颜色格式（例如 '#da9526'）。
+; 用于在图形可视化中自定义节点外观。
+; 默认为 '#da9526'。
+; color=#da9526
+
+; ============================================================================
+; P2P 网络与连接
+; ============================================================================
+
+; 网络连接的超时值 {ms, s, m, h}。
+; 默认为 '50s'。
+; connectiontimeout=50s
+
+; 添加接口/端口以监听对等节点连接（入站）。
+; 每行一个监听地址。例如：listen=0.0.0.0:5521
+; listen=0.0.0.0:5521
+
+; 禁用监听入站对等节点连接。
+; 如果您想运行私有节点（仅限出站连接），则设置为 true。
+; nolisten=false
+
+; 启动时仅连接到指定的对等节点（独占模式）。
+; connect=node.example.org
+
+; 启动时要连接的额外对等节点（在发现的对等节点之外）。
+; 每行一个对等节点。格式：hostname:port 或 ip:port
+; Flokicoin 默认 P2P 端口为 15212。
+; addpeer=peer1.example.com:15212
+; addpeer=peer2.example.com:15212
+
+; 如果为 true，则在启动时重新连接到持久对等节点时，应用 0s 到 30s 之间的随机交错。
+; 有助于在节点重启时减少连接风暴。
+; stagger-initial-reconnect=false
+
+; --- Tor 配置 ---
+
+; 为 P2P 连接启用 Tor。
+; 如果启用，节点将使用 Tor SOCKS 代理进行出站连接，并为入站连接创建洋葱服务（hidden service）。
+; tor.active=false
+
+; Tor 的 SOCKS 代理监听的 host:port。
+; 默认为 localhost:9050。
+; tor.socks=localhost:9050
+
+; Tor 用于 SRV 查询的 DNS 服务器 host:port。
+; 注意：必须启用 TCP 解析。
+; 默认为 ln.myfloki.com:53
+; tor.dns=ln.myfloki.com:53
+
+; Tor 监听控制连接的 host:port。
+; 创建洋葱服务（洋葱地址）时需要。
+; 默认为 localhost:9051
+; tor.control=localhost:9051
+
+; --- 公共公告 ---
+
+; 添加一个 ip:port 以向网络广播入站连接地址。
+; 如果您有静态公网 IP 地址，请使用此项。
+; 每行一个 IP。例如：externalip=55.10.16.10:5521
+; externalip=
+
+; 添加一个 hostname:port，应定期解析该主机名以公告 IP。
+; 如果您有带 DNS 主机名的动态 IP（例如 DynDNS, No-IP），请使用此项。
+; FLND 将自动解析主机名并更新您的公告 IP。
+; 如果未指定端口，则使用默认端口 (5521)。
+; 每行一个主机名。例如：externalhosts=mynode.ddns.net:5521
+; externalhosts=
+
+; 切换 NAT 穿透支持（使用 UPnP 或 NAT-PMP）。
+; 自动向网络公告您的外部 IP 地址。
+; 如果您位于路由器后面并希望接受入站连接，则非常有用。
+; nat=false
+
+; ============================================================================
+; RPC & REST API 配置
+; ============================================================================
+
+; 添加接口/端口/套接字以监听 RPC 连接。
+; 每行一个监听地址。
+; 例如：rpclisten=127.0.0.1:10005
+; rpclisten=127.0.0.1:10005
+
+; 添加接口/端口/套接字以监听 REST 连接。
+; 每行一个监听地址。
+; 例如：restlisten=127.0.0.1:5050
+; restlisten=127.0.0.1:5050
+
+; 添加 ip:port 或主机名以允许对 REST API 进行跨域访问。
+; 每行一个条目。
+; 示例：
+; restcors=http://localhost:3000
+; restcors=https://mydomain.com
+
+; --- TLS 选项 ---
+
+; 在生成的证书中添加额外的 IP。每行一个 IP。
+; tlsextraip=0.0.0.0
+
+; 在生成的证书中添加额外的域名。每行一个域名。
+; tlsextradomain=localhost
+
+; 如果 IP 或域名发生更改，则重新生成 TLS 证书和密钥。
+; 默认启用，以确保更改网络设置时证书的有效性。
+; tlsautorefresh=true
+
+; ============================================================================
+; 通道配置
+; ============================================================================
+
+; 每个对等节点允许的最大待处理入站通道数。
+; 默认为 1。如果您希望接受来自同一对等节点的多个通道，请增加此值。
+; maxpendingchannels=1
+
+; 如果为 true，则节点将配置为允许大于 5 FLC 的通道。
+; 如果您想接受大容量通道 (Wumbo)，请使用此选项。
+; 默认为 false。
+; wumbo-channels=false
+
+; 我们应接受的最大通道大小（单位：Loki）。
+; 超过此大小的入站通道将被拒绝。
+;
+; 如果 wumbo-channels 为 false（默认），最大允许值为 500,000,000 Loki (5 FLC)。
+; 如果您想接受更大的通道（例如 210 FLC），必须在上方设置 wumbo-channels=true。
+;
+; 默认为 500,000,000 Loki (5 FLC)。
+; maxchansize=500000000
+
+; 我们应接受的最小通道大小（单位：Loki）。
+; 小于此大小的入站通道将被拒绝。
+; 默认为 20,000 Loki (0.00020000 FLC)。
+; minchansize=20000
+
+; ============================================================================
+; 路由与转发配置
+; ============================================================================
+
+; 如果为 true，lnd 将不会转发任何旨在作为后续支付的 HTLC。
+; 使用此项以钱包专用模式运行（不进行路由）。
+; rejecthtlc=false
+
+; 我们将转发的最小 HTLC（单位：milli-Loki）。
+; 默认为 1 milli-Loki。
+; minhtlc=1
+
+; 我们为转发支付收取的固定基础费用（单位：milli-Loki）。
+; 这是添加到每笔转发支付的固定费用。
+; 默认为 1,000 milli-Loki (1 Loki)。
+; basefee=1000
+
+; 转发支付时使用的费率（以百万分之一为单位）。
+; 总费用 = basefee + (金额 × feerate / 1,000,000)
+; 示例：feerate=100 表示 0.01% (100 ppm)
+; 默认为 100 (0.01%)。
+; feerate=100
+
+; 我们将从转发 HTLC 的时间锁值中减去的 CLTV delta。
+; 这是您在转发时为了安全而要求的区块数。
+; 默认为 400 个区块。
+; timelockdelta=400
+
+; 转发支付时资金可能被锁定的最大区块数。
+; 这是一个防止资金被锁定太久的安全性限制。
+; 默认为 10,080 个区块（按 1 分钟/区块计算，约为 7 天）。
+; max-cltv-expiry=10080
+
+; 通过 keysend（无发票支付）接受自发支付。
+; 设置为 true 以启用接收 keysend 支付。
+; accept-keysend=false
+
+; 通过 AMP（原子多路径支付）接受自发支付。
+; 设置为 true 以启用接收 AMP 支付。
+; accept-amp=false
+
+; ============================================================================
+; 网络图与 Gossip 配置
+; ============================================================================
+
+; 我们应接收新图更新的对等节点数量。
+; 较高的值提供更好的网络意识，但会消耗更多带宽。
+; 默认为 3。推荐：路由节点为 3-5，钱包专用节点为 1-2。
+; numgraphsyncpeers=3
+
+; 历史图同步尝试之间的轮询间隔。
+; 格式：带单位的持续时间（例如 20m, 1h, 30s）。
+; 默认为 20 分钟。
+; historicalsyncinterval=20m
+
+; 如果为 true，则不会回复与远程节点 gossip_timestamp_filter 指定范围相匹配的历史数据。
+; 设置为 true 以减少带宽使用。
+; ignore-historical-gossip-filters=false
+
+; ============================================================================
+; 瞭望塔 (Watchtower) 配置
+; ============================================================================
+
+; 启用集成瞭望塔，以在离线时帮助保护您的通道。
+; 瞭望塔监控区块链以发现通道违规。
+; watchtower=false
+
+; 瞭望塔状态目录。
+; 如果未指定，则使用 walletdir 中的子目录。
+; watchtower.towerdir=
+
+; ============================================================================
+; 协议选项
+; ============================================================================
+
+; 允许节点接受并贷出（零确认）未确认的通道。
+; 这允许通道在资金交易广播后立即使用，但带有信任风险。
+; protocol.option-zeroconf=true
+
+; 允许节点接受并为私有通道提供 SCID 别名。
+; 对隐私和零确认通道非常有用。
+; protocol.option-scid-alias=true
+
+; ============================================================================
+; 性能与调整
+; ============================================================================
+
+; 向网络发布公告之间的时间（毫秒）。
+; 较低的值会使 gossip 传播得更快，但会占用更多带宽。
+; 默认为 9000（9 秒）。
+; trickledelay=9000
+
+; 探测活动通道是否因其对等节点离线而变为非活动状态的轮询间隔。
+; 格式：持续时间字符串（例如 1m, 30s）。
+; 默认为 1m。
+; chan-status-sample-interval=1m
+
+; ============================================================================
+; 发票 (Invoices)
+; ============================================================================
+
+; 发票在被取消前保持在已接受状态的区块数。
+; 默认为 0。
+; hodl.expiry-delta=0
+```
+
+</details>
+
+## 运行
+
+在 macOS/Linux 上：
+
+```bash
+./twallet
+```
+
+在 Windows 上：
+
+```powershell
+twallet.exe
+```
+
+如果您的操作系统拦截了该二进制文件，请明确允许其运行。
+
+---
+
+## 使用 Lokihub 进行管理
+
+虽然 **tWallet** 提供了核心的 FLND 节点，但大多数用户更喜欢一个专用的界面来管理闪电网络操作。**Lokihub** 是为此目的而推荐的配套应用程序。
+
+### 快速连接
+要将 Lokihub 连接到您正在运行的 tWallet 节点：
+1. 在同一台电脑上 **打开 Lokihub**。
+2. 选择 **"自动连接"** (或选择 **"本地节点"**)。
+3. Lokihub 将自动从您的 tWallet 数据目录中检索必要的凭据。
+
+### 手动配置
+如果您是从另一台机器连接，或者自动连接失败，您将需要节点的凭据：
+- 在 tWallet 内部按下 <kbd>CTRL</kbd> + <kbd>N</kbd>。
+- 这将打开一个窗口，显示您的 **gRPC 地址**、**Macaroon 十六进制** 和 **TLS 证书**。
+- 将这些信息复制到 Lokihub 设置向导中。
+
+[查看 Lokihub 设置指南 →](/lokihub/setup#automated-connection)
+
+---
+
+<Heading as="h3" id="data-locations">数据位置</Heading>
+默认情况下，**tWallet** 将其配置、日志和所有基础的 **FLND** 节点数据（包括通道数据库和钱包文件）存储在操作系统的应用程序数据目录中。
+
+| 操作系统 | 默认路径 |
+| :--- | :--- |
+| **Linux** | `~/.flnd/` |
+| **macOS** | `~/Library/Application Support/Flnd/` |
+| **Windows** | `%APPDATA%\Flnd\` |
+
+`.flnd/` 目录是您链上钱包和闪电网络节点状态的统一归属地。**在进行系统更改或迁移之前，请务必备份整个 `.flnd/` 目录。**
+
+<Heading as="h3" id="critical-lightning-backups">至关重要：闪电网络备份</Heading>
+与传统钱包不同，**24 位助记词无法恢复您的闪电网络通道资金。** 种子仅能恢复您链上 (on-chain) 钱包中的资金。
+
+为了保护您的通道流动性，您必须了解以下内容：
+
+1. **静态通道备份 (SCB)**: 您的节点会生成一个 `channel.backup` 文件（位于 `.flnd/data/chain/flokicoin/mainnet/`）。在硬件故障的情况下，需要此文件来从开启的通道中收回资金。
+2. **种子 + SCB**: 要完全恢复节点，您需要 **24 位助记词** 和 **最新的 `channel.backup` 文件**。
+3. **channel.db 的风险**: **切勿**尝试恢复 `channel.db` 文件的旧副本。如果您向网络广播了过时的通道状态，您的对等节点可能会触发“惩罚性交易”，从而导致您在该通道中的 **资金全部损失**。
+
+:::danger[数据丢失风险]
+请务必确保您对 `channel.backup` 文件进行了自动或频繁的备份。如果没有它，一旦您的本地数据丢失，锁定在闪电网络通道中的资金将无法恢复。
+:::
+
+### 自定义数据位置
+如果您想将钱包存储在外部驱动器或特定分区上，请使用 `walletdir` 标志或配置选项：
+
+```bash
+./twallet --walletdir /path/to/custom/folder
+```
+
+---
+
+## 高级用法
+
+### 运行多个实例
+通过指定唯一的数据目录和端口，您可以在同一台机器上运行多个独立的钱包。
+
+1. **创建第二个目录**: `mkdir ~/twallet-alt`
+2. **使用自定义端口启动**:
+   ```bash
+   ./twallet --walletdir ~/twallet-alt --rpclisten 127.0.0.1:11005 --restlisten 127.0.0.1:6060
+   ```
+3. **唯一身份**: 确保每个实例在各自的 `twallet.conf` 中都有不同的 `alias` (别名)。
+
+---
+
+## 卸载
+
+要从系统中彻底移除 tWallet：
+
+1. **移除二进制文件**: 删除 `twallet` (或 `twallet.exe`) 文件。
+2. **清除数据**: 删除默认的数据目录（参见上文的 [数据位置](#data-locations)）。
+3. **清理日志**: 如果您配置了自定义日志路径，请确保也删除这些文件。
+
+:::warning[不可逆操作]
+卸载并删除数据目录将永久移除您的本地加密数据库。在执行此操作之前，请确保您已保存 **24 位助记词**。
+:::
+
+---
+
+## 常见问题与排障
+
+### 为什么初始同步花费这么长时间？
+tWallet v1 使用 **Neutrino 协议**。在第一次运行时，它必须下载“区块过滤器”来扫描您的交易。这是一个一次性的过程。如果它看起来卡住了：
+- 确保您的互联网连接稳定。
+- 检查日志中的 `debuglevel=info`，看看它是否仍在处理过滤器。
+
+### Linux/macOS 上的 "Permission Denied" (拒绝访问)
+如果您无法运行该二进制文件，可能需要授予执行权限：
+```bash
+chmod +x twallet
+```
+
+### 我可以使用 tWallet v0 的种子吗？
+**不可以。** v1 使用 `aezeed` 格式（与 LND 兼容），而 v0 使用 `BIP39`。要使用您的 v0 资金，您必须：
+1. 继续使用 [**tWallet v0**](/wallets/twallet/v0)。
+2. 将您的资金从 v0 发送到一个新的 v1 地址。
+
+---
+
+<div className="wallet-releases-card">
+  <div className="wallet-releases-content">
+    <h3>完整发布历史</h3>
+    <p>访问所有历史 tWallet v1 版本的详细技术说明、加密校验和以及跨平台安装资源。</p>
+  </div>
+  <div className="wallet-releases-action">
+    <Link className="wallet-action-button" to="/wallets/twallet/v1/releases"><span><History size={18} /></span><span>查看存档</span></Link>
+  </div>
+</div>
+
+## 安全建议
+- 备份您的助记词（推荐 24 位）并测试恢复过程。
+- 设置支付密码并在空闲时锁定您的钱包。
+- 保持 tWallet 为最新版本: https://github.com/flokiorg/tWallet/releases

@@ -1,0 +1,32 @@
+---
+sourceTitle: "Pools"
+title: "矿池"
+slug: /mining/pools
+description: "Flokicoin 兼容的矿池目录、推荐的 Scrypt 矿工、Stratum 基础知识和安全提示。"
+---
+
+:::danger[免责声明]
+此处列出的矿池和矿工均为第三方。请自行验证二进制文件和配置，并在正式使用前倾向于进行沙盒测试。
+:::
+
+import { Fish } from 'lucide-react';
+
+
+## 矿池
+- [fpool.net](https://fpool.net) <span style={{display: 'inline-flex', alignItems: 'center', gap: '0.25rem', verticalAlign: 'middle'}}><Fish size={16} /> 挖矿从未如此简单</span> (solo, PPLNS)
+- [viaflc.com](https://viaflc.com) 同样的算力，更多的收益 (PPLNS, 合并挖矿)
+
+
+### 注意事项
+- 主网：使用 GPU 或 Scrypt ASIC 矿机。CPU 挖矿不具备竞争力；请将 cpuminer 留给测试网或实验。
+- AuxPoW：如果矿池支持与 Scrypt 系列父链进行合并挖矿，并将 AuxPoW 转发到 Flokicoin，请遵循矿池的特定说明。具体细节因矿池而异。
+
+
+## Stratum 基础知识
+- URL: `stratum+tcp://矿池主机:端口`
+- 用户名：您的 Flokicoin 收款地址（或矿池账户）
+- 密码：通常为 `x` 或矿池特定的令牌
+
+
+## 支持
+加入 Discord 上的 [#mining](https://flokicoin.org/discord) 频道寻求帮助。
