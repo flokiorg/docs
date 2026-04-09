@@ -7,6 +7,7 @@ sidebar_position: 1
 
 import Link from '@docusaurus/Link';
 import { History } from 'lucide-react';
+import Heading from '@theme/Heading';
 
 v0 es la línea heredada de tWallet. Se conecta a un servidor Electrum que indexa la cadena de bloques y atiende las consultas de la cartera.
 
@@ -30,7 +31,7 @@ Consulte la opción plug-and-play de la comunidad: https://myfloki.com/operator
 Para usar **tWallet v0**, debe ejecutar su propio servidor compatible con Electrum.  
 Para Flokicoin, la implementación de referencia es [`flokicoin-electrs`](https://github.com/flokiorg/flokicoin-electrs), un fork de `electrs` que indexa la cadena y sirve tanto las API de Electrum como las de [Esplora](https://github.com/Blockstream/esplora/blob/master/API.md).
 
-#### Requisitos
+<Heading as="h4" id="requirements">Requisitos</Heading>
 - Un **demonio de nodo completo de Flokicoin totalmente sincronizado** (`lokid`)  
 - Credenciales RPC para su nodo (`rpcuser` / `rpcpassword`)  
 - Espacio en disco para la base de datos del índice de Electrum (`--db-dir`)
