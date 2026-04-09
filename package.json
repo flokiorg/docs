@@ -6,7 +6,7 @@
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
     "build": "docusaurus build",
-    "build:all": "docusaurus build --locale en && docusaurus build --locale zh-CN --out-dir build/zh-CN && docusaurus build --locale fa --out-dir build/fa && docusaurus build --locale ar --out-dir build/ar && docusaurus build --locale fr --out-dir build/fr && docusaurus build --locale es --out-dir build/es",
+    "build:all": "docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
