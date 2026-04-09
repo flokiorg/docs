@@ -5,6 +5,8 @@ slug: /mining/gminer
 description: "Guía paso a paso para instalar, configurar y monitorizar el minero de CPU GMiner para practicar en la red de pruebas de Flokicoin."
 ---
 
+import Heading from '@theme/Heading';
+
 :::warning[Aviso sobre minería por CPU]
 GMiner es un minero de CPU. La minería por CPU solo es práctica en redes de prueba; en la red principal (mainnet) no es competitiva. Utilice una GPU o un ASIC Scrypt para la red principal.
 :::
@@ -17,8 +19,7 @@ Esta guía le acompañará a través de la descarga, configuración y ejecución
 - [Monitorización](#monitoring): Monitorice el rendimiento del minado y la información de estado.
 - [Solución de problemas y recomendaciones](#troubleshooting-and-recommendations): Problemas comunes y sus soluciones.
 - [Soporte](#support)
----
-import Heading from '@theme/Heading';
+
 
 
 <Heading as="h2" id="download-and-installation">Descarga e Instalación</Heading>
@@ -38,7 +39,7 @@ gminer está disponible en:
 
 
 ### Instalación de `gminer` en Mac
-#### **Mac con Apple Silicon**
+<Heading as="h4" id="mac-apple-silicon">Mac con Apple Silicon</Heading>
 Descargue [gminer-darwin-arm64-v0.1.1-beta.tar.gz](https://github.com/flokiorg/grpc-miner/releases/download/v0.1.1-beta/gminer-darwin-arm64-v0.1.1-beta.tar.gz) y luego extraiga el archivo:
 
 ```bash
@@ -46,7 +47,7 @@ tar -xvf gminer-darwin-arm64-v0.1.1-beta.tar.gz
 chmod +x gminer
 ```
 
-#### **Mac con chip Intel**
+<Heading as="h4" id="mac-intel">Mac con chip Intel</Heading>
 Descargue [gminer-darwin-amd64-v0.1.1-beta.tar.gz](https://github.com/flokiorg/grpc-miner/releases/download/v0.1.1-beta/gminer-darwin-amd64-v0.1.1-beta.tar.gz) y luego extraiga el archivo:
 
 ```bash
