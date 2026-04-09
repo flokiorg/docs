@@ -341,7 +341,6 @@ const config: Config = {
       },
     } satisfies Preset.ThemeConfig,
   plugins: [
-
     [
       'docusaurus-plugin-llms',
       {
@@ -380,28 +379,6 @@ const config: Config = {
       }),
     ],
   ],
-  webpack: {
-    jsLoader: (isServer: boolean) => ({
-      loader: 'swc-loader',
-      options: {
-        jsc: {
-          parser: {
-            syntax: 'typescript',
-            tsx: true,
-          },
-          transform: {
-            react: {
-              runtime: 'automatic',
-            }
-          },
-          target: 'es2017',
-        },
-        module: {
-          type: isServer ? 'commonjs' : 'es6',
-        },
-      },
-    }),
-  },
   markdown: {
     format: 'detect',
     mermaid: true,
