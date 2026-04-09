@@ -7,6 +7,7 @@ sidebar_position: 1
 
 import Link from '@docusaurus/Link';
 import { History } from 'lucide-react';
+import Heading from '@theme/Heading';
 
 v1 是推荐使用的 tWallet 系列。它使用 Neutrino 轻客户端协议 ([BIP157](https://bips.dev/157/)/[BIP158](https://bips.dev/158/)) 进行同步，无需依赖第三方 Electrum 服务器。
 
@@ -421,7 +422,7 @@ twallet.exe
 
 ---
 
-### 数据位置
+<Heading as="h3" id="data-locations">数据位置</Heading>
 默认情况下，**tWallet** 将其配置、日志和所有基础的 **FLND** 节点数据（包括通道数据库和钱包文件）存储在操作系统的应用程序数据目录中。
 
 | 操作系统 | 默认路径 |
@@ -432,7 +433,7 @@ twallet.exe
 
 `.flnd/` 目录是您链上钱包和闪电网络节点状态的统一归属地。**在进行系统更改或迁移之前，请务必备份整个 `.flnd/` 目录。**
 
-### 至关重要：闪电网络备份
+<Heading as="h3" id="critical-lightning-backups">至关重要：闪电网络备份</Heading>
 与传统钱包不同，**24 位助记词无法恢复您的闪电网络通道资金。** 种子仅能恢复您链上 (on-chain) 钱包中的资金。
 
 为了保护您的通道流动性，您必须了解以下内容：
@@ -473,7 +474,7 @@ twallet.exe
 要从系统中彻底移除 tWallet：
 
 1. **移除二进制文件**: 删除 `twallet` (或 `twallet.exe`) 文件。
-2. **清除数据**: 删除默认的数据目录（参见上文的 [数据位置](#数据位置)）。
+2. **清除数据**: 删除默认的数据目录（参见上文的 [数据位置](#data-locations)）。
 3. **清理日志**: 如果您配置了自定义日志路径，请确保也删除这些文件。
 
 :::warning[不可逆操作]

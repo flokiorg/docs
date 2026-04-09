@@ -4,6 +4,7 @@ title: "安装指南"
 description: "将 Lokihub 连接到 tWallet 中集成的 FLND 节点的快速设置指南。"
 sidebar_position: 3
 ---
+import Heading from '@theme/Heading';
 
 import setupFlndImage from '@site/docs/lokihub/setup-flnd.png';
 
@@ -49,9 +50,7 @@ Lokihub 连接到内置于 **tWallet v1** 的闪电网络节点。
 
 <img src={setupFlndImage.src ?? setupFlndImage} alt="Local Node Setup" style={{ display: 'block', margin: '1.5rem auto', width: '450px', borderRadius: '8px', boxShadow: '0 4px 12px rgba(0,0,0,0.3)' }} />
 
-<a id="automated-connection" />
-
-#### 选项 A：自动连接（推荐）
+<Heading as="h4" id="automated-connection">选项 A：自动连接（推荐）</Heading>
 
 如果 tWallet 在 **同一台机器** 上运行：
 1. 在设置向导中选择 **"Local Node"**。
