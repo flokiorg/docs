@@ -5,6 +5,8 @@ description: "Configure Proveedores de Servicios Lightning, retransmisores Nostr
 sidebar_position: 6
 ---
 
+import Heading from '@theme/Heading';
+
 # Servicios de Lokihub
 
 Lokihub utiliza servicios externos para las operaciones de Lightning, la comunicación [NWC](https://nwc.dev) y las consultas a la cadena de bloques. Puede elegir entre los valores predeterminados de la comunidad o configurar los suyos propios.
@@ -83,7 +85,7 @@ Bifurque [flokiorg/lokihub-services](https://github.com/flokiorg/lokihub-service
 
 Añada su servicio a la sección correspondiente.
 
-#### Añadir un LSP
+<Heading as="h4" id="add-lsp">Añadir un LSP</Heading>
 
 Añada al array `lsp`:
 
@@ -100,7 +102,7 @@ Añada al array `lsp`:
 - `uri`: cadena de conexión (`pubkey@host:port`).
 - `description`: descripción corta de los servicios ofrecidos.
 
-#### Añadir un retransmisor Nostr
+<Heading as="h4" id="add-relay">Añadir un retransmisor Nostr</Heading>
 
 Añada al array `relay`:
 
@@ -117,7 +119,7 @@ Añada al array `relay`:
 - `url`: URL de WebSocket.
 - `description`: descripción corta.
 
-#### Añadir un explorador de bloques
+<Heading as="h4" id="add-explorer">Añadir un explorador de bloques</Heading>
 
 Añada al array `explorer`:
 
@@ -134,7 +136,7 @@ Añada al array `explorer`:
 - `url`: URL HTTPS.
 - `description`: descripción corta.
 
-#### Añadir un Widget de tablón de mensajes
+<Heading as="h4" id="add-widget">Añadir un Widget de tablón de mensajes</Heading>
 
 Añada al array `widget`:
 
