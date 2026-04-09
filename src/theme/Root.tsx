@@ -3,12 +3,12 @@ import type { Props } from '@theme/Root';
 import Head from '@docusaurus/Head';
 import { useLocation } from '@docusaurus/router';
 
-const SUPPORTED_LOCALES = ['zh-CN', 'fa', 'ar', 'fr', 'es'] as const;
+const SUPPORTED_LOCALES = ['cn', 'fa', 'ar', 'fr', 'es'] as const;
 const PREF_KEY = 'docusaurus.preferredLocale';
 
 // Maps navigator.language prefixes to Docusaurus locale codes.
 const LOCALE_MAP: Record<string, string> = {
-  zh: 'zh-CN',
+  zh: 'cn',
   fa: 'fa',
   ar: 'ar',
   fr: 'fr',

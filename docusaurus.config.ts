@@ -73,10 +73,10 @@ const config: Config = {
   trailingSlash: true,
   i18n: {
     defaultLocale: 'en',
-    locales: ['en', 'zh-CN', 'fa', 'ar', 'fr', 'es'],
+    locales: ['en', 'cn', 'fa', 'ar', 'fr', 'es'],
     localeConfigs: {
       en:       { label: 'English',   direction: 'ltr' },
-      'zh-CN':  { label: '中文',       direction: 'ltr' },
+      cn:       { label: '中文',       direction: 'ltr' },
       fa:       { label: 'فارسی',     direction: 'rtl' },
       ar:       { label: 'العربية',   direction: 'rtl' },
       fr:       { label: 'Français',  direction: 'ltr' },
