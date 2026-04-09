@@ -282,6 +282,13 @@ html[data-theme='dark'] .navbar-sidebar__items .menu__link.navbar__link--resourc
   }
 }
 
+/* Hide Lokiwiki title only on medium screens where space is tight, but keep on mobile */
+@media (min-width: 1201px) and (max-width: 1390px) {
+  .navbar__title {
+    display: none !important;
+  }
+}
+
 @media (max-width: 996px) {
   .navbar__item:has(> .knowledge-dropdown__toggle),
   .navbar-sidebar .menu__list-item:has(.knowledge-dropdown__toggle) {
@@ -1201,8 +1208,8 @@ a[target="_blank"]::after {
           mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='currentColor' d='M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z'></path></svg>") no-repeat center / contain;
 }
 
-/* Hide navbar menus on mobile to keep only logo and search */
-@media (max-width: 996px) {
+/* Hide navbar menus on mobile early to prevent overlap on medium screens */
+@media (max-width: 1200px) {
   .navbar__items--left .navbar__item:not(.navbar__search),
   .navbar__items--left .navbar__link,
   .navbar__items--right .navbar__item:not(.navbar__search),
@@ -1973,5 +1980,59 @@ html[data-theme='dark'] .wallet-compare__card--recommended {
         justify-content: center;
       }
     }
+  }
+}
+
+/* Modern Footer Layout */
+.footer__bottom_modern {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 1.5rem; /* Reduced from 3rem */
+  gap: 2rem;
+  width: 100%;
+}
+
+[data-theme='light'] .footer__bottom_modern {
+  border-top-color: rgba(0, 0, 0, 0.1);
+}
+
+.footer__bottom_modern--left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.footer__copyright_container {
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+.footer__logo_container img {
+  max-width: 120px;
+  height: auto;
+  opacity: 0.9;
+}
+
+.footer__bottom_modern--right {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .footer__bottom_modern {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+    margin-top: 0.75rem;
+    padding-top: 1rem;
+  }
+
+  .footer__bottom_modern--left {
+    align-items: center;
   }
 }
