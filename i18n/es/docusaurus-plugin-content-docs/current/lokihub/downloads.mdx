@@ -1,0 +1,96 @@
+---
+sourceTitle: "Downloads"
+title: "Descargas"
+description: "Descargue Lokihub para su plataforma con enlaces directos a los últimos archivos de la versión."
+sidebar_position: 2
+sidebar_class_name: hidden
+---
+
+Descargue la última versión de Lokihub para su sistema operativo.
+
+:::release
+Última versión: **v0.1.2-alpha** — [Ver en GitHub](https://github.com/flokiorg/lokihub/releases/tag/v0.1.2-alpha)
+:::
+
+## Archivos de descarga
+
+### Escritorio (Desktop)
+
+| Plataforma | Enlace de descarga |
+| --- | --- |
+| Linux (RPM aarch64) | [lokihub-desktop-linux-aarch64-v0.1.2-alpha.rpm](https://github.com/flokiorg/lokihub/releases/download/v0.1.2-alpha/lokihub-desktop-linux-aarch64-v0.1.2-alpha.rpm) |
+| Linux (AppImage amd64) | [lokihub-desktop-linux-amd64-v0.1.2-alpha.AppImage](https://github.com/flokiorg/lokihub/releases/download/v0.1.2-alpha/lokihub-desktop-linux-amd64-v0.1.2-alpha.AppImage) |
+| Linux (Deb amd64) | [lokihub-desktop-linux-amd64-v0.1.2-alpha.deb](https://github.com/flokiorg/lokihub/releases/download/v0.1.2-alpha/lokihub-desktop-linux-amd64-v0.1.2-alpha.deb) |
+| Linux (AppImage arm64) | [lokihub-desktop-linux-arm64-v0.1.2-alpha.AppImage](https://github.com/flokiorg/lokihub/releases/download/v0.1.2-alpha/lokihub-desktop-linux-arm64-v0.1.2-alpha.AppImage) |
+| Linux (Deb arm64) | [lokihub-desktop-linux-arm64-v0.1.2-alpha.deb](https://github.com/flokiorg/lokihub/releases/download/v0.1.2-alpha/lokihub-desktop-linux-arm64-v0.1.2-alpha.deb) |
+| Linux (RPM x86_64) | [lokihub-desktop-linux-x86_64-v0.1.2-alpha.rpm](https://github.com/flokiorg/lokihub/releases/download/v0.1.2-alpha/lokihub-desktop-linux-x86_64-v0.1.2-alpha.rpm) |
+| macOS (Universal) | [lokihub-desktop-macos-v0.1.2-alpha.dmg](https://github.com/flokiorg/lokihub/releases/download/v0.1.2-alpha/lokihub-desktop-macos-v0.1.2-alpha.dmg) |
+| Windows (x86_64) | [lokihub-desktop-windows-v0.1.2-alpha.zip](https://github.com/flokiorg/lokihub/releases/download/v0.1.2-alpha/lokihub-desktop-windows-v0.1.2-alpha.zip) |
+
+### Servidor (Server)
+
+| Plataforma | Enlace de descarga |
+| --- | --- |
+| Linux (amd64) | [lokihub-server-linux-amd64-v0.1.2-alpha.tar.gz](https://github.com/flokiorg/lokihub/releases/download/v0.1.2-alpha/lokihub-server-linux-amd64-v0.1.2-alpha.tar.gz) |
+| Linux (arm64) | [lokihub-server-linux-arm64-v0.1.2-alpha.tar.gz](https://github.com/flokiorg/lokihub/releases/download/v0.1.2-alpha/lokihub-server-linux-arm64-v0.1.2-alpha.tar.gz) |
+| macOS (Universal) | [lokihub-server-macos-v0.1.2-alpha.zip](https://github.com/flokiorg/lokihub/releases/download/v0.1.2-alpha/lokihub-server-macos-v0.1.2-alpha.zip) |
+| Windows (x86_64) | [lokihub-server-windows-v0.1.2-alpha.zip](https://github.com/flokiorg/lokihub/releases/download/v0.1.2-alpha/lokihub-server-windows-v0.1.2-alpha.zip) |
+
+## Instalación y Uso
+
+:::tip
+Si su sistema operativo marca el binario como no verificado, es posible que deba permitirlo explícitamente en sus ajustes de seguridad.
+:::
+
+### Escritorio (GUI)
+
+**macOS**
+1. Abra el archivo `.dmg` descargado.
+2. Arrastre **Lokihub** a su carpeta de Aplicaciones.
+
+**Windows**
+1. Extraiga el archivo `.zip` descargado.
+2. Ejecute `lokihub.exe`.
+
+**Linux**
+- **AppImage**:
+  ```bash
+  chmod +x lokihub-*.AppImage
+  ./lokihub-*.AppImage
+  ```
+- **Debian/Ubuntu**:
+  ```bash
+  sudo dpkg -i lokihub-*.deb
+  ```
+- **Fedora/RHEL**:
+  ```bash
+  sudo rpm -i lokihub-*.rpm
+  ```
+
+### Servidor (HTTP)
+
+La versión de servidor se ejecuta como un proceso de fondo y sirve la interfaz web a través de HTTP.
+
+1. **Extraer el archivo**:
+   ```bash
+   tar -xvf lokihub-server-*.tar.gz  # Linux
+   # O descomprimir en Windows/macOS
+   ```
+
+2. **Ejecutar el binario**:
+   ```bash
+   ./lokihub
+   ```
+
+3. **Abrir en el Navegador**:
+   Navegue a `http://localhost:1610` (puerto por defecto).
+
+
+
+## Siguientes Pasos
+
+Tras la instalación, siga la [Guía de Configuración](/lokihub/setup) para conectar Lokihub a su nodo FLND.
+
+## Verificar descargas
+
+Todas las versiones se publican en GitHub con sumas de comprobación (checksums). Visite la [página de versiones](https://github.com/flokiorg/lokihub/releases) para verificar la integridad de la descarga.

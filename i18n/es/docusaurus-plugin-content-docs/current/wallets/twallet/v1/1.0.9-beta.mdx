@@ -1,0 +1,51 @@
+---
+title: 1.0.9-beta
+description: "Notas de la versión de tWallet v1.0.9-beta con un conector Lightning interno, una nueva ventana de configuración y desbloqueo automático en la primera ejecución."
+sidebar_position: 2
+---
+
+<div className="release-header-meta release-header-left">
+  <a className="github-link release-github no-external-icon" href="https://github.com/flokiorg/tWallet/releases/tag/v1.0.9-beta" target="_blank" rel="noreferrer" title="Ver v1.0.9-beta en GitHub">
+    <span className="release-header-label">GitHub</span>
+  </a>
+</div>
+
+Por favor, reporte cualquier error utilizando el rastreador de problemas en GitHub:
+
+https://github.com/flokiorg/tWallet/issues
+
+Esta versión integra un conector Lightning interno dedicado y añade una vista de configuración para la gestión de nodos.
+
+## Cambios notables
+
+### Conector Lightning interno
+La cartera ahora implementa una estrategia de conector interno. La gestión de la conexión y la lógica del servicio se han movido internamente a `tWallet`, desacoplando la aplicación del repositorio externo `FLND`. Esto proporciona una interfaz estable y específica de la aplicación para todas las operaciones Lightning.
+
+### Actualizaciones de configuración
+- Se ha añadido el mapeo para opciones de configuración adicionales de `flnd` y se han sincronizado los valores predeterminados para asegurar la consistencia con la implementación central de Lightning.
+
+### Nuevo: Ventana de configuración de Lightning
+Se puede acceder a una nueva ventana de configuración a través del atajo `Ctrl+N`.
+
+- **Detalles de la conexión**: Muestra la dirección RPC, la dirección del par y la llave pública de identidad (Identity PubKey).
+- **Credenciales**: Exporta el Macaroon y el certificado TLS en formato hexadecimal para configurar herramientas externas como `LokiHub`, `flncli` o paneles de control web.
+- **Portapapeles**: Implementa un nuevo mecanismo de copia multiplataforma con un robusto soporte de respaldo (OSC 52, comandos nativos del SO) para un uso sin interrupciones en entornos locales y remotos.
+
+### Desbloqueo automático en la primera ejecución
+Para soportar despliegues automatizados y flujos de trabajo de operaciones (Ops), se ha añadido una nueva opción de configuración `autounlock`.
+- **Inicio automatizado**: Cuando se habilita junto con `defaultpassword`, la cartera se desbloquea silenciosamente en la ejecución inicial de la aplicación sin requerir la interacción del usuario.
+- **Interfaz oculta**: El formulario de desbloqueo se oculta durante el proceso automático, mostrando solo un indicador de estado.
+- **Seguridad**: Este comportamiento se restringe únicamente a la primera ejecución; las operaciones de bloqueo/desbloqueo manual posteriores conservan la solicitud de contraseña estándar por seguridad.
+
+## Activos
+
+| SO/Arq | Activo |
+| --- | --- |
+| macOS (Apple Silicon) | https://github.com/flokiorg/tWallet/releases/download/v1.0.9-beta/twallet-darwin-arm64-v1.0.9-beta.tar.gz |
+| macOS (Intel) | https://github.com/flokiorg/tWallet/releases/download/v1.0.9-beta/twallet-darwin-amd64-v1.0.9-beta.tar.gz |
+| Linux x86_64 | https://github.com/flokiorg/tWallet/releases/download/v1.0.9-beta/twallet-linux-amd64-v1.0.9-beta.tar.gz |
+| Linux arm64 (Raspberry Pi) | https://github.com/flokiorg/tWallet/releases/download/v1.0.9-beta/twallet-linux-arm64-v1.0.9-beta.tar.gz |
+| Windows x86_64 | https://github.com/flokiorg/tWallet/releases/download/v1.0.9-beta/twallet-windows-amd64-v1.0.9-beta.zip |
+| Windows 32-bit | https://github.com/flokiorg/tWallet/releases/download/v1.0.9-beta/twallet-windows-386-v1.0.9-beta.zip |
+
+Hay construcciones adicionales (ppc64, mips y *BSD) disponibles en la [página de lanzamientos en GitHub](https://github.com/flokiorg/tWallet/releases/tag/v1.0.9-beta).

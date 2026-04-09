@@ -1,0 +1,48 @@
+---
+slug: /wof/sharenote
+title: Sharenote
+description: Fournisseurs de travail minier transparents
+---
+
+import ScratchReveal from '@site/src/components/ScratchReveal'; // eslint-disable-line no-unused-vars
+
+## Résumé
+
+Sharenote est une note de preuve de travail contrôlée par le mineur : chaque part (share) acceptée génère une sharenote signée, un enregistrement au porteur du travail résolu par le mineur. Les sharenotes peuvent être dépensées dans des engagements sociaux, pour résoudre des blocs de minage de cryptomonnaies, pour acheter des renseignements, et plus encore. Les mineurs gardent le contrôle sur la sélection des modèles (templates) et la comptabilité des paiements. Pour en savoir plus, visitez [sharenote.xyz](https://sharenote.xyz).
+
+## Motivation
+
+Même avec une puissance de hachage croissante, les mineurs dépendent toujours d'une poignée de géants fournisseurs de travail (<ScratchReveal>Foundry USA</ScratchReveal> · <ScratchReveal>AntPool</ScratchReveal> · <ScratchReveal>F2Pool</ScratchReveal> · <ScratchReveal>ViaBTC</ScratchReveal>). Deux problèmes majeurs se posent :
+
+**Paiements opaques**
+- En dehors du minage en solo, les mineurs savent rarement comment leurs parts soumises se traduisent en récompenses. La logique de paiement réside dans des tableaux de bord propriétaires.
+- Les outils tiers estiment les gains, mais les mineurs doivent avoir confiance que leurs parts ont été comptées correctement, et non repriorisées pour un autre client.
+
+**Valeur cachée des modèles de blocs**
+- Les pools peuvent intégrer des chaînes auxiliaires ou des politiques personnalisées dans les modèles de blocs sans divulguer les récompenses supplémentaires.
+- Les mineurs n'ont aucun canal pour inspecter ou proposer des changements avant que le travail ne soit assemblé, même si une valeur supplémentaire est générée en utilisant leur puissance de hachage.
+
+WoF vise à redéfinir les services internet quotidiens autour de Nostr et des incitations basées sur le travail. Sans paiements et modèles transparents, les mineurs restent dépendants de fournisseurs de travail centralisés, ce qui compromet la mission de WoF d'un engagement contrôlé par les participants.
+
+## Résumé du concept Sharenote (Brouillon)
+
+Sharenote agit comme le tissu conjonctif entre la vision du Web of Fun (WoF) pour des services ludiques et basés sur le travail, et les routines quotidiennes des mineurs. Chaque part acceptée devient un reçu signé que le mineur peut pointer, rediriger ou détruire. Le reçu est une sharenote : une preuve tangible qu'un travail informatique a eu lieu et un ticket programmable qui peut être dépensé dans des engagements sociaux, pour résoudre des blocs de minage, acheter des renseignements, et plus encore.
+
+Le cycle de vie est intentionnellement simple :
+- **Mint** – Le mineur accepte un modèle d'un fournisseur de travail, effectue le travail de hachage et voit la part résultante capturée sous forme de sharenote.
+- **Record** – Une application "sidecar" signe la sharenote et la publie en tant qu'événement Nostr (Notes and Other Stuff Transmitted by Relays) afin que toute personne autorisée par le mineur puisse auditer le flux.
+- **Spend** – Le mineur utilise la sharenote pour des engagements sociaux, pour résoudre des blocs de minage, acheter des renseignements, et plus encore ; la détruit ; ou la conserve comme un reçu auditable pour les paiements.
+
+Sharenote maintient le mineur, et non le pool, aux commandes. Les mineurs peuvent comparer les modèles, suivre combien de sharenotes chaque modèle a généré, et décider lesquels soutenir. Les opérateurs de pools disposent d'un canal pour publier les modifications de modèles, les ajustements de paiement et les alertes d'anomalies sans laisser le mineur dans l'incertitude. Les observateurs — développeurs de portefeuilles, outils comptables ou auditeurs communautaires — peuvent suivre le flux Nostr pour construire des tableaux de bord sans dépendre de tableaux de bord fermés ou du web scraping.
+
+Comme cette Fun Enhancement Possibility (FEP) est encore un brouillon, Sharenote s'en tient à un déploiement WBET (Without Breaking Existing Things). Le trafic Stratum continue de circuler, et le "sidecar" écoute, signe les parts et les diffuse sans interrompre le client principal. Ce chemin progressif permet aux mineurs de tester Sharenote en privé, pool par pool, avant de s'engager dans des relais publics ou des rituels de gouvernance de modèles.
+
+## État actuel et prochaines étapes
+
+Sharenote est actuellement un brouillon de FEP. Les travaux immédiats incluent :
+- Finaliser les références NIP ou créer un nouveau NIP pour les événements spécifiques à Sharenote.
+- Construire un prototype de pile relais/client pour tester avec un pool de bénévoles.
+- Suivre l'étape WBET afin que Sharenote continue de fonctionner proprement aux côtés des flux de travail miniers existants.
+
+Si vous souhaitez participer, rejoignez le Discord WoF (#WoF) et cherchez le fil Sharenote.
+Pour en savoir plus, visitez [sharenote.xyz](https://sharenote.xyz).

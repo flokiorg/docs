@@ -1,0 +1,239 @@
+---
+slug: /lokihub
+title: "Lokihub: El gestor Lightning autocustodial"
+description: "Domina tu nodo Lightning con Lokihub. Envía pagos globales instantáneos, gestiona liquidez y conecta aplicaciones sin intermediarios."
+sidebar_position: 1
+hideContributors: true
+hide_table_of_contents: true
+displayed_sidebar: null
+---
+
+import Link from '@docusaurus/Link';
+
+# Domina Tu Nodo Lightning
+
+**Lokihub** te otorga soberanía financiera completa sobre tu nodo Lightning. Más que un simple gestor, es tu puerta de entrada a la web descentralizada — integrado con [tWallet](/wallets/twallet) para ayudarte a gestionar sub-monederos, administrar canales y conectar aplicaciones mediante NWC.
+
+:::caution[CRÍTICO: RIESGO DE PÉRDIDA DE RESPALDO]
+**Los fondos de los canales Lightning NO están almacenados en la cadena de bloques.** Una frase semilla de 24 palabras solo recupera tu saldo en cadena. Para evitar la pérdida total de los fondos de los canales, debes realizar una copia de seguridad de tus **Respaldos de Canales Estáticos (SCB)**.
+[Aprende cómo proteger tu nodo →](/wallets/twallet/v1#critical-lightning-backups)
+:::
+
+<div className="download-box">
+  <div className="download-box__content">
+    <div className="download-box__text">
+      <strong>Última versión:</strong> v0.1.2-alpha
+    </div>
+    <div className="download-box__actions">
+      <Link className="button button--primary" to="/lokihub/downloads">Descargar</Link>
+      <Link className="button button--secondary" to="/lokihub/setup">Guía de Configuración</Link>
+    </div>
+  </div>
+</div>
+
+## Primeros Pasos
+
+<div className="guide-grid">
+
+<div className="guide-card">
+
+### 1. Descargar e Instalar
+Obtén Lokihub para tu plataforma e instala el binario.
+
+[Descargas →](/lokihub/downloads)
+
+</div>
+
+<div className="guide-card">
+
+### 2. Conectar Tu Nodo
+Conecta Lokihub al nodo FLND integrado en [tWallet](/wallets/twallet).
+
+[Guía de Configuración →](/lokihub/setup)
+
+</div>
+
+<div className="guide-card">
+
+### 3. Comenzar a Usar
+Gestiona monederos, abre canales y conecta aplicaciones.
+
+[Funcionalidades →](/lokihub/features)
+
+</div>
+
+</div>
+
+import { Zap, Droplet } from 'lucide-react';
+
+## Lo Que Lokihub Hace por Ti
+
+<div className="capabilities-list">
+
+<div className="cap-row">
+  <div className="cap-icon"><Zap size={24} /></div>
+  <div className="cap-content">
+    <h3>Pagos Instantáneos, Sin Intermediarios</h3>
+    <p>Aprovecha la Lightning Network para transacciones rápidas, seguras y con comisiones reducidas. Crea sub-monederos dedicados para organizar tu liquidez según diferentes aplicaciones o presupuestos personales.</p>
+  </div>
+</div>
+
+<div className="cap-row">
+  <div className="cap-icon"><Droplet size={24} /></div>
+  <div className="cap-content">
+    <h3>Soberanía Total Sobre Tu Liquidez</h3>
+    <p>Toma el control directo de tus canales Lightning. Abre, cierra y gestiona tu capacidad de entrada y salida con total transparencia manual.</p>
+  </div>
+</div>
+
+<div className="cap-row cap-highlight">
+  <div className="cap-content">
+    <h3>Conectar Aplicaciones</h3>
+    <p>Conecta aplicaciones externas a tu nodo mediante NWC. Otorga permisos específicos y revoca el acceso cuando sea necesario.</p>
+    <Link to="/lokihub/store" className="cap-action">Explorar la Tienda de Aplicaciones →</Link>
+  </div>
+</div>
+
+<div className="cap-row cap-highlight">
+  <div className="cap-content">
+    <h3>Elegir Servicios</h3>
+    <p>La autocustodia significa que tú eliges tus propios proveedores. Configura tu LSP, relay Nostr, explorador de bloques y tablones de mensajes.</p>
+    <Link to="/lokihub/services" className="cap-action">Ver Servicios →</Link>
+  </div>
+</div>
+
+</div>
+
+## Documentación
+
+- **[Descargas](/lokihub/downloads)** — Obtén la última versión
+- **[Configuración](/lokihub/setup)** — Conéctate a tu nodo
+- **[Funcionalidades](/lokihub/features)** — Monedero, canales, NWC
+- **[Tienda de Aplicaciones](/lokihub/store)** — Conecta aplicaciones externas
+- **[Servicios](/lokihub/services)** — LSP, relay, explorador
+- **[Recursos](/lokihub/resources)** — Exploradores, faucets, herramientas
+
+¿Necesitas ayuda? Únete a [Discord](https://flokicoin.org/discord) #lokihub
+
+<style>
+{`
+.download-box {
+  margin: 1.5rem 0 2.5rem 0;
+  border: 2px solid var(--ifm-color-primary);
+  border-radius: 8px;
+  background: var(--ifm-background-surface-color);
+}
+.download-box__content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .75rem;
+  padding: 1rem 1.25rem;
+}
+.download-box__text {
+  flex: 1 1 180px;
+  font-size: 1.05rem;
+}
+.download-box__actions {
+  display: flex;
+  gap: .5rem;
+  flex: 0 0 auto;
+}
+
+@media (max-width: 640px) {
+  .download-box__actions {
+    width: 100%;
+    flex-direction: column;
+  }
+  .download-box__actions .button {
+    width: 100%;
+  }
+}
+
+.guide-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+  margin: 2rem 0;
+}
+
+.guide-card {
+  padding: 1.5rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  background: var(--ifm-background-surface-color);
+}
+
+.guide-card h3 {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  color: var(--ifm-color-primary);
+}
+
+.guide-card p {
+  margin-bottom: 0.5rem;
+}
+
+.capabilities-list {
+  margin: 2rem 0;
+  max-width: 800px;
+}
+
+.cap-row {
+  display: flex;
+  gap: 1.25rem;
+  padding: 1.75rem 0;
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.cap-row:last-child {
+  border-bottom: none;
+}
+
+.cap-icon {
+  font-size: 1.75rem;
+  line-height: 1;
+  flex-shrink: 0;
+  padding-top: 0.1rem;
+}
+
+.cap-content {
+  flex: 1;
+}
+
+.cap-row h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.2rem;
+  color: var(--ifm-heading-color);
+}
+
+.cap-row p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.cap-highlight {
+  padding-left: 1.5rem;
+  border-left: 3px solid var(--ifm-color-primary);
+  border-bottom-color: var(--ifm-color-primary);
+}
+
+.cap-highlight h3 {
+  color: var(--ifm-color-primary);
+}
+
+.cap-action {
+  display: inline-block;
+  margin-top: 0.75rem;
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.cap-action:hover {
+  text-decoration: underline;
+}
+`}
+</style>

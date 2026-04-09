@@ -1,0 +1,32 @@
+---
+sourceTitle: "Pools"
+title: "استخرها"
+slug: /mining/pools
+description: "فهرست استخرهای استخراج سازگار با Flokicoin، استخراج‌کننده‌های پیشنهادی scrypt، اصول Stratum و نکات ایمنی."
+---
+
+:::danger[سلب مسئولیت]
+استخرها و استخراج‌کننده‌های فهرست شده در اینجا شخص ثالث هستند. باینری‌ها و تنظیمات را خودتان تأیید کنید و قبل از استفاده در محیط عملیاتی، تست در محیط ایزوله (sandbox) را در اولویت قرار دهید.
+:::
+
+import { Fish } from 'lucide-react';
+
+
+## استخرها
+- [fpool.net](https://fpool.net) <span style={{display: 'inline-flex', alignItems: 'center', gap: '0.25rem', verticalAlign: 'middle'}}><Fish size={16} /> استخراج هرگز به این آسانی نبوده است</span> (solo, PPLNS)
+- [viaflc.com](https://viaflc.com) سکه بیشتر با همان قدرت (PPLNS, استخراج ترکیبی یا merge-mining)
+
+
+### نکات
+- شبکه اصلی (Mainnet): از کارت گرافیک (GPU) یا دستگاه‌های scrypt ASIC استفاده کنید. استخراج با پردازنده (CPU) رقابتی نیست؛ cpuminer را برای شبکه آزمایشی یا آزمایش‌های شخصی رزرو کنید.
+- AuxPoW: اگر استخر از استخراج ترکیبی (merge mining) با یک زنجیره والد خانواده scrypt پشتیبانی می‌کند و AuxPoW را به Flokicoin فوروارد می‌کند، دستورالعمل‌های خاص آن استخر را دنبال کنید. جزئیات در هر استخر متفاوت است.
+
+
+## اصول Stratum
+- آدرس (URL): `stratum+tcp://POOL_HOST:PORT`
+- نام کاربری: آدرس پرداخت Flokicoin شما (یا حساب استخر)
+- رمز عبور: اغلب `x` یا توکن مخصوص استخر
+
+
+## پشتیبانی
+برای راهنمایی به کانال [#mining](https://flokicoin.org/discord) در دیسکورد بپیوندید.

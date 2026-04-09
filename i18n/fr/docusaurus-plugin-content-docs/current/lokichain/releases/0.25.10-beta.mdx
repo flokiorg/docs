@@ -1,0 +1,62 @@
+---
+title: 0.25.10-beta
+description: "Notes de version pour Flokicoin Core 0.25.10-beta couvrant le renommage du démon lokid, les points de contrôle actualisés, l'exactitude des RPC et les mises à jour de la stabilité de la synchronisation."
+sidebar_position: 0
+---
+
+<div className="release-header-meta release-header-left">
+  <a className="github-link release-github no-external-icon" href="https://github.com/flokiorg/go-flokicoin/releases/tag/v0.25.10-beta" target="_blank" rel="noreferrer" title="Voir v0.25.10-beta sur GitHub">
+    <span className="release-header-label">GitHub</span>
+  </a>
+</div>
+
+Veuillez signaler les bogues en utilisant le gestionnaire de problèmes sur GitHub :
+
+https://github.com/flokiorg/go-flokicoin/issues
+
+Cette version renforce l'exactitude des RPC, améliore les heuristiques de synchronisation, actualise les points de contrôle (checkpoints) et renomme les binaires du démon et de l'interface en ligne de commande (CLI). Mettez à jour votre logiciel pour rester aligné avec le réseau et pour adopter les nouveaux noms `lokid`/`lokid-cli`.
+
+## Notes de mise à jour
+
+- Le démon et le CLI ont été renommés en `lokid` et `lokid-cli` (auparavant `flokicoind`/`flokicoind-cli`). Mettez à jour les fichiers de service, les scripts et les points d'entrée des conteneurs en conséquence.
+
+## Points forts
+
+- **Consensus et points de contrôle**
+  - Actualisation des points de contrôle du mainnet jusqu'à la hauteur 209 771 pour accélérer la synchronisation initiale.
+- **Réseau et synchronisation**
+  - Amélioration du suivi du groupe de pairs sortants et garantie que les pairs répondent aux messages `getblocks`, réduisant ainsi les blocages près du sommet de la chaîne (tip).
+  - Affinement de la planification des téléchargements lorsque le nœud est déjà à jour pour éviter les récupérations redondantes.
+  - Optimisation de la sérialisation des en-têtes de bloc et des messages pour des chemins d'E/S plus robustes.
+- **RPC**
+  - `getblockchaininfo` dérive désormais la progression de la vérification des en-têtes des meilleurs pairs ; `getblock` expose des détails de bloc plus riches.
+  - Les types de réponse et le texte d'aide de `getrawtransaction` correspondent désormais aux charges utiles ; `createrawtransaction` impose une validation plus stricte des montants.
+  - Ajout de l'agrégation des statistiques de bloc alimentant `getblockstats` (percentiles de frais/taille, deltas UTXO).
+  - `getinfo` rapporte la version correcte du protocole P2P et remplit les champs manquants.
+- **Mempool et validation**
+  - Passage des limites de valeur à la plage `int64` complète et protection des vérifications de poussière (dust checks) contre le dépassement lors du calcul de `MaxLoki` / de la politique de frais.
+  - Les erreurs de validation émettent désormais des valeurs `MaxLoki` correctement castées pour éviter les messages trompeurs.
+- **Outils et tests**
+  - Ajout d'un générateur de jeu de données de blocs déterministe (`make testexport`) et actualisation des fixtures pour la stabilité de l'intégration continue (CI).
+  - Renforcement de la couverture de tests pour la difficulté, les statistiques et la comptabilité des groupes sortants.
+
+## Commits notables (chronologiques)
+
+- Actualisation des outils/fixtures et assistant `testexport` ([`31eff16`](https://github.com/flokiorg/go-flokicoin/commit/31eff16), [`0e5dcd3`](https://github.com/flokiorg/go-flokicoin/commit/0e5dcd3)).
+- Corrections RPC/build pour le rapport de protocole/version et les bannières ([`651a453`](https://github.com/flokiorg/go-flokicoin/commit/651a453), [`2e92497`](https://github.com/flokiorg/go-flokicoin/commit/2e92497)).
+- Sécurité de la politique pour la plage `MaxLoki` et protections contre le dépassement de poussière ([`9d9eef1`](https://github.com/flokiorg/go-flokicoin/commit/9d9eef1), [`5b583c0`](https://github.com/flokiorg/go-flokicoin/commit/5b583c0)).
+- Mises à jour de l'exactitude des RPC et package de statistiques de bloc ([`4483bfa`](https://github.com/flokiorg/go-flokicoin/commit/4483bfa), [`ed3f11b`](https://github.com/flokiorg/go-flokicoin/commit/ed3f11b), [`04bfa8b`](https://github.com/flokiorg/go-flokicoin/commit/04bfa8b)).
+- Renommage du démon, points de contrôle, affinements sync/p2p/rpc menant à la version 0.25.10-beta ([`66a4658`](https://github.com/flokiorg/go-flokicoin/commit/66a4658), [`037c55c`](https://github.com/flokiorg/go-flokicoin/commit/037c55c), [`9f457dd`](https://github.com/flokiorg/go-flokicoin/commit/9f457dd), [`3388ec1`](https://github.com/flokiorg/go-flokicoin/commit/3388ec1), [`3d115e4`](https://github.com/flokiorg/go-flokicoin/commit/3d115e4), [`5eadc7b`](https://github.com/flokiorg/go-flokicoin/commit/5eadc7b), [`91a004e`](https://github.com/flokiorg/go-flokicoin/commit/91a004e), [`fbbef28`](https://github.com/flokiorg/go-flokicoin/commit/fbbef28)).
+
+## Actifs (Assets)
+
+| OS/Arch | Actif |
+| --- | --- |
+| macOS (Apple Silicon) | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.10-beta/lokid-darwin-arm64-v0.25.10-beta.tar.gz |
+| macOS (Intel) | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.10-beta/lokid-darwin-amd64-v0.25.10-beta.tar.gz |
+| Linux x86_64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.10-beta/lokid-linux-amd64-v0.25.10-beta.tar.gz |
+| Linux arm64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.10-beta/lokid-linux-arm64-v0.25.10-beta.tar.gz |
+| Windows x86_64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.10-beta/lokid-windows-amd64-v0.25.10-beta.zip |
+| Windows 32-bit | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.10-beta/lokid-windows-386-v0.25.10-beta.zip |
+
+Des versions supplémentaires (ppc64, mips, *BSD, illumos/solaris) sont disponibles sur la [page de version GitHub](https://github.com/flokiorg/go-flokicoin/releases/tag/v0.25.10-beta).

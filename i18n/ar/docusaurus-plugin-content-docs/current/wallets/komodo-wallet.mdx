@@ -1,0 +1,117 @@
+---
+sourceTitle: "Komodo Wallet"
+title: "Komodo Wallet"
+description: "إدارة Flokicoin باستخدام Komodo Wallet، وهي محفظة متعددة العملات والمنصات تتميز بواجهة مرئية ودعم Segwit."
+sidebar_position: 3
+---
+
+import Link from '@docusaurus/Link';
+import { Monitor, Smartphone, Globe, ArrowRight, MousePointer2, Layers, Repeat } from 'lucide-react';
+
+**Komodo Wallet** (المعروفة سابقًا باسم AtomicDEX) هي محفظة متعددة العملات والمنصات ذات واجهة رسومية نظيفة. إذا كنت تفضل التجربة المرئية على أوامر الطرفية (terminal)، فهذه هي المحفظة المناسبة لك.
+
+<div className="wallet-benefits">
+  <div className="wallet-benefit">
+    <div className="wallet-benefit__icon"><MousePointer2 size={22} /></div>
+    <div>
+      <strong>واجهة مرئية</strong>
+      <span>لا حاجة للطرفية. شاهد رصيدك ومعاملاتك في تطبيق مألوف.</span>
+    </div>
+  </div>
+  <div className="wallet-benefit">
+    <div className="wallet-benefit__icon"><Layers size={22} /></div>
+    <div>
+      <strong>متعددة العملات</strong>
+      <span>قم بإدارة Flokicoin جنبًا إلى جنب مع عشرات الأصول الأخرى في مكان واحد آمن.</span>
+    </div>
+  </div>
+  <div className="wallet-benefit">
+    <div className="wallet-benefit__icon"><Repeat size={22} /></div>
+    <div>
+      <strong>جاهزة لـ Segwit</strong>
+      <span>رسوم أقل وتأكيدات أسرع من البداية مع عناوين `fc1`.</span>
+    </div>
+  </div>
+</div>
+
+## اختر منصتك
+
+اختر الإصدار الذي يناسب سير عملك. تستخدم جميع الإصدارات نفس التكنولوجيا الآمنة.
+
+<div className="wallet-compare">
+  <div className="wallet-compare__card">
+    <div className="wallet-compare__header">
+      <Monitor size={20} />
+      <h3>سطح المكتب</h3>
+    </div>
+    <p className="wallet-compare__audience">الأفضل للإدارة اليومية على أنظمة Windows أو macOS أو Linux.</p>
+    <ul className="wallet-compare__features">
+      <li>مجموعة ميزات كاملة</li>
+      <li>تخزين محلي للمفاتيح الخاصة</li>
+      <li>دعم محافظ الأجهزة (Hardware wallets)</li>
+    </ul>
+    <div className="wallet-compare__footer">
+      <Link className="button button--primary wallet-compare__cta" href="https://komodoplatform.com/en/wallets.html">تحميل نسخة سطح المكتب <ArrowRight size={16} /></Link>
+    </div>
+  </div>
+
+  <div className="wallet-compare__card">
+    <div className="wallet-compare__header">
+      <Smartphone size={20} />
+      <h3>الهاتف المحمول</h3>
+    </div>
+    <p className="wallet-compare__audience">الأفضل لإرسال واستقبال Flokicoin أثناء التنقل.</p>
+    <ul className="wallet-compare__features">
+      <li>دعم أنظمة iOS و Android</li>
+      <li>الأمان البيومتري (بصمة الوجه/بصمة الإصبع)</li>
+      <li>مسح رموز QR للدفع</li>
+    </ul>
+    <div className="wallet-compare__footer">
+      <Link className="button button--secondary wallet-compare__cta" href="https://komodoplatform.com/en/wallets.html">احصل على تطبيق الهاتف <ArrowRight size={16} /></Link>
+    </div>
+  </div>
+
+  <div className="wallet-compare__card">
+    <div className="wallet-compare__header">
+      <Globe size={20} />
+      <h3>الويب</h3>
+    </div>
+    <p className="wallet-compare__audience">الأفضل للوصول السريع من أي متصفح دون الحاجة لتثبيت.</p>
+    <ul className="wallet-compare__features">
+      <li>لا يتطلب تثبيت</li>
+      <li>الوصول من أي جهاز</li>
+      <li>واجهة بسيطة وسريعة</li>
+    </ul>
+    <div className="wallet-compare__footer">
+      <Link className="button button--secondary wallet-compare__cta" href="https://app.komodoplatform.com">افتح محفظة الويب <ArrowRight size={16} /></Link>
+    </div>
+  </div>
+</div>
+
+## دليل الإعداد السريع
+
+يستغرق البدء حوالي 5 دقائق. اتبع هذه الخطوات البسيطة:
+
+1. **احصل على التطبيق**: قم بتحميل أو فتح الإصدار الخاص بالمنصة التي تفضلها أعلاه.
+2. **إنشاء محفظة جديدة**: اختر "Create New Wallet" واكتب **عبارة الاسترداد (seed phrase)** الخاصة بك.
+3. **نسخ احتياطي لمفاتيحك**: قم بتخزين عبارة الاسترداد الخاصة بك على ورق فعلي في مكان آمن.
+4. **تمكين Flokicoin**: ابحث عن **Flokicoin** في قائمة الأصول وقم بتمكينه للحصول على عنوانك.
+
+:::warning[الأمان أولاً]
+عبارة الاسترداد الخاصة بك هي النسخة الاحتياطية *الوحيدة*. إذا فقدتها، فستفقد عملاتك. لا تقم أبدًا بتخزينها رقميًا، ولا تشاركها أبدًا، ولا تلتقط لقطة شاشة لها.
+:::
+
+## حول العناوين (F مقابل fc1)
+
+بشكل افتراضي، تقوم Komodo Wallet بإنشاء عنوان يبدأ بـ **F** (Legacy). كما أنها تدعم بالكامل عناوين **fc1** (Segwit).
+
+* **Legacy (F)**: أقصى قدر من التوافق مع الخدمات القديمة.
+* **Segwit (fc1)**: يوصى به للاستخدام اليومي. ويؤدي إلى **رسوم شبكة أقل** وهو مدعوم من قبل معظم الخدمات الحديثة.
+
+يمكنك التبديل بين هذه التنسيقات في إعدادات المحفظة. كلا التنسيقين يعملان على نفس شبكة Flokicoin.
+
+## الدعم والروابط
+
+- **وثائق Komodo**: [الوثائق الرسمية](https://docs.komodoplatform.com/) للحصول على مساعدة تقنية عميقة.
+- **Discord**: انضم إلى [Flokicoin Discord](https://flokicoin.org/discord) لدعم المجتمع.
+- **الخطوات التالية**: تعرف على كيفية عمل [إصدار Flokicoin](/economy) أو [ابدأ التعدين](/mining/pools).

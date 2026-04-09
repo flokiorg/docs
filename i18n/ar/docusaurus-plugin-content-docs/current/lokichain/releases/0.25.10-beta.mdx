@@ -1,0 +1,62 @@
+---
+title: 0.25.10-beta
+description: "ملاحظات الإصدار لـ Flokicoin Core 0.25.10-beta والتي تغطي إعادة تسمية البرنامج الخفي lokid، تحديث نقاط الفحص، صحة RPC، وتحديثات استقرار المزامنة."
+sidebar_position: 0
+---
+
+<div className="release-header-meta release-header-left">
+  <a className="github-link release-github no-external-icon" href="https://github.com/flokiorg/go-flokicoin/releases/tag/v0.25.10-beta" target="_blank" rel="noreferrer" title="عرض v0.25.10-beta على GitHub">
+    <span className="release-header-label">GitHub</span>
+  </a>
+</div>
+
+يرجى الإبلاغ عن الأخطاء (bugs) باستخدام متتبع المشكلات على GitHub:
+
+https://github.com/flokiorg/go-flokicoin/issues
+
+يعزز هذا الإصدار من صحة الـ RPC، ويحسن الاستدلالات الخاصة بالمزامنة، ويحدث نقاط الفحص (checkpoints)، ويعيد تسمية البرامج الثنائية للبرنامج الخفي (daemon) وواجهة سطر الأوامر (CLI). يرجى الترقية للبقاء متوافقاً مع الشبكة ولاعتماد الأسماء الجديدة `lokid` و `lokid-cli`.
+
+## ملاحظات الترقية
+
+- تمت إعادة تسمية البرنامج الخفي (Daemon) وواجهة سطر الأوامر (CLI) إلى `lokid` و `lokid-cli` (سابقاً `flokicoind` و `flokicoind-cli`). يرجى تحديث ملفات الخدمة، والسكربتات، ونقاط دخول الحاويات (container entrypoints) وفقاً لذلك.
+
+## أبرز النقاط
+
+- **الإجماع ونقاط الفحص (Checkpoints)**
+  - تحديث نقاط فحص الشبكة الرئيسية (mainnet) حتى الارتفاع 209,771 لتسريع المزامنة الأولية.
+- **الشبكات والمزامنة**
+  - تحسين تتبع مجموعة النظراء الصادرة (outbound peer group) وضمان استجابة النظراء لرسائل `getblocks` ، مما يقلل من حالات التوقف بالقرب من قمة السلسلة (tip).
+  - تحسين جدولة التنزيلات عندما يكون العميل محدثاً بالفعل لتجنب عمليات الجلب المتكررة.
+  - تحسين تسلسل ترويسة الكتل/الرسائل لضمان مسارات إدخال وإخراج (I/O) أكثر متانة.
+- **RPC**
+  - يستمد `getblockchaininfo` الآن تقدم التحقق من ترويسات أفضل النظراء؛ ويكشف `getblock` عن تفاصيل أكثر ثراءً للكتل.
+  - تتطابق الآن أنواع الاستجابة ونصوص المساعدة في `getrawtransaction` مع الحمولات؛ ويفرض `createrawtransaction` تحققاً أكثر صرامة من المبالغ.
+  - إضافة تجميع إحصائيات الكتل التي تدعم `getblockstats` (النسب المئوية للرسوم/الحجم، وتغييرات UTXO).
+  - يبلغ `getinfo` عن إصدار بروتوكول P2P الصحيح ويملأ الحقول المفقودة.
+- **Mempool والتحقق**
+  - تبديل حدود القيمة إلى نطاق `int64` الكامل وحماية فحوصات الغبار (dust checks) من التجاوز (overflow) عند حساب `MaxLoki` / سياسة الرسوم.
+  - تصدر أخطاء التحقق الآن قيم `MaxLoki` محولة بشكل صحيح لتجنب الرسائل المضللة.
+- **الأدوات والاختبارات**
+  - إضافة مولد مجموعة بيانات الكتل الحتمية (`make testexport`) وتحديث ملفات الاختبار الثابتة (fixtures) لاستقرار التكامل المستمر (CI).
+  - تعزيز تغطية اختبارات الصعوبة/الإحصائيات وحسابات المجموعات الصادرة.
+
+## التزامات بارزة (Notable commits)
+
+- تحديث الأدوات/ملفات الاختبار الثابتة ومساعد `testexport` ([`31eff16`](https://github.com/flokiorg/go-flokicoin/commit/31eff16)، [`0e5dcd3`](https://github.com/flokiorg/go-flokicoin/commit/0e5dcd3)).
+- إصلاحات RPC/البناء لتقارير البروتوكول/الإصدار والشعارات ([`651a453`](https://github.com/flokiorg/go-flokicoin/commit/651a453)، [`2e92497`](https://github.com/flokiorg/go-flokicoin/commit/2e92497)).
+- سلامة السياسة لنطاق `MaxLoki` وحماية تجاوز الغبار ([`9d9eef1`](https://github.com/flokiorg/go-flokicoin/commit/9d9eef1)، [`5b583c0`](https://github.com/flokiorg/go-flokicoin/commit/5b583c0)).
+- تحديثات صحة الـ RPC وحزمة إحصائيات الكتل ([`4483bfa`](https://github.com/flokiorg/go-flokicoin/commit/4483bfa)، [`ed3f11b`](https://github.com/flokiorg/go-flokicoin/commit/ed3f11b)، [`04bfa8b`](https://github.com/flokiorg/go-flokicoin/commit/04bfa8b)).
+- إعادة تسمية البرنامج الخفي، نقاط الفحص، وتحسينات المزامنة/P2P/RPC التي أدت إلى إصدار 0.25.10-beta ([`66a4658`](https://github.com/flokiorg/go-flokicoin/commit/66a4658)، [`037c55c`](https://github.com/flokiorg/go-flokicoin/commit/037c55c)، [`9f457dd`](https://github.com/flokiorg/go-flokicoin/commit/9f457dd)، [`3388ec1`](https://github.com/flokiorg/go-flokicoin/commit/3388ec1)، [`3d115e4`](https://github.com/flokiorg/go-flokicoin/commit/3d115e4)، [`5eadc7b`](https://github.com/flokiorg/go-flokicoin/commit/5eadc7b)، [`91a004e`](https://github.com/flokiorg/go-flokicoin/commit/91a004e)، [`fbbef28`](https://github.com/flokiorg/go-flokicoin/commit/fbbef28)).
+
+## الأصول (Assets)
+
+| نظام التشغيل/المعمارية | الرابط |
+| --- | --- |
+| macOS (Apple Silicon) | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.10-beta/lokid-darwin-arm64-v0.25.10-beta.tar.gz |
+| macOS (Intel) | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.10-beta/lokid-darwin-amd64-v0.25.10-beta.tar.gz |
+| Linux x86_64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.10-beta/lokid-linux-amd64-v0.25.10-beta.tar.gz |
+| Linux arm64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.10-beta/lokid-linux-arm64-v0.25.10-beta.tar.gz |
+| Windows x86_64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.10-beta/lokid-windows-amd64-v0.25.10-beta.zip |
+| Windows 32-bit | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.10-beta/lokid-windows-386-v0.25.10-beta.zip |
+
+تتوفر إصدارات إضافية (ppc64, mips, *BSD, illumos/solaris) على [صفحة إصدارات GitHub](https://github.com/flokiorg/go-flokicoin/releases/tag/v0.25.10-beta).

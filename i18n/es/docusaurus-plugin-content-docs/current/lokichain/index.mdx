@@ -1,0 +1,56 @@
+---
+slug: /lokichain
+title: Lokichain
+description: Descripción general de las operaciones de Lokichain que cubre la configuración de nodos, monederos, herramientas para desarrolladores, recursos de minería y soporte comunitario.
+sidebar_position: 0
+---
+
+import Link from '@docusaurus/Link';
+import { Rocket } from 'lucide-react';
+
+Lokichain es la cadena de bloques detrás de Flokicoin. Valida cada transacción, aplica las reglas de consenso y mantiene todo descentralizado. Si quieres entender el motor bajo el capó, estás en el lugar correcto.
+
+:::release
+**Última versión**: Flokicoin Core [v0.25.12-alpha](/lokichain/releases/0.25.12-alpha) — nuestra implementación de referencia actual.
+:::
+
+## Ejecutar un Nodo
+Ejecutar un nodo completo es la forma más directa de apoyar la red. Tu nodo verifica toda la cadena de forma independiente y sirve RPCs para monederos, mineros y aplicaciones.
+
+:::tip[Opción rápida]
+¿Buscas una configuración más sencilla? Prueba el nodo plug-and-play comunitario en [myfloki.com/fullnode](https://myfloki.com/fullnode).
+:::
+
+## Construir sobre Lokichain
+Ya sea que estés desarrollando un monedero, un explorador o algo nuevo — aquí es donde empezar:
+
+- **FIPs** — Consulta cómo evoluciona el protocolo mediante las [Propuestas de Mejora de Flokicoin](/lokichain/fips).
+- **Versiones** — Sigue cada [versión de software](/lokichain/releases).
+- **Código fuente** — Explora y contribuye a [go-flokicoin](https://github.com/flokiorg/go-flokicoin).
+
+## Desplegar en Lokihub
+La Tienda de Aplicaciones de Lokihub es el centro principal para las aplicaciones comunitarias. Si has desarrollado una aplicación con soporte Lightning, puedes desplegarla directamente en el ecosistema a través de nuestra tienda de código abierto.
+
+<div className="wallet-releases-card">
+  <div className="wallet-releases-content">
+    <h3>¿Listo para lanzar?</h3>
+    <p>Aprende cómo enviar tu aplicación a la Tienda de Aplicaciones de Lokihub y llega a miles de operadores de nodos al instante.</p>
+  </div>
+  <div className="wallet-releases-action">
+    <Link className="wallet-action-button" to="/lokihub/store#for-developers-submit-your-app">
+      <span><Rocket size={18} /></span><span>Enviar Tu Aplicación</span>
+    </Link>
+  </div>
+</div>
+
+## Minar
+Los mineros aportan el poder de hash que hace que la cadena sea inmutable. Necesitarás el software de nodo más reciente y un ASIC Scrypt o GPU.
+
+- **Comenzar** — [Guía de configuración de minería](/mining).
+
+## Cómo Funciona
+Lokichain es una red peer-to-peer. Cada nodo aplica las mismas reglas, por lo que no existe un único punto de fallo. Las reglas de consenso se actualizan mediante FIPs — considéralos como las "leyes" de la red.
+
+## Obtener Ayuda
+- **Discord** — Únete a la conversación en [#dev](https://flokicoin.org/discord).
+- **GitHub** — Reporta errores o sugiere funcionalidades mediante [Issues](https://github.com/flokiorg/go-flokicoin/issues).

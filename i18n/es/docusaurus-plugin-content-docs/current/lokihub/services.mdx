@@ -1,0 +1,193 @@
+---
+sourceTitle: "Services"
+title: "Servicios"
+description: "Configure Proveedores de Servicios Lightning, retransmisores Nostr y exploradores de bloques para Lokihub."
+sidebar_position: 6
+---
+
+# Servicios de Lokihub
+
+Lokihub utiliza servicios externos para las operaciones de Lightning, la comunicación [NWC](https://nwc.dev) y las consultas a la cadena de bloques. Puede elegir entre los valores predeterminados de la comunidad o configurar los suyos propios.
+
+## Tipos de servicios
+
+### LSP (Proveedor de Servicios Lightning)
+
+**Opcional**: proporciona liquidez de entrada para recibir pagos.
+
+Cuando abre un canal Lightning, solo puede enviar los fondos que haya depositado. Para recibir pagos, necesita liquidez de entrada, ya sea por el equilibrio natural del canal o por un LSP que abra un canal hacia usted.
+
+**Lo que ofrecen los LSP:**
+- Abrir canales a su nodo.
+- Proporcionar liquidez de entrada.
+- Creación de canales justo a tiempo (JIT).
+
+**En Lokihub:**
+Seleccione de la lista de LSP de la comunidad o añada el suyo propio. Los LSP de Lokihub utilizan las **especificaciones LSPS** ([LSPS0 a LSPS5](https://github.com/lightning/blips)) para una liquidez estandarizada.
+
+### Retransmisor Nostr (Nostr Relay)
+
+Enruta los mensajes de la conexión [NWC](https://nwc.dev) entre su nodo y las aplicaciones conectadas.
+
+Cuando conecta una aplicación a través de NWC, su nodo y la aplicación se comunican a través de un retransmisor Nostr. El retransmisor no ve los datos de pago, solo los mensajes de conexión cifrados.
+
+**En Lokihub:**
+Elija un retransmisor público o ejecute el suyo propio. Puede seleccionar tantos retransmisores como desee para asegurar una fiabilidad y opciones de respaldo de comunicación sólidas.
+
+### Explorador de bloques
+
+Consulta los detalles de las transacciones en la cadena, información de la cadena de bloques y estadísticas de los nodos Lightning.
+
+**En Lokihub:**
+Apunte a cualquier explorador de bloques compatible con Flokicoin.
+
+### Widget de tablón de mensajes
+
+Widgets de chat interactivos donde los miembros de la comunidad pueden publicar mensajes con zaps. Los fondos recaudados pueden utilizarse para airdrops de la comunidad u otros fines. Configure múltiples widgets para diferentes canales.
+
+**En Lokihub:**
+Elija entre los tablones de mensajes de la comunidad o configure el suyo propio.
+
+### Servicio de Swap
+
+**Opcional**: intercambie fondos entre su billetera en la cadena y los canales de Lightning.
+
+Útil cuando necesite mover fondos de su saldo en la cadena a Lightning (loop in) o de Lightning a la cadena (loop out).
+
+**En Lokihub:**
+Utilice la interfaz de swap integrada, impulsada por el proveedor de swap que elija.
+
+## Para proveedores de servicios: envíe su servicio
+
+El directorio de Servicios es de código abierto y está mantenido por la comunidad.
+
+### Estructura del repositorio
+
+Las configuraciones de los servicios se encuentran en: [flokiorg/lokihub-services](https://github.com/flokiorg/lokihub-services)
+
+```
+lokihub-services/
+├── services.json      # LSP, retransmisores, exploradores
+├── rates.json         # Tipos de cambio
+├── currencies.json    # Monedas admitidas
+└── info.json          # Información general y MOTD
+```
+
+### Cómo añadir un servicio
+
+**1. Bifurcar (Fork) el repositorio**
+
+Bifurque [flokiorg/lokihub-services](https://github.com/flokiorg/lokihub-services) en GitHub.
+
+**2. Edite `services.json`**
+
+Añada su servicio a la sección correspondiente.
+
+#### Añadir un LSP
+
+Añada al array `lsp`:
+
+```json
+{
+  "name": "Mi LSP",
+  "uri": "pubkey@host:port",
+  "description": "Admite canales JIT y liquidez de entrada"
+}
+```
+
+**Campos:**
+- `name`: nombre a mostrar de su LSP.
+- `uri`: cadena de conexión (`pubkey@host:port`).
+- `description`: descripción corta de los servicios ofrecidos.
+
+#### Añadir un retransmisor Nostr
+
+Añada al array `relay`:
+
+```json
+{
+  "name": "Mi Retransmisor",
+  "url": "wss://retransmisor.ejemplo.com",
+  "description": "Retransmisor Nostr rápido para NWC"
+}
+```
+
+**Campos:**
+- `name`: nombre a mostrar.
+- `url`: URL de WebSocket.
+- `description`: descripción corta.
+
+#### Añadir un explorador de bloques
+
+Añada al array `explorer`:
+
+```json
+{
+  "name": "Mi Explorador",
+  "url": "https://explorador.ejemplo.com",
+  "description": "Explorador de la cadena de bloques Flokicoin"
+}
+```
+
+**Campos:**
+- `name`: nombre a mostrar.
+- `url`: URL HTTPS.
+- `description`: descripción corta.
+
+#### Añadir un Widget de tablón de mensajes
+
+Añada al array `widget`:
+
+```json
+{
+  "name": "Tablón de la comunidad",
+  "url": "nostr+walletconnect://b889...4f1?relay=wss://retransmisor.ejemplo.com/v1&secret=79...a1",
+  "description": "Los fondos recaudados en este tablón de mensajes están destinados a sesiones de airdrop y pagos de juegos"
+}
+```
+
+**Campos:**
+- `name`: nombre a mostrar.
+- `url`: cadena de conexión de NWC (`nostr+walletconnect://...`).
+- `description`: descripción corta.
+
+**3. Crear Pull Request**
+
+Envíe sus cambios para revisión.
+
+### Proceso de revisión
+
+Los Pull Requests se revisan para verificar:
+- Estructura JSON válida.
+- Puntos de conexión del servicio en funcionamiento.
+- Información precisa del servicio.
+- Fiabilidad y tiempo de actividad (para los valores predeterminados de la comunidad).
+
+## Descripciones de archivos
+
+### `services.json`
+
+Directorio de servicios de la comunidad recomendados:
+- **LSPs**: Proveedores de Servicios Lightning.
+- **Retransmisores (Relays)**: retransmisores Nostr para NWC.
+- **Exploradores**: exploradores de bloques.
+- **Widgets**: tablones de mensajes de chat con zaps.
+- **Servicios de Swap**: intercambios de fondos en la cadena/fuera de la cadena.
+
+### `rates.json`
+
+Tipos de cambio actuales de FLC (Flokicoin) frente a monedas fiduciarias.
+
+### `currencies.json`
+
+Lista de monedas fiduciarias admitidas y sus símbolos.
+
+### `info.json`
+
+Información general y mensaje del día (MOTD) para usuarios de Lokihub.
+
+## ¿Preguntas?
+
+- Repositorio: [flokiorg/lokihub-services](https://github.com/flokiorg/lokihub-services)
+- Problemas: [GitHub Issues](https://github.com/flokiorg/lokihub-services/issues)
+- Comunidad: [Discord](https://flokicoin.org/discord) #lokihub

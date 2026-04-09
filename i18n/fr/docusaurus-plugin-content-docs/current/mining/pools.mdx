@@ -1,0 +1,32 @@
+---
+sourceTitle: "Pools"
+title: "Pools"
+slug: /mining/pools
+description: "Répertoire des pools de minage compatibles avec Flokicoin, mineurs scrypt recommandés, bases de Stratum et conseils de sécurité."
+---
+
+:::danger[Avertissement]
+Les pools et les mineurs répertoriés ici sont des tiers. Vérifiez vous-même les binaires et les configurations et privilégiez les tests en bac à sable (sandbox) avant une utilisation en production.
+:::
+
+import { Fish } from 'lucide-react';
+
+
+## Pools
+- [fpool.net](https://fpool.net) <span style={{display: 'inline-flex', alignItems: 'center', gap: '0.25rem', verticalAlign: 'middle'}}><Fish size={16} /> Le minage n'a jamais été aussi facile</span> (solo, PPLNS)
+- [viaflc.com](https://viaflc.com) Plus de pièces pour la même puissance (PPLNS, merge-mining)
+
+
+### Notes
+- Mainnet : utilisez un GPU ou un ASIC scrypt. Le minage CPU n'est pas compétitif ; réservez cpuminer pour le testnet ou l'expérimentation.
+- AuxPoW : si le pool prend en charge le merge mining avec une chaîne parente de la famille scrypt et transmet l'AuxPoW à Flokicoin, suivez les instructions spécifiques du pool. Les détails varient selon le pool.
+
+
+## Bases de Stratum
+- URL : `stratum+tcp://HÔTE_POOL:PORT`
+- Nom d'utilisateur : votre adresse de paiement Flokicoin (ou compte de pool)
+- Mot de passe : souvent `x` ou un jeton spécifique au pool
+
+
+## Support
+Rejoignez le canal [#mining](https://flokicoin.org/discord) sur Discord pour obtenir de l'aide.

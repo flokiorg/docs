@@ -1,0 +1,117 @@
+---
+title: 0.25.7-beta
+description: "Notas de la versión de Flokicoin Core 0.25.7-beta que presentan el ajuste de dificultad Digishield, la activación de AuxPoW y compilaciones para diversas plataformas."
+sidebar_position: 1
+---
+
+Por favor, reporte errores usando el rastreador de problemas en GitHub:
+
+https://github.com/flokiorg/go-flokicoin/issues
+
+Esta es una versión beta menor de Flokicoin Core con un nuevo algoritmo de reajuste de dificultad por bloque (estilo Digishield), soporte de cabecera y consenso para AuxPoW, actualizaciones de características de testnet, correcciones de RPC y mejoras de compilación/prueba. Esta versión programa la `ACTIVACIÓN EN LA RED PRINCIPAL (MAINNET)` tanto para Digishield como para AuxPoW a través de los parámetros de la cadena. Todos los nodos de la red principal deben actualizarse antes de las alturas de activación indicadas a continuación para evitar divisiones de la cadena (chain splits).
+
+## Cambios notables
+
+- **Consenso: Reajuste de dificultad Digishield**
+  - Introduce un reajuste de media móvil exponencial por bloque hacia el espaciado objetivo con un divisor de amplitud de 8.
+  - Aplica una amortiguación limitada en cada paso (mín. 0.75x, máx. 1.5x de la influencia del espaciado objetivo) para reducir la volatilidad.
+  - Soporta dificultad mínima en bloques tardíos cuando lo habilitan los parámetros de la cadena.
+  - Se integra en la validación y minería (next-required-bits, objetivo de plantilla de bloque) y amplía las pruebas de unidad y de bloque completo.
+
+- **P2P/Wire: Soporte de cabecera AuxPoW**
+  - Añade estructuras AuxPoW (coinbase, ramas Merkle, cabecera principal) y asistentes de serialización.
+  - Extiende `BlockHeader` con el indicador AuxPoW y utilidades de ChainID, además de la codificación/decodificación opcional de la carga útil AuxPoW.
+  - Actualiza la decodificación de `MsgBlock` para analizar las cargas útiles de AuxPoW cuando estén presentes; añade cobertura para las rutas de lectura/escritura.
+  - **Consenso:** AuxPoW se activa en la red principal en la altura que se indica a continuación.
+
+- **Actualizaciones de Testnet/regtest**
+  - Habilita las características SegWit y Taproot en testnet donde estén configuradas.
+  - Ajusta `MinHighPriority` e incrementa el límite de `MaxLoki` utilizado en la validación de montos por RPC.
+
+- **Correcciones y mejoras de RPC**
+  - Alinea la versión del protocolo P2P informada con `wire.ProtocolVersion` y completa los campos de `getinfo` (subversion, localservices, connections_in/out, localaddresses) a partir del estado del servidor en vivo.
+
+- **Herramientas y pruebas**
+  - Añade el objetivo `make testexport` y un exportador de datos de prueba determinista.
+  - Unifica el cargador de conjuntos de datos de bloques con validación obligatoria de magia de red (network-magic); refracteriza los sitios de llamada.
+  - Añade una validación de dificultad de extremo a extremo sobre conjuntos de datos seleccionados y emite métricas de ajuste en estado estacionario.
+
+- **Compilación y configuración**
+  - Elimina la anulación local `replace` para `flokicoin-neutrino` para evitar rutas exclusivas para desarrolladores.
+  - Imprime un único banner de inicio con la versión semántica durante la carga de la configuración; refracteriza las constantes de arte ASCII.
+
+## Compatibilidad
+
+- La red principal activará Digishield y AuxPoW en alturas fijas (ver abajo). Estos son cambios de consenso y constituyen un hard fork en el momento de la activación. Todos los mineros, validadores y servicios deben actualizarse antes de esas alturas.
+- El soporte de red de AuxPoW sigue siendo compatible con versiones anteriores para las cabeceras que no son AuxPoW hasta la altura de activación.
+- No se introducen cambios en el formato de la base de datos.
+
+## Calendario de activación (red principal)
+
+- **Reajuste de dificultad Digishield:** se activa en la altura 115,000 (`DigishieldActivationHeight` en `chaincfg/params.go`).
+- **Consenso AuxPoW:** se activa en la altura 115,840 (`AuxpowHeightEffective` en `chaincfg/params.go`).
+
+Estas activaciones están parametrizadas en `repos/flokiorg/go-flokicoin/chaincfg/params.go` bajo `MainNetParams`.
+
+## Notas de actualización
+
+- **Operadores de nodos de la red principal:** actualicen a 0.25.7-beta antes de las alturas 115,000 (Digishield) y 115,840 (AuxPoW) para permanecer en la cadena canónica.
+- **Los operadores de Testnet/regtest** deben actualizarse para participar en las nuevas políticas de dificultad y características.
+- **Los desarrolladores de aplicaciones** deben volver a importar (re-vendor)/actualizar para incorporar las correcciones del esquema RPC y las adiciones de red relacionadas con AuxPoW.
+
+## Cambios en RPC
+
+- `getinfo` ahora informa con precisión `subversion`, `localservices`, `localservicesnames`, `connections_in`, `connections_out` y `localaddresses`.
+- La versión máxima del protocolo informada se alinea con `wire.ProtocolVersion` (70016).
+
+## Sistema de compilación y herramientas
+
+- Nuevo objetivo `make testexport` para exportar conjuntos de datos de bloques para pruebas deterministas.
+- Se eliminó el `replace` local para `flokicoin-neutrino` para producir gráficos de módulos limpios en las compilaciones.
+
+## Pruebas y QA
+
+- El cargador de bloques unificado impone la magia de red y utiliza lecturas con búfer de longitud completa.
+- Se añadió la validación de dificultad E2E con salida de métricas para el análisis de estado estacionario.
+- Los conjuntos de datos de prueba seleccionados, más pequeños, mejoran el determinismo y el tiempo de CI.
+
+## Registro de cambios desde [v0.25.6-beta](/lokichain/releases/0.25.6-beta)
+
+- b4f439e consenso: añadir reajuste de dificultad Digishield
+- dec0948 wire: integrar soporte de cabecera AuxPoW
+- 31eff16 chore: actualizaciones del repositorio para rpc/db, pruebas, fixtures
+- e2ac6e7 pruebas: validar el conjunto de datos de dificultad y exponer métricas de ajuste
+- 735410f pruebas: unificar el cargador de bloques para imponer la magia de red; refracterizar sitios de llamada
+- 0e5dcd3 make: añadir el objetivo testexport para exportar conjuntos de datos de bloques
+- 651a453 rpc: informar el protocolo p2p correcto y completar los campos de getinfo
+- bea6a7a build: eliminar replace local para flokicoin-neutrino
+- 2e92497 config: imprimir banner de inicio con versión; refracterizar constantes de arte
+- b24e870 wire: eliminar comentario TODO obsoleto en protocol.go
+- 60460f8 habilitar segiwit/taproot para testnet
+- f9bf3ae incrementar const maxloki
+- 712355d actualizar const MinHighPriority
+- fa96bbd salto de versión 0.25.7-dev
+- 4523b79 versión: salto a 0.25.7-beta
+
+## Créditos
+
+Gracias a todos los que contribuyeron directamente a esta versión:
+
+- naliyi
+- izimmerma
+- mechion
+- repins
+- nanovex
+- liarpo11
+- arowqo
+- thiniboy
+
+## Activos (Assets)
+
+| SO/Arq | Activo |
+| --- | --- |
+| macOS (Apple Silicon) | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.7-beta/flokicoind-darwin-arm64-v0.25.7-beta.tar.gz |
+| macOS (Intel) | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.7-beta/flokicoind-darwin-amd64-v0.25.7-beta.tar.gz |
+| Linux x86_64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.7-beta/flokicoind-linux-amd64-v0.25.7-beta.tar.gz |
+| Linux arm64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.7-beta/flokicoind-linux-arm64-v0.25.7-beta.tar.gz |
+| Windows x86_64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.7-beta/flokicoind-windows-amd64-v0.25.7-beta.zip |

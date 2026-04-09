@@ -1,0 +1,72 @@
+---
+slug: /economy
+title: Économie
+description: Suivez l'émission de Flokicoin, la cadence des halvings, l'émission de queue, les projections d'inflation et les métriques d'offre en temps réel.
+---
+import EconomyNow from '@site/src/components/EconomyNow';
+import Amount from '@site/src/components/Amount';
+import rewardOverTimeImage from '@site/docs/economy/reward_over_time.webp';
+import supplyOverTimeImage from '@site/docs/economy/supply_over_time.webp';
+import inflationRateImage from '@site/docs/economy/inflation_rate_over_10_years.webp';
+
+## Comment Fonctionne la Monnaie
+La politique monétaire de Flokicoin est codée en dur. Chaque chiffre sur cette page est vérifiable on-chain — aucune surprise, aucune modification dans l'opacité.
+
+## Chiffres Clés
+- **Temps de bloc** — 1 minute.
+- **Halving** — Tous les 210 000 blocs (~5 mois).
+- **Récompense initiale** — <Amount value={1000} /> FLC par bloc.
+- **Émission de queue** — Un permanent <Amount value={21} /> FLC par bloc une fois les halvings terminés.
+- **Maturité coinbase** — 300 blocs (~5 heures avant de pouvoir dépenser les pièces minées).
+
+## Évolution de la Récompense de Bloc au Fil du Temps
+La récompense démarre à un niveau élevé et est divisée par deux selon un calendrier fixe. Une fois qu'elle descendrait en dessous de <Amount value={21} />, elle reste à ce niveau indéfiniment. C'est l'émission de queue — un budget de sécurité permanent qui maintient l'incitation des mineurs sans limite de temps.
+
+:::important[Pourquoi l'émission de queue est importante]
+La plupart des chaînes à plafond fixe devront finalement s'appuyer uniquement sur les frais de transaction pour rémunérer les mineurs. Flokicoin évite ce pari avec une petite récompense de bloc constante qui ne s'arrête jamais.
+:::
+
+## Calendrier des Récompenses
+
+| Blocs               | Récompense                    | Date de Halving Approx. | Offre Cumulée (millions de FLC) |
+|---------------------|------------------------------:|-----------------------|--------------------------------:|
+| → 210 000           | <Amount value={1000} />        | 2025-11-26            | 210,00                          |
+| 210 000 → 420 000   | <Amount value={500} />         | 2026-04-20            | 315,00                          |
+| 420 000 → 630 000   | <Amount value={250} />         | 2026-09-13            | 367,50                          |
+| 630 000 → 840 000   | <Amount value={125} />         | 2027-02-06            | 393,75                          |
+| 840 000 → 1 050 000 | <Amount value={62.5} decimals={1} />  | 2027-07-02  | 406,88                          |
+| 1 050 000 → 1 260 000 | <Amount value={31.25} decimals={2} /> | 2027-11-25  | 413,44                          |
+| 1 260 000+          | <Amount value={21} /> (fixe)   | —                     | -                               |
+
+<img src={rewardOverTimeImage.src ?? rewardOverTimeImage} alt="Récompense au fil du temps" className="themed-graph" />
+<img src={supplyOverTimeImage.src ?? supplyOverTimeImage} alt="Offre au fil du temps" className="themed-graph" />
+
+## Inflation à Long Terme
+Une fois l'émission de queue activée, de nouvelles pièces sont créées à un taux fixe de <Amount value={11037600} /> FLC par an. Comme l'offre totale continue de croître, le taux d'inflation diminue chaque année :
+
+### Définitions
+- Émission annuelle E = R × B, où R est la récompense par bloc (<Amount value={21} />) et B est le nombre de blocs par an (525 600).
+- Inflation annuelle (%) = (E ÷ offre totale en début d'année) × 100.
+
+:::note
+Les projections supposent que l'intervalle moyen entre blocs reste proche de 1 minute. L'émission réelle varie selon les conditions du réseau.
+:::
+
+| Année | Offre Totale<br />(millions de FLC) | Taux d'Inflation Annuel<br />(%) |
+|-----:|-------------------------------:|-----------------------------:|
+| 1    | 424,48 | 2,67 |
+| 2    | 435,51 | 2,60 |
+| 3    | 446,55 | 2,53 |
+| 4    | 457,59 | 2,47 |
+| 5    | 468,63 | 2,41 |
+| 6    | 479,67 | 2,36 |
+| 7    | 490,70 | 2,30 |
+| 8    | 501,74 | 2,25 |
+| 9    | 512,78 | 2,20 |
+| 10   | 523,82 | 2,15 |
+
+<img src={inflationRateImage.src ?? inflationRateImage} alt="Projection : taux d'inflation sur 10 ans" className="themed-graph" />
+
+## Métriques en Temps Réel
+Données en temps réel depuis le réseau Flokicoin :
+<EconomyNow />

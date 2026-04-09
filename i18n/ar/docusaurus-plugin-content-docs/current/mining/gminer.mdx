@@ -1,0 +1,147 @@
+---
+sourceTitle: "Gminer"
+title: "GMiner"
+slug: /mining/gminer
+description: "دليل خطوة بخطوة لتثبيت وتكوين ومراقبة عامل تعدين المعالج (CPU) GMiner لممارسة شبكة اختبار Flokicoin."
+---
+
+:::warning[تنبيه بخصوص تعدين المعالج]
+GMiner هو عامل تعدين للمعالج (CPU). التعدين عبر المعالج عملي فقط في شبكات الاختبار؛ أما في الشبكة الرئيسية (mainnet) فهو غير تنافسي. استخدم بطاقة الرسوميات (GPU) أو أجهزة Scrypt ASIC للشبكة الرئيسية.
+:::
+
+يرشدك هذا الدليل خلال تنزيل GMiner وتكوينه وتشغيله. بحلول النهاية، سيكون لديك عامل تعدين معالج يعمل ومتصل بمجمع شبكة اختبار Flokicoin.
+
+- [التنزيل والتثبيت](#download-and-installation): دليل لتنزيل وتثبيت `gminer`
+- [تكوين الإعدادات](#configuration): تعليمات لتكوين ملف `gminer.conf`.
+- [كيفية التشغيل](#how-to-run): دليل لبدء تعدين Flokicoin.
+- [المراقبة](#monitoring): مراقبة أداء التعدين ومعلومات الحالة.
+- [استكشاف الأخطاء وإصلاحها والتوصيات](#troubleshooting-and-recommendations): المشكلات الشائعة وحلولها.
+- [الدعم](#support)
+---
+
+
+## التنزيل والتثبيت
+
+قم بتنزيل أحدث إصدار من عامل التعدين:
+
+- انتقل إلى صفحة [الإصدارات (releases)](https://github.com/flokiorg/grpc-miner/releases/tag/v0.1.1-beta).
+- قم بتنزيل الإصدار المناسب لنظام التشغيل والهيكلية الخاصة بك.
+
+gminer متاح على:
+- Mac
+- Linux
+- Windows
+
+
+
+
+
+### تثبيت `gminer` على نظام Mac
+#### **Mac بمعالج Apple Silicon**
+قم بتنزيل [gminer-darwin-arm64-v0.1.1-beta.tar.gz](https://github.com/flokiorg/grpc-miner/releases/download/v0.1.1-beta/gminer-darwin-arm64-v0.1.1-beta.tar.gz) ثم استخرج الأرشيف:
+
+```bash
+tar -xvf gminer-darwin-arm64-v0.1.1-beta.tar.gz
+chmod +x gminer
+```
+
+#### **Mac بمعالج Intel**
+قم بتنزيل [gminer-darwin-amd64-v0.1.1-beta.tar.gz](https://github.com/flokiorg/grpc-miner/releases/download/v0.1.1-beta/gminer-darwin-amd64-v0.1.1-beta.tar.gz) ثم استخرج الأرشيف:
+
+```bash
+tar -xvf gminer-darwin-amd64-v0.1.1-beta.tar.gz
+chmod +x gminer
+```
+&nbsp;
+
+### التثبيت على نظام Linux
+قم بتنزيل [gminer-linux-amd64-v0.1.1-beta.tar.gz](https://github.com/flokiorg/grpc-miner/releases/download/v0.1.1-beta/gminer-linux-amd64-v0.1.1-beta.tar.gz) ثم استخرج الأرشيف:
+
+```bash
+tar -xvf gminer-linux-amd64-v0.1.1-beta.tar.gz
+chmod +x gminer
+```
+
+&nbsp;
+
+### التثبيت على نظام Windows
+قم بتنزيل [gminer-windows-386-v0.1.1-beta.zip](https://github.com/flokiorg/grpc-miner/releases/download/v0.1.1-beta/gminer-windows-386-v0.1.1-beta.zip) ثم استخرج الأرشيف.
+
+&nbsp;
+
+## تكوين الإعدادات
+قبل تشغيل عامل التعدين، تأكد من وجود ملف تكوين (`gminer.conf`) في نفس الدليل مثل ملف `gminer` التنفيذي. يمكنك تنزيل [ملف تكوين عينة](https://raw.githubusercontent.com/flokiorg/grpc-miner/refs/heads/main/sample-gminer.conf) من مستودع grpc-miner.
+
+تحتاج إلى تحديث المعلمات التالية:
+
+**نقطة اتصال مجمع التعدين (Pool)**
+```ini
+pool = solo.example.com:5055
+```
+
+تجد أدناه قائمة بالمجمعات المعروفة للمجتمع:
+| المؤلف | رسوم المطور | المجمع | المنفذ |
+| --- | --- | --- | --- |
+| myf | - | gpool.myfloki.com | 5055 |
+
+نشجعك على إنشاء مجمع خاص بك، وتعيين رسوم للمطور إذا رغبت في ذلك، ومشاركته مع مجتمع Flokicoin في قناة **#Mining** على [Discord](https://flokicoin.org/discord).
+
+**عناوين التعدين**
+
+يمكنك تحديد عنوان تعدين واحد أو أكثر:
+```ini
+miningaddr = YOUR_FLOKICOIN_ADDRESS_1
+miningaddr = YOUR_FLOKICOIN_ADDRESS_2
+```
+
+**الخيوط (Threads)**
+
+قم بتعيين عدد خيوط المعالج المخصصة للتعدين. بشكل افتراضي، إذا لم يتم تحديده، يستخدم GMiner جميع الخيوط المتاحة.
+```ini
+threads = 16
+```
+
+&nbsp;
+
+import { Lightbulb } from 'lucide-react';
+
+
+## كيفية التشغيل
+**على Mac و Linux:** انتقل إلى الدليل الذي يحتوي على الملف التنفيذي المستخرج وقم بتشغيل:
+
+```bash
+./gminer
+```
+
+<div style={{display: 'flex', alignItems: 'center', gap: '0.4rem', marginTop: '0.5rem', fontSize: '0.9rem', opacity: 0.8}}><Lightbulb size={16} /> على نظام macOS، قم بترخيص <code>gminer</code> من خلال الانتقال إلى إعدادات النظام ← الخصوصية والأمن ← عام والنقر فوق "فتح على أي حال" للوثوق بالمطور.</div>
+
+
+**على نظام Windows:** انتقل إلى الدليل الذي يحتوي على <code>gminer.exe</code> المستخرج وانقر عليه نقرًا مزدوجًا أو قم بتشغيله من سطر الأوامر:
+```bash
+gminer.exe
+```
+
+<div style={{display: 'flex', alignItems: 'center', gap: '0.4rem', marginTop: '0.5rem', fontSize: '0.9rem', opacity: 0.8}}><Lightbulb size={16} /> إذا قام Windows Defender أو برنامج مكافحة فيروسات آخر بحظر <code>gminer.exe</code>، فقد تحتاج إلى السماح به أو إلغاء حظره صراحةً.</div>
+
+&nbsp;
+
+## المراقبة
+يمكنك مراقبة أداء التعدين والحالة مباشرة في الجهاز الطرفي. تتضمن المعلومات:
+
+- معدل التجزئة (Hashrate)
+- الكتل التي تم العثور عليها
+- الأخطاء المحتملة
+
+&nbsp;
+
+## استكشاف الأخطاء وإصلاحها والتوصيات
+- تأكد من أن ملف `gminer.conf` الخاص بك في الدليل الصحيح وأن عناوين المجمع وعناوين التعدين والمنافذ تتطابق مع التكوين المقصود.
+- في نظام macOS، قم بترخيص `gminer` في إعدادات النظام وضع علامة على المطور كجهة موثوقة.
+- تحقق من عنوان الخادم والمنفذ في `gminer.conf`.
+- تأكد من أن اتصالك بالإنترنت نشط.
+- قم بتحديث `gminer` بانتظام من صفحة الإصدارات.
+
+&nbsp;
+
+## الدعم
+لمزيد من المساعدة، انضم إلى قناة `#mining` في [مجتمع Flokicoin على Discord](https://flokicoin.org/discord).

@@ -1,0 +1,61 @@
+---
+title: "FIP-05 : Ajustement de la difficulté"
+description: "Spécification pour le FIP-05 introduisant un recalcul de la difficulté par bloc de style Digishield avec les motivations et les détails d'activation."
+sidebar_position: 6
+---
+
+Auteur : Thiniboy  
+Statut : Final  
+Créé le : 18-07-2025
+
+
+## Résumé
+
+Adopter un recalcul de la difficulté par bloc, de style Digishield, en utilisant une moyenne mobile exponentielle (EMA) vers l'objectif d'espacement d'une minute. L'algorithme améliore la réactivité aux chocs de hashrate tout en amortissant les oscillations et en réduisant la variance.
+
+## Motivation
+
+Les fenêtres de recalcul longues permettent des oscillations exploitables et de longues périodes de difficulté hors cible. Une EMA par bloc répond rapidement aux changements tout en préservant la stabilité.
+
+## Spécification
+
+- Espacement cible T = 60 secondes.
+- À chaque bloc n, mettre à jour une EMA des espacements observés avec un diviseur d'amplitude de 8 (effectivement une EWMA de 8 échantillons).
+- Appliquer un amortissement borné à chaque étape pour limiter l'influence de l'espacement effectif à la plage [0,75·T, 1,5·T].
+- Calculer la cible suivante en mettant à l'échelle la cible précédente par le ratio de l'espacement limité sur T, sous réserve des limites de consensus.
+- Autoriser les blocs de difficulté minimale lorsque l'espacement observé dépasse un seuil paramétré par la chaîne (lorsque cela est activé).
+
+:::important
+**Activation (mainnet) :** bloc 115 000.
+:::
+
+## Justification
+
+L'EMA par bloc réduit le décalage par rapport aux recalculs à fenêtre longue, tandis que la limitation (clamp) empêche une réaction excessive aux valeurs aberrantes. Des approches similaires ont fait leurs preuves dans d'autres chaînes UTXO de la famille « Digishield ».
+
+## Mise en œuvre de référence
+
+Implémenté dans `go-flokicoin` et activé via les paramètres de la chaîne. Voir la version [0.25.7-beta](/lokichain/releases/0.25.7-beta) et les changements de consensus associés.
+
+```text
+Entrées :
+  T           := 60 secondes (espacement cible)
+  Divisor     := DigishieldAmplitudeDivisor (8 dans Flokicoin)
+  ClampMin    := 0,75 × T
+  ClampMax    := 1,50 × T
+  prevTarget  := dernière cible de difficulté (entier)
+  actualSpan  := timestamp_n - timestamp_{n-1}
+
+Algorithme :
+  1. modulatedSpan ← T + (actualSpan - T) / Divisor
+  2. modulatedSpan ← clamp(modulatedSpan, ClampMin, ClampMax)
+  3. nextTarget ← prevTarget × modulatedSpan / T
+  4. nextTarget ← min(nextTarget, PowLimit)
+
+Résultat :
+  Convertir nextTarget en bits compacts pour l'en-tête (header).
+
+Note : lorsque ReduceMinDifficulty est activé, une règle distincte génère un
+bloc de difficulté minimale si actualSpan dépasse DigishieldLateBlockMultiple × T.
+Ce raccourci est orthogonal à l'EMA par bloc ci-dessus.
+```

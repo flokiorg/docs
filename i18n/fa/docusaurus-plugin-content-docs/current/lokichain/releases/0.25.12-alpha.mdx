@@ -1,0 +1,49 @@
+---
+title: 0.25.12-alpha
+description: "یادداشت‌های انتشار برای go-flokicoin v0.25.12-alpha شامل بهبودهای تخمین کارمزد، به‌روزرسانی‌های ماندگاری داده و سایر نکات برجسته."
+sidebar_position: -1
+---
+
+<div className="release-header-meta release-header-left">
+  <a className="github-link release-github no-external-icon" href="https://github.com/flokiorg/go-flokicoin/releases/tag/v0.25.12-alpha" target="_blank" rel="noreferrer" title="مشاهده v0.25.12-alpha در گیت‌هاب">
+    <span className="release-header-label">GitHub</span>
+  </a>
+</div>
+
+لطفاً مشکلات را با استفاده از سیستم گزارش در گیت‌هاب اعلام کنید:
+
+https://github.com/flokiorg/go-flokicoin/issues
+
+این نسخه بهبودهای قابل توجهی را در منطق تخمین کارمزد معرفی می‌کند، از جمله ذخیره‌سازی اتمیک روی دیسک، ردیابی بهتر تاریخچه و مدیریت هوشمندتر دلایل حذف.
+
+## یادداشت‌های ارتقا
+
+- اسنپ‌شات‌های تخمین‌گر کارمزد اکنون با نام `fee_estimates.dat` در دایرکتوری داده‌ها (Data Dir) به صورت اتمیک ذخیره و خوانده می‌شوند. مطمئن شوید که دیمون (daemon) هنگام خاموش شدن اجازه نوشتن در آنجا را دارد؛ فایل‌های قدیمی‌تر از ۶۰ ساعت هنگام شروع به کار نادیده گرفته می‌شوند.
+
+## نکات برجسته
+
+- **تخمین کارمزد**
+  - ردیابی تاریخچه تا ۱۰۰۸ بلوک و محدود کردن کوئری‌های طولانی‌مدت به جای رد کردن آن‌ها، هماهنگ با رفتار بیت‌کوین کور (`mempool/estimatefee.go`).
+  - ثبت دلایل حذف از mempool به طوری که موارد تایید نشده (تضاد، بازسازماندهی یا reorg، اخراج، رد شدن) وضعیت تخمین‌گر را پاک کرده و مشاهدات قدیمی را کاهش دهد (`mempool` ، `netsync/manager.go` ، `rpcserver.go`).
+  - متد `estimatesmartfee` اکنون حالت‌های `economical` (اقتصادی) یا `conservative` (محافظه‌کارانه - پیش‌فرض) را می‌پذیرد و حالت‌های نامعتبر را به دقت گزارش می‌دهد؛ خروجی اکنون شامل یک فیلد صریح `errors` است (`rpcserver.go`).
+- **ماندگاری داده (Persistence)**
+  - وضعیت تخمین‌گر کارمزد هنگام خاموش شدن به صورت اتمیک روی دیسک ذخیره شده و در شروع به کار مجدد بازیابی می‌شود؛ داده‌های قدیمی با خطا روبرو شده و نادیده گرفته می‌شوند (`mempool/fee_persist*.go` ، `server.go`).
+
+## کامیت‌های مهم
+
+- mempool: ردیابی دلایل حذف در تخمین کارمزد؛ گسترش تاریخچه به ۱۰۰۸ بلوک و محدود کردن کوئری‌ها.
+- mempool: ذخیره‌سازی کارمزد روی دیسک با نوشتن اتمیک و بررسی تازگی داده‌ها.
+- اضافه شدن جریان امضای نانس (nonce) تجمیعی برای MuSig2، شامل مدیریت کانتکست به‌روز شده و تست‌های جامع.
+
+## دارایی‌ها (Assets)
+
+| سیستم‌عامل/معماری | لینک دانلود |
+| --- | --- |
+| macOS (Apple Silicon) | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.12-alpha/lokid-darwin-arm64-v0.25.12-alpha.tar.gz |
+| macOS (Intel) | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.12-alpha/lokid-darwin-amd64-v0.25.12-alpha.tar.gz |
+| Linux x86_64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.12-alpha/lokid-linux-amd64-v0.25.12-alpha.tar.gz |
+| Linux arm64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.12-alpha/lokid-linux-arm64-v0.25.12-alpha.tar.gz |
+| Windows x86_64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.12-alpha/lokid-windows-amd64-v0.25.12-alpha.zip |
+| Windows 32-bit | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.12-alpha/lokid-windows-386-v0.25.12-alpha.zip |
+
+نسخه‌های دیگر (ppc64, mips, *BSD, illumos/solaris) در [صفحه انتشار گیت‌هاب](https://github.com/flokiorg/go-flokicoin/releases/tag/v0.25.12-alpha) در دسترس هستند.

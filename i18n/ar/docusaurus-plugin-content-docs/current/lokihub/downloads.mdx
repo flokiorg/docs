@@ -1,0 +1,96 @@
+---
+sourceTitle: "Downloads"
+title: "التحميلات"
+description: "قم بتحميل Lokihub لمنصتك عبر روابط مباشرة لأحدث ملفات الإصدارات."
+sidebar_position: 2
+sidebar_class_name: hidden
+---
+
+قم بتحميل أحدث إصدار من Lokihub لنظام التشغيل الخاص بك.
+
+:::release
+أحدث إصدار: **v0.1.2-alpha** — [عرض على GitHub](https://github.com/flokiorg/lokihub/releases/tag/v0.1.2-alpha)
+:::
+
+## ملفات التحميل
+
+### نسخة سطح المكتب (Desktop)
+
+| المنصة | رابط التحميل |
+| --- | --- |
+| Linux (RPM aarch64) | [lokihub-desktop-linux-aarch64-v0.1.2-alpha.rpm](https://github.com/flokiorg/lokihub/releases/download/v0.1.2-alpha/lokihub-desktop-linux-aarch64-v0.1.2-alpha.rpm) |
+| Linux (AppImage amd64) | [lokihub-desktop-linux-amd64-v0.1.2-alpha.AppImage](https://github.com/flokiorg/lokihub/releases/download/v0.1.2-alpha/lokihub-desktop-linux-amd64-v0.1.2-alpha.AppImage) |
+| Linux (Deb amd64) | [lokihub-desktop-linux-amd64-v0.1.2-alpha.deb](https://github.com/flokiorg/lokihub/releases/download/v0.1.2-alpha/lokihub-desktop-linux-amd64-v0.1.2-alpha.deb) |
+| Linux (AppImage arm64) | [lokihub-desktop-linux-arm64-v0.1.2-alpha.AppImage](https://github.com/flokiorg/lokihub/releases/download/v0.1.2-alpha/lokihub-desktop-linux-arm64-v0.1.2-alpha.AppImage) |
+| Linux (Deb arm64) | [lokihub-desktop-linux-arm64-v0.1.2-alpha.deb](https://github.com/flokiorg/lokihub/releases/download/v0.1.2-alpha/lokihub-desktop-linux-arm64-v0.1.2-alpha.deb) |
+| Linux (RPM x86_64) | [lokihub-desktop-linux-x86_64-v0.1.2-alpha.rpm](https://github.com/flokiorg/lokihub/releases/download/v0.1.2-alpha/lokihub-desktop-linux-x86_64-v0.1.2-alpha.rpm) |
+| macOS (Universal) | [lokihub-desktop-macos-v0.1.2-alpha.dmg](https://github.com/flokiorg/lokihub/releases/download/v0.1.2-alpha/lokihub-desktop-macos-v0.1.2-alpha.dmg) |
+| Windows (x86_64) | [lokihub-desktop-windows-v0.1.2-alpha.zip](https://github.com/flokiorg/lokihub/releases/download/v0.1.2-alpha/lokihub-desktop-windows-v0.1.2-alpha.zip) |
+
+### نسخة الخادم (Server)
+
+| المنصة | رابط التحميل |
+| --- | --- |
+| Linux (amd64) | [lokihub-server-linux-amd64-v0.1.2-alpha.tar.gz](https://github.com/flokiorg/lokihub/releases/download/v0.1.2-alpha/lokihub-server-linux-amd64-v0.1.2-alpha.tar.gz) |
+| Linux (arm64) | [lokihub-server-linux-arm64-v0.1.2-alpha.tar.gz](https://github.com/flokiorg/lokihub/releases/download/v0.1.2-alpha/lokihub-server-linux-arm64-v0.1.2-alpha.tar.gz) |
+| macOS (Universal) | [lokihub-server-macos-v0.1.2-alpha.zip](https://github.com/flokiorg/lokihub/releases/download/v0.1.2-alpha/lokihub-server-macos-v0.1.2-alpha.zip) |
+| Windows (x86_64) | [lokihub-server-windows-v0.1.2-alpha.zip](https://github.com/flokiorg/lokihub/releases/download/v0.1.2-alpha/lokihub-server-windows-v0.1.2-alpha.zip) |
+
+## التثبيت والاستخدام
+
+:::tip
+إذا قام نظام التشغيل الخاص بك بتمييز الملف التنفيذي على أنه غير موثق، فقد تحتاج إلى السماح به صراحةً في إعدادات الأمان الخاصة بك.
+:::
+
+### نسخة سطح المكتب (GUI)
+
+**macOS**
+1. افتح ملف `.dmg` المحمل.
+2. اسحب **Lokihub** إلى مجلد التطبيقات (Applications).
+
+**Windows**
+1. استخرج ملف `.zip` المحمل.
+2. قم بتشغيل `lokihub.exe`.
+
+**Linux**
+- **AppImage**:
+  ```bash
+  chmod +x lokihub-*.AppImage
+  ./lokihub-*.AppImage
+  ```
+- **Debian/Ubuntu**:
+  ```bash
+  sudo dpkg -i lokihub-*.deb
+  ```
+- **Fedora/RHEL**:
+  ```bash
+  sudo rpm -i lokihub-*.rpm
+  ```
+
+### نسخة الخادم (HTTP)
+
+تعمل نسخة الخادم كعملية في الخلفية وتقوم بتشغيل واجهة الويب عبر HTTP.
+
+1. **استخراج الأرشيف**:
+   ```bash
+   tar -xvf lokihub-server-*.tar.gz  # Linux
+   # أو فك الضغط في Windows/macOS
+   ```
+
+2. **تشغيل الملف التنفيذي**:
+   ```bash
+   ./lokihub
+   ```
+
+3. **الفتح في المتصفح**:
+   انتقل إلى `http://localhost:1610` (المنفذ الافتراضي).
+
+
+
+## الخطوات التالية
+
+بعد التثبيت، اتبع [دليل الإعداد](/lokihub/setup) لربط Lokihub بعقدة FLND الخاصة بك.
+
+## التحقق من التحميلات
+
+يتم نشر جميع الإصدارات على GitHub مع قيم التحقق (checksums). قم بزيارة [صفحة الإصدارات](https://github.com/flokiorg/lokihub/releases) للتحقق من سلامة التحميل.

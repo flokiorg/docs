@@ -1,0 +1,111 @@
+---
+sourceTitle: "Setup Guide"
+title: "Guide d'installation"
+description: "Guide d'installation rapide pour connecter Lokihub au nœud FLND intégré dans tWallet."
+sidebar_position: 3
+---
+
+import setupFlndImage from '@site/docs/lokihub/setup-flnd.png';
+
+
+# Guide d'installation
+
+Connectez Lokihub à votre nœud et commencez à gérer votre liquidité Lightning en quelques minutes.
+
+## Avant de commencer
+
+Pour utiliser Lokihub, vous aurez besoin de :
+
+- **Application Lokihub** : [Téléchargez-la ici](/lokihub/downloads).
+- **tWallet v1** : Votre nœud Lightning (FLND) doit être en cours d'exécution. Si vous ne l'avez pas encore configuré, suivez le [guide tWallet](/wallets/twallet).
+
+:::tip
+Si vous utilisez **tWallet v1** sur le même ordinateur, Lokihub le trouvera automatiquement pour vous. Utilisez l'option [Connexion Automatisée](#automated-connection) !
+:::
+
+## Premier lancement
+
+1. Ouvrez Lokihub.
+2. Suivez l'assistant de configuration pour commencer.
+
+## Configuration étape par étape
+
+### 1. Créer un mot de passe
+
+Définissez un mot de passe robuste pour protéger vos données. Ce mot de passe chiffre vos détails de connexion et les paramètres de l'application.
+
+> **Important** : Nous ne pouvons pas récupérer ce mot de passe pour vous. Veuillez le noter et le conserver en lieu sûr.
+
+### 2. Choisissez vos services
+
+Lokihub utilise des services spécifiques pour interagir avec le réseau :
+- **Relais Nostr** : Connecte votre nœud à des applications externes.
+- **Explorateur de blocs** : Affiche les détails de vos transactions.
+- **Facultatif** : Vous pouvez également ajouter des services de liquidité (LSP) ou de Swap plus tard.
+
+### 3. Connexion à tWallet
+
+Lokihub se connecte au nœud Lightning intégré à **tWallet v1**.
+
+<img src={setupFlndImage.src ?? setupFlndImage} alt="Configuration du nœud local" style={{ display: 'block', margin: '1.5rem auto', width: '450px', borderRadius: '8px', boxShadow: '0 4px 12px rgba(0,0,0,0.3)' }} />
+
+<a id="automated-connection" />
+
+#### Option A : Connexion Automatisée (Recommandé)
+
+Si tWallet s'exécute sur la **même machine** :
+1. Choisissez **"Local Node"** lors de l'assistant de configuration.
+2. Lokihub se liera automatiquement avec vos identifiants tWallet.
+3. Vous êtes prêt à partir !
+
+#### Option B : Configuration tWallet personnalisée (Avancé)
+
+Si vous exécutez [tWallet](/wallets/twallet) sur une autre machine (VPS, Raspberry Pi, etc.) :
+
+1. Sélectionnez "Advanced Mode"
+2. Entrez les détails de connexion :
+   - **Adresse gRPC** : IP et port (exemple : `127.0.0.1:10005`)
+   - **Macaroon** : Collez le contenu hexadécimal d' `admin.macaroon`
+   - **Certificat TLS** : Collez le contenu hexadécimal de `tls.cert` (Optionnel)
+
+3. Cliquez sur "Connect"
+
+:::tip[Comment trouver ces identifiants]
+Dans tWallet, appuyez sur <kbd>CTRL</kbd> + <kbd>N</kbd> pour ouvrir la fenêtre de configuration Lightning.
+Cela affiche votre **Adresse gRPC**, votre **Macaroon Hex**, et votre **Certificat TLS Hex**. Copiez-les et collez-les simplement dans Lokihub.
+:::
+
+## Dépannage
+
+**Impossible de se connecter au tWallet local ?**
+- Assurez-vous que tWallet est en cours d'exécution
+- Vérifiez que les ports ne sont pas bloqués par un pare-feu
+
+**Échec de la connexion à distance ?**
+- Vérifiez que l'adresse gRPC est correcte
+- Assurez-vous que votre nœud est accessible depuis votre réseau
+- Vérifiez que les chaînes hexadécimales du macaroon et du certificat TLS sont correctes
+
+**Besoin d'aide ?**  
+Rejoignez la communauté sur [Discord](https://flokicoin.org/discord) dans #lokihub
+
+## Prochaines étapes
+
+### 1. Sécurisez votre souveraineté (Requis)
+
+Avant d'ouvrir votre premier canal, vous devez établir un plan de récupération fiable. Contrairement aux fonds traditionnels on-chain, la liquidité Lightning nécessite une protection active.
+
+:::important[LES SAUVEGARDES DE CANAUX NE SONT PAS AUTOMATIQUES]
+Votre phrase de récupération de 24 mots récupère **UNIQUEMENT** les fonds sur la blockchain. Pour protéger votre liquidité de canal contre les défaillances du système, vous DEVEZ conserver une copie de votre fichier `channel.backup`.
+:::
+
+1.  **Localiser** : Sur Linux, il se trouve généralement dans `~/.flnd/data/chain/flokicoin/mainnet/channel.backup`.
+2.  **Sauvegarder** : Copiez ce fichier sur un appareil séparé (USB, Cloud, etc.) chaque fois que vous ouvrez ou fermez un canal.
+3.  **En savoir plus** : Lisez le [Guide complet de sauvegarde Lightning](/wallets/twallet/v1#critical-lightning-backups).
+
+### 2. Lectures complémentaires
+
+Une fois connecté, vous pouvez :
+- [Gérer votre portefeuille et vos canaux](/lokihub/features)
+- [Connecter des applications externes via NWC](/lokihub/store)
+- [Configurer les fournisseurs de services](/lokihub/services)

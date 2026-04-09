@@ -1,0 +1,56 @@
+---
+slug: /lokichain
+title: Lokichain
+description: نظرة عامة على عمليات Lokichain تشمل إعداد العقدة والمحافظ وأدوات المطورين وموارد التعدين ودعم المجتمع.
+sidebar_position: 0
+---
+
+import Link from '@docusaurus/Link';
+import { Rocket } from 'lucide-react';
+
+Lokichain هي سلسلة الكتل التي تقف وراء Flokicoin. تتحقق من كل معاملة، وتفرض قواعد الإجماع، وتبقي كل شيء لامركزياً. إذا أردت فهم المحرك تحت الغطاء، فأنت في المكان الصحيح.
+
+:::release
+**أحدث إصدار**: Flokicoin Core [v0.25.12-alpha](/lokichain/releases/0.25.12-alpha) — التنفيذ المرجعي الحالي لدينا.
+:::
+
+## تشغيل عقدة
+تشغيل عقدة كاملة هو الطريقة الأكثر مباشرة لدعم الشبكة. تتحقق عقدتك من السلسلة بالكامل باستقلالية وتخدم RPC للمحافظ والمعدّنين والتطبيقات.
+
+:::tip[خيار سريع]
+تريد إعداداً أبسط؟ جرّب عقدة plug‑and‑play المجتمعية على [myfloki.com/fullnode](https://myfloki.com/fullnode).
+:::
+
+## البناء على Lokichain
+سواء كنت تبني محفظة أو مستكشفاً أو شيئاً جديداً — إليك من أين تبدأ:
+
+- **FIPs** — شاهد كيف يتطور البروتوكول عبر [مقترحات تحسين Flokicoin](/lokichain/fips).
+- **الإصدارات** — تابع كل [إصدار برمجي](/lokichain/releases).
+- **الكود المصدري** — تصفّح وساهم في [go-flokicoin](https://github.com/flokiorg/go-flokicoin).
+
+## النشر على Lokihub
+متجر تطبيقات Lokihub هو المحور المركزي لتطبيقات المجتمع. إذا بنيت تطبيقاً يعمل بـ Lightning، يمكنك نشره مباشرةً في النظام البيئي عبر متجرنا مفتوح المصدر.
+
+<div className="wallet-releases-card">
+  <div className="wallet-releases-content">
+    <h3>مستعد للإطلاق؟</h3>
+    <p>تعرّف على كيفية تقديم تطبيقك إلى متجر تطبيقات Lokihub والوصول إلى آلاف مشغّلي العقد فوراً.</p>
+  </div>
+  <div className="wallet-releases-action">
+    <Link className="wallet-action-button" to="/lokihub/store#for-developers-submit-your-app">
+      <span><Rocket size={18} /></span><span>قدّم تطبيقك</span>
+    </Link>
+  </div>
+</div>
+
+## التعدين
+يوفر المعدّنون قوة التجزئة التي تجعل السلسلة غير قابلة للتغيير. ستحتاج إلى أحدث برنامج عقدة وجهاز Scrypt ASIC أو GPU.
+
+- **ابدأ** — [دليل إعداد التعدين](/mining).
+
+## كيف يعمل
+Lokichain شبكة نظير-إلى-نظير. كل عقدة تفرض القواعد ذاتها، لذلك لا توجد نقطة فشل واحدة. يتم تحديث قواعد الإجماع عبر FIPs — فكّر فيها على أنها "قوانين" الشبكة.
+
+## الحصول على المساعدة
+- **Discord** — انضم إلى النقاش في [#dev](https://flokicoin.org/discord).
+- **GitHub** — أبلغ عن الأخطاء أو اقترح ميزات عبر [Issues](https://github.com/flokiorg/go-flokicoin/issues).

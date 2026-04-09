@@ -1,0 +1,239 @@
+---
+slug: /lokihub
+title: "Lokihub：自托管闪电节点管理器"
+description: "使用 Lokihub 掌控您的闪电节点。发送即时全球支付、管理流动性，无需任何中间人即可连接应用。"
+sidebar_position: 1
+hideContributors: true
+hide_table_of_contents: true
+displayed_sidebar: null
+---
+
+import Link from '@docusaurus/Link';
+
+# 掌控您的闪电节点
+
+**Lokihub** 让您对闪电节点拥有完整的金融主权。它不仅仅是一个管理器，更是您通往去中心化网络的门户——与 [tWallet](/wallets/twallet) 深度集成，帮助您管理子钱包、处理通道，并通过 NWC（Nostr 钱包连接协议）连接应用程序。
+
+:::caution[重要提示：备份风险]
+**闪电通道资金不存储在区块链上。** 24 个助记词仅能恢复您的链上余额。为避免通道资金彻底损失，您必须备份**静态通道备份（SCB）**。
+[了解如何保护您的节点 →](/wallets/twallet/v1#critical-lightning-backups)
+:::
+
+<div className="download-box">
+  <div className="download-box__content">
+    <div className="download-box__text">
+      <strong>最新版本：</strong> v0.1.2-alpha
+    </div>
+    <div className="download-box__actions">
+      <Link className="button button--primary" to="/lokihub/downloads">下载</Link>
+      <Link className="button button--secondary" to="/lokihub/setup">设置指南</Link>
+    </div>
+  </div>
+</div>
+
+## 快速入门
+
+<div className="guide-grid">
+
+<div className="guide-card">
+
+### 1. 下载并安装
+获取适用于您平台的 Lokihub 并安装二进制文件。
+
+[下载 →](/lokihub/downloads)
+
+</div>
+
+<div className="guide-card">
+
+### 2. 连接您的节点
+将 Lokihub 连接到集成在 [tWallet](/wallets/twallet) 中的 FLND 节点。
+
+[设置指南 →](/lokihub/setup)
+
+</div>
+
+<div className="guide-card">
+
+### 3. 开始使用
+管理钱包、开启通道、连接应用。
+
+[功能介绍 →](/lokihub/features)
+
+</div>
+
+</div>
+
+import { Zap, Droplet } from 'lucide-react';
+
+## Lokihub 能为您做什么
+
+<div className="capabilities-list">
+
+<div className="cap-row">
+  <div className="cap-icon"><Zap size={24} /></div>
+  <div className="cap-content">
+    <h3>即时支付，零中间商</h3>
+    <p>借助 Lightning Network 实现快速、安全、低手续费的交易。创建专属子钱包，为不同应用或个人预算管理流动性。</p>
+  </div>
+</div>
+
+<div className="cap-row">
+  <div className="cap-icon"><Droplet size={24} /></div>
+  <div className="cap-content">
+    <h3>完全掌控您的流动性</h3>
+    <p>直接控制您的闪电通道。以完全透明的手动方式开启、关闭并管理您的入站与出站容量。</p>
+  </div>
+</div>
+
+<div className="cap-row cap-highlight">
+  <div className="cap-content">
+    <h3>连接应用</h3>
+    <p>使用 NWC 将外部应用连接到您的节点。授予特定权限，并在需要时撤销访问。</p>
+    <Link to="/lokihub/store" className="cap-action">浏览应用商店 →</Link>
+  </div>
+</div>
+
+<div className="cap-row cap-highlight">
+  <div className="cap-content">
+    <h3>选择服务提供商</h3>
+    <p>自托管意味着您自主选择服务提供商。配置您的 LSP（闪电服务提供商）、Nostr 中继、区块浏览器和留言板。</p>
+    <Link to="/lokihub/services" className="cap-action">查看服务 →</Link>
+  </div>
+</div>
+
+</div>
+
+## 文档
+
+- **[下载](/lokihub/downloads)** — 获取最新版本
+- **[设置](/lokihub/setup)** — 连接到您的节点
+- **[功能](/lokihub/features)** — 钱包、通道、NWC
+- **[应用商店](/lokihub/store)** — 连接外部应用
+- **[服务](/lokihub/services)** — LSP、中继、浏览器
+- **[资源](/lokihub/resources)** — 浏览器、水龙头、工具
+
+需要帮助？加入 [Discord](https://flokicoin.org/discord) #lokihub 频道
+
+<style>
+{`
+.download-box {
+  margin: 1.5rem 0 2.5rem 0;
+  border: 2px solid var(--ifm-color-primary);
+  border-radius: 8px;
+  background: var(--ifm-background-surface-color);
+}
+.download-box__content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .75rem;
+  padding: 1rem 1.25rem;
+}
+.download-box__text {
+  flex: 1 1 180px;
+  font-size: 1.05rem;
+}
+.download-box__actions {
+  display: flex;
+  gap: .5rem;
+  flex: 0 0 auto;
+}
+
+@media (max-width: 640px) {
+  .download-box__actions {
+    width: 100%;
+    flex-direction: column;
+  }
+  .download-box__actions .button {
+    width: 100%;
+  }
+}
+
+.guide-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+  margin: 2rem 0;
+}
+
+.guide-card {
+  padding: 1.5rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  background: var(--ifm-background-surface-color);
+}
+
+.guide-card h3 {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  color: var(--ifm-color-primary);
+}
+
+.guide-card p {
+  margin-bottom: 0.5rem;
+}
+
+.capabilities-list {
+  margin: 2rem 0;
+  max-width: 800px;
+}
+
+.cap-row {
+  display: flex;
+  gap: 1.25rem;
+  padding: 1.75rem 0;
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.cap-row:last-child {
+  border-bottom: none;
+}
+
+.cap-icon {
+  font-size: 1.75rem;
+  line-height: 1;
+  flex-shrink: 0;
+  padding-top: 0.1rem;
+}
+
+.cap-content {
+  flex: 1;
+}
+
+.cap-row h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.2rem;
+  color: var(--ifm-heading-color);
+}
+
+.cap-row p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.cap-highlight {
+  padding-left: 1.5rem;
+  border-left: 3px solid var(--ifm-color-primary);
+  border-bottom-color: var(--ifm-color-primary);
+}
+
+.cap-highlight h3 {
+  color: var(--ifm-color-primary);
+}
+
+.cap-action {
+  display: inline-block;
+  margin-top: 0.75rem;
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.cap-action:hover {
+  text-decoration: underline;
+}
+`}
+</style>

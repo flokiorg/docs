@@ -1,0 +1,49 @@
+---
+title: 0.25.12-alpha
+description: "ملاحظات الإصدار لـ go-flokicoin v0.25.12-alpha والتي تغطي تحسينات تقدير الرسوم وتحديثات الاستمرارية وأبرز النقاط الأخرى."
+sidebar_position: -1
+---
+
+<div className="release-header-meta release-header-left">
+  <a className="github-link release-github no-external-icon" href="https://github.com/flokiorg/go-flokicoin/releases/tag/v0.25.12-alpha" target="_blank" rel="noreferrer" title="عرض v0.25.12-alpha على GitHub">
+    <span className="release-header-label">GitHub</span>
+  </a>
+</div>
+
+يرجى الإبلاغ عن الأخطاء (bugs) باستخدام متتبع المشكلات على GitHub:
+
+https://github.com/flokiorg/go-flokicoin/issues
+
+يقدم هذا الإصدار تحسينات كبيرة في منطق تقدير الرسوم، بما في ذلك الاستمرارية الذرية (atomic persistence) على القرص، تتبع أفضل للتاريخ، ومعالجة أكثر ذكاءً لأسباب الإزالة.
+
+## ملاحظات الترقية
+
+- تعيش لقطات تقدير الرسوم الآن على القرص كملف `fee_estimates.dat` تحت دليل البيانات (كتابة/قراءة ذرية). تأكد من أن البرنامج الخفي (daemon) يمكنه الكتابة هناك عند الإغلاق؛ يتم تجاهل الملفات القديمة التي مضى عليها أكثر من 60 ساعة تقريبًا عند بدء التشغيل.
+
+## أبرز النقاط
+
+- **تقدير الرسوم**
+  - يتتبع ما يصل إلى 1008 كتلة من التاريخ ويضع حدًا أقصى للاستعلامات طويلة المدى بدلاً من رفضها، بما يتماشى مع سلوك Bitcoin Core (`mempool/estimatefee.go`).
+  - يسجل أسباب الإزالة من الـ mempool بحيث تقوم الحالات غير المؤكدة (التعارضات، إعادة التنظيم reorgs، الإخلاء، الرفض) بمسح حالة المقدر وتقليل الملاحظات القديمة (`mempool` plumbing، `netsync/manager.go` ، `rpcserver.go`).
+  - يقبل `estimatesmartfee` الوضعين `economical` (اقتصادي) أو `conservative` (محافظ - وهو الافتراضي) ويبلغ عن الأوضاع غير الصالحة بوضوح؛ تتضمن النتيجة الآن حقل `errors` صريحًا (`rpcserver.go`).
+- **الاستمرارية (Persistence)**
+  - يتم حفظ حالة مقدر الرسوم بشكل ذري على القرص عند الإغلاق واستعادتها عند بدء التشغيل إذا كانت حديثة؛ تسبب البيانات القديمة ظهور خطأ ويتم تخطيها. تغطي الأدوات المساعدة والاختبارات التنسيق الثنائي وإنفاذ الحد الأقصى للعمر (`mempool/fee_persist*.go` ، `server.go`).
+
+## التزامات بارزة (Notable commits)
+
+- mempool: تتبع أسباب الإزالة في تقدير الرسوم؛ توسيع التاريخ إلى 1008 كتلة ووضع حد أقصى للاستعلامات.
+- mempool: حفظ مقدر الرسوم على القرص مع كتابة ذرية وفحص حداثة البيانات.
+- إضافة تدفق توقيع عشوائي (nonce) مجمع لـ MuSig2، بما في ذلك معالجة السياق المحدثة واختبارات شاملة.
+
+## الأصول (Assets)
+
+| نظام التشغيل/المعمارية | الرابط |
+| --- | --- |
+| macOS (Apple Silicon) | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.12-alpha/lokid-darwin-arm64-v0.25.12-alpha.tar.gz |
+| macOS (Intel) | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.12-alpha/lokid-darwin-amd64-v0.25.12-alpha.tar.gz |
+| Linux x86_64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.12-alpha/lokid-linux-amd64-v0.25.12-alpha.tar.gz |
+| Linux arm64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.12-alpha/lokid-linux-arm64-v0.25.12-alpha.tar.gz |
+| Windows x86_64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.12-alpha/lokid-windows-amd64-v0.25.12-alpha.zip |
+| Windows 32-bit | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.12-alpha/lokid-windows-386-v0.25.12-alpha.zip |
+
+تتوفر إصدارات إضافية (ppc64, mips, *BSD, illumos/solaris) على [صفحة إصدارات GitHub](https://github.com/flokiorg/go-flokicoin/releases/tag/v0.25.12-alpha).

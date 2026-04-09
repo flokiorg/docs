@@ -1,0 +1,117 @@
+---
+sourceTitle: "Komodo Wallet"
+title: "Komodo Wallet"
+description: "Gestione Flokicoin con Komodo Wallet, una billetera multimoneda y multiplataforma con interfaz visual y soporte para Segwit."
+sidebar_position: 3
+---
+
+import Link from '@docusaurus/Link';
+import { Monitor, Smartphone, Globe, ArrowRight, MousePointer2, Layers, Repeat } from 'lucide-react';
+
+**Komodo Wallet** (anteriormente AtomicDEX) es una billetera multimoneda y multiplataforma con una interfaz gráfica limpia. Si prefiere una experiencia visual en lugar de comandos de terminal, esta es su billetera.
+
+<div className="wallet-benefits">
+  <div className="wallet-benefit">
+    <div className="wallet-benefit__icon"><MousePointer2 size={22} /></div>
+    <div>
+      <strong>Interfaz Visual</strong>
+      <span>Sin necesidad de terminal. Vea su saldo y transacciones en una aplicación familiar.</span>
+    </div>
+  </div>
+  <div className="wallet-benefit">
+    <div className="wallet-benefit__icon"><Layers size={22} /></div>
+    <div>
+      <strong>Multimoneda</strong>
+      <span>Gestione Flokicoin junto a decenas de otros activos en un solo lugar seguro.</span>
+    </div>
+  </div>
+  <div className="wallet-benefit">
+    <div className="wallet-benefit__icon"><Repeat size={22} /></div>
+    <div>
+      <strong>Listo para Segwit</strong>
+      <span>Tarifas más bajas y confirmaciones más rápidas desde el primer momento con direcciones `fc1`.</span>
+    </div>
+  </div>
+</div>
+
+## Elija Su Plataforma
+
+Elija la versión que mejor se adapte a su flujo de trabajo. Todas las versiones utilizan la misma tecnología segura.
+
+<div className="wallet-compare">
+  <div className="wallet-compare__card">
+    <div className="wallet-compare__header">
+      <Monitor size={20} />
+      <h3>Escritorio</h3>
+    </div>
+    <p className="wallet-compare__audience">Ideal para la gestión diaria en Windows, macOS o Linux.</p>
+    <ul className="wallet-compare__features">
+      <li>Conjunto completo de funciones</li>
+      <li>Almacenamiento local de claves privadas</li>
+      <li>Soporte para billeteras de hardware</li>
+    </ul>
+    <div className="wallet-compare__footer">
+      <Link className="button button--primary wallet-compare__cta" href="https://komodoplatform.com/en/wallets.html">Descargar Escritorio <ArrowRight size={16} /></Link>
+    </div>
+  </div>
+
+  <div className="wallet-compare__card">
+    <div className="wallet-compare__header">
+      <Smartphone size={20} />
+      <h3>Móvil</h3>
+    </div>
+    <p className="wallet-compare__audience">Ideal para enviar y recibir Flokicoin sobre la marcha.</p>
+    <ul className="wallet-compare__features">
+      <li>Soporte para iOS y Android</li>
+      <li>Seguridad biométrica (FaceID/Huella dactilar)</li>
+      <li>Escanee códigos QR para pagar</li>
+    </ul>
+    <div className="wallet-compare__footer">
+      <Link className="button button--secondary wallet-compare__cta" href="https://komodoplatform.com/en/wallets.html">Obtener App Móvil <ArrowRight size={16} /></Link>
+    </div>
+  </div>
+
+  <div className="wallet-compare__card">
+    <div className="wallet-compare__header">
+      <Globe size={20} />
+      <h3>Web</h3>
+    </div>
+    <p className="wallet-compare__audience">Ideal para un acceso rápido desde cualquier navegador sin instalación.</p>
+    <ul className="wallet-compare__features">
+      <li>No requiere instalación</li>
+      <li>Acceso desde cualquier dispositivo</li>
+      <li>Interfaz sencilla y rápida</li>
+    </ul>
+    <div className="wallet-compare__footer">
+      <Link className="button button--secondary wallet-compare__cta" href="https://app.komodoplatform.com">Abrir Billetera Web <ArrowRight size={16} /></Link>
+    </div>
+  </div>
+</div>
+
+## Guía de Configuración Rápida
+
+Empezar toma unos 5 minutos. Siga estos sencillos pasos:
+
+1. **Obtenga la App**: Descargue o abra la versión para su plataforma preferida de las mencionadas anteriormente.
+2. **Crear Nueva Billetera**: Elija "Create New Wallet" y anote su **frase semilla (seed phrase)**.
+3. **Respalde sus Claves**: Guarde su frase semilla en papel físico en un lugar seguro.
+4. **Habilite Flokicoin**: Busque **Flokicoin** en la lista de activos y habilítelo para obtener su dirección.
+
+:::warning[La Seguridad es lo Primero]
+Su frase semilla es su *único* respaldo. Si la pierde, perderá sus monedas. Nunca la almacene digitalmente, nunca la comparta y nunca tome una captura de pantalla de ella.
+:::
+
+## Sobre las Direcciones (F vs fc1)
+
+Por defecto, Komodo Wallet genera una dirección que comienza con **F** (Legacy). También es totalmente compatible con direcciones **fc1** (Segwit).
+
+* **Legacy (F)**: Máxima compatibilidad con servicios más antiguos.
+* **Segwit (fc1)**: Recomendado para el uso diario. Resulta en **tarifas de red más bajas** y es compatible con la mayoría de los servicios modernos.
+
+Puede alternar entre estos formatos en los ajustes de la billetera. Ambos formatos funcionan en la misma red de Flokicoin.
+
+## Soporte y Enlaces
+
+- **Docs de Komodo**: [Documentación oficial](https://docs.komodoplatform.com/) para ayuda técnica profunda.
+- **Discord**: Únase al [Discord de Flokicoin](https://flokicoin.org/discord) para soporte de la comunidad.
+- **Próximos Pasos**: Aprenda cómo funciona la [emisión de Flokicoin](/economy) o [comience a minar](/mining/pools).

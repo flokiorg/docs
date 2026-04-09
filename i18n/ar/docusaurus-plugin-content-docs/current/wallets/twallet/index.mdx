@@ -1,0 +1,94 @@
+---
+slug: /wallets/twallet
+title: tWallet — محفظة فلوكي كوين الطرفية (Terminal)
+description: "محفظة طرفية سريعة وخاصة لـ Flokicoin مع دعم داخلي لشبكة Lightning. اختر بين محرك Neutrino الحديث ونظام Electrum القديم."
+sidebar_position: 0
+---
+
+import Link from '@docusaurus/Link';
+import { Shield, Zap, Eye, ArrowRight, Terminal, Server } from 'lucide-react';
+
+محفظة طرفية (Terminal) سريعة وخفيفة تمنحك وصولاً مباشراً إلى شبكة Flokicoin. بدون تعقيدات، بدون تتبع، وتحكم كامل.
+
+<div className="wallet-benefits">
+  <div className="wallet-benefit">
+    <div className="wallet-benefit__icon"><Zap size={22} /></div>
+    <div>
+      <strong>سريعة</strong>
+      <span>تتزامن مع الشبكة في ثوانٍ، وليس ساعات.</span>
+    </div>
+  </div>
+  <div className="wallet-benefit">
+    <div className="wallet-benefit__icon"><Eye size={22} /></div>
+    <div>
+      <strong>خاصة</strong>
+      <span>بدون تتبع. لا حاجة لخوادم طرف ثالث.</span>
+    </div>
+  </div>
+  <div className="wallet-benefit">
+    <div className="wallet-benefit__icon"><Shield size={22} /></div>
+    <div>
+      <strong>مفاتيحك ملكك</strong>
+      <span>تحكم كامل في عملاتك وعبارة الاسترداد الخاصة بك.</span>
+    </div>
+  </div>
+</div>
+
+## أي إصدار هو الأنسب لك؟
+
+يجب على معظم المستخدمين البدء بالإصدار **v1**. فهو أحدث، وأكثر خصوصية، ويأتي مزوداً بمدفوعات Lightning مدمجة.
+
+<div className="wallet-compare">
+  <div className="wallet-compare__card wallet-compare__card--recommended">
+    <div className="wallet-compare__badge">موصى به</div>
+    <div className="wallet-compare__header">
+      <Terminal size={20} />
+      <h3>v1 — Neutrino</h3>
+    </div>
+    <p className="wallet-compare__audience">الأفضل للمستخدمين الجدد وأي شخص يريد مدفوعات Lightning.</p>
+    <ul className="wallet-compare__features">
+      <li>تتصل مباشرة بالبلوكشين — بدون وسيط</li>
+      <li>إرسال مدفوعات فورية وشبه مجانية عبر Lightning</li>
+      <li>تدعم تنسيقات العناوين الحديثة (SegWit, Taproot)</li>
+      <li>عبارة الاسترداد تستخدم أحدث معايير الأمان</li>
+    </ul>
+    <div className="wallet-compare__footer">
+      <Link className="button button--primary wallet-compare__cta" to="/wallets/twallet/v1">ابدأ بالإصدار v1 <ArrowRight size={16} /></Link>
+    </div>
+  </div>
+
+  <div className="wallet-compare__card">
+    <div className="wallet-compare__header">
+      <Server size={20} />
+      <h3>v0 — Electrum</h3>
+    </div>
+    <p className="wallet-compare__audience">الأفضل للمستخدمين الذين لديهم بذرة (Seed) BIP39 حالية أو يحتاجون لخادم خارجي.</p>
+    <ul className="wallet-compare__features">
+      <li>تحميل كامل لتاريخ معاملاتك فوراً</li>
+      <li>تعمل مع أي عبارة استرداد قياسية في الصناعة</li>
+    </ul>
+    <div className="wallet-compare__footer">
+      <Link className="button button--secondary wallet-compare__cta" to="/wallets/twallet/v0">ابدأ بالإصدار v0 <ArrowRight size={16} /></Link>
+    </div>
+  </div>
+</div>
+
+:::tip[تستخدم Lokihub؟]
+إذا كنت تخطط لإدارة عقدة Lightning من لوحة تحكم، فابدأ بالإصدار **v1** ثم [قم بإعداد Lokihub](/lokihub/setup).
+:::
+
+## البدء
+
+بمجرد اختيار الإصدار، يستغرق الإعداد حوالي 5 دقائق:
+
+1. **حمّل** الإصدار الخاص بنظام تشغيلك.
+2. **انسخ احتياطياً** عبارة الاسترداد الخاصة بك. اكتبها و **لا تشاركها أبداً**.
+3. **التزامن** — اترك المحفظة لتلحق بالشبكة (بضع دقائق كحد أقصى).
+4. **الاستلام** — قم بتوليد عنوان واحصل على عملاتك الأولى.
+
+## المجتمع والدعم
+
+لديك أسئلة؟ المجتمع نشط ومرحب بالجميع.
+
+- **Discord**: انضم إلى [قناة #tWallet](https://flokicoin.org/discord) للحصول على مساعدة فورية.
+- **GitHub**: [تصفح الكود أو أبلغ عن المشكلات](https://github.com/flokiorg/twallet).

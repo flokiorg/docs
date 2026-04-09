@@ -1,0 +1,94 @@
+---
+slug: /wallets/twallet
+title: tWallet — کیف پول ترمینال فلوکی‌کوین
+description: "یک کیف پول ترمینال سریع و خصوصی برای فلوکی‌کوین با پشتیبانی داخلی از شبکه لایتنینگ. بین موتور مدرن Neutrino و سیستم قدیمی Electrum انتخاب کنید."
+sidebar_position: 0
+---
+
+import Link from '@docusaurus/Link';
+import { Shield, Zap, Eye, ArrowRight, Terminal, Server } from 'lucide-react';
+
+یک کیف پول ترمینال سریع و سبک که به شما دسترسی مستقیم به شبکه فلوکی‌کوین را می‌دهد. بدون موارد اضافه، بدون ردیابی، کنترل کامل.
+
+<div className="wallet-benefits">
+  <div className="wallet-benefit">
+    <div className="wallet-benefit__icon"><Zap size={22} /></div>
+    <div>
+      <strong>سریع</strong>
+      <span>همگام‌سازی با شبکه در عرض چند ثانیه، نه چند ساعت.</span>
+    </div>
+  </div>
+  <div className="wallet-benefit">
+    <div className="wallet-benefit__icon"><Eye size={22} /></div>
+    <div>
+      <strong>خصوصی</strong>
+      <span>بدون ردیابی. بدون نیاز به سرورهای شخص ثالث.</span>
+    </div>
+  </div>
+  <div className="wallet-benefit">
+    <div className="wallet-benefit__icon"><Shield size={22} /></div>
+    <div>
+      <strong>کلیدهای شما</strong>
+      <span>کنترل کامل بر روی سکه‌ها و عبارت بازیابی شما.</span>
+    </div>
+  </div>
+</div>
+
+## کدام نسخه برای شما مناسب است؟
+
+اکثر کاربران باید با نسخه **v1** شروع کنند. این نسخه جدیدتر، خصوصی‌تر است و با پرداخت‌های لایتنینگ داخلی عرضه می‌شود.
+
+<div className="wallet-compare">
+  <div className="wallet-compare__card wallet-compare__card--recommended">
+    <div className="wallet-compare__badge">پیشنهادی</div>
+    <div className="wallet-compare__header">
+      <Terminal size={20} />
+      <h3>v1 — Neutrino</h3>
+    </div>
+    <p className="wallet-compare__audience">بهترین گزینه برای کاربران جدید و هر کسی که به پرداخت‌های لایتنینگ نیاز دارد.</p>
+    <ul className="wallet-compare__features">
+      <li>گفتگوی مستقیم با بلاک‌چین — بدون واسطه</li>
+      <li>ارسال پرداخت‌های فوری و تقریباً رایگان با لایتنینگ</li>
+      <li>پشتیبانی از فرمت‌های آدرس مدرن (SegWit, Taproot)</li>
+      <li>عبارت بازیابی از جدیدترین استانداردهای امنیتی استفاده می‌کند</li>
+    </ul>
+    <div className="wallet-compare__footer">
+      <Link className="button button--primary wallet-compare__cta" to="/wallets/twallet/v1">شروع با نسخه v1 <ArrowRight size={16} /></Link>
+    </div>
+  </div>
+
+  <div className="wallet-compare__card">
+    <div className="wallet-compare__header">
+      <Server size={20} />
+      <h3>v0 — Electrum</h3>
+    </div>
+    <p className="wallet-compare__audience">بهترین گزینه برای کاربرانی که بذر BIP39 موجود دارند یا به سرور خارجی نیاز دارند.</p>
+    <ul className="wallet-compare__features">
+      <li>بارگذاری فوری تاریخچه کامل تراکنش‌های شما</li>
+      <li>سازگار با تمامی عبارت‌های بازیابی استاندارد صنعت</li>
+    </ul>
+    <div className="wallet-compare__footer">
+      <Link className="button button--secondary wallet-compare__cta" to="/wallets/twallet/v0">شروع با نسخه v0 <ArrowRight size={16} /></Link>
+    </div>
+  </div>
+</div>
+
+:::tip[از لوکی‌هاب (Lokihub) استفاده می‌کنید؟]
+اگر قصد دارید یک نود لایتنینگ را از طریق داشبورد مدیریت کنید، با نسخه **v1** شروع کنید و سپس [لوکی‌هاب را راه‌اندازی کنید](/lokihub/setup).
+:::
+
+## شروع به کار
+
+پس از انتخاب نسخه، راه‌اندازی حدود ۵ دقیقه طول می‌کشد:
+
+۱. نسخه مربوط به سیستم‌عامل خود را **دانلود** کنید.
+۲. از عبارت بازیابی خود **نسخه پشتیبان** بگیرید. آن را یادداشت کنید و **هرگز با کسی به اشتراک نگذارید**.
+۳. **همگام‌سازی** — اجازه دهید کیف پول به شبکه برسد (حداکثر چند دقیقه).
+۴. **دریافت** — یک آدرس ایجاد کنید و اولین سکه‌های خود را دریافت کنید.
+
+## جامعه و پشتیبانی
+
+سوالی دارید؟ جامعه ما فعال و پذیرا است.
+
+- **دیسکورد**: برای دریافت کمک فوری به [کانال #tWallet](https://flokicoin.org/discord) بپیوندید.
+- **گیت‌هاب**: [کدها را مرور کنید یا مشکلات را گزارش دهید](https://github.com/flokiorg/twallet).

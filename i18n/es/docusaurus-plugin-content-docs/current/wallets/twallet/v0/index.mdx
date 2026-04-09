@@ -1,0 +1,163 @@
+---
+slug: /wallets/twallet/v0
+title: tWallet v0 (Electrum)
+description: "Guía de configuración para tWallet v0 en modo Electrum con ejemplos de configuración, limitaciones y descarga de versiones."
+sidebar_position: 1
+---
+
+import Link from '@docusaurus/Link';
+import { History } from 'lucide-react';
+
+v0 es la línea heredada de tWallet. Se conecta a un servidor Electrum que indexa la cadena de bloques y atiende las consultas de la cartera.
+
+## Electrum
+- Electrum es un protocolo de cliente ligero: el servidor mantiene un índice; los clientes consultan saldos, historial y transmiten transacciones.
+- **Simplicidad**: Rápido de poner en marcha, sincronización mínima.
+- **Compromisos**: Confías en la visión que el servidor tiene de la cadena. Los servidores públicos también ven tus patrones de consulta.
+
+### Configuración de Electrum
+
+:::note[¿No es un usuario técnico o no quiere lidiar con la configuración?]
+Consulte la opción plug-and-play de la comunidad: https://myfloki.com/operator
+:::
+
+:::tip
+¿Necesita ayuda o quiere un punto de conexión Electrum ya preparado?  
+Únase al **Discord de Flokicoin**; los miembros de la comunidad pueden compartir instancias públicas de Electrum.  
+👉 [Unirse a Discord](https://flokicoin.org/discord)
+:::
+
+Para usar **tWallet v0**, debe ejecutar su propio servidor compatible con Electrum.  
+Para Flokicoin, la implementación de referencia es [`flokicoin-electrs`](https://github.com/flokiorg/flokicoin-electrs), un fork de `electrs` que indexa la cadena y sirve tanto las API de Electrum como las de [Esplora](https://github.com/Blockstream/esplora/blob/master/API.md).
+
+#### Requisitos
+- Un **demonio de nodo completo de Flokicoin totalmente sincronizado** (`lokid`)  
+- Credenciales RPC para su nodo (`rpcuser` / `rpcpassword`)  
+- Espacio en disco para la base de datos del índice de Electrum (`--db-dir`)
+
+#### Ejemplo de comando de ejecución
+```bash
+electrs -vvv \
+  --network mainnet \
+  --db-dir /data \
+  --jsonrpc-import \
+  --daemon-rpc-addr <FLOKICOIN_NODE_HOST>:15213 \
+  --electrum-rpc-addr 0.0.0.0:50001 \
+  --http-addr 0.0.0.0:3000 \
+  --cookie <RPCUSER>:<RPCPASS> \
+  --enable-json-rpc-logging \
+  --index-unspendables
+```
+
+Reemplace:
+- `<FLOKICOIN_NODE_HOST>` → nombre de host o IP de su `lokid`  
+- `<RPCUSER>` / `<RPCPASS>` → sus credenciales RPC del demonio
+
+Una vez en funcionamiento, apunte `twallet.conf` a su servidor:
+
+```ini title="twallet.conf (ejemplo)"
+electserver = 127.0.0.1:50001
+```
+
+## Limitaciones de tWallet v0 vs v1
+
+- **Direcciones**: solo formato de dirección heredado de Flokicoin (sin generación de segwit/taproot).
+- **Sin demonio Lightning integrado**: la FLND no está incluida.
+- **Formato de semilla**: mnemónico [BIP39](https://bips.dev/39/) (diferente del aezeed de la v1).
+
+:::tip
+¿Está restaurando una semilla [BIP39](https://bips.dev/39/) existente? Use la v0. La v1 (aezeed) no es compatible con [BIP39](https://bips.dev/39/).
+:::
+
+**Estado**: Los puntos de conexión públicos de Electrum listados anteriormente están obsoletos. Prefiera su propio servidor o un proveedor comunitario de confianza.
+
+## Instalación
+
+Última compilación conocida de la v0: 0.1.1-alpha
+
+| SO/Arq | Activo |
+| --- | --- |
+| macOS (Apple Silicon) | https://github.com/flokiorg/tWallet/releases/download/v0.1.1-alpha/twallet-darwin-arm64-v0.1.1-alpha.tar.gz |
+| macOS (Intel) | https://github.com/flokiorg/tWallet/releases/download/v0.1.1-alpha/twallet-darwin-amd64-v0.1.1-alpha.tar.gz |
+| Linux x86_64 | https://github.com/flokiorg/tWallet/releases/download/v0.1.1-alpha/twallet-linux-amd64-v0.1.1-alpha.tar.gz |
+| Linux arm64 (Raspberry Pi) | https://github.com/flokiorg/tWallet/releases/download/v0.1.1-alpha/twallet-linux-arm64-v0.1.1-alpha.tar.gz |
+| Windows x86_64 | https://github.com/flokiorg/tWallet/releases/download/v0.1.1-alpha/twallet-windows-amd64-v0.1.1-alpha.zip |
+
+Extraiga y haga el binario ejecutable donde corresponda:
+
+```bash
+tar -xvf twallet-*.tar.gz
+chmod +x twallet
+```
+
+## Configuración
+
+Cree un archivo `twallet.conf` junto al binario y apúntelo a su servidor Electrum:
+
+```ini title="twallet.conf (v0 mínimo)"
+electserver = electrum.example.com:50001
+# timeout = 10s
+```
+
+<details>
+<summary><b>Ejemplo completo (v0) — Haga clic para expandir</b></summary>
+
+```ini title="Ejemplo completo (v0)"
+; Directorio para la base de datos de la cartera
+; walletdir = /private/link/flc/db
+
+; Configuración de red (solo una puede ser verdadera)
+; Si tanto regtest como testnet son falsos, se usará mainnet de forma predeterminada.
+; Usar la red de prueba de regresión
+; regtest = false
+; Usar la red de prueba
+; testnet = false
+
+; Tiempo de espera de conexión a la base de datos (en segundos)
+timeout = 10s
+
+; Configuración del servidor Electrum (host:puerto)
+electserver = electrum.example.com:50001
+
+# Comisión para transacciones lentas (en loki/vB)
+# feeslow = 1
+
+# Comisión para transacciones medias (en loki/vB)
+# feemedium = 2
+
+# Comisión para transacciones rápidas (en loki/vB) # disponible en v0.1.1
+# feefast = 3
+```
+
+</details>
+
+## Ejecución
+
+En macOS/Linux:
+
+```bash
+./twallet
+```
+
+En Windows:
+
+```powershell
+twallet.exe
+```
+
+Si su sistema operativo marca el binario, permítalo explícitamente.
+
+<div className="wallet-releases-card">
+  <div className="wallet-releases-content">
+    <h3>Historial de lanzamientos heredados</h3>
+    <p>Acceda a notas técnicas completas y activos binarios multiplataforma para todas las versiones históricas de tWallet v0 (Electrum).</p>
+  </div>
+  <div className="wallet-releases-action">
+    <Link className="wallet-action-button" to="/wallets/twallet/v0/releases"><span><History size={18} /></span><span>Ver archivo</span></Link>
+  </div>
+</div>
+
+## Seguridad
+- Realice una copia de seguridad de su frase semilla (se recomiendan 24 palabras) y pruebe el proceso de recuperación.
+- Establezca una frase de paso para el gasto y bloquee su cartera cuando esté inactiva.
+- Mantenga tWallet actualizado: https://github.com/flokiorg/tWallet/releases

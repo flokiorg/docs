@@ -1,0 +1,117 @@
+---
+title: 0.25.7-beta
+description: "یادداشت‌های انتشار فلوکی‌کوین کور (Flokicoin Core) نسخه 0.25.7-beta شامل تنظیم سختی Digishield، فعال‌سازی AuxPoW و بیلد برای پلتفرم‌های مختلف."
+sidebar_position: 1
+---
+
+لطفاً مشکلات را با استفاده از سیستم گزارش در گیت‌هاب اعلام کنید:
+
+https://github.com/flokiorg/go-flokicoin/issues
+
+این یک نسخه بتای فرعی از فلوکی‌کوین کور (Flokicoin Core) است که الگوریتم جدید بازتنظیم سختی در هر بلوک (به سبک Digishield)، پشتیبانی از اجماع و هدر AuxPoW، به‌روزرسانی ویژگی‌های تست‌نت، اصلاحات RPC و بهبودهای بیلد/تست را معرفی می‌کند. این نسخه، زمان‌بندی «فعال‌سازی در شبکه اصلی» (MAINNET ACTIVATION) را برای هر دو مورد Digishield و AuxPoW از طریق پارامترهای زنجیره تعیین می‌کند. تمامی نودهای شبکه اصلی باید قبل از رسیدن به ارتفاع‌های فعال‌سازی ذکر شده در زیر، برای جلوگیری از جدا شدن از زنجیره (chain splits)، ارتقا یابند.
+
+## تغییرات مهم
+
+- **اجماع: بازتنظیم سختی Digishield**
+  - معرفی میانگین متحرک نمایی در هر بلوک به سمت فاصله زمانی هدف با مقسوم‌علیه دامنه ۸.
+  - اعمال میرایی محدود در هر مرحله (حداقل ۰.۷۵ برابر، حداکثر ۱.۵ برابر تأثیر فاصله هدف) برای کاهش نوسانات.
+  - پشتیبانی از حداقل سختی (min-difficulty) در بلوک‌های دیررس در صورت فعال بودن در پارامترهای زنجیره.
+  - ادغام در فرآیند اعتبارسنجی و استخراج (بیت‌های مورد نیاز بعدی، هدف تمپلیت بلوک) و گسترش تست‌های واحد و تست‌های بلوک کامل.
+
+- **P2P/Wire: پشتیبانی از هدر AuxPoW**
+  - اضافه شدن ساختارهای AuxPoW (Coinbase، شاخه‌های مرکل، هدر والد) و دستیارهای سریال‌سازی.
+  - گسترش `BlockHeader` با پرچم AuxPoW و ابزارهای ChainID به همراه کدگذاری/کدگشایی اختیاری بار (payload) مربوط به AuxPoW.
+  - به‌روزرسانی کدگشایی `MsgBlock` برای پارس کردن بار AuxPoW در صورت وجود؛ اضافه شدن پوشش تست برای مسیرهای خواندن/نوشتن.
+  - **اجماع:** قابلیت AuxPoW در شبکه اصلی در ارتفاع ذکر شده در زیر فعال می‌شود.
+
+- **به‌روزرسانی‌های Testnet/Regtest**
+  - فعال‌سازی ویژگی‌های SegWit و Taproot در تست‌نت در صورت پیکربندی.
+  - تنظیم `MinHighPriority` و افزایش محدوده `MaxLoki` مورد استفاده در اعتبارسنجی مبالغ RPC.
+
+- **اصلاحات و بهبودهای RPC**
+  - هماهنگی نسخه گزارش شده پروتکل P2P با `wire.ProtocolVersion` و پر کردن فیلدهای `getinfo` (نسخه فرعی، سرویس‌های محلی، اتصالات ورودی/خروجی، آدرس‌های محلی) از وضعیت زنده سرور.
+
+- **ابزارها و تست‌ها**
+  - اضافه شدن هدف `make testexport` و صادرکننده داده‌های تست قطعی.
+  - یکپارچه‌سازی لودر مجموعه داده‌های بلوک با اعتبارسنجی اجباری Network-Magic؛ بازنویسی بخش‌های فراخوانی.
+  - اضافه شدن تایید سختی سرتاسری (E2E) روی مجموعه‌داده‌های منتخب و نمایش متریک‌های تنظیم وضعیت پایدار.
+
+- **بیلد و پیکربندی**
+  - حذف اورراید محلی `replace` برای `flokicoin-neutrino` جهت جلوگیری از مسیرهای مخصوص توسعه‌دهندگان.
+  - نمایش یک بنر شروع به کار واحد با نسخه معنایی (semantic version) هنگام بارگذاری پیکربندی؛ بازنویسی ثابت‌های ASCII-art.
+
+## سازگاری
+
+- شبکه اصلی، Digishield و AuxPoW را در ارتفاع‌های ثابت (در زیر) فعال خواهد کرد. این‌ها تغییرات اجماع هستند و در زمان فعال‌سازی به منزله یک هارد فورک (Hard Fork) می‌باشند. تمامی استخراج‌کنندگان، اعتبارسنج‌ها و سرویس‌ها باید قبل از آن ارتفاع‌ها ارتقا یابند.
+- پشتیبانی شبکه AuxPoW تا زمان فعال‌سازی برای هدرهای غیر AuxPoW سازگار با عقب (backward compatible) باقی می‌ماند.
+- هیچ تغییری در فرمت پایگاه داده ایجاد نشده است.
+
+## جدول زمانی فعال‌سازی (شبکه اصلی)
+
+- **بازتنظیم سختی Digishield:** در ارتفاع ۱۱۵,۰۰۰ فعال می‌شود (`DigishieldActivationHeight` در `chaincfg/params.go`).
+- **اجماع AuxPoW:** در ارتفاع ۱۱۵,۸۴۰ فعال می‌شود (`AuxpowHeightEffective` در `chaincfg/params.go`).
+
+این فعال‌سازی‌ها در فایل `repos/flokiorg/go-flokicoin/chaincfg/params.go` ذیل `MainNetParams` پارامتری شده‌اند.
+
+## یادداشت‌های ارتقا
+
+- **اپراتورهای نود شبکه اصلی:** قبل از ارتفاع‌های ۱۱۵,۰۰۰ (Digishield) و ۱۱۵,۸۴۰ (AuxPoW) به نسخه 0.25.7-beta ارتقا دهید تا در زنجیره اصلی باقی بمانید.
+- **اپراتورهای Testnet/Regtest** باید برای مشارکت در سیاست‌های جدید سختی و ویژگی‌ها، ارتقا دهند.
+- **توسعه‌دهندگان اپلیکیشن** باید وابستگی‌ها را به‌روزرسانی کنند تا اصلاحات شمای RPC و موارد اضافه شده به پروتکل مربوط به AuxPoW را دریافت نمایند.
+
+## تغییرات RPC
+
+- متد `getinfo` اکنون موارد `subversion` ، `localservices` ، `localservicesnames` ، `connections_in` ، `connections_out` و `localaddresses` را به دقت گزارش می‌دهد.
+- حداکثر نسخه پروتکل گزارش شده با `wire.ProtocolVersion` (70016) مطابقت دارد.
+
+## سیستم بیلد و ابزارها
+
+- هدف جدید `make testexport` برای صادر کردن مجموعه‌داده‌های بلوک برای تست‌های قطعی.
+- حذف `replace` محلی برای `flokicoin-neutrino` جهت تولید نمودار ماژول تمیز در بیلدها.
+
+## تست‌ها و تضمین کیفیت (QA)
+
+- لودر یکپارچه بلوک، Network-Magic را اجباری کرده و از خواندن‌های بافر شده و کامل استفاده می‌کند.
+- اضافه شدن تایید سختی E2E با خروجی متریک‌ها برای تحلیل وضعیت پایدار.
+- مجموعه‌داده‌های تست منتخب و کوچک‌تر، قطعیت را بهبود بخشیده و زمان CI را کاهش می‌دهند.
+
+## تغییرات از نسخه [v0.25.6-beta](/lokichain/releases/0.25.6-beta)
+
+- b4f439e consensus: add Digishield difficulty retarget
+- dec0948 wire: integrate AuxPoW header support
+- 31eff16 chore: repo updates for rpc/db, tests, fixtures
+- e2ac6e7 tests: validate difficulty dataset and expose tuning metrics
+- 735410f tests: unify block loader to enforce network magic; refactor call sites
+- 0e5dcd3 make: add testexport target for exporting block datasets
+- 651a453 rpc: report correct p2p protocol and fill getinfo fields
+- bea6a7a build: drop local replace for flokicoin-neutrino
+- 2e92497 config: print startup banner with version; refactor art constants
+- b24e870 wire: remove stale TODO comment in protocol.go
+- 60460f8 enable segiwit/taproot for testnet
+- f9bf3ae increase maxloki const
+- 712355d update MinHighPriority const
+- fa96bbd bump version 0.25.7-dev
+- 4523b79 version: bump to 0.25.7-beta
+
+## اعتبارات
+
+با تشکر از همه کسانی که مستقیماً در این نسخه مشارکت داشتند:
+
+- naliyi
+- izimmerma
+- mechion
+- repins
+- nanovex
+- liarpo11
+- arowqo
+- thiniboy
+
+## دارایی‌ها (Assets)
+
+| سیستم‌عامل/معماری | لینک دانلود |
+| --- | --- |
+| macOS (Apple Silicon) | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.7-beta/flokicoind-darwin-arm64-v0.25.7-beta.tar.gz |
+| macOS (Intel) | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.7-beta/flokicoind-darwin-amd64-v0.25.7-beta.tar.gz |
+| Linux x86_64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.7-beta/flokicoind-linux-amd64-v0.25.7-beta.tar.gz |
+| Linux arm64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.7-beta/flokicoind-linux-arm64-v0.25.7-beta.tar.gz |
+| Windows x86_64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.7-beta/flokicoind-windows-amd64-v0.25.7-beta.zip |

@@ -1,0 +1,102 @@
+---
+slug: /lokihub
+title: "Lokihub : Le Gestionnaire Lightning Auto-Custodial"
+description: "Maîtrisez votre nœud Lightning avec Lokihub. Envoyez des paiements instantanés à l'échelle mondiale, gérez votre liquidité et connectez des applications sans intermédiaire."
+sidebar_position: 1
+hideContributors: true
+hide_table_of_contents: true
+displayed_sidebar: null
+---
+import Link from '@docusaurus/Link';
+
+# Maîtrisez Votre Nœud Lightning
+
+**Lokihub** vous confère une souveraineté financière totale sur votre nœud Lightning. Au-delà d'un simple gestionnaire, c'est votre passerelle vers le web décentralisé — intégré à [tWallet](/wallets/twallet) pour vous aider à gérer des sous-portefeuilles, administrer des canaux et connecter des applications via NWC.
+
+:::caution[CRITIQUE : RISQUE DE SAUVEGARDE]
+**Les fonds des canaux Lightning NE sont PAS stockés sur la blockchain.** Une phrase mnémotechnique de 24 mots ne récupère que votre solde on-chain. Pour éviter la perte totale de vos fonds de canal, vous devez sauvegarder vos **Static Channel Backups (SCB)**.
+[Apprenez à protéger votre nœud →](/wallets/twallet/v1#critical-lightning-backups)
+:::
+
+<div className="download-box">
+  <div className="download-box__content">
+    <div className="download-box__text"><strong>Dernière version :</strong> v0.1.2-alpha</div>
+    <div className="download-box__actions">
+      <Link className="button button--primary" to="/lokihub/downloads">Télécharger</Link>
+      <Link className="button button--secondary" to="/lokihub/setup">Guide d'Installation</Link>
+    </div>
+  </div>
+</div>
+
+## Premiers Pas
+
+<div className="guide-grid">
+<div className="guide-card">
+
+### 1. Télécharger et Installer
+Obtenez Lokihub pour votre plateforme et installez le binaire.
+[Téléchargements →](/lokihub/downloads)
+
+</div>
+<div className="guide-card">
+
+### 2. Connecter Votre Nœud
+Connectez Lokihub au nœud FLND intégré dans [tWallet](/wallets/twallet).
+[Guide d'Installation →](/lokihub/setup)
+
+</div>
+<div className="guide-card">
+
+### 3. Commencer à Utiliser
+Gérez les portefeuilles, ouvrez des canaux, connectez des applications.
+[Fonctionnalités →](/lokihub/features)
+
+</div>
+</div>
+
+import { Zap, Droplet } from 'lucide-react';
+
+## Ce que Lokihub Fait Pour Vous
+
+<div className="capabilities-list">
+<div className="cap-row">
+  <div className="cap-icon"><Zap size={24} /></div>
+  <div className="cap-content">
+    <h3>Paiements Instantanés, Zéro Intermédiaire</h3>
+    <p>Exploitez le Lightning Network pour des transactions rapides, sécurisées et à faibles frais. Créez des sous-portefeuilles dédiés pour organiser votre liquidité selon vos applications ou budgets personnels.</p>
+  </div>
+</div>
+<div className="cap-row">
+  <div className="cap-icon"><Droplet size={24} /></div>
+  <div className="cap-content">
+    <h3>Souveraineté Totale sur Votre Liquidité</h3>
+    <p>Prenez le contrôle direct de vos canaux Lightning. Ouvrez, fermez et gérez vos capacités entrantes et sortantes avec une transparence manuelle complète.</p>
+  </div>
+</div>
+<div className="cap-row cap-highlight">
+  <div className="cap-content">
+    <h3>Connecter des Applications</h3>
+    <p>Connectez des applications externes à votre nœud via NWC. Accordez des permissions spécifiques et révoquez les accès si nécessaire.</p>
+    <Link to="/lokihub/store" className="cap-action">Parcourir le Magasin d'Applications →</Link>
+  </div>
+</div>
+<div className="cap-row cap-highlight">
+  <div className="cap-content">
+    <h3>Choisir les Services</h3>
+    <p>L'auto-custody signifie que vous choisissez vos propres fournisseurs. Configurez votre LSP, relais Nostr, explorateur de blocs et tableaux d'affichage.</p>
+    <Link to="/lokihub/services" className="cap-action">Voir les Services →</Link>
+  </div>
+</div>
+</div>
+
+## Documentation
+- **[Téléchargements](/lokihub/downloads)** — Obtenir la dernière version
+- **[Installation](/lokihub/setup)** — Se connecter à votre nœud
+- **[Fonctionnalités](/lokihub/features)** — Portefeuille, canaux, NWC
+- **[Magasin d'Applications](/lokihub/store)** — Connecter des applications externes
+- **[Services](/lokihub/services)** — LSP, relais, explorateur
+- **[Ressources](/lokihub/resources)** — Explorateurs, faucets, outils
+
+Besoin d'aide ? Rejoignez [Discord](https://flokicoin.org/discord) #lokihub
+
+<style>{`.download-box{margin:1.5rem 0 2.5rem 0;border:2px solid var(--ifm-color-primary);border-radius:8px;background:var(--ifm-background-surface-color)}.download-box__content{display:flex;flex-wrap:wrap;align-items:center;gap:.75rem;padding:1rem 1.25rem}.download-box__text{flex:1 1 180px;font-size:1.05rem}.download-box__actions{display:flex;gap:.5rem;flex:0 0 auto}@media(max-width:640px){.download-box__actions{width:100%;flex-direction:column}.download-box__actions .button{width:100%}}.guide-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.25rem;margin:2rem 0}.guide-card{padding:1.5rem;border:1px solid var(--ifm-color-emphasis-300);border-radius:8px;background:var(--ifm-background-surface-color)}.guide-card h3{margin-top:0;margin-bottom:0.75rem;color:var(--ifm-color-primary)}.guide-card p{margin-bottom:0.5rem}.capabilities-list{margin:2rem 0;max-width:800px}.cap-row{display:flex;gap:1.25rem;padding:1.75rem 0;border-bottom:1px solid var(--ifm-color-emphasis-200)}.cap-row:last-child{border-bottom:none}.cap-icon{font-size:1.75rem;line-height:1;flex-shrink:0;padding-top:0.1rem}.cap-content{flex:1}.cap-row h3{margin:0 0 0.5rem 0;font-size:1.2rem;color:var(--ifm-heading-color)}.cap-row p{margin:0;font-size:1rem;line-height:1.6;color:var(--ifm-color-emphasis-700)}.cap-highlight{padding-left:1.5rem;border-left:3px solid var(--ifm-color-primary);border-bottom-color:var(--ifm-color-primary)}.cap-highlight h3{color:var(--ifm-color-primary)}.cap-action{display:inline-block;margin-top:0.75rem;color:var(--ifm-color-primary);font-weight:600;text-decoration:none}.cap-action:hover{text-decoration:underline}`}</style>

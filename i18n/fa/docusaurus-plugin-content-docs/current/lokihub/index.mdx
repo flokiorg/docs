@@ -1,0 +1,239 @@
+---
+slug: /lokihub
+title: "Lokihub: مدیر Lightning با حضانت شخصی"
+description: "کنترل کامل گره Lightning خود را با Lokihub بدست بگیرید. پرداخت‌های فوری جهانی ارسال کنید، نقدینگی را مدیریت کنید، و اپلیکیشن‌ها را بدون واسطه متصل کنید."
+sidebar_position: 1
+hideContributors: true
+hide_table_of_contents: true
+displayed_sidebar: null
+---
+
+import Link from '@docusaurus/Link';
+
+# کنترل کامل گره Lightning خود را بدست بگیرید
+
+**Lokihub** حاکمیت مالی کامل بر گره Lightning شما را فراهم می‌کند. فراتر از یک مدیر ساده، دروازه شما به وب غیرمتمرکز است — یکپارچه با [tWallet](/wallets/twallet) تا به شما کمک کند زیرکیف‌پول‌ها را مدیریت کنید، کانال‌ها را کنترل کنید، و اپلیکیشن‌ها را از طریق NWC متصل نمایید.
+
+:::caution[بحرانی: خطر از دست رفتن پشتیبان]
+**وجوه کانال Lightning در بلاکچین ذخیره نمی‌شوند.** یک عبارت seed 24 کلمه‌ای فقط موجودی on-chain شما را بازیابی می‌کند. برای جلوگیری از از دست رفتن کامل وجوه کانال، باید از **Static Channel Backups (SCB)** خود نسخه پشتیبان تهیه کنید.
+[نحوه محافظت از گره خود را بیاموزید →](/wallets/twallet/v1#critical-lightning-backups)
+:::
+
+<div className="download-box">
+  <div className="download-box__content">
+    <div className="download-box__text">
+      <strong>آخرین نسخه:</strong> v0.1.2-alpha
+    </div>
+    <div className="download-box__actions">
+      <Link className="button button--primary" to="/lokihub/downloads">دانلود</Link>
+      <Link className="button button--secondary" to="/lokihub/setup">راهنمای نصب</Link>
+    </div>
+  </div>
+</div>
+
+## شروع کار
+
+<div className="guide-grid">
+
+<div className="guide-card">
+
+### ۱. دانلود و نصب
+Lokihub را برای پلتفرم خود دریافت کنید و باینری را نصب نمایید.
+
+[دانلودها →](/lokihub/downloads)
+
+</div>
+
+<div className="guide-card">
+
+### ۲. اتصال گره
+Lokihub را به گره FLND یکپارچه‌شده در [tWallet](/wallets/twallet) متصل کنید.
+
+[راهنمای نصب →](/lokihub/setup)
+
+</div>
+
+<div className="guide-card">
+
+### ۳. شروع استفاده
+کیف‌پول‌ها را مدیریت کنید، کانال‌ها را باز کنید، اپلیکیشن‌ها را متصل نمایید.
+
+[ویژگی‌ها →](/lokihub/features)
+
+</div>
+
+</div>
+
+import { Zap, Droplet } from 'lucide-react';
+
+## Lokihub چه کاری برای شما انجام می‌دهد
+
+<div className="capabilities-list">
+
+<div className="cap-row">
+  <div className="cap-icon"><Zap size={24} /></div>
+  <div className="cap-content">
+    <h3>پرداخت‌های فوری، بدون واسطه</h3>
+    <p>از Lightning Network برای تراکنش‌های سریع، امن، و با کارمزد پایین استفاده کنید. زیرکیف‌پول‌های اختصاصی ایجاد کنید تا نقدینگی خود را برای اپلیکیشن‌های مختلف یا بودجه‌های شخصی سازماندهی نمایید.</p>
+  </div>
+</div>
+
+<div className="cap-row">
+  <div className="cap-icon"><Droplet size={24} /></div>
+  <div className="cap-content">
+    <h3>حاکمیت کامل بر نقدینگی شما</h3>
+    <p>کنترل مستقیم کانال‌های Lightning خود را در دست بگیرید. ظرفیت ورودی و خروجی خود را با شفافیت کامل باز کنید، ببندید، و مدیریت نمایید.</p>
+  </div>
+</div>
+
+<div className="cap-row cap-highlight">
+  <div className="cap-content">
+    <h3>اتصال اپلیکیشن‌ها</h3>
+    <p>اپلیکیشن‌های خارجی را با استفاده از NWC به گره خود متصل کنید. مجوزهای خاص اعطا کنید و در صورت نیاز دسترسی را لغو نمایید.</p>
+    <Link to="/lokihub/store" className="cap-action">مرور فروشگاه اپلیکیشن →</Link>
+  </div>
+</div>
+
+<div className="cap-row cap-highlight">
+  <div className="cap-content">
+    <h3>انتخاب سرویس‌ها</h3>
+    <p>حضانت شخصی به این معناست که ارائه‌دهندگان خود را انتخاب می‌کنید. LSP، رله Nostr، اکسپلورر بلوک، و تابلوهای پیام خود را پیکربندی کنید.</p>
+    <Link to="/lokihub/services" className="cap-action">مشاهده سرویس‌ها →</Link>
+  </div>
+</div>
+
+</div>
+
+## مستندات
+
+- **[دانلودها](/lokihub/downloads)** — آخرین نسخه را دریافت کنید
+- **[نصب](/lokihub/setup)** — به گره خود متصل شوید
+- **[ویژگی‌ها](/lokihub/features)** — کیف‌پول، کانال‌ها، NWC
+- **[فروشگاه اپلیکیشن](/lokihub/store)** — اپلیکیشن‌های خارجی را متصل کنید
+- **[سرویس‌ها](/lokihub/services)** — LSP، رله، اکسپلورر
+- **[منابع](/lokihub/resources)** — اکسپلوررها، faucetها، ابزارها
+
+نیاز به کمک دارید؟ به [Discord](https://flokicoin.org/discord) #lokihub بپیوندید
+
+<style>
+{`
+.download-box {
+  margin: 1.5rem 0 2.5rem 0;
+  border: 2px solid var(--ifm-color-primary);
+  border-radius: 8px;
+  background: var(--ifm-background-surface-color);
+}
+.download-box__content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .75rem;
+  padding: 1rem 1.25rem;
+}
+.download-box__text {
+  flex: 1 1 180px;
+  font-size: 1.05rem;
+}
+.download-box__actions {
+  display: flex;
+  gap: .5rem;
+  flex: 0 0 auto;
+}
+
+@media (max-width: 640px) {
+  .download-box__actions {
+    width: 100%;
+    flex-direction: column;
+  }
+  .download-box__actions .button {
+    width: 100%;
+  }
+}
+
+.guide-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+  margin: 2rem 0;
+}
+
+.guide-card {
+  padding: 1.5rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  background: var(--ifm-background-surface-color);
+}
+
+.guide-card h3 {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  color: var(--ifm-color-primary);
+}
+
+.guide-card p {
+  margin-bottom: 0.5rem;
+}
+
+.capabilities-list {
+  margin: 2rem 0;
+  max-width: 800px;
+}
+
+.cap-row {
+  display: flex;
+  gap: 1.25rem;
+  padding: 1.75rem 0;
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.cap-row:last-child {
+  border-bottom: none;
+}
+
+.cap-icon {
+  font-size: 1.75rem;
+  line-height: 1;
+  flex-shrink: 0;
+  padding-top: 0.1rem;
+}
+
+.cap-content {
+  flex: 1;
+}
+
+.cap-row h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.2rem;
+  color: var(--ifm-heading-color);
+}
+
+.cap-row p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.cap-highlight {
+  padding-left: 1.5rem;
+  border-left: 3px solid var(--ifm-color-primary);
+  border-bottom-color: var(--ifm-color-primary);
+}
+
+.cap-highlight h3 {
+  color: var(--ifm-color-primary);
+}
+
+.cap-action {
+  display: inline-block;
+  margin-top: 0.75rem;
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.cap-action:hover {
+  text-decoration: underline;
+}
+`}
+</style>

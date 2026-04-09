@@ -1,0 +1,56 @@
+---
+title: Portefeuilles
+description: Choisissez le portefeuille adapté à vos besoins. Nous proposons des options allant des outils en ligne de commande pour utilisateurs avancés aux interfaces graphiques conviviales.
+sidebar_position: 1
+---
+import Link from '@docusaurus/Link';
+
+# Portefeuilles Flokicoin
+Pour interagir avec le réseau Flokicoin, vous avez besoin d'un endroit sûr pour gérer vos clés. Que vous soyez un utilisateur avancé nécessitant la prise en charge de Lightning ou un débutant cherchant une interface simple, nous avons une solution pour vous.
+
+<div className="row">
+  <div className="col col--6 margin-bottom--lg">
+    <div className="card shadow--md" style={{height:'100%',display:'flex',flexDirection:'column'}}>
+      <div className="card__header"><h3>tWallet (Recommandé)</h3></div>
+      <div className="card__body" style={{flex:'1 1 auto'}}>
+        <p><strong>Le Choix de l'Utilisateur Avancé.</strong> Un portefeuille rapide en ligne de commande avec un nœud Lightning intégré (FLND). Idéal pour les utilisateurs qui veulent un contrôle total et la confidentialité sans superflu.</p>
+        <ul>
+          <li>Lightning Network intégré</li>
+          <li>Axé sur la confidentialité (Neutrino)</li>
+          <li>Rapide, léger et peu gourmand en ressources</li>
+        </ul>
+      </div>
+      <div className="card__footer">
+        <Link className="button button--primary button--block" to="/wallets/twallet">Démarrer avec tWallet</Link>
+      </div>
+    </div>
+  </div>
+  <div className="col col--6 margin-bottom--lg">
+    <div className="card shadow--md" style={{height:'100%',display:'flex',flexDirection:'column'}}>
+      <div className="card__header"><h3>Komodo Wallet</h3></div>
+      <div className="card__body" style={{flex:'1 1 auto'}}>
+        <p><strong>Le Choix Convivial.</strong> Un portefeuille multi-devises avec une interface graphique traditionnelle et élégante. Parfait pour les utilisateurs du quotidien sur bureau ou mobile.</p>
+        <ul>
+          <li>Interface Graphique Utilisateur (GUI)</li>
+          <li>Supporte les adresses F et Segwit</li>
+          <li>Fonctionne sur Mobile, Bureau et Web</li>
+        </ul>
+      </div>
+      <div className="card__footer">
+        <Link className="button button--secondary button--block" to="/wallets/komodo-wallet">Démarrer avec Komodo</Link>
+      </div>
+    </div>
+  </div>
+</div>
+
+## Comparaison Rapide
+| Fonctionnalité | tWallet | Komodo Wallet |
+| :--- | :--- | :--- |
+| **Interface** | Terminal (TUI) | Graphique (GUI) |
+| **Lightning** | Oui (Intégré) | Non |
+| **Expérience** | Intermédiaire | Débutant |
+| **Idéal Pour** | Opérateurs de nœuds & Confidentialité | Utilisateurs du quotidien & Mobile |
+
+:::tip[Vous utilisez Lokihub ?]
+Si vous prévoyez d'utiliser **Lokihub**, nous recommandons vivement de commencer avec **tWallet v1**, car il fournit le backend Lightning nécessaire aux opérations de nœud.
+:::

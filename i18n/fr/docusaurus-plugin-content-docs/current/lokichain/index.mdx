@@ -1,0 +1,53 @@
+---
+slug: /lokichain
+title: Lokichain
+description: Vue d'ensemble des opérations de Lokichain couvrant la configuration des nœuds, les portefeuilles, les outils développeurs, les ressources de minage et le support communautaire.
+sidebar_position: 0
+---
+import Link from '@docusaurus/Link';
+import { Rocket } from 'lucide-react';
+
+Lokichain est la blockchain qui sous-tend Flokicoin. Elle valide chaque transaction, applique les règles de consensus et maintient la décentralisation. Si vous souhaitez comprendre le moteur sous le capot, vous êtes au bon endroit.
+
+:::release
+**Dernière version** : Flokicoin Core [v0.25.12-alpha](/lokichain/releases/0.25.12-alpha) — notre implémentation de référence actuelle.
+:::
+
+## Lancer un Nœud
+Faire tourner un nœud complet est la façon la plus directe de soutenir le réseau. Votre nœud vérifie l'intégralité de la chaîne de manière indépendante et expose des RPC pour les portefeuilles, les mineurs et les applications.
+
+:::tip[Option simplifiée]
+Vous préférez une configuration plus simple ? Essayez le nœud plug-and-play communautaire sur [myfloki.com/fullnode](https://myfloki.com/fullnode).
+:::
+
+## Développer sur Lokichain
+Que vous construisiez un portefeuille, un explorateur ou quelque chose de nouveau — voici par où commencer :
+- **FIPs** — Suivez l'évolution du protocole via les [Flokicoin Improvement Proposals](/lokichain/fips).
+- **Versions** — Suivez chaque [version logicielle](/lokichain/releases).
+- **Code source** — Parcourez et contribuez à [go-flokicoin](https://github.com/flokiorg/go-flokicoin).
+
+## Déployer sur Lokihub
+Le magasin d'applications Lokihub est le hub central pour les applications communautaires. Si vous avez développé une application compatible Lightning, vous pouvez la déployer directement dans l'écosystème via notre magasin open-source.
+
+<div className="wallet-releases-card">
+  <div className="wallet-releases-content">
+    <h3>Prêt à Lancer ?</h3>
+    <p>Apprenez comment soumettre votre application au magasin d'applications Lokihub et atteignez instantanément des milliers d'opérateurs de nœuds.</p>
+  </div>
+  <div className="wallet-releases-action">
+    <Link className="wallet-action-button" to="/lokihub/store#for-developers-submit-your-app">
+      <span><Rocket size={18} /></span><span>Soumettre Votre Application</span>
+    </Link>
+  </div>
+</div>
+
+## Miner
+Les mineurs fournissent la puissance de hachage qui rend la chaîne immuable. Vous aurez besoin du dernier logiciel de nœud et d'un ASIC Scrypt ou d'un GPU.
+- **Démarrer** — [Guide de configuration du minage](/mining).
+
+## Comment Ça Fonctionne
+Lokichain est un réseau pair-à-pair. Chaque nœud applique les mêmes règles, il n'y a donc aucun point de défaillance unique. Les règles de consensus sont mises à jour via les FIPs — considérez-les comme les « lois » du réseau.
+
+## Obtenir de l'Aide
+- **Discord** — Rejoignez la conversation dans [#dev](https://flokicoin.org/discord).
+- **GitHub** — Signalez des bugs ou proposez des fonctionnalités via les [Issues](https://github.com/flokiorg/go-flokicoin/issues).

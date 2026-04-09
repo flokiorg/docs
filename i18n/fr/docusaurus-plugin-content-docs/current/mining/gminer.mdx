@@ -1,0 +1,147 @@
+---
+sourceTitle: "Gminer"
+title: "GMiner"
+slug: /mining/gminer
+description: "Guide étape par étape pour l'installation, la configuration et la surveillance du mineur CPU GMiner pour s'exercer sur le testnet Flokicoin."
+---
+
+:::warning[Avis sur le mineur CPU]
+GMiner est un mineur CPU. Le minage par CPU n'est pratique que sur les réseaux de test ; sur le mainnet, il n'est pas compétitif. Utilisez un GPU ou un ASIC Scrypt pour le mainnet.
+:::
+
+Ce guide vous accompagne dans le téléchargement, la configuration et l'exécution de GMiner. À la fin, vous disposerez d'un mineur CPU fonctionnel connecté à un pool testnet Flokicoin.
+
+- [Téléchargement et Installation](#download-and-installation) : Guide pour télécharger et installer `gminer`
+- [Configuration](#configuration) : Instructions pour configurer `gminer.conf`.
+- [Comment l'exécuter](#how-to-run) : Guide pour commencer à miner du Flokicoin.
+- [Surveillance](#monitoring) : Surveiller les performances de minage et les informations d'état
+- [Dépannage et recommandations](#troubleshooting-and-recommendations) : Problèmes courants et leurs solutions
+- [Support](#support)
+---
+
+
+## Téléchargement et Installation
+
+Téléchargez la dernière version du mineur :
+
+- Allez sur la page des [releases](https://github.com/flokiorg/grpc-miner/releases/tag/v0.1.1-beta).
+- Téléchargez la version adaptée à votre système d'exploitation et à votre architecture.
+
+gminer est disponible sur :
+- Mac
+- Linux
+- Windows
+
+
+
+
+
+### Installer `gminer` sur Mac
+#### **Mac avec puce Apple (Apple Silicon)**
+Téléchargez [gminer-darwin-arm64-v0.1.1-beta.tar.gz](https://github.com/flokiorg/grpc-miner/releases/download/v0.1.1-beta/gminer-darwin-arm64-v0.1.1-beta.tar.gz) puis extrayez l'archive :
+
+```bash
+tar -xvf gminer-darwin-arm64-v0.1.1-beta.tar.gz
+chmod +x gminer
+```
+
+#### **Mac avec puce Intel**
+Téléchargez [gminer-darwin-amd64-v0.1.1-beta.tar.gz](https://github.com/flokiorg/grpc-miner/releases/download/v0.1.1-beta/gminer-darwin-amd64-v0.1.1-beta.tar.gz) puis extrayez l'archive :
+
+```bash
+tar -xvf gminer-darwin-amd64-v0.1.1-beta.tar.gz
+chmod +x gminer
+```
+&nbsp;
+
+### Installer sur Linux
+Téléchargez [gminer-linux-amd64-v0.1.1-beta.tar.gz](https://github.com/flokiorg/grpc-miner/releases/download/v0.1.1-beta/gminer-linux-amd64-v0.1.1-beta.tar.gz) puis extrayez l'archive :
+
+```bash
+tar -xvf gminer-linux-amd64-v0.1.1-beta.tar.gz
+chmod +x gminer
+```
+
+&nbsp;
+
+### Installer sur Windows
+Téléchargez [gminer-windows-386-v0.1.1-beta.zip](https://github.com/flokiorg/grpc-miner/releases/download/v0.1.1-beta/gminer-windows-386-v0.1.1-beta.zip) puis extrayez l'archive.
+
+&nbsp;
+
+## Configuration
+Avant d'exécuter le mineur, assurez-vous qu'un fichier de configuration (`gminer.conf`) existe dans le même répertoire que le fichier exécutable `gminer`. Vous pouvez télécharger un [exemple de fichier de configuration](https://raw.githubusercontent.com/flokiorg/grpc-miner/refs/heads/main/sample-gminer.conf) à partir du dépôt grpc-miner.
+
+Vous devez mettre à jour les paramètres suivants :
+
+**Point d'accès du pool de minage**
+```ini
+pool = solo.example.com:5055
+```
+
+Vous trouverez ci-dessous la liste des pools connus de la communauté :
+| Auteur | Frais développeur | Pool | Port |
+| --- | --- | --- | --- |
+| myf | - | gpool.myfloki.com | 5055 |
+
+Vous êtes encouragé à créer votre propre pool, à définir des frais de développeur si vous le souhaitez, et à le partager avec la communauté Flokicoin dans le canal **#Mining** sur [Discord](https://flokicoin.org/discord).
+
+**Adresses de minage**
+
+Vous pouvez spécifier une ou plusieurs adresses de minage :
+```ini
+miningaddr = VOTRE_ADRESSE_FLOKICOIN_1
+miningaddr = VOTRE_ADRESSE_FLOKICOIN_2
+```
+
+**Threads**
+
+Définissez le nombre de threads CPU à dé符号ier au minage. Par défaut, s'il n'est pas spécifié, gminer utilise tous les threads disponibles.
+```ini
+threads = 16
+```
+
+&nbsp;
+
+import { Lightbulb } from 'lucide-react';
+
+
+## Comment l'exécuter
+**Sur Mac et Linux :** Accédez au répertoire contenant le binaire extrait et exécutez :
+
+```bash
+./gminer
+```
+
+<div style={{display: 'flex', alignItems: 'center', gap: '0.4rem', marginTop: '0.5rem', fontSize: '0.9rem', opacity: 0.8}}><Lightbulb size={16} /> Sur macOS, autorisez <code>gminer</code> en accédant à Réglages Système → Confidentialité et sécurité → Général et cliquez sur « Ouvrir quand même » pour faire confiance au développeur.</div>
+
+
+**Sur Windows :** Accédez au répertoire contenant le fichier <code>gminer.exe</code> extrait et double-cliquez dessus ou exécutez-le depuis la ligne de commande :
+```bash
+gminer.exe
+```
+
+<div style={{display: 'flex', alignItems: 'center', gap: '0.4rem', marginTop: '0.5rem', fontSize: '0.9rem', opacity: 0.8}}><Lightbulb size={16} /> Si Windows Defender ou un autre antivirus bloque <code>gminer.exe</code>, vous devrez peut-être l'autoriser ou le débloquer explicitement.</div>
+
+&nbsp;
+
+## Surveillance
+Vous pouvez surveiller les performances de minage et l'état directement dans le terminal. Les informations comprennent :
+
+- Hashrate (Taux de hachage)
+- Blocs trouvés
+- Erreurs possibles
+
+&nbsp;
+
+## Dépannage et recommandations
+- Vérifiez que votre fichier `gminer.conf` se trouve dans le bon répertoire et que les adresses de pool, les adresses de minage et les ports correspondent à la configuration prévue.
+- Sur macOS, autorisez `gminer` dans les Réglages Système et marquez le développeur comme fiable.
+- Vérifiez l'adresse et le port du serveur dans `gminer.conf`.
+- Assurez-vous que votre connexion Internet est active.
+- Mettez régulièrement à jour `gminer` à partir de la page des versions.
+
+&nbsp;
+
+## Support
+Pour toute aide supplémentaire, rejoignez le canal `#mining` dans la [communauté Discord Flokicoin](https://flokicoin.org/discord).

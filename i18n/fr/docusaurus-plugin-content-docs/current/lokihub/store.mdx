@@ -1,0 +1,130 @@
+---
+sourceTitle: "App Store"
+title: "App Store"
+description: "Parcourez et connectez les applications de la communauté à votre nœud Lokihub via NWC."
+sidebar_position: 5
+---
+
+# Lokihub App Store
+
+L'App Store de Lokihub est un répertoire d'applications maintenu par la communauté qui fonctionne avec votre nœud Lightning grâce à [NWC (Nostr WalletConnect)](https://nwc.dev).
+
+## Comment les applications se connectent
+
+Les applications répertoriées dans le store se connectent à votre nœud Lokihub via NWC. Cela signifie :
+
+1. **Aucune Installation** — Les applications ne s'installent pas sur Lokihub lui-même.
+2. **Basé sur les Permissions** — Vous accordez des permissions spécifiques (consulter le solde, envoyer jusqu'à un montant X, etc.).
+3. **Révocable** — Supprimez l'accès de l'application à tout moment.
+
+## Utiliser les applications du Store
+
+1. Parcourez les applications disponibles dans Lokihub.
+2. Cliquez sur une application pour voir ses détails.
+3. Cliquez sur "Se connecter".
+4. Examinez et accordez les permissions.
+5. Scannez le code QR ou copiez la chaîne de connexion dans l'application.
+
+## Catégories d'applications
+
+Le store organise les applications par catégories :
+
+- **Interfaces de Portefeuille** — Interfaces utilisateur de portefeuille alternatives
+- **Médias Sociaux** — Clients Nostr, plateformes de pourboires
+- **Outils pour Marchands** — Points de vente, facturation
+- **Outils de Paiement** — Budgétisation, comptabilité
+- **Shopping** — Intégrations e-commerce
+- **Outils Nostr** — Utilitaires spécifiques à Nostr
+- **Jeux** — Jeux compatibles Lightning
+- **IA** — Services d'IA avec paiements Lightning
+- **Musique** — Streaming, pourboires aux artistes
+- **Blogging** — Plateformes de contenu
+- **Divers** — Autres applications
+
+## Pour les développeurs : Soumettez votre application
+
+L'App Store est open-source et géré par la communauté. Tout le monde peut soumettre une application.
+
+### Structure du dépôt
+
+Les données du store se trouvent ici : [flokiorg/lokihub-store](https://github.com/flokiorg/lokihub-store)
+
+```
+lokihub-store/
+├── apps.json          # Toutes les métadonnées des applications
+└── logos/             # Logos des applications (PNG/SVG)
+```
+
+### Étapes de soumission
+
+**1. Forker le dépôt**
+
+Forkez [flokiorg/lokihub-store](https://github.com/flokiorg/lokihub-store) sur GitHub.
+
+**2. Ajouter le logo de votre application**
+
+- Placez un logo de haute qualité dans le répertoire `logos/`.
+- Format : PNG ou SVG.
+- Taille recommandée : 512x512 pixels.
+- Nom du fichier : `id-de-votre-app.png` (ex: `ma-lightning-app.png`).
+
+**3. Modifier `apps.json`**
+
+Ajoutez l'entrée de votre application au tableau :
+
+```json
+{
+  "id": "mon-app",
+  "title": "Mon App",
+  "description": "Description courte (max 100 caractères)",
+  "extendedDescription": "Description plus longue expliquant l'intégration",
+  "webLink": "https://monapp.com",
+  "playLink": "https://play.google.com/store/apps/details?id=com.monapp",
+  "appleLink": "https://apps.apple.com/us/app/mon-app/id123456",
+  "categories": ["social-media"],
+  "logo": "mon-app.png",
+  "installGuide": "Comment installer/configurer l'application",
+  "finalizeGuide": "Comment se connecter à Lokihub (où coller la chaîne NWC)",
+  "version": "1.0.0",
+  "createdAt": 1709251200,
+  "updatedAt": 1709251200
+}
+```
+
+**Champs obligatoires :**
+- `id` — Identifiant unique (minuscules, tirets uniquement)
+- `title` — Nom affiché
+- `description` — Slogan court
+- `version` — Version sémantique (ex: `1.0.0`)
+- `createdAt` — Horodatage Unix (secondes)
+- `updatedAt` — Horodatage Unix (secondes)
+
+**Champs facultatifs :**
+- `extendedDescription` — Explication détaillée
+- `webLink` — Site web de l'application
+- `playLink` — URL de la boutique Google Play
+- `appleLink` — URL de l'App Store d'Apple
+- `logo` — Nom du fichier dans le répertoire `logos/`
+- `installGuide` — Instructions de configuration avant la connexion
+- `finalizeGuide` — Instructions de connexion (où coller le secret NWC)
+- `categories` — Tableau de catégories (voir liste ci-dessus)
+
+**4. Créer une Pull Request**
+
+Soumettez vos modifications pour examen. Les mainteneurs examineront et fusionneront si tout semble correct.
+
+### Processus d'examen
+
+Les Pull Requests sont examinées pour :
+- Une structure JSON valide
+- La qualité du logo et la taille du fichier
+- L'exactitude des informations sur l'application
+- Une implémentation NWC fonctionnelle
+
+Une fois fusionnée, votre application apparaît automatiquement dans toutes les instances de Lokihub.
+
+## Des questions ?
+
+- Dépôt : [flokiorg/lokihub-store](https://github.com/flokiorg/lokihub-store)
+- Problèmes (Issues) : [GitHub Issues](https://github.com/flokiorg/lokihub-store/issues)
+- Communauté : [Discord](https://flokicoin.org/discord) #lokihub

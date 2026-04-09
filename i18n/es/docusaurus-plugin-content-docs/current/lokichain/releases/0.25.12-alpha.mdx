@@ -1,0 +1,49 @@
+---
+title: 0.25.12-alpha
+description: "Notas de la versión de go-flokicoin v0.25.12-alpha que cubren mejoras en la estimación de comisiones, actualizaciones de persistencia y otros aspectos destacados."
+sidebar_position: -1
+---
+
+<div className="release-header-meta release-header-left">
+  <a className="github-link release-github no-external-icon" href="https://github.com/flokiorg/go-flokicoin/releases/tag/v0.25.12-alpha" target="_blank" rel="noreferrer" title="Ver v0.25.12-alpha en GitHub">
+    <span className="release-header-label">GitHub</span>
+  </a>
+</div>
+
+Por favor, reporte errores usando el rastreador de problemas en GitHub:
+
+https://github.com/flokiorg/go-flokicoin/issues
+
+Esta versión presenta mejoras significativas en la lógica de estimación de comisiones (fees), incluyendo persistencia atómica en disco, mejor seguimiento del historial y un manejo más inteligente de los motivos de eliminación.
+
+## Notas de actualización
+
+- Las instantáneas (snapshots) del estimador de comisiones ahora residen en disco como `fee_estimates.dat` bajo el directorio de datos (escritura/lectura atómica). Asegúrese de que el demonio pueda escribir allí al cerrarse; los archivos obsoletos de más de ~60h se ignoran al arrancar.
+
+## Aspectos destacados
+
+- **Estimación de comisiones**
+  - Rastrea hasta 1008 bloques de historial y limita las consultas de largo horizonte en lugar de rechazarlas, alineándose con el comportamiento de Bitcoin Core (`mempool/estimatefee.go`).
+  - Registra los motivos de eliminación del mempool para que las caídas no confirmadas (conflictos, reorgs, expulsiones, rechazos) limpien el estado del estimador y reduzcan las observaciones obsoletas (`mempool` plumbing, `netsync/manager.go`, `rpcserver.go`).
+  - `estimatesmartfee` acepta los modos `economical` o `conservative` (predeterminado: conservative) e informa de los modos inválidos limpiamente; el resultado ahora incluye un campo `errors` explícito (`rpcserver.go`).
+- **Persistencia**
+  - El estado del estimador de comisiones se guarda atómicamente en el disco al cerrarse y se restaura al arrancar cuando es reciente; los datos obsoletos muestran un error y se omiten. Los asistentes y las pruebas cubren el formato binario y la aplicación de la edad máxima (`mempool/fee_persist*.go`, `server.go`).
+
+## Commits notables (lote planificado)
+
+- mempool: rastrear motivos de eliminación en la estimación de comisiones; ampliar el historial a 1008 bloques y limitar las consultas.
+- mempool: persistir el estimador de comisiones en disco con escrituras atómicas y comprobaciones de obsolescencia.
+- Se agregó el flujo de firma de nonce agregado para MuSig2, incluyendo el manejo de contexto actualizado y pruebas exhaustivas.
+
+## Activos (Assets)
+
+| SO/Arq | Activo |
+| --- | --- |
+| macOS (Apple Silicon) | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.12-alpha/lokid-darwin-arm64-v0.25.12-alpha.tar.gz |
+| macOS (Intel) | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.12-alpha/lokid-darwin-amd64-v0.25.12-alpha.tar.gz |
+| Linux x86_64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.12-alpha/lokid-linux-amd64-v0.25.12-alpha.tar.gz |
+| Linux arm64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.12-alpha/lokid-linux-arm64-v0.25.12-alpha.tar.gz |
+| Windows x86_64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.12-alpha/lokid-windows-amd64-v0.25.12-alpha.zip |
+| Windows 32-bit | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.12-alpha/lokid-windows-386-v0.25.12-alpha.zip |
+
+Hay compilaciones adicionales (ppc64, mips, *BSD, illumos/solaris) disponibles en la [página de lanzamientos de GitHub](https://github.com/flokiorg/go-flokicoin/releases/tag/v0.25.12-alpha).

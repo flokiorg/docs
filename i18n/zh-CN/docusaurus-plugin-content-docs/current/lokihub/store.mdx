@@ -1,0 +1,130 @@
+---
+sourceTitle: "App Store"
+title: "应用商店"
+description: "浏览社区应用，并通过 NWC 将其连接到您的 Lokihub 节点。"
+sidebar_position: 5
+---
+
+# Lokihub 应用商店
+
+Lokihub 应用商店是一个由社区维护的应用程序目录，这些应用可以通过 [NWC (Nostr WalletConnect)](https://nwc.dev) 与您的闪电网络节点协同工作。
+
+## 应用如何连接
+
+商店中列出的应用使用 NWC 连接到您的 Lokihub 节点。这意味着：
+
+1. **无需安装** — 应用不会安装在 Lokihub 本身
+2. **基于权限** — 您授予特定权限（如：读取余额、发送不超过 X 的金额等）
+3. **可撤销** — 随时可以移除应用的访问权限
+
+## 使用商店中的应用
+
+1. 在 Lokihub 中浏览可用应用
+2. 点击应用查看详情
+3. 点击“连接”
+4. 查看并授予权限
+5. 扫描二维码或将连接字符串复制到应用中
+
+## 应用类别
+
+商店将应用划分为以下类别：
+
+- **钱包界面 (Wallet Interfaces)** — 替代钱包界面
+- **社交媒体 (Social Media)** — Nostr 客户端、打赏平台
+- **商家工具 (Merchant Tools)** — 销售点、发票管理
+- **支付工具 (Payment Tools)** — 预算、会计
+- **购物 (Shopping)** — 电子商务集成
+- **Nostr 工具 (Nostr Tools)** — Nostr 专属实用程序
+- **游戏 (Games)** — 启用闪电网络支付的游戏
+- **AI** — 带有闪电网络支付的 AI 服务
+- **音乐 (Music)** — 流媒体、向艺术家打赏
+- **博客 (Blogging)** — 内容平台
+- **杂项 (Misc)** — 其他应用程序
+
+## 开发者：提交您的应用
+
+应用商店是开源的且由社区驱动。任何人都可以提交应用。
+
+### 仓库结构
+
+商店数据存放于：[flokiorg/lokihub-store](https://github.com/flokiorg/lokihub-store)
+
+```
+lokihub-store/
+├── apps.json          # 所有应用元数据
+└── logos/             # 应用图标 (PNG/SVG)
+```
+
+### 提交步骤
+
+**1. Fork 仓库**
+
+在 GitHub 上 Fork [flokiorg/lokihub-store](https://github.com/flokiorg/lokihub-store)。
+
+**2. 添加您的应用图标**
+
+- 在 `logos/` 目录中放置高清图标
+- 格式：PNG 或 SVG
+- 建议尺寸：512x512 像素
+- 文件名：`your-app-id.png`（如：`my-lightning-app.png`）
+
+**3. 编辑 `apps.json`**
+
+在数组中添加您的应用条目：
+
+```json
+{
+  "id": "my-app",
+  "title": "My App",
+  "description": "简短描述（最多 100 个字符）",
+  "extendedDescription": "解释该集成的详细描述",
+  "webLink": "https://myapp.com",
+  "playLink": "https://play.google.com/store/apps/details?id=com.myapp",
+  "appleLink": "https://apps.apple.com/us/app/my-app/id123456",
+  "categories": ["social-media"],
+  "logo": "my-app.png",
+  "installGuide": "说明如何安装/设置该应用",
+  "finalizeGuide": "说明如何连接到 Lokihub（在哪里粘贴 NWC 字符串）",
+  "version": "1.0.0",
+  "createdAt": 1709251200,
+  "updatedAt": 1709251200
+}
+```
+
+**必填字段：**
+- `id` — 唯一标识符（小写，仅限连字符）
+- `title` — 显示名称
+- `description` — 简短口号
+- `version` — 语义化版本（如：`1.0.0`）
+- `createdAt` — Unix 时间戳（秒）
+- `updatedAt` — Unix 时间戳（秒）
+
+**可选字段：**
+- `extendedDescription` — 详细说明
+- `webLink` — 应用网站
+- `playLink` — Google Play 商店 URL
+- `appleLink` — Apple App 商店 URL
+- `logo` — `logos/` 目录下的文件名
+- `installGuide` — 连接前的设置指南
+- `finalizeGuide` — 连接说明（在哪里粘贴 NWC 密钥）
+- `categories` — 类别数组（见上方列表）
+
+**4. 创建 Pull Request**
+
+提交您的更改以供审核。维护者会进行检查，如果一切正常，将合并您的请求。
+
+### 审核流程
+
+Pull request 将针对以下内容进行审核：
+- 有效的 JSON 结构
+- 图标质量和文件大小
+- 准确的应用信息
+- 可用的 NWC 实现
+
+一旦合并，您的应用将自动出现在所有 Lokihub 实例中。
+
+## 疑问？
+
+- 仓库：[flokiorg/lokihub-store](https://github.com/flokiorg/lokihub-store)
+- 问题反馈：[GitHub Issues](https://github.com/flokiorg/lokihub-store/issues)
+- 社区：[Discord](https://flokicoin.org/discord) #lokihub

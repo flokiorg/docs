@@ -1,0 +1,94 @@
+---
+slug: /wallets/twallet
+title: tWallet — Portefeuille Terminal Flokicoin
+description: "Un portefeuille terminal rapide et privé pour Flokicoin avec support Lightning intégré. Choisissez entre le moteur moderne Neutrino et le backend hérité Electrum."
+sidebar_position: 0
+---
+
+import Link from '@docusaurus/Link';
+import { Shield, Zap, Eye, ArrowRight, Terminal, Server } from 'lucide-react';
+
+Un portefeuille terminal rapide et léger qui vous donne un accès direct au réseau Flokicoin. Pas de superflu, pas de suivi, un contrôle total.
+
+<div className="wallet-benefits">
+  <div className="wallet-benefit">
+    <div className="wallet-benefit__icon"><Zap size={22} /></div>
+    <div>
+      <strong>Rapide</strong>
+      <span>Se synchronise avec le réseau en quelques secondes, pas en heures.</span>
+    </div>
+  </div>
+  <div className="wallet-benefit">
+    <div className="wallet-benefit__icon"><Eye size={22} /></div>
+    <div>
+      <strong>Privé</strong>
+      <span>Pas de suivi. Aucun serveur tiers requis.</span>
+    </div>
+  </div>
+  <div className="wallet-benefit">
+    <div className="wallet-benefit__icon"><Shield size={22} /></div>
+    <div>
+      <strong>Vos clés</strong>
+      <span>Un contrôle total sur vos pièces et votre phrase de récupération.</span>
+    </div>
+  </div>
+</div>
+
+## Quelle version vous convient ?
+
+La plupart des utilisateurs devraient commencer par la **v1**. Elle est plus récente, plus privée et intègre les paiements Lightning.
+
+<div className="wallet-compare">
+  <div className="wallet-compare__card wallet-compare__card--recommended">
+    <div className="wallet-compare__badge">Recommandé</div>
+    <div className="wallet-compare__header">
+      <Terminal size={20} />
+      <h3>v1 — Neutrino</h3>
+    </div>
+    <p className="wallet-compare__audience">Idéal pour les nouveaux utilisateurs et tous ceux qui souhaitent des paiements Lightning.</p>
+    <ul className="wallet-compare__features">
+      <li>Communique directement avec la blockchain — pas d'intermédiaire</li>
+      <li>Envoyez des paiements instantanés et quasi gratuits avec Lightning</li>
+      <li>Prend en charge les formats d'adresse modernes (SegWit, Taproot)</li>
+      <li>La phrase de récupération utilise le dernier standard de sécurité</li>
+    </ul>
+    <div className="wallet-compare__footer">
+      <Link className="button button--primary wallet-compare__cta" to="/wallets/twallet/v1">Commencer avec la v1 <ArrowRight size={16} /></Link>
+    </div>
+  </div>
+
+  <div className="wallet-compare__card">
+    <div className="wallet-compare__header">
+      <Server size={20} />
+      <h3>v0 — Electrum</h3>
+    </div>
+    <p className="wallet-compare__audience">Idéal pour les utilisateurs disposant d'une graine BIP39 existante ou ayant besoin d'un serveur externe.</p>
+    <ul className="wallet-compare__features">
+      <li>Charge instantanément tout votre historique de transactions</li>
+      <li>Fonctionne avec n'importe quelle phrase de récupération standard du secteur</li>
+    </ul>
+    <div className="wallet-compare__footer">
+      <Link className="button button--secondary wallet-compare__cta" to="/wallets/twallet/v0">Commencer avec la v0 <ArrowRight size={16} /></Link>
+    </div>
+  </div>
+</div>
+
+:::tip[Vous utilisez Lokihub ?]
+Si vous prévoyez de gérer un nœud Lightning à partir d'un tableau de bord, commencez par la **v1**, puis [configurez Lokihub](/lokihub/setup).
+:::
+
+## Pour commencer
+
+Une fois que vous avez choisi une version, la configuration prend environ 5 minutes :
+
+1. **Téléchargez** la version correspondant à votre système d'exploitation.
+2. **Sauvegardez** votre phrase de récupération. Écrivez-la et **ne la partagez jamais**.
+3. **Synchronisez** — laissez le portefeuille rattraper le réseau (quelques minutes au maximum).
+4. **Recevez** — générez une adresse et recevez vos premières pièces.
+
+## Communauté et Support
+
+Vous avez des questions ? La communauté est active et accueillante.
+
+- **Discord** : Rejoignez le [canal #tWallet](https://flokicoin.org/discord) pour une aide en temps réel.
+- **GitHub** : [Parcourez le code ou signalez des problèmes](https://github.com/flokiorg/twallet).

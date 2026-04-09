@@ -1,0 +1,163 @@
+---
+slug: /wallets/twallet/v0
+title: tWallet v0 (Electrum)
+description: "راهنمای راه‌اندازی tWallet v0 در حالت Electrum همراه با تنظیمات نمونه، محدودیت‌ها و دانلود نسخه‌ها."
+sidebar_position: 1
+---
+
+import Link from '@docusaurus/Link';
+import { History } from 'lucide-react';
+
+سری v0 نسخه قدیمی tWallet است. این نسخه به یک سرور Electrum متصل می‌شود که وظیفه ایندکس کردن بلاک‌چین و پاسخ به درخواست‌های کیف پول را بر عهده دارد.
+
+## Electrum
+- پروتکل Electrum یک راه‌حل کلاینت سبک (Light-client) است: سرور یک ایندکس را نگه می‌دارد و کلاینت‌ها موجودی، تاریخچه و پخش تراکنش‌ها را از آن استعلام می‌کنند.
+- **سادگی**: شروع سریع با حداقل نیاز به همگام‌سازی (Sync).
+- **ملاحظات**: شما به دیدگاه سرور نسبت به زنجیره اعتماد می‌کنید. همچنین سرورهای عمومی الگوهای استعلام شما را مشاهده می‌کنند.
+
+### راه‌اندازی Electrum
+
+:::note[کاربر فنی نیستید یا نمی‌خواهید درگیر تنظیمات شوید؟]
+گزینه آماده و پیشنهادی جامعه کاربری را بررسی کنید: https://myfloki.com/operator
+:::
+
+:::tip
+به کمک نیاز دارید یا به دنبال یک آدرس Electrum آماده هستید؟  
+به **دیسکورد فلوکی‌کوین** بپیوندید؛ ممکن است اعضای جامعه آدرس‌های عمومی Electrum را به اشتراک گذاشته باشند.  
+👉 [ورود به دیسکورد](https://flokicoin.org/discord)
+:::
+
+برای استفاده از **tWallet v0**، باید سرور سازگار با Electrum خود را اجرا کنید.  
+در فلوکی‌کوین، پیاده‌سازی مرجع [`flokicoin-electrs`](https://github.com/flokiorg/flokicoin-electrs) است که نسخه‌ای تغییر یافته از `electrs` بوده و علاوه بر ایندکس کردن زنجیره، هر دو رابط [Electrum و Esplora](https://github.com/Blockstream/esplora/blob/master/API.md) را ارائه می‌دهد.
+
+#### پیش‌نیازها
+- یک **نود کامل فلوکی‌کوین که کاملاً همگام شده باشد** (`lokid`)  
+- اطلاعات دسترسی RPC نود شما (`rpcuser` / `rpcpassword`)  
+- فضای دیسک برای دیتابیس ایندکس Electrum (`--db-dir`)
+
+#### نمونه دستور اجرا
+```bash
+electrs -vvv \
+  --network mainnet \
+  --db-dir /data \
+  --jsonrpc-import \
+  --daemon-rpc-addr <FLOKICOIN_NODE_HOST>:15213 \
+  --electrum-rpc-addr 0.0.0.0:50001 \
+  --http-addr 0.0.0.0:3000 \
+  --cookie <RPCUSER>:<RPCPASS> \
+  --enable-json-rpc-logging \
+  --index-unspendables
+```
+
+جایگزین کنید:
+- `<FLOKICOIN_NODE_HOST>` ← نام میزبان یا آی‌پی نود `lokid` شما  
+- `<RPCUSER>` / `<RPCPASS>` ← اطلاعات دسترسی RPC نود شما
+
+پس از اجرا، فایل `twallet.conf` را به سرور خود متصل کنید:
+
+```ini title="twallet.conf (نمونه)"
+electserver = 127.0.0.1:50001
+```
+
+## محدودیت‌های tWallet v0 در مقابل v1
+
+- **آدرس‌ها**: فقط فرمت قدیمی آدرس فلوکی‌کوین (بدون پشتیبانی از ساخت آدرس segwit/taproot).
+- **بدون نود لایتنینگ داخلی**: شامل سرویس FLND نمی‌شود.
+- **فرمت بذر (Seed)**: کلمات بازیابی [BIP39](https://bips.dev/39/) (متفاوت با فرمت aezeed در نسخه v1).
+
+:::tip
+قصد بازیابی یک بذر [BIP39](https://bips.dev/39/) موجود را دارید؟ از نسخه v0 استفاده کنید. نسخه v1 با [BIP39](https://bips.dev/39/) سازگار نیست.
+:::
+
+**وضعیت**: آدرس‌های عمومی Electrum که قبلاً لیست شده بودند، منسوخ شده‌اند. ترجیحاً از سرور شخصی خود یا یک سرویس‌دهنده معتبر جامعه استفاده کنید.
+
+## نصب
+
+آخرین ساخت شناخته شده نسخه v0: نسخه 0.1.1-alpha
+
+| سیستم‌عامل/معماری | فایل |
+| --- | --- |
+| macOS (Apple Silicon) | https://github.com/flokiorg/tWallet/releases/download/v0.1.1-alpha/twallet-darwin-arm64-v0.1.1-alpha.tar.gz |
+| macOS (Intel) | https://github.com/flokiorg/tWallet/releases/download/v0.1.1-alpha/twallet-darwin-amd64-v0.1.1-alpha.tar.gz |
+| Linux x86_64 | https://github.com/flokiorg/tWallet/releases/download/v0.1.1-alpha/twallet-linux-amd64-v0.1.1-alpha.tar.gz |
+| Linux arm64 (Raspberry Pi) | https://github.com/flokiorg/tWallet/releases/download/v0.1.1-alpha/twallet-linux-arm64-v0.1.1-alpha.tar.gz |
+| Windows x86_64 | https://github.com/flokiorg/tWallet/releases/download/v0.1.1-alpha/twallet-windows-amd64-v0.1.1-alpha.zip |
+
+فایل را استخراج کرده و در صورت نیاز مجوز اجرا به آن بدهید:
+
+```bash
+tar -xvf twallet-*.tar.gz
+chmod +x twallet
+```
+
+## پیکربندی
+
+یک فایل `twallet.conf` در کنار فایل اجرایی بسازید و آدرس سرور Electrum خود را در آن وارد کنید:
+
+```ini title="twallet.conf (حداقل تنظیمات v0)"
+electserver = electrum.example.com:50001
+# timeout = 10s
+```
+
+<details>
+<summary><b>نمونه کامل تنظیمات (v0) — برای باز شدن کلیک کنید</b></summary>
+
+```ini title="نمونه کامل (v0)"
+; مسیر دیتابیس کیف پول
+; walletdir = /private/link/flc/db
+
+; تنظیمات شبکه (فقط یکی می‌تواند true باشد)
+; اگر هر دو گزینه regtest و testnet غیرفعال باشند، به صورت پیش‌فرض از mainnet استفاده می‌شود.
+; استفاده از شبکه تست رگرسیون
+; regtest = false
+; استفاده از شبکه تست
+; testnet = false
+
+; مهله زمانی اتصال به دیتابیس (به ثانیه)
+timeout = 10s
+
+; تنظیمات سرور Electrum (host:port)
+electserver = electrum.example.com:50001
+
+# کارمزد برای تراکنش‌های کند (واحد: loki/vB)
+# feeslow = 1
+
+# کارمزد برای تراکنش‌های متوسط (واحد: loki/vB)
+# feemedium = 2
+
+# کارمزد برای تراکنش‌های سریع (واحد: loki/vB) # موجود در نسخه v0.1.1
+# feefast = 3
+```
+
+</details>
+
+## اجرا
+
+در مک و لینوکس:
+
+```bash
+./twallet
+```
+
+در ویندوز:
+
+```powershell
+twallet.exe
+```
+
+اگر سیستم‌عامل شما فایل را مسدود کرد، اجازه اجرای آن را صادر کنید.
+
+<div className="wallet-releases-card">
+  <div className="wallet-releases-content">
+    <h3>تاریخچه نسخه‌های قدیمی</h3>
+    <p>دسترسی به یادداشت‌های فنی کامل و فایل‌های اجرایی چندپلتفرمی برای تمامی نسخه‌های تاریخی tWallet v0 (Electrum).</p>
+  </div>
+  <div className="wallet-releases-action">
+    <Link className="wallet-action-button" to="/wallets/twallet/v0/releases"><span><History size={18} /></span><span>مشاهده آرشیو</span></Link>
+  </div>
+</div>
+
+## امنیت
+- از کلمات بازیابی (بذر) خود نسخه پشتیبان تهیه کنید (۲۴ کلمه توصیه می‌شود) و فرآیند بازیابی را تست کنید.
+- رمز عبور برای خرج کردن تنظیم کنید و در زمان‌های عدم استفاده کیف پول خود را قفل کنید.
+- tWallet را به‌روز نگه دارید: https://github.com/flokiorg/tWallet/releases

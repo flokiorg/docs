@@ -1,0 +1,147 @@
+---
+sourceTitle: "Gminer"
+title: "GMiner"
+slug: /mining/gminer
+description: "راهنمای مرحله به مرحله نصب، پیکربندی و نظارت بر استخراج‌کننده پردازنده (CPU) GMiner برای تمرین در شبکه آزمایشی Flokicoin."
+---
+
+:::warning[نکته درباره استخراج‌کننده پردازنده]
+GMiner یک استخراج‌کننده پردازنده (CPU) است. استخراج با پردازنده فقط در شبکه‌های آزمایشی کاربردی است؛ در شبکه اصلی (mainnet) رقابتی نیست. برای شبکه اصلی از کارت گرافیک (GPU) یا دستگاه‌های اسکریپت اسیک (Scrypt ASIC) استفاده کنید.
+:::
+
+این راهنما شما را در مراحل دانلود، پیکربندی و اجرای GMiner همراهی می‌کند. در پایان، شما یک استخراج‌کننده پردازنده فعال متصل به یک استخر شبکه آزمایشی Flokicoin خواهید داشت.
+
+- [دانلود و نصب](#download-and-installation): راهنمای دانلود و نصب `gminer`
+- [پیکربندی](#configuration): دستورالعمل‌های پیکربندی `gminer.conf`.
+- [نحوه اجرا](#how-to-run): راهنمای شروع استخراج Flokicoin.
+- [نظارت](#monitoring): نظارت بر عملکرد استخراج و اطلاعات وضعیت
+- [عیب‌یابی و توصیه‌ها](#troubleshooting-and-recommendations): مشکلات رایج و راه‌حل‌های آن‌ها
+- [پشتیبانی](#support)
+---
+
+
+## دانلود و نصب
+
+آخرین نسخه استخراج‌کننده را دانلود کنید:
+
+- به صفحه [نسخه‌ها (releases)](https://github.com/flokiorg/grpc-miner/releases/tag/v0.1.1-beta) بروید.
+- نسخه مناسب برای سیستم‌عامل و معماری خود را دانلود کنید.
+
+gminer برای پلتفرم‌های زیر در دسترس است:
+- مک
+- لینوکس
+- ویندوز
+
+
+
+
+
+### نصب `gminer` در مک
+#### **مک با تراشه اپل (Apple Silicon)**
+فایل [gminer-darwin-arm64-v0.1.1-beta.tar.gz](https://github.com/flokiorg/grpc-miner/releases/download/v0.1.1-beta/gminer-darwin-arm64-v0.1.1-beta.tar.gz) را دانلود و سپس آن را از حالت فشرده خارج کنید:
+
+```bash
+tar -xvf gminer-darwin-arm64-v0.1.1-beta.tar.gz
+chmod +x gminer
+```
+
+#### **مک با تراشه اینتل**
+فایل [gminer-darwin-amd64-v0.1.1-beta.tar.gz](https://github.com/flokiorg/grpc-miner/releases/download/v0.1.1-beta/gminer-darwin-amd64-v0.1.1-beta.tar.gz) را دانلود و سپس آن را از حالت فشرده خارج کنید:
+
+```bash
+tar -xvf gminer-darwin-amd64-v0.1.1-beta.tar.gz
+chmod +x gminer
+```
+&nbsp;
+
+### نصب در لینوکس
+فایل [gminer-linux-amd64-v0.1.1-beta.tar.gz](https://github.com/flokiorg/grpc-miner/releases/download/v0.1.1-beta/gminer-linux-amd64-v0.1.1-beta.tar.gz) را دانلود و سپس آن را از حالت فشرده خارج کنید:
+
+```bash
+tar -xvf gminer-linux-amd64-v0.1.1-beta.tar.gz
+chmod +x gminer
+```
+
+&nbsp;
+
+### نصب در ویندوز
+فایل [gminer-windows-386-v0.1.1-beta.zip](https://github.com/flokiorg/grpc-miner/releases/download/v0.1.1-beta/gminer-windows-386-v0.1.1-beta.zip) را دانلود و سپس آن را از حالت فشرده خارج کنید.
+
+&nbsp;
+
+## پیکربندی
+قبل از اجرای استخراج‌کننده، مطمئن شوید که یک فایل پیکربندی (`gminer.conf`) در همان دایرکتوری فایل اجرایی `gminer` وجود دارد. می‌توانید یک [فایل پیکربندی نمونه](https://raw.githubusercontent.com/flokiorg/grpc-miner/refs/heads/main/sample-gminer.conf) را از مخزن grpc-miner دانلود کنید.
+
+شما باید پارامترهای زیر را به‌روزرسانی کنید:
+
+**نقطه اتصال استخر استخراج (Pool)**
+```ini
+pool = solo.example.com:5055
+```
+
+در زیر لیستی از استخرهای شناخته شده توسط جامعه کاربران آورده شده است:
+| نویسنده | کارمزد توسعه | استخر | پورت |
+| --- | --- | --- | --- |
+| myf | - | gpool.myfloki.com | 5055 |
+
+از شما دعوت می‌شود استخر خود را بسازید، در صورت تمایل کارمزد توسعه‌دهنده تعیین کنید و آن را در کانال **#Mining** در [دیسکورد Flokicoin](https://flokicoin.org/discord) با دیگران به اشتراک بگذارید.
+
+**آدرس‌های استخراج**
+
+می‌توانید یک یا چند آدرس استخراج را مشخص کنید:
+```ini
+miningaddr = آدرس_FLOKICOIN_شما_۱
+miningaddr = آدرس_FLOKICOIN_شما_۲
+```
+
+**رشته‌ها (Threads)**
+
+تعداد رشته‌های CPU را که برای استخراج اختصاص می‌دهید تعیین کنید. به‌طور پیش‌فرض، اگر مشخص نشود، GMiner از تمامی رشته‌های موجود استفاده می‌کند.
+```ini
+threads = 16
+```
+
+&nbsp;
+
+import { Lightbulb } from 'lucide-react';
+
+
+## نحوه اجرا
+**در مک و لینوکس:** به دایرکتوری حاوی فایل باینری استخراج شده بروید و دستور زیر را اجرا کنید:
+
+```bash
+./gminer
+```
+
+<div style={{display: 'flex', alignItems: 'center', gap: '0.4rem', marginTop: '0.5rem', fontSize: '0.9rem', opacity: 0.8}}><Lightbulb size={16} /> در سیستم‌عامل مک، مجوز اجرای <code>gminer</code> را با رفتن به تنظیمات سیستم (System Settings) ← حریم خصوصی و امنیت (Privacy & Security) ← عمومی (General) و کلیک بر روی “Open Anyway” برای تایید توسعه‌دهنده صادر کنید.</div>
+
+
+**در ویندوز:** به دایرکتوری حاوی فایل <code>gminer.exe</code> استخراج شده بروید و روی آن دوبار کلیک کنید یا آن را از خط فرمان اجرا کنید:
+```bash
+gminer.exe
+```
+
+<div style={{display: 'flex', alignItems: 'center', gap: '0.4rem', marginTop: '0.5rem', fontSize: '0.9rem', opacity: 0.8}}><Lightbulb size={16} /> اگر Windows Defender یا آنتی‌ویروس دیگری فایل <code>gminer.exe</code> را مسدود کرد، ممکن است لازم باشد آن را صراحتاً مجاز یا رفع مسدودیت کنید.</div>
+
+&nbsp;
+
+## نظارت
+می‌توانید عملکرد و وضعیت استخراج را مستقیماً در ترمینال نظارت کنید. اطلاعات شامل موارد زیر است:
+
+- قدرت هش (Hashrate)
+- بلوک‌های یافت شده
+- خطاهای احتمالی
+
+&nbsp;
+
+## عیب‌یابی و توصیه‌ها
+- بررسی کنید که فایل `gminer.conf` شما در دایرکتوری صحیح قرار دارد و آدرس استخر، آدرس‌های استخراج و پورت‌ها با پیکربندی مورد نظر شما مطابقت دارند.
+- در مک، در تنظیمات سیستم به `gminer` مجوز دهید و توسعه‌دهنده را به عنوان تایید شده علامت‌گذاری کنید.
+- آدرس سرور و پورت را در `gminer.conf` بررسی کنید.
+- از فعال بودن اتصال اینترنت خود اطمینان حاصل کنید.
+- به‌طور منظم `gminer` را از صفحه نسخه‌ها به‌روزرسانی کنید.
+
+&nbsp;
+
+## پشتیبانی
+برای راهنمایی بیشتر، به کانال `#mining` در [جامعه دیسکورد Flokicoin](https://flokicoin.org/discord) بپیوندید.

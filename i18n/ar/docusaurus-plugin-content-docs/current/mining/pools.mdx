@@ -1,0 +1,32 @@
+---
+sourceTitle: "Pools"
+title: "مجمعات التعدين"
+slug: /mining/pools
+description: "دليل بمجمعات التعدين المتوافقة مع Flokicoin، وأجهزة تعدين scrypt الموصى بها، وأساسيات Stratum، ونصائح السلامة."
+---
+
+:::danger[إخلاء مسؤولية]
+المجمعات وعمال التعدين المدرجون هنا هم أطراف ثالثة. تحقق من الملفات التنفيذية والتكوينات بنفسك وفضل الاختبار في بيئة معزولة (sandbox) قبل الاستخدام الفعلي.
+:::
+
+import { Fish } from 'lucide-react';
+
+
+## مجمعات التعدين
+- [fpool.net](https://fpool.net) <span style={{display: 'inline-flex', alignItems: 'center', gap: '0.25rem', verticalAlign: 'middle'}}><Fish size={16} /> التعدين لم يكن أبدًا بهذه السهولة</span> (منفرد، PPLNS)
+- [viaflc.com](https://viaflc.com) عملات أكثر بنفس القوة (PPLNS، تعدين مدمج)
+
+
+### ملاحظات
+- الشبكة الرئيسية (Mainnet): استخدم بطاقة الرسوميات (GPU) أو أجهزة scrypt ASIC. تعدين المعالج (CPU) غير تنافسي؛ احتفظ بـ cpuminer لشبكة الاختبار أو التجريب.
+- AuxPoW: إذا كان المجمع يدعم التعدين المدمج (merge mining) مع سلسلة أب من عائلة scrypt ويقوم بإعادة توجيه AuxPoW إلى Flokicoin، فاتبع تعليمات المجمع المحددة. تختلف التفاصيل حسب المجمع.
+
+
+## أساسيات Stratum
+- الرابط (URL): `stratum+tcp://POOL_HOST:PORT`
+- اسم المستخدم: عنوان استلام Flokicoin الخاص بك (أو حساب المجمع)
+- كلمة المرور: غالبًا ما تكون `x` أو رمزًا خاصًا بالمجمع
+
+
+## الدعم
+انضم إلى قناة [#mining](https://flokicoin.org/discord) على Discord للحصول على المساعدة.

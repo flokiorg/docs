@@ -1,0 +1,163 @@
+---
+slug: /wallets/twallet/v0
+title: tWallet v0 (Electrum)
+description: "tWallet v0 Electrum 模式设置指南，包含配置示例、限制说明以及版本下载。"
+sidebar_position: 1
+---
+
+import Link from '@docusaurus/Link';
+import { History } from 'lucide-react';
+
+v0 是 tWallet 的旧版本系列。它连接到 Electrum 服务器，由服务器索引区块链并处理钱包查询。
+
+## Electrum
+- Electrum 是一种轻客户端协议：服务器维护索引；客户端查询余额、历史记录并广播交易。
+- **优点**：简单，启动快，同步需求极小。
+- **缺点**：你需要信任服务器对链的视图。公共服务器也能看到你的查询模式。
+
+### Electrum 设置
+
+:::note[不是技术用户或者不想处理设置问题？]
+查看社区即插即用选项：https://myfloki.com/operator
+:::
+
+:::tip
+需要帮助或想要现成的 Electrum 端点？  
+加入 **Flokicoin Discord**；社区成员可能会分享公共 Electrum 实例。  
+👉 [加入 Discord](https://flokicoin.org/discord)
+:::
+
+要使用 **tWallet v0**，你必须运行自己的 Electrum 兼容服务器。  
+对于 Flokicoin，参考实现是 [`flokicoin-electrs`](https://github.com/flokiorg/flokicoin-electrs)，它是 `electrs` 的一个分支，用于索引链并提供 Electrum 和 [Esplora APIs](https://github.com/Blockstream/esplora/blob/master/API.md)。
+
+#### 要求
+- 一个**完全同步的 Flokicoin 全节点守护进程** (`lokid`)
+- 节点的 RPC 凭据 (`rpcuser` / `rpcpassword`)
+- 用于 Electrum 索引数据库的磁盘空间 (`--db-dir`)
+
+#### 示例运行命令
+```bash
+electrs -vvv \
+  --network mainnet \
+  --db-dir /data \
+  --jsonrpc-import \
+  --daemon-rpc-addr <FLOKICOIN_NODE_HOST>:15213 \
+  --electrum-rpc-addr 0.0.0.0:50001 \
+  --http-addr 0.0.0.0:3000 \
+  --cookie <RPCUSER>:<RPCPASS> \
+  --enable-json-rpc-logging \
+  --index-unspendables
+```
+
+请替换：
+- `<FLOKICOIN_NODE_HOST>` → 你的 `lokid` 的主机名或 IP
+- `<RPCUSER>` / `<RPCPASS>` → 你的全节点 RPC 凭据
+
+运行后，将 `twallet.conf` 指向你的服务器：
+
+```ini title="twallet.conf (示例)"
+electserver = 127.0.0.1:50001
+```
+
+## tWallet 限制：v0 vs v1
+
+- **地址**：仅限旧版 Flokicoin 地址格式（不支持 Segwit/Taproot 生成）。
+- **无内置闪电网络**：不包含集成的闪电网络守护进程 (FLND)。
+- **助记词格式**：[BIP39](https://bips.dev/39/) 助记词（与 v1 的 aezeed 不同）。
+
+:::tip
+正在恢复现有的 [BIP39](https://bips.dev/39/) 助记词？请使用 v0。v1 (aezeed) 与 [BIP39](https://bips.dev/39/) 不兼容。
+:::
+
+**状态**：此前列出的公共 Electrum 端点已弃用。建议使用你自己的服务器或受信任的社区提供商。
+
+## 安装
+
+最新的已知 v0 构建版本：0.1.1-alpha
+
+| 操作系统/架构 | 资源链接 |
+| --- | --- |
+| macOS (Apple Silicon) | https://github.com/flokiorg/tWallet/releases/download/v0.1.1-alpha/twallet-darwin-arm64-v0.1.1-alpha.tar.gz |
+| macOS (Intel) | https://github.com/flokiorg/tWallet/releases/download/v0.1.1-alpha/twallet-darwin-amd64-v0.1.1-alpha.tar.gz |
+| Linux x86_64 | https://github.com/flokiorg/tWallet/releases/download/v0.1.1-alpha/twallet-linux-amd64-v0.1.1-alpha.tar.gz |
+| Linux arm64 (树莓派) | https://github.com/flokiorg/tWallet/releases/download/v0.1.1-alpha/twallet-linux-arm64-v0.1.1-alpha.tar.gz |
+| Windows x86_64 | https://github.com/flokiorg/tWallet/releases/download/v0.1.1-alpha/twallet-windows-amd64-v0.1.1-alpha.zip |
+
+解压并在适用情况下使二进制文件可执行：
+
+```bash
+tar -xvf twallet-*.tar.gz
+chmod +x twallet
+```
+
+## 配置
+
+在二进制文件旁边创建一个 `twallet.conf` 并将其指向你的 Electrum 服务器：
+
+```ini title="twallet.conf (v0 最小配置)"
+electserver = electrum.example.com:50001
+# timeout = 10s
+```
+
+<details>
+<summary><b>完整示例 (v0) — 点击展开</b></summary>
+
+```ini title="完整示例 (v0)"
+; 钱包数据库目录
+; walletdir = /private/link/flc/db
+
+; 网络设置（只有一个可以为 true）
+; 如果 regtest 和 testnet 均为 false，则默认使用 mainnet。
+; 使用回归测试网络
+; regtest = false
+; 使用测试网络
+; testnet = false
+
+; 数据库连接超时（以秒为单位）
+timeout = 10s
+
+; Electrum 服务器配置 (host:port)
+electserver = electrum.example.com:50001
+
+# 慢速交易费率 (单位：loki/vB)
+# feeslow = 1
+
+# 中速交易费率 (单位：loki/vB)
+# feemedium = 2
+
+# 快速交易费率 (单位：loki/vB) # 仅在 v0.1.1 及更高版本可用
+# feefast = 3
+```
+
+</details>
+
+## 运行
+
+在 macOS/Linux 上：
+
+```bash
+./twallet
+```
+
+在 Windows 上：
+
+```powershell
+twallet.exe
+```
+
+如果你的操作系统标记了该二进制文件，请显式允许运行。
+
+<div className="wallet-releases-card">
+  <div className="wallet-releases-content">
+    <h3>旧版本发布历史</h3>
+    <p>访问所有历史 tWallet v0 (Electrum) 版本的完整技术说明和跨平台二进制资源。</p>
+  </div>
+  <div className="wallet-releases-action">
+    <Link className="wallet-action-button" to="/wallets/twallet/v0/releases"><span><History size={18} /></span><span>查看存档</span></Link>
+  </div>
+</div>
+
+## 安全
+- 备份你的助记词（建议 24 个词）并测试恢复流程。
+- 设置支付密码并在闲置时锁定钱包。
+- 保持 tWallet 更新：https://github.com/flokiorg/tWallet/releases

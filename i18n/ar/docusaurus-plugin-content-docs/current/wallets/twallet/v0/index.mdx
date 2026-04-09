@@ -1,0 +1,163 @@
+---
+slug: /wallets/twallet/v0
+title: tWallet v0 (Electrum)
+description: "دليل إعداد tWallet v0 في وضع Electrum مع عينات التهيئة والقيود وتحميل الإصدارات."
+sidebar_position: 1
+---
+
+import Link from '@docusaurus/Link';
+import { History } from 'lucide-react';
+
+v0 هي السلسلة القديمة من tWallet. وهي تتصل بخادم Electrum الذي يقوم بفهرسة سلسلة الكتل (blockchain) وخدمة استعلامات المحفظة.
+
+## Electrum
+- Electrum هو بروتوكول عميل خفيف: يحتفظ الخادم بفهرس؛ ويقوم العملاء بالاستعلام عن الأرصدة والسجلات وبث المعاملات.
+- **البساطة**: سريع البدء، وأقل قدر من المزامنة.
+- **المقايضات**: أنت تثق في رؤية الخادم للسلسلة. كما ترى الخوادم العامة أنماط استعلامك.
+
+### إعداد Electrum
+
+:::note[هل لست مستخدماً تقنياً أو لا تريد التعامل مع الإعداد؟]
+تحقق من خيار المجتمع الجاهز (plug-and-play): https://myfloki.com/operator
+:::
+
+:::tip
+هل تحتاج إلى مساعدة أو تريد نقطة نهاية Electrum جاهزة؟  
+انضم إلى **Flokicoin Discord**؛ قد يشارك أعضاء المجتمع مثيلات Electrum عامة.  
+👉 [انضم إلى Discord](https://flokicoin.org/discord)
+:::
+
+لاستخدام **tWallet v0**، يجب عليك تشغيل خادمك الخاص المتوافق مع Electrum.  
+بالنسبة لـ Flokicoin، فإن التنفيذ المرجعي هو [`flokicoin-electrs`](https://github.com/flokiorg/flokicoin-electrs)، وهو نسخة معدلة من `electrs` تقوم بفهرسة السلسلة وتخدم كلاً من واجهتي برمجة تطبيقات [Electrum و Esplora](https://github.com/Blockstream/esplora/blob/master/API.md).
+
+#### المتطلبات
+- **عقدة Flokicoin كاملة ومزامنة تماماً** (`lokid`)  
+- بيانات اعتماد RPC لعقدتك (`rpcuser` / `rpcpassword`)  
+- مساحة قرص لقاعدة بيانات فهرس Electrum (`--db-dir`)
+
+#### نموذج أمر التشغيل
+```bash
+electrs -vvv \
+  --network mainnet \
+  --db-dir /data \
+  --jsonrpc-import \
+  --daemon-rpc-addr <FLOKICOIN_NODE_HOST>:15213 \
+  --electrum-rpc-addr 0.0.0.0:50001 \
+  --http-addr 0.0.0.0:3000 \
+  --cookie <RPCUSER>:<RPCPASS> \
+  --enable-json-rpc-logging \
+  --index-unspendables
+```
+
+استبدل:
+- `<FLOKICOIN_NODE_HOST>` ← اسم المضيف أو عنوان IP الخاص بـ `lokid`  
+- `<RPCUSER>` / `<RPCPASS>` ← بيانات اعتماد RPC الخاصة بالعقدة
+
+بمجرد التشغيل، قم بتوجيه `twallet.conf` إلى خادمك:
+
+```ini title="twallet.conf (مثال)"
+electserver = 127.0.0.1:50001
+```
+
+## قيود tWallet v0 مقابل v1
+
+- **العناوين**: تنسيق عناوين Flokicoin القديم فقط (لا يوجد إنشاء لعناوين segwit/taproot).
+- **لا يوجد محرك Lightning مدمج**: لا يتم تضمين FLND.
+- **تنسيق البذرة**: كلمات المرور الاستردادية [BIP39](https://bips.dev/39/) (تختلف عن aezeed في الإصدار v1).
+
+:::tip
+هل تقوم باستعادة بذرة [BIP39](https://bips.dev/39/) موجودة؟ استخدم v0. الإصدار v1 (aezeed) غير متوافق مع [BIP39](https://bips.dev/39/).
+:::
+
+**الحالة**: نقاط نهاية Electrum العامة المدرجة سابقاً أصبحت مهجورة. يفضل استخدام خادمك الخاص أو موفر موثوق من المجتمع.
+
+## التثبيت
+
+أحدث بناء v0 معروف: 0.1.1-alpha
+
+| نظام التشغيل/المعمارية | الأصول |
+| --- | --- |
+| macOS (Apple Silicon) | https://github.com/flokiorg/tWallet/releases/download/v0.1.1-alpha/twallet-darwin-arm64-v0.1.1-alpha.tar.gz |
+| macOS (Intel) | https://github.com/flokiorg/tWallet/releases/download/v0.1.1-alpha/twallet-darwin-amd64-v0.1.1-alpha.tar.gz |
+| Linux x86_64 | https://github.com/flokiorg/tWallet/releases/download/v0.1.1-alpha/twallet-linux-amd64-v0.1.1-alpha.tar.gz |
+| Linux arm64 (Raspberry Pi) | https://github.com/flokiorg/tWallet/releases/download/v0.1.1-alpha/twallet-linux-arm64-v0.1.1-alpha.tar.gz |
+| Windows x86_64 | https://github.com/flokiorg/tWallet/releases/download/v0.1.1-alpha/twallet-windows-amd64-v0.1.1-alpha.zip |
+
+قم بفك الضغط واجعل الملف الثنائي (binary) قابلاً للتنفيذ عند الاقتضاء:
+
+```bash
+tar -xvf twallet-*.tar.gz
+chmod +x twallet
+```
+
+## التهيئة
+
+قم بإنشاء ملف `twallet.conf` بجوار الملف الثنائي وقم بتوجيهه إلى خادم Electrum الخاص بك:
+
+```ini title="twallet.conf (v0 minimal)"
+electserver = electrum.example.com:50001
+# timeout = 10s
+```
+
+<details>
+<summary><b>النموذج الكامل (v0) — اضغط للتوسيع</b></summary>
+
+```ini title="Full sample (v0)"
+; دليل قاعدة بيانات المحفظة
+; walletdir = /private/link/flc/db
+
+; إعدادات الشبكة (يمكن أن يكون واحد فقط صحيحاً)
+; إذا كان كل من regtest و testnet خطأ، فسيتم استخدام mainnet افتراضياً.
+; استخدام شبكة اختبار الانحدار
+; regtest = false
+; استخدام شبكة الاختبار
+; testnet = false
+
+; مهلة اتصال قاعدة البيانات (بالثواني)
+timeout = 10s
+
+; تهيئة خادم Electrum (host:port)
+electserver = electrum.example.com:50001
+
+# رسوم المعاملات البطيئة (بوحدة loki/vB)
+# feeslow = 1
+
+# رسوم المعاملات المتوسطة (بوحدة loki/vB)
+# feemedium = 2
+
+# رسوم المعاملات السريعة (بوحدة loki/vB) # متوفر في v0.1.1
+# feefast = 3
+```
+
+</details>
+
+## التشغيل
+
+على macOS/Linux:
+
+```bash
+./twallet
+```
+
+على Windows:
+
+```powershell
+twallet.exe
+```
+
+إذا قام نظام التشغيل الخاص بك بحظر الملف الثنائي، فقم بالسماح به صراحة.
+
+<div className="wallet-releases-card">
+  <div className="wallet-releases-content">
+    <h3>سجل الإصدارات القديم</h3>
+    <p>يمكنك الوصول إلى الملاحظات الفنية الكاملة والأصول الثنائية عبر الأنظمة لجميع إصدارات tWallet v0 (Electrum) التاريخية.</p>
+  </div>
+  <div className="wallet-releases-action">
+    <Link className="wallet-action-button" to="/wallets/twallet/v0/releases"><span><History size={18} /></span><span>عرض الأرشيف</span></Link>
+  </div>
+</div>
+
+## الأمان
+- قم بعمل نسخة احتياطية لعبارة البذور (يوصى بـ 24 كلمة) واختبر عملية الاسترداد.
+- عيّن عبارة مرور للإنفاق واقفل محفظتك عند الخمول.
+- حافظ على تحديث tWallet: https://github.com/flokiorg/tWallet/releases

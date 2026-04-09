@@ -1,0 +1,96 @@
+---
+sourceTitle: "Downloads"
+title: "软件下载"
+description: "下载适用于您平台的 Lokihub，包含最新发布版本的直接下载链接。"
+sidebar_position: 2
+sidebar_class_name: hidden
+---
+
+下载适用于您操作系统的最新版 Lokihub。
+
+:::release
+最新版本：**v0.1.2-alpha** — [在 GitHub 上查看](https://github.com/flokiorg/lokihub/releases/tag/v0.1.2-alpha)
+:::
+
+## 下载文件
+
+### 桌面版 (Desktop)
+
+| 平台 | 下载链接 |
+| --- | --- |
+| Linux (RPM aarch64) | [lokihub-desktop-linux-aarch64-v0.1.2-alpha.rpm](https://github.com/flokiorg/lokihub/releases/download/v0.1.2-alpha/lokihub-desktop-linux-aarch64-v0.1.2-alpha.rpm) |
+| Linux (AppImage amd64) | [lokihub-desktop-linux-amd64-v0.1.2-alpha.AppImage](https://github.com/flokiorg/lokihub/releases/download/v0.1.2-alpha/lokihub-desktop-linux-amd64-v0.1.2-alpha.AppImage) |
+| Linux (Deb amd64) | [lokihub-desktop-linux-amd64-v0.1.2-alpha.deb](https://github.com/flokiorg/lokihub/releases/download/v0.1.2-alpha/lokihub-desktop-linux-amd64-v0.1.2-alpha.deb) |
+| Linux (AppImage arm64) | [lokihub-desktop-linux-arm64-v0.1.2-alpha.AppImage](https://github.com/flokiorg/lokihub/releases/download/v0.1.2-alpha/lokihub-desktop-linux-arm64-v0.1.2-alpha.AppImage) |
+| Linux (Deb arm64) | [lokihub-desktop-linux-arm64-v0.1.2-alpha.deb](https://github.com/flokiorg/lokihub/releases/download/v0.1.2-alpha/lokihub-desktop-linux-arm64-v0.1.2-alpha.deb) |
+| Linux (RPM x86_64) | [lokihub-desktop-linux-x86_64-v0.1.2-alpha.rpm](https://github.com/flokiorg/lokihub/releases/download/v0.1.2-alpha/lokihub-desktop-linux-x86_64-v0.1.2-alpha.rpm) |
+| macOS (Universal) | [lokihub-desktop-macos-v0.1.2-alpha.dmg](https://github.com/flokiorg/lokihub/releases/download/v0.1.2-alpha/lokihub-desktop-macos-v0.1.2-alpha.dmg) |
+| Windows (x86_64) | [lokihub-desktop-windows-v0.1.2-alpha.zip](https://github.com/flokiorg/lokihub/releases/download/v0.1.2-alpha/lokihub-desktop-windows-v0.1.2-alpha.zip) |
+
+### 服务端 (Server)
+
+| 平台 | 下载链接 |
+| --- | --- |
+| Linux (amd64) | [lokihub-server-linux-amd64-v0.1.2-alpha.tar.gz](https://github.com/flokiorg/lokihub/releases/download/v0.1.2-alpha/lokihub-server-linux-amd64-v0.1.2-alpha.tar.gz) |
+| Linux (arm64) | [lokihub-server-linux-arm64-v0.1.2-alpha.tar.gz](https://github.com/flokiorg/lokihub/releases/download/v0.1.2-alpha/lokihub-server-linux-arm64-v0.1.2-alpha.tar.gz) |
+| macOS (Universal) | [lokihub-server-macos-v0.1.2-alpha.zip](https://github.com/flokiorg/lokihub/releases/download/v0.1.2-alpha/lokihub-server-macos-v0.1.2-alpha.zip) |
+| Windows (x86_64) | [lokihub-server-windows-v0.1.2-alpha.zip](https://github.com/flokiorg/lokihub/releases/download/v0.1.2-alpha/lokihub-server-windows-v0.1.2-alpha.zip) |
+
+## 安装与使用
+
+:::tip
+如果您的操作系统将该二进制文件标记为未验证，您可能需要在安全设置中手动允许其运行。
+:::
+
+### 桌面版 (GUI)
+
+**macOS**
+1. 打开下载的 `.dmg` 文件。
+2. 将 **Lokihub** 拖动到您的“应用程序 (Applications)”文件夹中。
+
+**Windows**
+1. 解压下载的 `.zip` 文件。
+2. 运行 `lokihub.exe`。
+
+**Linux**
+- **AppImage**:
+  ```bash
+  chmod +x lokihub-*.AppImage
+  ./lokihub-*.AppImage
+  ```
+- **Debian/Ubuntu**:
+  ```bash
+  sudo dpkg -i lokihub-*.deb
+  ```
+- **Fedora/RHEL**:
+  ```bash
+  sudo rpm -i lokihub-*.rpm
+  ```
+
+### 服务端 (HTTP)
+
+服务端版本作为后台进程运行，并通过 HTTP 提供 Web 界面。
+
+1. **解压归档文件**：
+   ```bash
+   tar -xvf lokihub-server-*.tar.gz  # Linux
+   # 或者在 Windows/macOS 上解压
+   ```
+
+2. **运行二进制文件**：
+   ```bash
+   ./lokihub
+   ```
+
+3. **在浏览器中打开**：
+   访问 `http://localhost:1610`（默认端口）。
+
+
+
+## 下一步
+
+安装完成后，请遵循 [安装指南](/lokihub/setup) 将 Lokihub 连接到您的 FLND 节点。
+
+## 验证下载
+
+所有发布版本均在 GitHub 上发布并附有校验和 (checksums)。请访问 [发布页面](https://github.com/flokiorg/lokihub/releases) 以验证下载的完整性。

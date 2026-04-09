@@ -1,0 +1,239 @@
+---
+slug: /lokihub
+title: "Lokihub: مدير Lightning ذاتي الحضانة"
+description: "أتقن إدارة عقدة Lightning الخاصة بك مع Lokihub. أرسل مدفوعات فورية عالمية، وأدر السيولة، واربط التطبيقات بدون وسطاء."
+sidebar_position: 1
+hideContributors: true
+hide_table_of_contents: true
+displayed_sidebar: null
+---
+
+import Link from '@docusaurus/Link';
+
+# أتقن إدارة عقدة Lightning الخاصة بك
+
+**Lokihub** يمنحك سيادة مالية كاملة على عقدة Lightning الخاصة بك. أكثر من مجرد مدير، إنه بوابتك إلى الويب اللامركزي — متكامل مع [tWallet](/wallets/twallet) لمساعدتك على إدارة المحافظ الفرعية والتعامل مع القنوات وربط التطبيقات عبر NWC.
+
+:::caution[بالغ الأهمية: خطر النسخ الاحتياطي]
+**أموال قناة Lightning غير مخزّنة على سلسلة الكتل.** عبارة البذور المكونة من 24 كلمة تستعيد رصيدك على السلسلة فقط. لتجنب الخسارة الكاملة لأموال القناة، يجب عليك الاحتفاظ بنسخة احتياطية من **النسخ الاحتياطية الثابتة للقناة (SCB)**.
+[تعرّف على كيفية حماية عقدتك →](/wallets/twallet/v1#critical-lightning-backups)
+:::
+
+<div className="download-box">
+  <div className="download-box__content">
+    <div className="download-box__text">
+      <strong>الأحدث:</strong> v0.1.2-alpha
+    </div>
+    <div className="download-box__actions">
+      <Link className="button button--primary" to="/lokihub/downloads">تنزيل</Link>
+      <Link className="button button--secondary" to="/lokihub/setup">دليل الإعداد</Link>
+    </div>
+  </div>
+</div>
+
+## البدء
+
+<div className="guide-grid">
+
+<div className="guide-card">
+
+### 1. تنزيل وتثبيت
+احصل على Lokihub لمنصتك وثبّت الملف التنفيذي.
+
+[التنزيلات →](/lokihub/downloads)
+
+</div>
+
+<div className="guide-card">
+
+### 2. ربط عقدتك
+اربط Lokihub بعقدة FLND المدمجة في [tWallet](/wallets/twallet).
+
+[دليل الإعداد →](/lokihub/setup)
+
+</div>
+
+<div className="guide-card">
+
+### 3. ابدأ الاستخدام
+أدر المحافظ، وافتح القنوات، واربط التطبيقات.
+
+[الميزات →](/lokihub/features)
+
+</div>
+
+</div>
+
+import { Zap, Droplet } from 'lucide-react';
+
+## ما يقدمه Lokihub لك
+
+<div className="capabilities-list">
+
+<div className="cap-row">
+  <div className="cap-icon"><Zap size={24} /></div>
+  <div className="cap-content">
+    <h3>مدفوعات فورية، بدون وسطاء</h3>
+    <p>استفد من Lightning Network لمعاملات سريعة وآمنة ومنخفضة الرسوم. أنشئ محافظ فرعية مخصصة لتنظيم سيولتك لتطبيقات مختلفة أو ميزانيات شخصية.</p>
+  </div>
+</div>
+
+<div className="cap-row">
+  <div className="cap-icon"><Droplet size={24} /></div>
+  <div className="cap-content">
+    <h3>سيادة كاملة على سيولتك</h3>
+    <p>تحكّم مباشرةً في قنوات Lightning الخاصة بك. افتح وأغلق وأدر طاقتك الواردة والصادرة بشفافية يدوية كاملة.</p>
+  </div>
+</div>
+
+<div className="cap-row cap-highlight">
+  <div className="cap-content">
+    <h3>ربط التطبيقات</h3>
+    <p>اربط التطبيقات الخارجية بعقدتك باستخدام NWC. امنح أذونات محددة واسحب الوصول عند الحاجة.</p>
+    <Link to="/lokihub/store" className="cap-action">تصفّح متجر التطبيقات →</Link>
+  </div>
+</div>
+
+<div className="cap-row cap-highlight">
+  <div className="cap-content">
+    <h3>اختر الخدمات</h3>
+    <p>الحضانة الذاتية تعني أنك تختار مزوديك. اضبط LSP وretailer Nostr ومستكشف الكتل ولوحات الرسائل.</p>
+    <Link to="/lokihub/services" className="cap-action">عرض الخدمات →</Link>
+  </div>
+</div>
+
+</div>
+
+## التوثيق
+
+- **[التنزيلات](/lokihub/downloads)** — احصل على أحدث إصدار
+- **[الإعداد](/lokihub/setup)** — الاتصال بعقدتك
+- **[الميزات](/lokihub/features)** — المحفظة والقنوات وNWC
+- **[متجر التطبيقات](/lokihub/store)** — ربط التطبيقات الخارجية
+- **[الخدمات](/lokihub/services)** — LSP والـ relay والمستكشف
+- **[الموارد](/lokihub/resources)** — المستكشفات والصنابير والأدوات
+
+تحتاج مساعدة؟ انضم إلى [Discord](https://flokicoin.org/discord) #lokihub
+
+<style>
+{`
+.download-box {
+  margin: 1.5rem 0 2.5rem 0;
+  border: 2px solid var(--ifm-color-primary);
+  border-radius: 8px;
+  background: var(--ifm-background-surface-color);
+}
+.download-box__content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .75rem;
+  padding: 1rem 1.25rem;
+}
+.download-box__text {
+  flex: 1 1 180px;
+  font-size: 1.05rem;
+}
+.download-box__actions {
+  display: flex;
+  gap: .5rem;
+  flex: 0 0 auto;
+}
+
+@media (max-width: 640px) {
+  .download-box__actions {
+    width: 100%;
+    flex-direction: column;
+  }
+  .download-box__actions .button {
+    width: 100%;
+  }
+}
+
+.guide-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+  margin: 2rem 0;
+}
+
+.guide-card {
+  padding: 1.5rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  background: var(--ifm-background-surface-color);
+}
+
+.guide-card h3 {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  color: var(--ifm-color-primary);
+}
+
+.guide-card p {
+  margin-bottom: 0.5rem;
+}
+
+.capabilities-list {
+  margin: 2rem 0;
+  max-width: 800px;
+}
+
+.cap-row {
+  display: flex;
+  gap: 1.25rem;
+  padding: 1.75rem 0;
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.cap-row:last-child {
+  border-bottom: none;
+}
+
+.cap-icon {
+  font-size: 1.75rem;
+  line-height: 1;
+  flex-shrink: 0;
+  padding-top: 0.1rem;
+}
+
+.cap-content {
+  flex: 1;
+}
+
+.cap-row h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.2rem;
+  color: var(--ifm-heading-color);
+}
+
+.cap-row p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.cap-highlight {
+  padding-left: 1.5rem;
+  border-left: 3px solid var(--ifm-color-primary);
+  border-bottom-color: var(--ifm-color-primary);
+}
+
+.cap-highlight h3 {
+  color: var(--ifm-color-primary);
+}
+
+.cap-action {
+  display: inline-block;
+  margin-top: 0.75rem;
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.cap-action:hover {
+  text-decoration: underline;
+}
+`}
+</style>

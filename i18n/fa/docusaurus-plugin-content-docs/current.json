@@ -1,0 +1,26 @@
+{
+  "version.label": {
+    "message": "جدیدترین",
+    "description": "The label for version current"
+  },
+  "sidebar.walletsSidebar.category.tWallet": {
+    "message": "tWallet",
+    "description": "The label for category 'tWallet' in sidebar 'walletsSidebar'"
+  },
+  "sidebar.walletsSidebar.category.v1": {
+    "message": "v1",
+    "description": "The label for category 'v1' in sidebar 'walletsSidebar'"
+  },
+  "sidebar.walletsSidebar.category.v0": {
+    "message": "v0",
+    "description": "The label for category 'v0' in sidebar 'walletsSidebar'"
+  },
+  "sidebar.lokichainSidebar.category.FIPs": {
+    "message": "FIPs",
+    "description": "The label for category 'FIPs' in sidebar 'lokichainSidebar'"
+  },
+  "sidebar.lokichainSidebar.category.Release Notes": {
+    "message": "یادداشت‌های انتشار",
+    "description": "The label for category 'Release Notes' in sidebar 'lokichainSidebar'"
+  }
+}

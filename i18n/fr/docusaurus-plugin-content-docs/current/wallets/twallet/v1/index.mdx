@@ -1,0 +1,525 @@
+---
+slug: /wallets/twallet/v1
+title: tWallet v1 (Neutrino)
+description: "Guide d'installation, de configuration et de sécurité pour tWallet v1 alimenté par Neutrino avec intégrations Lightning."
+sidebar_position: 1
+---
+
+import Link from '@docusaurus/Link';
+import { History } from 'lucide-react';
+
+v1 est la gamme tWallet recommandée. Elle utilise le protocole client léger Neutrino ([BIP157](https://bips.dev/157/)/[BIP158](https://bips.dev/158/)) pour se synchroniser sans dépendre d'un serveur Electrum tiers.
+
+## Capacités
+
+- **FLND intégré**: (Flokicoin Lightning Network Daemon) pour des opérations Lightning intégrées.
+- **Types d'adresses**: segwit ([BIP173](https://bips.dev/173/)) et taproot ([BIP341](https://bips.dev/341/), [BIP342](https://bips.dev/342/)).
+- **Format de graine**: aezeed (graine LND, nouveau format) pour la sauvegarde et la récupération.
+
+:::note
+Le type d'adresse par défaut est `segwit`. Vous pouvez changer via `addresstype=segwit|nested-segwit|taproot` dans `twallet.conf`.
+:::
+
+:::important[Compatibilité des graines]
+v1 utilise aezeed et **ne peut pas** importer de mnémoniques [BIP39](https://bips.dev/39/). Pour restaurer une graine [BIP39](https://bips.dev/39/), utilisez plutôt v0 (Electrum).
+:::
+
+### Pourquoi Neutrino ?
+- **Intégré**: Neutrino est intégré directement dans tWallet, aucun serveur externe n'est requis.
+- **Confiance minimisée**: Vous vérifiez les en-têtes et utilisez des filtres de blocs compacts ; aucun serveur unique ne dicte votre vue de la chaîne.
+- **Confidentialité**: Les requêtes ne sont pas centralisées sur un serveur Electrum.
+
+## Installer
+
+:::tip[Installer via myFloki plug-and-play]
+```bash
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/myfloki/community-tools/main/downloader.sh)"
+```
+
+Après l'installation, exécutez `twallet`.  
+Consultez [myfloki.com](https://myfloki.com) pour plus de détails sur les composants fournis.
+:::
+
+Téléchargez les derniers [actifs de la version 1.0.9-beta](https://github.com/flokiorg/tWallet/releases/tag/v1.0.9-beta) depuis GitHub et extrayez-les.
+
+| OS/Arch | Actif |
+| --- | --- |
+| macOS (Apple Silicon) | https://github.com/flokiorg/tWallet/releases/download/v1.0.9-beta/twallet-darwin-arm64-v1.0.9-beta.tar.gz |
+| macOS (Intel) | https://github.com/flokiorg/tWallet/releases/download/v1.0.9-beta/twallet-darwin-amd64-v1.0.9-beta.tar.gz |
+| Linux x86_64 | https://github.com/flokiorg/tWallet/releases/download/v1.0.9-beta/twallet-linux-amd64-v1.0.9-beta.tar.gz |
+| Linux arm64 (Raspberry Pi) | https://github.com/flokiorg/tWallet/releases/download/v1.0.9-beta/twallet-linux-arm64-v1.0.9-beta.tar.gz |
+| Windows x86_64 | https://github.com/flokiorg/tWallet/releases/download/v1.0.9-beta/twallet-windows-amd64-v1.0.9-beta.zip |
+| Windows 32-bit | https://github.com/flokiorg/tWallet/releases/download/v1.0.9-beta/twallet-windows-386-v1.0.9-beta.zip |
+
+Extrayez et rendez le binaire exécutable le cas échéant :
+
+```bash
+tar -xvf twallet-*.tar.gz
+chmod +x twallet
+```
+
+## Configurer
+
+Vous pouvez exécuter `twallet` sans fichier de configuration ; ajoutez-en un uniquement lorsque vous avez besoin de paramètres personnalisés (par exemple, pour exécuter un second portefeuille).
+
+Créez un fichier `twallet.conf` à côté du binaire ou dans votre répertoire de données d'application. Exemple minimal :
+
+```ini title="twallet.conf (v1 minimal)"
+# walletdir = ./loki
+# addresstype = segwit          # segwit | nested-segwit | taproot
+# feeurl = https://lokichain.info/api/v1/fees/recommended
+# debuglevel = info
+# connectiontimeout = 50s
+# rpclisten = 127.0.0.1:10005   # RPC API
+# restlisten = 127.0.0.1:5050   # REST API
+# restcors = *                  # CORS pour l'API REST
+# transactiondisplaylimit=121
+```
+
+<details>
+<summary><b>Échantillon complet (annoté) — Cliquez pour agrandir</b></summary>
+
+```ini title="Échantillon complet (v1)"
+; ============================================================================
+; Options Générales de l'Application
+; ============================================================================
+
+; Répertoire pour la base de données du portefeuille.
+; walletdir=./loki
+
+; Niveau de journalisation pour tous les sous-systèmes {trace, debug, info, warn, error, critical}.
+; La valeur par défaut est 'info'.
+; debuglevel=info
+
+; Niveau de journalisation pour l'application twallet {trace, debug, info, warn, error, fatal, panic}.
+; La valeur par défaut est 'info'.
+; loglevel=info
+
+; Utiliser le mot de passe par défaut pour le verrouillage.
+; Ceci est requis si 'autounlock' est défini sur true.
+; defaultpassword=pass
+
+; Déverrouiller automatiquement le portefeuille au démarrage en utilisant defaultpassword.
+; AVERTISSEMENT : Ceci stocke votre mot de passe en texte clair dans ce fichier de configuration.
+; À utiliser avec prudence et uniquement dans des environnements sécurisés.
+; autounlock=false
+
+; Nombre maximum de transactions à afficher.
+; Ceci n'affecte PAS le nombre de transactions récupérées en interne ;
+; cela limite seulement le nombre de transactions présentées à la fois.
+; transactiondisplaylimit=121
+
+; Réinitialiser les transactions du portefeuille au démarrage pour déclencher une analyse complète.
+; Utilisez ceci si vous soupçonnez des transactions manquantes.
+; resetwallettransactions=false
+
+; ============================================================================
+; Configuration de la Chaîne & On-Chain
+; ============================================================================
+
+; Paramètres réseau (un seul peut être vrai).
+; Si regtest et testnet sont faux, le mainnet sera utilisé par défaut.
+; Utiliser le réseau de test de régression.
+; regtest=false
+
+; Utiliser le réseau de test.
+; testnet=false
+
+; Type d'adresse à générer (taproot, segwit ou nested-segwit).
+; La valeur par défaut est 'segwit'.
+; addresstype=segwit
+
+; Point de terminaison de l'API d'estimation des frais personnalisée (optionnel).
+; L'URL ci-dessous n'est qu'un exemple — vous pouvez la remplacer par votre propre fournisseur de frais.
+; Format de réponse attendu :
+; {"fastestFee":1,"halfHourFee":1,"hourFee":1,"economyFee":0,"minimumFee":0}
+; feeurl=https://lokichain.info/api/v1/fees/recommended
+
+; ============================================================================
+; Identité du Nœud
+; ============================================================================
+
+; L'alias du nœud (max 32 caractères UTF-8).
+; C'est ainsi que votre nœud apparaîtra aux autres sur le réseau.
+; La valeur par défaut est 'MyLokiNode'.
+; alias=MyLokiNode
+
+; La couleur du nœud au format hexadécimal (ex: '#da9526').
+; Utilisé pour personnaliser l'apparence du nœud dans les visualisations graphiques.
+; La valeur par défaut est '#da9526'.
+; color=#da9526
+
+; ============================================================================
+; Réseau P2P & Connectivité
+; ============================================================================
+
+; La valeur du délai d'expiration pour les connexions réseau {ms, s, m, h}.
+; La valeur par défaut est '50s'.
+; connectiontimeout=50s
+
+; Ajouter une interface/port pour écouter les connexions des pairs (entrantes).
+; Une adresse d'écoute par ligne. Exemple : listen=0.0.0.0:5521
+; listen=0.0.0.0:5521
+
+; Désactiver l'écoute des connexions entrantes des pairs.
+; Définissez sur true si vous souhaitez exécuter un nœud privé (connexions sortantes uniquement).
+; nolisten=false
+
+; Se connecter uniquement aux pairs spécifiés au démarrage (mode exclusif).
+; connect=node.example.org
+
+; Ajouter des pairs auxquels se connecter au démarrage (en plus des pairs découverts).
+; Un pair par ligne. Format : hostname:port ou ip:port
+; Le port P2P par défaut de Flokicoin est 15212.
+; addpeer=peer1.example.com:15212
+; addpeer=peer2.example.com:15212
+
+; Si true, appliquera un décalage aléatoire entre 0s et 30s lors de la
+; reconnexion aux pairs persistants au démarrage.
+; Aide à réduire les tempêtes de connexion lors du redémarrage du nœud.
+; stagger-initial-reconnect=false
+
+; --- Configuration Tor ---
+
+; Activer Tor pour la connectivité P2P.
+; Si activé, le nœud utilisera le proxy SOCKS de Tor pour les connexions sortantes
+; et créera un service caché pour les connexions entrantes.
+; tor.active=false
+
+; Le host:port sur lequel le proxy SOCKS de Tor écoute.
+; La valeur par défaut est localhost:9050.
+; tor.socks=localhost:9050
+
+; Le serveur DNS comme host:port que Tor utilisera pour les requêtes SRV.
+; Note : Doit avoir la résolution TCP activée.
+; La valeur par défaut est ln.myfloki.com:53
+; tor.dns=ln.myfloki.com:53
+
+; Le host:port sur lequel Tor écoute pour les connexions de contrôle.
+; Requis pour créer des services cachés (adresses onion).
+; La valeur par défaut est localhost:9051
+; tor.control=localhost:9051
+
+; --- Annonce Publique ---
+
+; Ajouter un ip:port à annoncer sur le réseau pour les connexions entrantes.
+; Utilisez ceci si vous avez une adresse IP publique statique.
+; Une IP par ligne. Exemple : externalip=55.10.16.10:5521
+; externalip=
+
+; Ajouter un hostname:port qui doit être résolu périodiquement pour annoncer les IP.
+; Utilisez ceci si vous avez une IP dynamique avec un nom d'hôte DNS (ex: DynDNS, No-IP).
+; FLND résoudra automatiquement le nom d'hôte et mettra à jour votre IP annoncée.
+; Si le port n'est pas spécifié, la valeur par défaut (5521) sera utilisée.
+; Un nom d'hôte par ligne. Exemple : externalhosts=mynode.ddns.net:5521
+; externalhosts=
+
+; Basculer le support de la traversée NAT (utilisant soit UPnP soit NAT-PMP).
+; Annoncez automatiquement votre adresse IP externe sur le réseau.
+; Utile si vous êtes derrière un routeur et souhaitez accepter les connexions entrantes.
+; nat=false
+
+; ============================================================================
+; Configuration de l'API RPC & REST
+; ============================================================================
+
+; Ajouter une interface/port/socket pour écouter les connexions RPC.
+; Une adresse d'écoute par ligne.
+; Exemple : rpclisten=127.0.0.1:10005
+; rpclisten=127.0.0.1:10005
+
+; Ajouter une interface/port/socket pour écouter les connexions REST.
+; Une adresse d'écoute par ligne.
+; Exemple : restlisten=127.0.0.1:5050
+; restlisten=127.0.0.1:5050
+
+; Ajouter un ip:port ou un nom d'hôte pour autoriser l'accès cross-origin à l'API REST.
+; Une entrée par ligne.
+; Exemples :
+; restcors=http://localhost:3000
+; restcors=https://mon-domaine.com
+
+; --- Options TLS ---
+
+; Ajoute une IP supplémentaire au certificat généré. Une IP par ligne.
+; tlsextraip=0.0.0.0
+
+; Ajoute un domaine supplémentaire au certificat généré. Un domaine par ligne.
+; tlsextradomain=localhost
+
+; Régénérer le certificat TLS et la clé si les IP ou les domaines sont modifiés.
+; Activé par défaut pour garantir la validité du certificat lors de la modification des paramètres réseau.
+; tlsautorefresh=true
+
+; ============================================================================
+; Configuration des Canaux
+; ============================================================================
+
+; Le nombre maximum de canaux entrants en attente autorisés par pair.
+; La valeur par défaut est 1. Augmentez si vous souhaitez accepter plusieurs canaux du même pair.
+; maxpendingchannels=1
+
+; Si true, le nœud sera configuré pour autoriser des canaux supérieurs à 5 FLC.
+; Utilisez cette option si vous souhaitez accepter des canaux volumineux (Wumbo).
+; La valeur par défaut est false.
+; wumbo-channels=false
+
+; La taille de canal la plus grande (en Loki) que nous devrions accepter.
+; Les canaux entrants plus grands que cela seront rejetés.
+;
+; Si wumbo-channels est faux (par défaut), la valeur maximale autorisée est 500 000 000 Loki (5 FLC).
+; Si vous souhaitez accepter des canaux plus grands (ex: 210 FLC), vous devez définir wumbo-channels=true ci-dessus.
+;
+; La valeur par défaut est 500 000 000 Loki (5 FLC).
+; maxchansize=500000000
+
+; La taille de canal la plus petite (en Loki) que nous devrions accepter.
+; Les canaux entrants plus petits que cela seront rejetés.
+; La valeur par défaut est 20 000 Loki (0,00020000 FLC).
+; minchansize=20000
+
+; ============================================================================
+; Configuration du Routage & du Transfert
+; ============================================================================
+
+; Si true, lnd ne transférera aucun HTLC destiné à des paiements ultérieurs.
+; Utilisez ceci pour fonctionner en mode portefeuille uniquement (pas de routage).
+; rejecthtlc=false
+
+; Le plus petit HTLC que nous transférerons (en milli-Loki).
+; La valeur par défaut est 1 milli-Loki.
+; minhtlc=1
+
+; Les frais de base en milli-Loki que nous facturerons pour le transfert de paiements.
+; Il s'agit de frais fixes ajoutés à chaque paiement transféré.
+; La valeur par défaut est 1 000 milli-Loki (1 Loki).
+; basefee=1000
+
+; Le taux de frais utilisé lors du transfert de paiements (en millionièmes).
+; Frais totaux = basefee + (montant × feerate / 1 000 000)
+; Exemple : feerate=100 signifie 0,01 % (100 ppm)
+; La valeur par défaut est 100 (0,01 %).
+; feerate=100
+
+; Le delta CLTV que nous soustrairons de la valeur du délai de verrouillage d'un HTLC transféré.
+; C'est le nombre de blocs que vous exigez pour des raisons de sécurité lors du transfert.
+; La valeur par défaut est 400 blocs.
+; timelockdelta=400
+
+; Le nombre maximum de blocs pendant lesquels les fonds pourraient être verrouillés lors du transfert de paiements.
+; Il s'agit d'une limite de sécurité pour éviter que les fonds ne soient verrouillés trop longtemps.
+; La valeur par défaut est 10 080 blocs (7 jours avec des blocs de 1 minute).
+; max-cltv-expiry=10080
+
+; Accepter les paiements spontanés via keysend (paiements sans factures).
+; Défini sur true pour activer la réception de paiements keysend.
+; accept-keysend=false
+
+; Accepter les paiements spontanés via AMP (Atomic Multi-Path Payments).
+; Défini sur true pour activer la réception de paiements AMP.
+; accept-amp=false
+
+; ============================================================================
+; Configuration du Graphe Réseau & du Gossip
+; ============================================================================
+
+; Le nombre de pairs dont nous devrions recevoir les nouvelles mises à jour du graphe.
+; Des valeurs plus élevées offrent une meilleure connaissance du réseau mais utilisent plus de bande passante.
+; La valeur par défaut est 3. Recommandé : 3-5 pour les nœuds de routage, 1-2 pour les nœuds portefeuille uniquement.
+; numgraphsyncpeers=3
+
+; L'intervalle de轮询 entre les tentatives de synchronisation du graphe historique.
+; Format : durée avec unité (ex: 20m, 1h, 30s)
+; La valeur par défaut est 20 minutes.
+; historicalsyncinterval=20m
+
+; Si true, ne répondra pas avec des données historiques qui correspondent à la plage
+; spécifiée par le gossip_timestamp_filter d'un pair distant.
+; Défini sur true pour réduire l'utilisation de la bande passante.
+; ignore-historical-gossip-filters=false
+
+; ============================================================================
+; Configuration de la Watchtower
+; ============================================================================
+
+; Activer la watchtower intégrée pour aider à protéger vos canaux lorsque vous êtes hors ligne.
+; La watchtower surveille la blockchain pour détecter les violations de canaux.
+; watchtower=false
+
+; Répertoire pour l'état de la watchtower.
+; Si non spécifié, utilise un sous-répertoire dans walletdir.
+; watchtower.towerdir=
+
+; ============================================================================
+; Options de Protocole
+; ============================================================================
+
+; Autoriser le nœud à accepter et à prêter des canaux non confirmés (zero-conf).
+; Cela permet aux canaux d'être utilisables immédiatement après la diffusion de la transaction de financement,
+; mais comporte des risques en matière de confiance.
+; protocol.option-zeroconf=true
+
+; Autoriser le nœud à accepter et à fournir des alias SCID pour les canaux privés.
+; Utile pour la confidentialité et les canaux zero-conf.
+; protocol.option-scid-alias=true
+
+; ============================================================================
+; Performance & Réglage
+; ============================================================================
+
+; Temps en millisecondes entre chaque diffusion d'annonces sur le réseau.
+; Des valeurs plus basses propagent le gossip plus rapidement mais utilisent plus de bande passante.
+; La valeur par défaut est 9 000 (9 secondes).
+; trickledelay=9000
+
+; L'intervalle de轮询 entre les tentatives de détection si un canal actif est
+; devenu inactif parce que son pair s'est déconnecté.
+; Format : chaîne de durée (ex: 1m, 30s).
+; La valeur par défaut est 1m.
+; chan-status-sample-interval=1m
+
+; ============================================================================
+; Factures (Invoices)
+; ============================================================================
+
+; Le nombre de blocs pendant lesquels la facture restera dans l'état accepté
+; avant d'être annulée.
+; La valeur par défaut est 0.
+; hodl.expiry-delta=0
+```
+
+</details>
+
+## Exécuter
+
+Sur macOS/Linux :
+
+```bash
+./twallet
+```
+
+Sur Windows :
+
+```powershell
+twallet.exe
+```
+
+Si votre système d'exploitation signale le binaire, autorisez-le explicitement.
+
+---
+
+## Gérer avec Lokihub
+
+Bien que **tWallet** fournisse le nœud FLND central, la plupart des utilisateurs préfèrent une interface dédiée pour gérer les opérations Lightning. **Lokihub** est l'application compagnon recommandée à cet effet.
+
+### Connexion Rapide
+Pour connecter Lokihub à votre nœud tWallet en cours d'exécution :
+1. **Ouvrez Lokihub** sur le même ordinateur.
+2. Choisissez **"Connexion Automatisée"** (ou sélectionnez **"Nœud Local"**).
+3. Lokihub récupérera automatiquement les informations d'identification nécessaires dans votre répertoire de données tWallet.
+
+### Configuration Manuelle
+Si vous vous connectez depuis une autre machine ou si la connexion automatisée échoue, vous aurez besoin des informations d'identification de votre nœud :
+- Appuyez sur <kbd>CTRL</kbd> + <kbd>N</kbd> à l'intérieur de tWallet.
+- Cela ouvre une fenêtre affichant votre **Adresse gRPC**, votre **Macaroon Hex** et votre **Certificat TLS**.
+- Copiez-les dans l'assistant de configuration de Lokihub.
+
+[Voir le Guide de Configuration Lokihub →](/lokihub/setup#automated-connection)
+
+---
+
+### Emplacements des Données
+Par défaut, **tWallet** stocke sa configuration, ses journaux et toutes les données sous-jacentes du nœud **FLND** (y compris les bases de données de canaux et les fichiers de portefeuille) dans le répertoire de données d'application de votre système d'exploitation.
+
+| OS | Chemin par Défaut |
+| :--- | :--- |
+| **Linux** | `~/.flnd/` |
+| **macOS** | `~/Library/Application Support/Flnd/` |
+| **Windows** | `%APPDATA%\Flnd\` |
+
+Le répertoire `.flnd/` est la maison unifiée de votre portefeuille sur la chaîne et de l'état de votre nœud Lightning. **Sauvegardez toujours l'intégralité du répertoire `.flnd/` avant d'effectuer des modifications système ou des migrations.**
+
+### CRITIQUE : Sauvegardes Lightning
+Contrairement aux portefeuilles traditionnels, **une phrase de graine de 24 mots NE RÉCUPÈRE PAS les fonds de vos canaux Lightning.** La graine ne récupère que les fonds de votre portefeuille sur la chaîne (on-chain).
+
+Pour protéger la liquidité de vos canaux, vous devez comprendre ce qui suit :
+
+1. **Sauvegardes de Canaux Statiques (SCB)** : Votre nœud génère un fichier `channel.backup` (situé dans `.flnd/data/chain/flokicoin/mainnet/`). Ce fichier est requis pour récupérer les fonds des canaux ouverts en cas de défaillance matérielle.
+2. **Graine + SCB** : Pour restaurer complètement un nœud, vous avez besoin à la fois de votre **graine de 24 mots** et de votre fichier **`channel.backup`** le plus récent.
+3. **Le Risque channel.db** : **NE TENTEZ JAMAIS** de restaurer une ancienne copie de votre fichier `channel.db`. Si vous diffusez un état de canal obsolète sur le réseau, vos pairs peuvent déclencher une "transaction de pénalité", ce qui entraîne la **perte totale de vos fonds** dans ce canal.
+
+:::danger[RISQUE DE PERTE DE DONNÉES]
+Assurez-vous toujours d'avoir une sauvegarde automatisée ou fréquente de votre fichier `channel.backup`. Sans lui, les fonds verrouillés dans les canaux Lightning ne peuvent pas être récupérés si vos données locales sont perdues.
+:::
+
+### Emplacement de Données Personnalisé
+Si vous souhaitez stocker votre portefeuille sur un lecteur externe ou une partition spécifique, utilisez le drapeau `walletdir` ou l'option de configuration :
+
+```bash
+./twallet --walletdir /chemin/vers/dossier/personnalisé
+```
+
+---
+
+## Utilisation Avancée
+
+### Exécution de Plusieurs Instances
+Vous pouvez exécuter plusieurs portefeuilles indépendants sur la même machine en spécifiant des répertoires de données et des ports uniques.
+
+1. **Créez un second répertoire** : `mkdir ~/twallet-alt`
+2. **Lancez avec des ports personnalisés** :
+   ```bash
+   ./twallet --walletdir ~/twallet-alt --rpclisten 127.0.0.1:11005 --restlisten 127.0.0.1:6060
+   ```
+3. **Identité Unique** : Assurez-vous que chaque instance possède un `alias` différent dans son fichier `twallet.conf` respectif.
+
+---
+
+## Désinstallation
+
+Pour supprimer proprement tWallet de votre système :
+
+1. **Supprimer le binaire** : Supprimez le fichier `twallet` (ou `twallet.exe`).
+2. **Purger les données** : Supprimez le répertoire de données par défaut (voir [Emplacements des Données](#emplacements-des-données) ci-dessus).
+3. **Nettoyer les journaux** : Si vous avez configuré des chemins de journalisation personnalisés, assurez-vous que ces fichiers sont également supprimés.
+
+:::warning[IRRÉVERSIBLE]
+La désinstallation et la suppression du répertoire de données supprimeront définitivement votre base de données locale cryptée. Assurez-vous d'avoir votre **phrase de graine de 24 mots** avant de faire cela.
+:::
+
+---
+
+## FAQ & Dépannage
+
+### Pourquoi la synchronisation initiale prend-elle si longtemps ?
+tWallet v1 utilise le **protocole Neutrino**. Lors de la première exécution, il doit télécharger des "Filtres de Blocs" pour rechercher vos transactions. C'est un processus unique. S'il semble bloqué :
+- Assurez-vous que votre connexion Internet est stable.
+- Vérifiez `debuglevel=info` dans vos journaux pour voir s'il traite toujours les filtres.
+
+### "Permission Denied" sur Linux/macOS
+Si vous ne pouvez pas exécuter le binaire, vous devrez peut-être accorder les permissions d'exécution :
+```bash
+chmod +x twallet
+```
+
+### Puis-je utiliser ma graine tWallet v0 ?
+**Non.** v1 utilise le format `aezeed` (compatible avec LND), tandis que v0 utilise le format `BIP39`. Pour utiliser vos fonds v0, vous devez soit :
+1. Continuer à utiliser [**tWallet v0**](/wallets/twallet/v0).
+2. Envoyer vos fonds de v0 vers une nouvelle adresse v1.
+
+---
+
+<div className="wallet-releases-card">
+  <div className="wallet-releases-content">
+    <h3>Historique Complet des Releases</h3>
+    <p>Accédez aux notes techniques détaillées, aux sommes de contrôle cryptographiques et aux actifs d'installation multiplateformes pour toutes les versions historiques de tWallet v1.</p>
+  </div>
+  <div className="wallet-releases-action">
+    <Link className="wallet-action-button" to="/wallets/twallet/v1/releases"><span><History size={18} /></span><span>Voir l'Archive</span></Link>
+  </div>
+</div>
+
+## Sécurité
+- Sauvegardez votre phrase de graine (24 mots recommandés) et testez la récupération.
+- Définissez une phrase de passe de dépense et verrouillez votre portefeuille lorsqu'il est inactif.
+- Gardez tWallet à jour : https://github.com/flokiorg/tWallet/releases

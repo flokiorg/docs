@@ -1,0 +1,62 @@
+---
+title: 0.25.10-beta
+description: "یادداشت‌های انتشار برای فلوکی‌کوین کور (Flokicoin Core) نسخه 0.25.10-beta شامل تغییر نام دیمون lokid، به‌روزرسانی نقاط بازبینی (checkpoints)، صحت RPC و پایداری همگام‌سازی."
+sidebar_position: 0
+---
+
+<div className="release-header-meta release-header-left">
+  <a className="github-link release-github no-external-icon" href="https://github.com/flokiorg/go-flokicoin/releases/tag/v0.25.10-beta" target="_blank" rel="noreferrer" title="مشاهده v0.25.10-beta در گیت‌هاب">
+    <span className="release-header-label">GitHub</span>
+  </a>
+</div>
+
+لطفاً مشکلات را با استفاده از سیستم گزارش در گیت‌هاب اعلام کنید:
+
+https://github.com/flokiorg/go-flokicoin/issues
+
+این نسخه صحت RPC را افزایش داده، الگوریتم‌های همگام‌سازی را بهبود می‌بخشد، نقاط بازبینی (checkpoints) را به‌روزرسانی کرده و فایل‌های اجرایی دیمون و CLI را تغییر نام می‌دهد. برای هماهنگی با شبکه و استفاده از نام‌های جدید `lokid` و `lokid-cli` ارتقا دهید.
+
+## یادداشت‌های ارتقا
+
+- دیمون و CLI به `lokid` و `lokid-cli` تغییر نام یافتند (قبلاً `flokicoind` و `flokicoind-cli` بودند). فایل‌های سرویس، اسکریپت‌ها و نقطه ورود کانتینرها را مطابق با آن به‌روزرسانی کنید.
+
+## نکات برجسته
+
+- **اجماع و نقاط بازبینی (Checkpoints)**
+  - به‌روزرسانی نقاط بازبینی شبکه اصلی (mainnet) تا ارتفاع ۲۰۹,۷۷۱ برای افزایش سرعت همگام‌سازی اولیه.
+- **شبکه و همگام‌سازی**
+  - بهبود ردیابی گروه‌های همتای خروجی (outbound) و اطمینان از پاسخگویی همتاها به پیام `getblocks` برای کاهش توقف در نزدیکی انتهای زنجیره.
+  - اصلاح زمان‌بندی دانلود در زمانی که نود به‌روز است، جهت جلوگیری از دریافت داده‌های تکراری.
+  - بهینه‌سازی سریال‌سازی هدر بلوک و پیام‌ها برای پایداری بیشتر در مسیرهای ورودی/خروجی (I/O).
+- **RPC**
+  - متد `getblockchaininfo` اکنون پیشرفت تایید را از هدرهای بهترین همتا دریافت می‌کند؛ `getblock` جزئیات غنی‌تری از بلوک را نمایش می‌دهد.
+  - انواع پاسخ و متن راهنمای `getrawtransaction` اکنون با داده‌های ارسالی مطابقت دارد؛ `createrawtransaction` اعتبارسنجی مبالغ را با سخت‌گیری بیشتری انجام می‌دهد.
+  - اضافه شدن قابلیت تجمیع آمار بلوک که متد `getblockstats` را پشتیبانی می‌کند (درصدی‌های کارمزد/اندازه، تغییرات UTXO).
+  - متد `getinfo` نسخه صحیح پروتکل P2P را گزارش داده و فیلدهای مفقود را پر می‌کند.
+- **Mempool و اعتبارسنجی**
+  - تغییر محدوده‌های مقدار به محدوده کامل `int64` و محافظت در برابر سرریز (overflow) در بررسی‌های dust هنگام محاسبه سیاست‌های `MaxLoki` و کارمزد.
+  - خطاهای اعتبارسنجی اکنون مقادیر `MaxLoki` را با تبدیل صحیح نمایش می‌دهند تا از پیام‌های گمراه‌کننده جلوگیری شود.
+- **ابزارها و تست‌ها**
+  - اضافه شدن تولیدکننده مجموعه داده‌های بلوک قطعی (`make testexport`) و به‌روزرسانی تست فیکسچرها برای پایداری CI.
+  - تقویت پوشش تست برای سختی، آمار و حسابداری نودهای خروجی.
+
+## کامیت‌های مهم
+
+- به‌روزرسانی ابزارها/فیکسچرها و دستیار `testexport` ([`31eff16`](https://github.com/flokiorg/go-flokicoin/commit/31eff16)، [`0e5dcd3`](https://github.com/flokiorg/go-flokicoin/commit/0e5dcd3)).
+- اصلاحات RPC و بیلد برای گزارش نسخه پروتکل و بنرها ([`651a453`](https://github.com/flokiorg/go-flokicoin/commit/651a453)، [`2e92497`](https://github.com/flokiorg/go-flokicoin/commit/2e92497)).
+- امنیت سیاست‌ها برای محدوده `MaxLoki` و محافظت در برابر سرریز dust ([`9d9eef1`](https://github.com/flokiorg/go-flokicoin/commit/9d9eef1)، [`5b583c0`](https://github.com/flokiorg/go-flokicoin/commit/5b583c0)).
+- به‌روزرسانی صحت RPC و پکیج آمار بلوک ([`4483bfa`](https://github.com/flokiorg/go-flokicoin/commit/4483bfa)، [`ed3f11b`](https://github.com/flokiorg/go-flokicoin/commit/ed3f11b)، [`04bfa8b`](https://github.com/flokiorg/go-flokicoin/commit/04bfa8b)).
+- تغییر نام دیمون، نقاط بازبینی، اصلاحات همگام‌سازی/P2P/RPC که منجر به نسخه 0.25.10-beta شد ([`66a4658`](https://github.com/flokiorg/go-flokicoin/commit/66a4658)، [`037c55c`](https://github.com/flokiorg/go-flokicoin/commit/037c55c)، [`9f457dd`](https://github.com/flokiorg/go-flokicoin/commit/9f457dd)، [`3388ec1`](https://github.com/flokiorg/go-flokicoin/commit/3388ec1)، [`3d115e4`](https://github.com/flokiorg/go-flokicoin/commit/3d115e4)، [`5eadc7b`](https://github.com/flokiorg/go-flokicoin/commit/5eadc7b)، [`91a004e`](https://github.com/flokiorg/go-flokicoin/commit/91a004e)، [`fbbef28`](https://github.com/flokiorg/go-flokicoin/commit/fbbef28)).
+
+## دارایی‌ها (Assets)
+
+| سیستم‌عامل/معماری | لینک دانلود |
+| --- | --- |
+| macOS (Apple Silicon) | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.10-beta/lokid-darwin-arm64-v0.25.10-beta.tar.gz |
+| macOS (Intel) | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.10-beta/lokid-darwin-amd64-v0.25.10-beta.tar.gz |
+| Linux x86_64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.10-beta/lokid-linux-amd64-v0.25.10-beta.tar.gz |
+| Linux arm64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.10-beta/lokid-linux-arm64-v0.25.10-beta.tar.gz |
+| Windows x86_64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.10-beta/lokid-windows-amd64-v0.25.10-beta.zip |
+| Windows 32-bit | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.10-beta/lokid-windows-386-v0.25.10-beta.zip |
+
+نسخه‌های دیگر (ppc64, mips, *BSD, illumos/solaris) در [صفحه انتشار گیت‌هاب](https://github.com/flokiorg/go-flokicoin/releases/tag/v0.25.10-beta) در دسترس هستند.
