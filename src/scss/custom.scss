@@ -1209,12 +1209,30 @@ a[target="_blank"]::after {
 }
 
 /* Hide navbar menus on mobile early to prevent overlap on medium screens */
+/* Exceptions: locale dropdown + donate button stay visible on mobile */
 @media (max-width: 1200px) {
+  /* Hide everything on the left */
   .navbar__items--left .navbar__item:not(.navbar__search),
-  .navbar__items--left .navbar__link,
-  .navbar__items--right .navbar__item:not(.navbar__search),
-  .navbar__items--right .navbar__link {
+  .navbar__items--left .navbar__link {
     display: none !important;
+  }
+
+  /* Hide right items — but NOT the locale dropdown or the donate button */
+  .navbar__items--right .navbar__item:not(.navbar__search):not(.navbar__item--dropdown):not(:has(> .sponsorship-link)),
+  .navbar__items--right > a.navbar__link:not(.sponsorship-link) {
+    display: none !important;
+  }
+
+  /* Ensure locale dropdown wrapper is visible */
+  .navbar__items--right .navbar__item--dropdown {
+    display: flex !important;
+    align-items: center;
+  }
+
+  /* Ensure donate link is visible */
+  .navbar__items--right .navbar__item:has(> .sponsorship-link) {
+    display: flex !important;
+    align-items: center;
   }
 
   .navbar__toggle {
