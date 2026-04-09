@@ -98,6 +98,6 @@
     }
   },
   "resolutions": {
-    "webpack": "5.94.0"
+    "webpack": "5.98.0"
   }
 }
