@@ -7,6 +7,7 @@ sidebar_position: 1
 
 import Link from '@docusaurus/Link';
 import { History } from 'lucide-react';
+import Heading from '@theme/Heading';
 
 v1 is the recommended tWallet line. It uses the Neutrino light‑client protocol ([BIP157](https://bips.dev/157/)/[BIP158](https://bips.dev/158/)) to sync without relying on a third‑party Electrum server.
 
@@ -434,7 +435,7 @@ If you are connecting from a different machine or the automated connection fails
 
 ---
 
-### Data Locations
+<Heading as="h3" id="data-locations">Data Locations</Heading>
 By default, **tWallet** stores its configuration, logs, and all underlying **FLND** node data (including channel databases and wallet files) in the application data directory of your operating system.
 
 | OS | Default Path |
@@ -445,7 +446,7 @@ By default, **tWallet** stores its configuration, logs, and all underlying **FLN
 
 The `.flnd/` directory is the unified home for both your on-chain wallet and your Lightning node state. **Always back up the entire `.flnd/` directory before making system changes or migrations.**
 
-### CRITICAL: Lightning Backups
+<Heading as="h3" id="critical-lightning-backups">CRITICAL: Lightning Backups</Heading>
 Unlike traditional wallets, **a 24-word seed phrase DOES NOT recover your Lightning channel funds.** The seed only recovers funds in your on-chain (on-chain) wallet.
 
 To protect your channel liquidity, you must understand the following:

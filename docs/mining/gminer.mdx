@@ -17,9 +17,10 @@ This guide walks you through downloading, configuring, and running Gminer. By th
 - [Troubleshooting and recommendations](#troubleshooting-and-recommendations): Common issues and their solutions
 - [Support](#support)
 ---
+import Heading from '@theme/Heading';
 
 
-## Download and Installation
+<Heading as="h2" id="download-and-installation">Download and Installation</Heading>
 
 Download the latest miner release:
 
@@ -69,7 +70,7 @@ Download [gminer-windows-386-v0.1.1-beta.zip](https://github.com/flokiorg/grpc-m
 
 &nbsp;
 
-## Configuration
+<Heading as="h2" id="configuration">Configuration</Heading>
 Before running the miner, ensure a configuration file (`gminer.conf`) exists in the same directory as the `gminer` executable file. You can download a [sample config file](https://raw.githubusercontent.com/flokiorg/grpc-miner/refs/heads/main/sample-gminer.conf) from grpc-miner repository.
 
 You need to update the following parameters:
@@ -106,7 +107,7 @@ threads = 16
 import { Lightbulb } from 'lucide-react';
 
 
-## How to run
+<Heading as="h2" id="how-to-run">How to run</Heading>
 **On Mac and Linux:** Navigate to the directory containing the extracted binary and run:
 
 ```bash
@@ -125,7 +126,7 @@ gminer.exe
 
 &nbsp;
 
-## Monitoring
+<Heading as="h2" id="monitoring">Monitoring</Heading>
 You can monitor the mining performance and status directly in the terminal. The information includes:
 
 - Hashrate
@@ -134,7 +135,7 @@ You can monitor the mining performance and status directly in the terminal. The 
 
 &nbsp;
 
-## Troubleshooting and recommendations
+<Heading as="h2" id="troubleshooting-and-recommendations">Troubleshooting and recommendations</Heading>
 - Verify that your `gminer.conf` file is in the correct directory and that pool addresses, mining addresses, and ports match your intended configuration.
 - On macOS, authorize `gminer` in System Settings and mark the developer as trusted.
 - Verify the server address and port in `gminer.conf`.
@@ -143,5 +144,5 @@ You can monitor the mining performance and status directly in the terminal. The 
 
 &nbsp;
 
-## Support
+<Heading as="h2" id="support">Support</Heading>
 For further assistance, join the `#mining` channel in the [Flokicoin Discord Community](https://flokicoin.org/discord).
