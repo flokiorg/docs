@@ -70,9 +70,18 @@ const config: Config = {
   organizationName: 'homotechsual', // Usually your GitHub org/user name.
   projectName: 'docs', // Usually your repo name.
   onBrokenLinks: 'warn',
+  trailingSlash: true,
   i18n: {
     defaultLocale: 'en',
-    locales: ['en'],
+    locales: ['en', 'zh-CN', 'fa', 'ar', 'fr', 'es'],
+    localeConfigs: {
+      en:       { label: 'English',   direction: 'ltr' },
+      'zh-CN':  { label: '中文',       direction: 'ltr' },
+      fa:       { label: 'فارسی',     direction: 'rtl' },
+      ar:       { label: 'العربية',   direction: 'rtl' },
+      fr:       { label: 'Français',  direction: 'ltr' },
+      es:       { label: 'Español',   direction: 'ltr' },
+    },
   },
   presets: [
     [
@@ -145,6 +154,34 @@ const config: Config = {
         hideOnScroll: false,
         items: [
           {
+            type: 'dropdown',
+            label: 'Knowledge',
+            position: 'left',
+            className: 'knowledge-dropdown__toggle',
+            items: [
+              {
+                type: 'doc',
+                docId: 'wallets/index',
+                label: 'Wallets',
+              },
+              {
+                type: 'doc',
+                docId: 'lokichain/index',
+                label: 'Lokichain',
+              },
+              {
+                type: 'doc',
+                docId: 'economy/index',
+                label: 'Economy',
+              },
+              {
+                type: 'doc',
+                docId: 'mining/index',
+                label: 'Mining',
+              },
+            ],
+          },
+          {
             type: 'doc',
             docId: 'wallets/index',
             position: 'left',
@@ -185,6 +222,10 @@ const config: Config = {
             position: 'left',
             label: 'Web of Fun',
             className: 'navbar__link--wof',
+          },
+          {
+            type: 'localeDropdown',
+            position: 'right',
           },
           {
             to: 'https://flokicoin.org/donate',
@@ -257,6 +298,10 @@ const config: Config = {
                 to: '/lokichain',
               },
               {
+                label: 'Lokihub',
+                to: '/lokihub',
+              },
+              {
                 label: 'Economy',
                 to: '/economy',
               },
@@ -272,6 +317,10 @@ const config: Config = {
               {
                 label: 'Discord',
                 to: 'https://flokicoin.org/discord',
+              },
+              {
+                label: 'GitHub',
+                to: 'https://github.com/flokiorg',
               },
               {
                 label: 'Nostr',
@@ -327,6 +376,7 @@ const config: Config = {
         hashed: true,
         docsDir: ["docs"],
         highlightSearchTermsOnTargetPage: true,
+        language: ['en', 'zh', 'fr', 'es'],
       }),
     ],
   ],
