@@ -7,6 +7,7 @@ sidebar_position: 1
 
 import Link from '@docusaurus/Link';
 import { History } from 'lucide-react';
+import Heading from '@theme/Heading';
 
 v1 est la gamme tWallet recommandée. Elle utilise le protocole client léger Neutrino ([BIP157](https://bips.dev/157/)/[BIP158](https://bips.dev/158/)) pour se synchroniser sans dépendre d'un serveur Electrum tiers.
 
@@ -428,7 +429,7 @@ Si vous vous connectez depuis une autre machine ou si la connexion automatisée 
 
 ---
 
-### Emplacements des Données
+<Heading as="h3" id="data-locations">Emplacements des Données</Heading>
 Par défaut, **tWallet** stocke sa configuration, ses journaux et toutes les données sous-jacentes du nœud **FLND** (y compris les bases de données de canaux et les fichiers de portefeuille) dans le répertoire de données d'application de votre système d'exploitation.
 
 | OS | Chemin par Défaut |
@@ -439,7 +440,7 @@ Par défaut, **tWallet** stocke sa configuration, ses journaux et toutes les don
 
 Le répertoire `.flnd/` est la maison unifiée de votre portefeuille sur la chaîne et de l'état de votre nœud Lightning. **Sauvegardez toujours l'intégralité du répertoire `.flnd/` avant d'effectuer des modifications système ou des migrations.**
 
-### CRITIQUE : Sauvegardes Lightning
+<Heading as="h3" id="critical-lightning-backups">CRITIQUE : Sauvegardes Lightning</Heading>
 Contrairement aux portefeuilles traditionnels, **une phrase de graine de 24 mots NE RÉCUPÈRE PAS les fonds de vos canaux Lightning.** La graine ne récupère que les fonds de votre portefeuille sur la chaîne (on-chain).
 
 Pour protéger la liquidité de vos canaux, vous devez comprendre ce qui suit :
@@ -480,7 +481,7 @@ Vous pouvez exécuter plusieurs portefeuilles indépendants sur la même machine
 Pour supprimer proprement tWallet de votre système :
 
 1. **Supprimer le binaire** : Supprimez le fichier `twallet` (ou `twallet.exe`).
-2. **Purger les données** : Supprimez le répertoire de données par défaut (voir [Emplacements des Données](#emplacements-des-données) ci-dessus).
+2. **Purger les données** : Supprimez le répertoire de données par défaut (voir [Emplacements des Données](#data-locations) ci-dessus).
 3. **Nettoyer les journaux** : Si vous avez configuré des chemins de journalisation personnalisés, assurez-vous que ces fichiers sont également supprimés.
 
 :::warning[IRRÉVERSIBLE]
