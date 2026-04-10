@@ -1499,6 +1499,7 @@ html[data-theme='light'] .nostr-link {
     width: 24px;
     margin-right: 0.5rem;
     color: var(--ifm-navbar-link-color);
+    filter: invert(1);
   }
 
   &:hover {
