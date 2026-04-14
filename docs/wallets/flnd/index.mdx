@@ -69,7 +69,7 @@ neutrino.addpeer=[YOUR_PEER_ADDRESS]
 ```
 
 :::tip[Where do I find a peer?]
-To sync your node, you need to connect to at least one active Flokicoin node. You can find a list of reliable peers on the [Loki Explorer](https://lokichain.info/peers).
+To sync your node, you need to connect to at least one active Flokicoin node. If you don't have a peer address, you can ask for a reliable one in the **#mining** or **#dev** channels on the [Flokicoin Discord](https://flokicoin.org/discord).
 :::
 
 Once your config is saved, simply run:
@@ -193,14 +193,14 @@ neutrino.addpeer=[PEER_ADDRESS]
 ```
 
 :::info[How to find peers]
-Browse the list of active nodes on the [Loki Explorer](https://lokichain.info/peers) to find a peer to connect your Neutrino node.
+If you are looking for active nodes to connect your Neutrino node, join the [Flokicoin Discord](https://flokicoin.org/discord) and ask in the **#dev** or **#mining** channels for a reliable peer.
 :::
 
 ## Advanced: Lightning Network
 
 **flnd** is a full Lightning Network implementation. Once you have on-chain funds, you can open channels to start sending instant, near-free payments.
 
-1. **Find a peer**: Look for nodes on the [Loki Lightning Explorer](https://lokichain.info/lightning).
+1. **Find a peer**: Ask for a node's public key on the [Flokicoin Discord](https://flokicoin.org/discord).
 2. **Connect**: `flncli connect [pubkey]@[host]:[port]`
 3. **Open Channel**: `flncli openchannel [pubkey] [amount_in_sat]`
 
