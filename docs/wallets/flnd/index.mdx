@@ -2,6 +2,8 @@
 slug: /wallets/flnd
 title: flnd
 description: A powerful Flokicoin and Lightning Network daemon. Run your own node and manage your funds from any terminal.
+keywords: [flnd, lightning node, flokicoin daemon, lnd flokicoin, neutrino node]
+custom_edit_url: null
 ---
 
 import Link from '@docusaurus/Link';
@@ -52,18 +54,34 @@ If you are a developer, a node operator, or a power user who prefers automation 
 Operating **flnd** follows a standard lifecycle: **Start Daemon → Create/Unlock Wallet → Sync → Operate**.
 
 ### 2. Starting the Daemon
-Before you can interact with your wallet, the **flnd** daemon must be running. By default, it will wait for you to either create a new wallet or unlock an existing one.
+Before you can interact with your wallet, the **flnd** daemon must be running. While you can use command-line flags, it is highly recommended to use a configuration file (`flnd.conf`) for a cleaner and more reliable setup.
 
-```bash
-flnd --flokicoin.active --flokicoin.mainnet --flokicoin.node=neutrino
+**The Simple Approach (Recommended):**
+Create a file named `flnd.conf` in your data directory (see below) with these basic settings:
+
+```ini
+[Flokicoin]
+flokicoin.active=1
+flokicoin.node=neutrino
+
+[Neutrino]
+neutrino.addpeer=nodes.flokicoin.org
 ```
 
+Once your config is saved, simply run:
+```bash
+flnd
+```
 
 **What to look for in the logs:**
 ```text
 [INF] LTND: Waiting for wallet encryption password. 
 Use flncli create to create a wallet or flncli unlock to unlock an existing wallet.
 ```
+
+:::info[Looking for more options?]
+You can find a complete, annotated example with all available settings in the [Official sample-flnd.conf](https://raw.githubusercontent.com/flokiorg/flnd/main/sample-flnd.conf).
+:::
 
 ### 2. Creating Your Wallet
 Open a second terminal window and run the initialization command:
