@@ -110,9 +110,10 @@ To allow the daemon to start and unlock automatically (useful for servers), you 
 To be a healthy part of the network, your node needs to talk to others.
 
 ### Port Forwarding
-If you are running **flnd** behind a home router, you should forward these ports to your node's local IP:
-*   **9735 (TCP)**: The standard port for Lightning Network peer-to-peer communication.
-*   **10009 (TCP)**: The gRPC port used by `flncli` and external dashboards like Lokihub.
+If you are running **flnd** behind a home router, you should forward these ports to your node's local IP to allow external connectivity:
+*   **5521 (TCP)**: The standard port for Lightning Network peer-to-peer communication.
+*   **10005 (TCP)**: The gRPC port used by `flncli` and external dashboards like Lokihub.
+*   **5050 (TCP)**: The REST API port for web-based integrations.
 
 ### Data Directory
 By default, all data (logs, database, macaroons) is stored in:
