@@ -69,7 +69,7 @@ const config: Config = {
   baseUrl: '/',
   organizationName: 'homotechsual', // Usually your GitHub org/user name.
   projectName: 'docs', // Usually your repo name.
-  onBrokenLinks: 'warn',
+  onBrokenLinks: 'throw',
   trailingSlash: true,
   i18n: {
     defaultLocale: 'en',
@@ -108,6 +108,16 @@ const config: Config = {
           priority: 0.7,
           filename: 'sitemap.xml',
           ignorePatterns: ['/tags/**'],
+          createSitemapItems: async (params) => {
+            const {defaultCreateSitemapItems, ...rest} = params;
+            const items = await defaultCreateSitemapItems(rest);
+            return items.map((item) => {
+              if (item.url.includes('/wallets') || item.url.includes('/wof') || item.url.includes('/lokihub') || item.url.includes('/lokichain')) {
+                return {...item, priority: 1.0};
+              }
+              return item;
+            });
+          },
         },
         ...(googleAnalyticsId && {
           gtag: {

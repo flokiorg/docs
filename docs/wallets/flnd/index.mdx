@@ -1,0 +1,185 @@
+---
+slug: /wallets/flnd
+title: flnd
+description: A powerful Flokicoin and Lightning Network daemon. Run your own node and manage your funds from any terminal.
+---
+
+import Link from '@docusaurus/Link';
+import { Terminal, Cpu, Zap, Shield, ArrowRight, Download, Play, Unlock, Info } from 'lucide-react';
+
+**flnd** is the engine that powers the Flokicoin Lightning Network. It is a full-featured daemon that acts as both a Flokicoin wallet and a Lightning Network node.
+
+If you are a developer, a node operator, or a power user who prefers automation and a powerful command-line interface, **flnd** is your choice.
+
+<div className="wallet-benefits">
+  <div className="wallet-benefit">
+    <div className="wallet-benefit__icon"><Cpu size={22} /></div>
+    <div>
+      <strong>High Performance</strong>
+      <span>Written in Go, designed for stability and 24/7 operation.</span>
+    </div>
+  </div>
+  <div className="wallet-benefit">
+    <div className="wallet-benefit__icon"><Zap size={22} /></div>
+    <div>
+      <strong>Lightning Ready</strong>
+      <span>Supports instant payments and smart-contract channels natively.</span>
+    </div>
+  </div>
+  <div className="wallet-benefit">
+    <div className="wallet-benefit__icon"><Terminal size={22} /></div>
+    <div>
+      <strong>Fully Scriptable</strong>
+      <span>Every feature is accessible via the `flncli` tool or a robust gRPC/REST API.</span>
+    </div>
+  </div>
+</div>
+
+## Quick Installation
+
+**flnd** is distributed as a pair of binaries: `flnd` (the daemon) and `flncli` (the controller).
+
+1. **Download**: Go to the [flnd Releases](https://github.com/flokiorg/flnd/releases) page and grab the version for your system.
+2. **Extract**: Unpack the archives and move the binaries to your path (e.g., `/usr/local/bin` or `C:\Windows`).
+3. **Verify**:
+   ```bash
+   flnd --version
+   flncli --version
+   ```
+
+## The Onboarding Lifecycle
+
+Operating **flnd** follows a standard lifecycle: **Start Daemon → Create/Unlock Wallet → Sync → Operate**.
+
+### 2. Starting the Daemon
+Before you can interact with your wallet, the **flnd** daemon must be running. By default, it will wait for you to either create a new wallet or unlock an existing one.
+
+```bash
+flnd --flokicoin.active --flokicoin.mainnet --flokicoin.node=neutrino
+```
+
+
+**What to look for in the logs:**
+```text
+[INF] LTND: Waiting for wallet encryption password. 
+Use flncli create to create a wallet or flncli unlock to unlock an existing wallet.
+```
+
+### 2. Creating Your Wallet
+Open a second terminal window and run the initialization command:
+
+```bash
+flncli create
+```
+
+You will be guided through several critical security steps:
+
+1.  **Wallet Password**: Enter a password (min 8 characters). This password encrypts your local `wallet.db` file. You will need it every time you start the daemon.
+2.  **Cipher Seed**: You will be asked if you have an existing seed to import. For a new wallet, choose **No** (`n`).
+3.  **Seed Passphrase (Optional)**: You can add an extra "25th word" for additional security. If you don't want one, simply press **Enter**.
+4.  **The 24-Word Seed**: The terminal will display your unique 24-word recovery phrase.
+
+:::danger[Security Protocol]
+*   **Write it down**: Use physical paper.
+*   **Offline only**: Never take a screenshot, photo, or store it in a digital file.
+*   **Ultimate Backup**: This seed (and your optional passphrase) is the **only way** to recover your on-chain funds.
+:::
+
+### 3. Static Channel Backup (SCB)
+While the 24-word seed restores your Flokicoin balance, it **does not** automatically restore your Lightning channels. 
+*   **File**: `channel.backup`
+*   **Location**: Inside your data directory (e.g., `chain/flokicoin/mainnet/`).
+*   **Action**: Every time you open or close a channel, this file updates. You should back this file up to a separate device or cloud storage to ensure you can recover Lightning funds.
+
+### 4. Unlocking the Wallet
+Every time you restart the **flnd** daemon, you must provide your wallet password to decrypt the local keys:
+
+```bash
+flncli unlock
+```
+
+#### Pro Tip: Auto-Unlocking
+To allow the daemon to start and unlock automatically (useful for servers), you can use a password file:
+1. Create a file containing only your wallet password (e.g., `~/.flnd/pwd.txt`).
+2. Start the daemon with the flag: `--wallet-unlock-password-file=/path/to/pwd.txt`.
+
+## Network & Connectivity
+
+To be a healthy part of the network, your node needs to talk to others.
+
+### Port Forwarding
+If you are running **flnd** behind a home router, you should forward these ports to your node's local IP:
+*   **9735 (TCP)**: The standard port for Lightning Network peer-to-peer communication.
+*   **10009 (TCP)**: The gRPC port used by `flncli` and external dashboards like Lokihub.
+
+### Data Directory
+By default, all data (logs, database, macaroons) is stored in:
+- **Linux**: `~/.flnd/`
+- **macOS**: `~/Library/Application Support/Flnd/`
+- **Windows**: `%LOCALAPPDATA%\Flnd\`
+
+You can move this to an external drive using the `--lnddir=/path/to/data` flag.
+
+## Basic Operations
+Once unlocked, the daemon will begin syncing with the Flokicoin network. Use these commands to manage your funds:
+
+**Check Sync Status:**
+```bash
+flncli getinfo
+```
+
+**Generate a SegWit Address:**
+```bash
+flncli newaddress p2wkh
+```
+
+**Check Balances:**
+```bash
+flncli walletbalance   # On-chain Flokicoin
+flncli channelbalance  # Lightning Network liquidity
+```
+
+**Send Flokicoin:**
+```bash
+flncli sendcoins --addr=[ADDRESS] --amt=[AMOUNT_IN_SAT]
+```
+
+## External Access (Macaroons)
+**flnd** uses "Macaroons" for authentication. These are credential files that grant specific permissions to external apps.
+*   `admin.macaroon`: Full access (keep this secret).
+*   `readonly.macaroon`: Only allows viewing balances and info.
+*   `invoice.macaroon`: Only allows creating and viewing invoices.
+
+When connecting apps like **Zeus** or **Lokihub**, you will often need to provide the hex-encoded string of your `admin.macaroon`.
+
+## Configuration
+
+Instead of long command-line flags, you can use a `flnd.conf` file. It's usually located at:
+- **Linux**: `~/.flnd/flnd.conf`
+- **macOS**: `~/Library/Application Support/Flnd/flnd.conf`
+- **Windows**: `%LOCALAPPDATA%\Flnd\flnd.conf`
+
+**Example `flnd.conf`:**
+```ini
+[Flokicoin]
+flokicoin.active=1
+flokicoin.mainnet=1
+flokicoin.node=neutrino
+
+[Neutrino]
+neutrino.addpeer=nodes.flokicoin.org
+```
+
+## Advanced: Lightning Network
+
+**flnd** is a full Lightning Network implementation. Once you have on-chain funds, you can open channels to start sending instant, near-free payments.
+
+1. **Find a peer**: Look for nodes on the [Loki Lightning Explorer](https://lokichain.info/lightning).
+2. **Connect**: `flncli connect [pubkey]@[host]:[port]`
+3. **Open Channel**: `flncli openchannel [pubkey] [amount_in_sat]`
+
+## Next Steps
+
+- **Node Operators**: Learn how to [connect Lokihub](/lokihub) to manage your node from a web dashboard.
+- **Developers**: **flnd** is fully compatible with the LND API. Refer to the [gRPC Documentation](https://api.lightning.community) or the [REST API Reference](https://lightning.engineering/api-docs/api/lnd/rest-endpoints/) for integration guides.
+- **Community**: Join the [#builders](https://flokicoin.org/discord) channel on Discord.
