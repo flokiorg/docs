@@ -54,25 +54,9 @@ If you are a developer, a node operator, or a power user who prefers automation 
 Operating **flnd** follows a standard lifecycle: **Start Daemon → Create/Unlock Wallet → Sync → Operate**.
 
 ### 2. Starting the Daemon
-Before you can interact with your wallet, the **flnd** daemon must be running. While you can use command-line flags, it is highly recommended to use a configuration file (`flnd.conf`) for a cleaner and more reliable setup.
+Before you can interact with your wallet, the **flnd** daemon must be running. By default, it will use DNS seeds to find peers and connect to the network using Neutrino.
 
-**The Simple Approach (Recommended):**
-Create a file named `flnd.conf` in your data directory (see below) with these basic settings:
-
-```ini
-[Flokicoin]
-flokicoin.active=1
-flokicoin.node=neutrino
-
-[Neutrino]
-neutrino.addpeer=[YOUR_PEER_ADDRESS]
-```
-
-:::tip[Where do I find a peer?]
-To sync your node, you need to connect to at least one active Flokicoin node. If you don't have a peer address, you can ask for a reliable one in the **#mining** or **#dev** channels on the [Flokicoin Discord](https://flokicoin.org/discord).
-:::
-
-Once your config is saved, simply run:
+Simply run:
 ```bash
 flnd
 ```
@@ -82,10 +66,6 @@ flnd
 [INF] LTND: Waiting for wallet encryption password. 
 Use flncli create to create a wallet or flncli unlock to unlock an existing wallet.
 ```
-
-:::info[Looking for more options?]
-You can find a complete, annotated example with all available settings in the [Official sample-flnd.conf](https://raw.githubusercontent.com/flokiorg/flnd/main/sample-flnd.conf).
-:::
 
 ### 2. Creating Your Wallet
 Open a second terminal window and run the initialization command:
@@ -163,7 +143,7 @@ flncli channelbalance  # Lightning Network liquidity
 
 **Send Flokicoin:**
 ```bash
-flncli sendcoins --addr=[ADDRESS] --amt=[AMOUNT_IN_SAT]
+flncli sendcoins --addr=[ADDRESS] --amt=[AMOUNT_IN_LOKI]
 ```
 
 ## External Access (Macaroons)
@@ -174,35 +154,13 @@ flncli sendcoins --addr=[ADDRESS] --amt=[AMOUNT_IN_SAT]
 
 When connecting apps like **Zeus** or **Lokihub**, you will often need to provide the hex-encoded string of your `admin.macaroon`.
 
-## Configuration
-
-Instead of long command-line flags, you can use a `flnd.conf` file. It's usually located at:
-- **Linux**: `~/.flnd/flnd.conf`
-- **macOS**: `~/Library/Application Support/Flnd/flnd.conf`
-- **Windows**: `%LOCALAPPDATA%\Flnd\flnd.conf`
-
-**Example `flnd.conf`:**
-```ini
-[Flokicoin]
-flokicoin.active=1
-flokicoin.mainnet=1
-flokicoin.node=neutrino
-
-[Neutrino]
-neutrino.addpeer=[PEER_ADDRESS]
-```
-
-:::info[How to find peers]
-If you are looking for active nodes to connect your Neutrino node, join the [Flokicoin Discord](https://flokicoin.org/discord) and ask in the **#dev** or **#mining** channels for a reliable peer.
-:::
-
 ## Advanced: Lightning Network
 
 **flnd** is a full Lightning Network implementation. Once you have on-chain funds, you can open channels to start sending instant, near-free payments.
 
 1. **Find a peer**: Ask for a node's public key on the [Flokicoin Discord](https://flokicoin.org/discord).
 2. **Connect**: `flncli connect [pubkey]@[host]:[port]`
-3. **Open Channel**: `flncli openchannel [pubkey] [amount_in_sat]`
+3. **Open Channel**: `flncli openchannel [pubkey] [amount_in_Loki]`
 
 ## Next Steps
 
