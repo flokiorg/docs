@@ -1,0 +1,42 @@
+---
+title: 0.1.20-beta
+description: Release notes for flnd v0.1.20-beta covering MuSig2 aggregated nonce signing, TestNet4 alignment, and dependency synchronization.
+sidebar_position: 1
+---
+
+<div className="release-header-meta release-header-left">
+  <a className="github-link release-github no-external-icon" href="https://github.com/flokiorg/flnd/releases/tag/v0.1.20-beta" target="_blank" rel="noreferrer" title="View v0.1.20-beta on GitHub">
+    <span className="release-header-label">GitHub</span>
+  </a>
+</div>
+
+Please report bugs using the issue tracker at GitHub:
+
+https://github.com/flokiorg/flnd/issues
+
+This release synchronizes **flnd** with the latest core improvements and introduces support for advanced MuSig2 signing flows.
+
+## Highlights
+
+### Core Synchronization
+- **go-flokicoin Sync**: Updated to align with `v0.25.13-alpha`, incorporating the latest consensus rules and MuSig2 enhancements.
+- **TestNet4 Alignment**: Updated default peer-to-peer and RPC ports to stay in sync with the latest TestNet4 configuration (**P2P: 65212, RPC: 65213**).
+
+### Features & Improvements
+- **Aggregated Nonce Signing**: Introduced support for the aggregated nonce signing flow in MuSig2, enabling more flexible signing procedures for multi-party applications.
+- **Stability Fixes**: Includes multiple stability fixes and performance optimizations in `htlcswitch`, `routing`, and `zpay32`.
+
+### Runtime Update
+- **Go Version**: Now requires **Go 1.26.1** or newer for building from source.
+
+## Assets
+
+| OS/Arch | Asset |
+| --- | --- |
+| macOS (Apple Silicon) | https://github.com/flokiorg/flnd/releases/download/v0.1.20-beta/flnd-darwin-arm64-v0.1.20-beta.tar.gz |
+| macOS (Intel) | https://github.com/flokiorg/flnd/releases/download/v0.1.20-beta/flnd-darwin-amd64-v0.1.20-beta.tar.gz |
+| Linux x86_64 | https://github.com/flokiorg/flnd/releases/download/v0.1.20-beta/flnd-linux-amd64-v0.1.20-beta.tar.gz |
+| Linux arm64 | https://github.com/flokiorg/flnd/releases/download/v0.1.20-beta/flnd-linux-arm64-v0.1.20-beta.tar.gz |
+| Windows x86_64 | https://github.com/flokiorg/flnd/releases/download/v0.1.20-beta/flnd-windows-amd64-v0.1.20-beta.zip |
+
+Additional builds (ppc64, mips, and *BSD) are available on the [GitHub release page](https://github.com/flokiorg/flnd/releases/tag/v0.1.20-beta).
