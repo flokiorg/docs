@@ -10,60 +10,68 @@ import Link from '@docusaurus/Link';
 import { Smartphone, Zap, Globe, MessageSquare, Award, Share2, MoreVertical, PlusSquare, Monitor } from 'lucide-react';
 import tapHomeImage from './tapwallet_home.png';
 
-<div className="tap-wallet-hero">
-  <div className="row">
-    <div className="col col--7">
-      **Tap Wallet** is the most accessible entry point into the Flokicoin ecosystem. Designed as a lightweight Progressive Web App (PWA), it allows you to manage your FLC directly within your favorite social platforms or from your mobile device's home screen with zero installation friction.
+<div className="tap-wallet-hero-vertical">
+  <div className="tap-hero-content">
+    **Tap Wallet** is the most accessible entry point into the Flokicoin ecosystem. Designed as a lightweight Progressive Web App (PWA), it allows you to manage your FLC directly within your favorite social platforms or from your mobile device's home screen with zero installation friction.
 
-      <div className="wallet-benefits" style={{marginTop: '2rem'}}>
-        <div className="wallet-benefit">
-          <div className="wallet-benefit__icon"><Globe size={22} /></div>
-          <div>
-            <strong>Browser Native</strong>
-            <span>No app store downloads. Runs instantly at [taploki.com](https://taploki.com).</span>
-          </div>
+    <div className="wallet-benefits" style={{marginTop: '2rem'}}>
+      <div className="wallet-benefit">
+        <div className="wallet-benefit__icon"><Globe size={22} /></div>
+        <div>
+          <strong>Browser Native</strong>
+          <span>No app store downloads. Runs instantly at [taploki.com](https://taploki.com).</span>
         </div>
-        <div className="wallet-benefit">
-          <div className="wallet-benefit__icon"><Zap size={22} /></div>
-          <div>
-            <strong>Social Integration</strong>
-            <span>Native Mini App support for Discord and Telegram.</span>
-          </div>
+      </div>
+      <div className="wallet-benefit">
+        <div className="wallet-benefit__icon"><Zap size={22} /></div>
+        <div>
+          <strong>Social Integration</strong>
+          <span>Native Mini App support for Discord and Telegram.</span>
         </div>
-        <div className="wallet-benefit">
-          <div className="wallet-benefit__icon"><Award size={22} /></div>
-          <div>
-            <strong>Tap Days</strong>
-            <span>Participate in community events to earn exclusive roles and rewards.</span>
-          </div>
+      </div>
+      <div className="wallet-benefit">
+        <div className="wallet-benefit__icon"><Award size={22} /></div>
+        <div>
+          <strong>Tap Days</strong>
+          <span>Participate in community events to earn exclusive roles and rewards.</span>
         </div>
       </div>
     </div>
-    <div className="col col--5 text--center">
-      <div className="tap-screenshot-container">
-        <img src={tapHomeImage} alt="Tap Wallet Interface" className="tap-screenshot" />
-      </div>
+  </div>
+
+  <div className="tap-screenshot-centered">
+    <div className="tap-screenshot-container">
+      <img src={tapHomeImage} alt="Tap Wallet Interface" className="tap-screenshot" />
     </div>
   </div>
 </div>
 
 <style>{`
-  .tap-wallet-hero {
+  .tap-wallet-hero-vertical {
     margin-bottom: 3rem;
+  }
+  .tap-hero-content {
+    margin-bottom: 2.5rem;
+  }
+  .tap-screenshot-centered {
+    text-align: center;
+    background: radial-gradient(circle at center, rgba(208, 151, 15, 0.1) 0%, transparent 70%);
+    padding: 2rem 0;
+    border-radius: 40px;
   }
   .tap-screenshot-container {
     position: relative;
     display: inline-block;
   }
   .tap-screenshot {
-    max-width: 280px;
-    border-radius: 30px;
-    border: 8px solid #1a1a1a;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-    transition: transform 0.3s ease;
+    max-width: 320px;
+    border-radius: 40px;
+    border: 10px solid #1a1a1a;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
   .tap-screenshot:hover {
-    transform: translateY(-5px);
+    transform: scale(1.05) translateY(-10px);
   }
 `}</style>
 
