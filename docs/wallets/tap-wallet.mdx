@@ -12,7 +12,7 @@ import { Smartphone, Zap, Globe, MessageSquare, Award, Share2, MoreVertical, Plu
 import tapHomeImage from './tapwallet_home.png';
 import Heading from '@theme/Heading';
 
-<div className="hero-modern__wrapper" style={{margin: '0 -2rem 3rem', padding: '3rem 2rem'}}>
+<div className="hero-modern__wrapper tap-wallet-hero-wrapper">
   <div className="container hero-modern">
     <div className="hero-modern__content">
       <Heading as="h1" className="hero-modern__title">Tap Wallet</Heading>
@@ -22,7 +22,7 @@ import Heading from '@theme/Heading';
         <Link className="hero-button hero-button--primary" href="https://taploki.com">
           <span><Globe size={20} /></span><span>Launch Web Wallet</span>
         </Link>
-        <div style={{display: 'flex', gap: '1rem', flexWrap: 'wrap'}}>
+        <div className="tap-social-actions">
           <Link className="hero-button" href="https://flokicoin.org/discord">
             <span><MessageSquare size={20} /></span><span>Discord App Launcher</span>
           </Link>
@@ -32,7 +32,7 @@ import Heading from '@theme/Heading';
         </div>
       </div>
 
-      <div className="wallet-benefits" style={{marginTop: '3rem', gridTemplateColumns: '1fr'}}>
+      <div className="wallet-benefits tap-hero-benefits">
         <div className="wallet-benefit" style={{background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.1)'}}>
           <div className="wallet-benefit__icon"><Layers size={22} /></div>
           <div>
@@ -43,7 +43,7 @@ import Heading from '@theme/Heading';
       </div>
     </div>
     <div className="hero-modern__image">
-      <img src={tapHomeImage} alt="Tap Wallet Interface" style={{maxWidth: '320px'}} />
+      <img src={tapHomeImage} alt="Tap Wallet Interface" className="tap-screenshot-img" />
     </div>
   </div>
 </div>
@@ -72,10 +72,46 @@ import Heading from '@theme/Heading';
 </div>
 
 <style>{`
-  .hero-modern__image img {
+  .tap-wallet-hero-wrapper {
+    margin: 0 -2rem 3rem;
+    padding: 3rem 2rem;
+  }
+  .tap-social-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .tap-hero-benefits {
+    margin-top: 3rem;
+    grid-template-columns: 1fr;
+  }
+  .tap-screenshot-img {
+    max-width: 320px;
     border: 10px solid #1a1a1a;
     border-radius: 40px;
     box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+  }
+
+  @media (max-width: 996px) {
+    .tap-wallet-hero-wrapper {
+      margin: 0 -1rem 2rem;
+      padding: 2rem 1rem;
+    }
+    .hero-modern {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      gap: 2rem;
+    }
+    .tap-social-actions {
+      justify-content: center;
+    }
+    .tap-screenshot-img {
+      max-width: 260px;
+    }
+    .tap-hero-benefits {
+      margin-top: 2rem;
+    }
   }
 `}</style>
 
