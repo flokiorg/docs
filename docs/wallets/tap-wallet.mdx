@@ -7,82 +7,63 @@ custom_edit_url: null
 ---
 
 import Link from '@docusaurus/Link';
-import { Smartphone, Zap, Globe, MessageSquare, Award, Share2, MoreVertical, PlusSquare, Monitor } from 'lucide-react';
+import { Smartphone, Zap, Globe, MessageSquare, Award, Share2, MoreVertical, PlusSquare, Monitor, Wallet } from 'lucide-react';
 import tapHomeImage from './tapwallet_home.png';
+import Heading from '@theme/Heading';
 
-<div className="tap-wallet-hero">
-  <div className="row row--no-gutters" style={{alignItems: 'center', gap: '3rem'}}>
-    <div className="col col--7">
-      **Tap Wallet** is the most accessible entry point into the Flokicoin ecosystem. Designed as a lightweight Progressive Web App (PWA), it allows you to manage your FLC directly within your favorite social platforms or from your mobile device's home screen with zero installation friction.
+<div className="hero-modern__wrapper" style={{margin: '0 -2rem 3rem', padding: '3rem 2rem'}}>
+  <div className="container hero-modern">
+    <div className="hero-modern__content">
+      <Heading as="h1" className="hero-modern__title">Tap Wallet</Heading>
+      <p className="hero-modern__subtitle">The easiest way to start with Flokicoin. One tap, everywhere.</p>
+      
+      <div className="hero-modern__actions">
+        <Link className="hero-button hero-button--primary" href="https://taploki.com">
+          <span><Globe size={20} /></span><span>Open Web Wallet</span>
+        </Link>
+        <Link className="hero-button" href="https://flokicoin.org/discord">
+          <span><MessageSquare size={20} /></span><span>Discord Mini App</span>
+        </Link>
+      </div>
 
-      <div className="tap-benefits-list" style={{marginTop: '2rem'}}>
-        <div className="wallet-benefit">
-          <div className="wallet-benefit__icon"><Globe size={22} /></div>
-          <div>
-            <strong>Browser Native</strong>
-            <span>No app store downloads. Runs instantly at [taploki.com](https://taploki.com).</span>
-          </div>
-        </div>
-        <div className="wallet-benefit">
-          <div className="wallet-benefit__icon"><Zap size={22} /></div>
-          <div>
-            <strong>Social Integration</strong>
-            <span>Native Mini App support for Discord and Telegram.</span>
-          </div>
-        </div>
-        <div className="wallet-benefit">
+      <div className="wallet-benefits" style={{marginTop: '3rem', gridTemplateColumns: '1fr'}}>
+        <div className="wallet-benefit" style={{background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.1)'}}>
           <div className="wallet-benefit__icon"><Award size={22} /></div>
           <div>
-            <strong>Tap Days</strong>
-            <span>Participate in community events to earn exclusive roles and rewards.</span>
+            <strong>Tap Days Rewards</strong>
+            <span>Participate in community events to earn exclusive roles and badges.</span>
           </div>
         </div>
       </div>
     </div>
-    <div className="col col--5 text--center">
-      <div className="tap-screenshot-container">
-        <img src={tapHomeImage} alt="Tap Wallet Interface" className="tap-screenshot" />
-      </div>
+    <div className="hero-modern__image">
+      <img src={tapHomeImage} alt="Tap Wallet Interface" style={{maxWidth: '320px'}} />
+    </div>
+  </div>
+</div>
+
+**Tap Wallet** is a lightweight Progressive Web App (PWA) that allows you to manage your FLC directly within your favorite social platforms or from your mobile device's home screen with zero installation friction.
+
+<div className="row margin-top--lg">
+  <div className="col col--6">
+    <div className="card shadow--md padding--lg" style={{height: '100%'}}>
+      <Heading as="h3"><Globe size={20} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Browser Native</Heading>
+      <p>No app store downloads required. Access your wallet instantly at <strong>taploki.com</strong> from any modern browser.</p>
+    </div>
+  </div>
+  <div className="col col--6">
+    <div className="card shadow--md padding--lg" style={{height: '100%'}}>
+      <Heading as="h3"><Zap size={20} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Social Integration</Heading>
+      <p>Seamlessly integrated as a Mini App within Discord and Telegram. Link your account once and sync across all platforms.</p>
     </div>
   </div>
 </div>
 
 <style>{`
-  .tap-wallet-hero {
-    margin-bottom: 4rem;
-    padding: 2rem;
-    background: radial-gradient(circle at 80% 50%, rgba(208, 151, 15, 0.08) 0%, transparent 60%);
-    border-radius: 32px;
-  }
-  .tap-benefits-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  .tap-benefits-list .wallet-benefit {
-    width: 100%;
-  }
-  .tap-screenshot-container {
-    position: relative;
-    display: inline-block;
-  }
-  .tap-screenshot {
-    max-width: 280px;
-    border-radius: 40px;
+  .hero-modern__image img {
     border: 10px solid #1a1a1a;
+    border-radius: 40px;
     box-shadow: 0 30px 60px rgba(0,0,0,0.5);
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  }
-  .tap-screenshot:hover {
-    transform: scale(1.05) rotate(2deg);
-  }
-  @media (max-width: 996px) {
-    .tap-wallet-hero {
-      padding: 1.5rem;
-    }
-    .row--no-gutters {
-      gap: 2rem !important;
-    }
   }
 `}</style>
 
