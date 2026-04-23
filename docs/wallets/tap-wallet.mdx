@@ -51,19 +51,19 @@ import Heading from '@theme/Heading';
 **Tap Wallet** is a high-performance application that delivers a smooth, app-like experience on every platform. By bypassing traditional app stores, you get instant updates and total privacy with zero friction.
 
 <div className="row margin-top--lg">
-  <div className="col col--4">
+  <div className="col col--4 margin-bottom--lg">
     <div className="card shadow--md padding--lg" style={{height: '100%'}}>
       <Heading as="h3"><Smartphone size={20} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Home Screen App</Heading>
       <p>Install directly to your <strong>iOS</strong> or <strong>Android</strong> home screen. It looks, feels, and behaves like a dedicated app.</p>
     </div>
   </div>
-  <div className="col col--4">
+  <div className="col col--4 margin-bottom--lg">
     <div className="card shadow--md padding--lg" style={{height: '100%'}}>
       <Heading as="h3"><Monitor size={20} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Desktop Ready</Heading>
       <p>Run it as a standalone application on <strong>Windows</strong>, <strong>macOS</strong>, or <strong>Linux</strong> via your favorite browser.</p>
     </div>
   </div>
-  <div className="col col--4">
+  <div className="col col--4 margin-bottom--lg">
     <div className="card shadow--md padding--lg" style={{height: '100%'}}>
       <Heading as="h3"><ShieldCheck size={20} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Store-Free</Heading>
       <p>No Apple App Store or Google Play Store required. Total independence from big-tech gatekeepers.</p>
@@ -86,7 +86,9 @@ import Heading from '@theme/Heading';
     grid-template-columns: 1fr;
   }
   .tap-screenshot-img {
+    width: 100%;
     max-width: 320px;
+    height: auto;
     border: 10px solid #1a1a1a;
     border-radius: 40px;
     box-shadow: 0 30px 60px rgba(0,0,0,0.5);
@@ -96,6 +98,7 @@ import Heading from '@theme/Heading';
     .tap-wallet-hero-wrapper {
       margin: 0 -1rem 2rem;
       padding: 2rem 1rem;
+      border-radius: 0;
     }
     .hero-modern {
       display: flex;
@@ -107,10 +110,19 @@ import Heading from '@theme/Heading';
       justify-content: center;
     }
     .tap-screenshot-img {
-      max-width: 260px;
+      max-width: 280px;
     }
     .tap-hero-benefits {
       margin-top: 2rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-modern__title {
+      font-size: 2.5rem;
+    }
+    .tap-screenshot-img {
+      max-width: 220px;
     }
   }
 `}</style>
