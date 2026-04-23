@@ -22,9 +22,14 @@ import Heading from '@theme/Heading';
         <Link className="hero-button hero-button--primary" href="https://taploki.com">
           <span><Globe size={20} /></span><span>Launch Web Wallet</span>
         </Link>
-        <Link className="hero-button" href="https://flokicoin.org/discord">
-          <span><MessageSquare size={20} /></span><span>Open on Discord</span>
-        </Link>
+        <div style={{display: 'flex', gap: '1rem', flexWrap: 'wrap'}}>
+          <Link className="hero-button" href="https://flokicoin.org/discord">
+            <span><MessageSquare size={20} /></span><span>Discord Mini App</span>
+          </Link>
+          <Link className="hero-button" href="https://flokicoin.org/telegram">
+            <span><Zap size={20} /></span><span>Telegram Mini App</span>
+          </Link>
+        </div>
       </div>
 
       <div className="wallet-benefits" style={{marginTop: '3rem', gridTemplateColumns: '1fr'}}>
