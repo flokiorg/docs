@@ -1,13 +1,14 @@
 ---
 title: Tap Wallet
-description: The easiest way to get started with Flokicoin. Use it as a PWA, Discord Mini App, or Telegram Mini App.
+description: The easiest way to get started with Flokicoin. A cross-platform wallet for iOS, Android, and Desktop without App Store requirements.
 sidebar_position: 1
-keywords: [Tap Wallet, Flokicoin, PWA wallet, Discord Mini App, Telegram Mini App, Taploki, Tap Days]
+hide_title: true
+keywords: [Tap Wallet, Flokicoin, PWA wallet, Discord Mini App, Telegram Mini App, iOS wallet, Android wallet, Desktop wallet, cross-platform]
 custom_edit_url: null
 ---
 
 import Link from '@docusaurus/Link';
-import { Smartphone, Zap, Globe, MessageSquare, Award, Share2, MoreVertical, PlusSquare, Monitor, Wallet } from 'lucide-react';
+import { Smartphone, Zap, Globe, MessageSquare, Award, Share2, MoreVertical, PlusSquare, Monitor, Wallet, ShieldCheck, Layers } from 'lucide-react';
 import tapHomeImage from './tapwallet_home.png';
 import Heading from '@theme/Heading';
 
@@ -15,23 +16,23 @@ import Heading from '@theme/Heading';
   <div className="container hero-modern">
     <div className="hero-modern__content">
       <Heading as="h1" className="hero-modern__title">Tap Wallet</Heading>
-      <p className="hero-modern__subtitle">The easiest way to start with Flokicoin. One tap, everywhere.</p>
+      <p className="hero-modern__subtitle">One Wallet, Every Device. Native iOS, Android, and Desktop experience without the App Store.</p>
       
       <div className="hero-modern__actions">
         <Link className="hero-button hero-button--primary" href="https://taploki.com">
-          <span><Globe size={20} /></span><span>Open Web Wallet</span>
+          <span><Globe size={20} /></span><span>Launch Web Wallet</span>
         </Link>
         <Link className="hero-button" href="https://flokicoin.org/discord">
-          <span><MessageSquare size={20} /></span><span>Discord Mini App</span>
+          <span><MessageSquare size={20} /></span><span>Open on Discord</span>
         </Link>
       </div>
 
       <div className="wallet-benefits" style={{marginTop: '3rem', gridTemplateColumns: '1fr'}}>
         <div className="wallet-benefit" style={{background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.1)'}}>
-          <div className="wallet-benefit__icon"><Award size={22} /></div>
+          <div className="wallet-benefit__icon"><Layers size={22} /></div>
           <div>
-            <strong>Tap Days Rewards</strong>
-            <span>Participate in community events to earn exclusive roles and badges.</span>
+            <strong>Cross-Platform Freedom</strong>
+            <span>Sync your FLC across Discord, Telegram, Web, and Mobile natively.</span>
           </div>
         </div>
       </div>
@@ -42,19 +43,25 @@ import Heading from '@theme/Heading';
   </div>
 </div>
 
-**Tap Wallet** is a lightweight Progressive Web App (PWA) that allows you to manage your FLC directly within your favorite social platforms or from your mobile device's home screen with zero installation friction.
+**Tap Wallet** is a high-performance Progressive Web App (PWA) that delivers a native-feeling experience on every platform. By bypassing traditional app stores, you get instant updates and total privacy with zero installation friction.
 
 <div className="row margin-top--lg">
-  <div className="col col--6">
+  <div className="col col--4">
     <div className="card shadow--md padding--lg" style={{height: '100%'}}>
-      <Heading as="h3"><Globe size={20} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Browser Native</Heading>
-      <p>No app store downloads required. Access your wallet instantly at <strong>taploki.com</strong> from any modern browser.</p>
+      <Heading as="h3"><Smartphone size={20} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Mobile Native</Heading>
+      <p>Install directly to your <strong>iOS</strong> or <strong>Android</strong> home screen. It looks, feels, and acts like a native app.</p>
     </div>
   </div>
-  <div className="col col--6">
+  <div className="col col--4">
     <div className="card shadow--md padding--lg" style={{height: '100%'}}>
-      <Heading as="h3"><Zap size={20} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Social Integration</Heading>
-      <p>Seamlessly integrated as a Mini App within Discord and Telegram. Link your account once and sync across all platforms.</p>
+      <Heading as="h3"><Monitor size={20} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Desktop App</Heading>
+      <p>Run it as a standalone application on <strong>Windows</strong>, <strong>macOS</strong>, or <strong>Linux</strong> via your favorite browser.</p>
+    </div>
+  </div>
+  <div className="col col--4">
+    <div className="card shadow--md padding--lg" style={{height: '100%'}}>
+      <Heading as="h3"><ShieldCheck size={20} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Store-Free</Heading>
+      <p>No Apple App Store or Google Play Store required. Total independence from big-tech gatekeepers.</p>
     </div>
   </div>
 </div>
