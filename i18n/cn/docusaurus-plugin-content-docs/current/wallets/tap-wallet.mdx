@@ -7,7 +7,6 @@ keywords: [Tap Wallet, Flokicoin, Discord 小程序, Telegram 小程序, iOS 钱
 custom_edit_url: null
 ---
 
-
 import Link from '@docusaurus/Link';
 import { Smartphone, Zap, Globe, MessageSquare, Award, Share2, MoreVertical, PlusSquare, Monitor, Wallet, ShieldCheck, Layers, Apple, Bot, Link as LinkIcon, PartyPopper } from 'lucide-react';
 import tapHomeImage from '@site/docs/wallets/tapwallet_home.png';
@@ -35,8 +34,8 @@ import Heading from '@theme/Heading';
         <div className="tap-hero-faucet-card">
           <div className="faucet-icon-wrapper"><Award size={22} /></div>
           <div>
-            <strong>Tap Days & Faucet Experience</strong>
-            <p>直接访问社区驱动的 Flokicoin 水龙头。</p>
+            <strong>Tap Days 与水龙头</strong>
+            <p>输入 Tap 码，直接在链上接收真实 FLC。无需注册。</p>
           </div>
         </div>
       </div>
@@ -52,183 +51,211 @@ import Heading from '@theme/Heading';
 </div>
 
 <style>{`
-  /* Main Container */
   .tap-hero-container {
     margin: 0 -2rem 4rem;
-    padding: 6rem 2rem;
-    background: radial-gradient(circle at 70% 30%, rgba(208, 151, 15, 0.12) 0%, transparent 50%),
-                radial-gradient(circle at 20% 70%, rgba(208, 151, 15, 0.05) 0%, transparent 40%);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 5rem 2rem 6rem;
+    background:
+      radial-gradient(ellipse at 70% 20%, rgba(208, 151, 15, 0.13) 0%, transparent 52%),
+      radial-gradient(ellipse at 15% 80%, rgba(208, 151, 15, 0.06) 0%, transparent 42%);
     position: relative;
     overflow: hidden;
   }
 
-  .tap-hero-inner {
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    align-items: center;
-    gap: 4rem;
+  .tap-hero-container::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(to bottom, transparent 0%, var(--ifm-background-color) 100%);
+    pointer-events: none;
+    z-index: 1;
   }
 
-  /* Typography */
+  .tap-hero-inner {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    align-items: center;
+    gap: 3.5rem;
+  }
+
   .tap-hero-title {
-    font-size: clamp(3rem, 8vw, 5rem);
+    font-size: clamp(2.8rem, 6vw, 4.5rem);
     font-weight: 900;
-    line-height: 1;
-    margin-bottom: 1.5rem;
+    line-height: 1.0;
+    margin-bottom: 1.25rem;
     letter-spacing: -0.04em;
-    background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.7) 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #f0b832 55%, rgba(255,255,255,0.85) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   .tap-hero-subtitle {
-    font-size: clamp(1.1rem, 2vw, 1.5rem);
-    color: var(--ifm-color-emphasis-700);
-    margin-bottom: 3rem;
-    max-width: 500px;
-    line-height: 1.4;
+    font-size: clamp(1rem, 1.8vw, 1.3rem);
+    color: rgba(255, 255, 255, 0.68);
+    margin-bottom: 2rem;
+    max-width: 480px;
+    line-height: 1.55;
   }
 
-  /* Actions */
-  .tap-hero-actions {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 1rem;
-    margin-bottom: 3rem;
-    max-width: 600px;
+  .tap-hero-actions-override {
+    margin-bottom: 2rem !important;
+    margin-top: 0 !important;
   }
 
-  .tap-hero-actions .hero-button {
-    min-height: 60px;
-    border-radius: 16px;
-    font-size: 1rem;
-    flex: 1;
-    padding: 0 1.5rem !important;
-  }
-
-  /* Faucet Card */
   .tap-hero-faucet-card {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
-    padding: 1.5rem;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 24px;
-    max-width: 450px;
-    backdrop-filter: blur(10px);
+    gap: 1.25rem;
+    padding: 1.1rem 1.4rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 18px;
+    max-width: 440px;
+    backdrop-filter: blur(12px);
   }
 
   .tap-hero-faucet-card strong {
     display: block;
-    font-size: 1.1rem;
+    font-size: 1rem;
+    font-weight: 700;
     color: #fff;
+    margin-bottom: 0.2rem;
   }
 
   .tap-hero-faucet-card p {
     margin: 0;
-    font-size: 0.95rem;
-    color: var(--ifm-color-emphasis-600);
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.4;
   }
 
   .faucet-icon-wrapper {
+    flex-shrink: 0;
     background: var(--ifm-color-primary);
     color: #000;
-    padding: 12px;
-    border-radius: 14px;
+    padding: 10px;
+    border-radius: 12px;
     display: flex;
-    box-shadow: 0 8px 16px rgba(208, 151, 15, 0.3);
+    box-shadow: 0 6px 14px rgba(208, 151, 15, 0.35);
   }
 
-  /* Visuals */
   .tap-hero-visual {
     display: flex;
     justify-content: center;
+    align-items: center;
     perspective: 1200px;
   }
 
   .tap-visual-wrapper {
     position: relative;
-    transform: rotateY(-15deg) rotateX(5deg);
-    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transform: rotateY(-14deg) rotateX(4deg);
+    transition: transform 0.55s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 
   .tap-visual-wrapper:hover {
-    transform: rotateY(-5deg) rotateX(2deg) scale(1.02);
+    transform: rotateY(-4deg) rotateX(1deg) scale(1.02);
   }
 
   .tap-main-screenshot {
     width: 100%;
-    max-width: 280px;
-    border-radius: 40px;
-    box-shadow: 0 50px 100px -20px rgba(0,0,0,0.7),
-                0 30px 60px -30px rgba(0,0,0,0.8);
+    max-width: 260px;
+    border-radius: 36px;
+    box-shadow: 0 40px 80px -15px rgba(0,0,0,0.75),
+                0 20px 40px -20px rgba(0,0,0,0.6);
+    display: block;
   }
 
   .tap-visual-glow {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 120%;
-    height: 120%;
-    background: radial-gradient(circle, rgba(208, 151, 15, 0.15) 0%, transparent 70%);
+    inset: -20%;
+    background: radial-gradient(circle, rgba(208, 151, 15, 0.18) 0%, transparent 65%);
     z-index: -1;
-    filter: blur(40px);
+    filter: blur(35px);
+    pointer-events: none;
   }
 
-  /*  iPad & Tablet Optimization  */
   @media (max-width: 1100px) {
-    .tap-hero-inner {
-      gap: 2rem;
-    }
-    .tap-main-screenshot {
-      max-width: 160px;
-    }
+    .tap-hero-inner { gap: 2rem; }
+    .tap-main-screenshot { max-width: 220px; }
   }
 
   @media (max-width: 996px) {
     .tap-hero-container {
-      padding: 4rem 1rem;
+      padding: 3.5rem 1.5rem;
       margin: 0 -1rem 3rem;
     }
     .tap-hero-inner {
       grid-template-columns: 1fr;
       text-align: center;
-      gap: 4rem;
+      gap: 2.5rem;
     }
-    .tap-hero-subtitle, .tap-hero-faucet-card {
+    .tap-hero-subtitle,
+    .tap-hero-faucet-card {
       margin-left: auto;
       margin-right: auto;
     }
-    .tap-hero-actions {
-      grid-template-columns: 1fr;
-      max-width: 400px;
-      margin-left: auto;
-      margin-right: auto;
-      width: 100%;
-    }
-    .tap-visual-wrapper {
-      transform: none !important;
-    }
-    .tap-main-screenshot {
-      max-width: 180px;
-    }
+    .tap-visual-wrapper { transform: none !important; }
+    .tap-hero-visual { perspective: none; }
+    .tap-main-screenshot { max-width: 210px; }
   }
 
-  /*  Mobile Optimization  */
   @media (max-width: 600px) {
     .tap-hero-container {
-      padding: 3rem 1rem;
+      padding: 2.5rem 1rem 3rem;
+      margin: 0 -1rem 2rem;
     }
-    .tap-main-screenshot {
-      max-width: 140px;
+    .tap-hero-inner { gap: 1.75rem; }
+
+    .tap-hero-actions-override {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 0.5rem !important;
+      max-width: 100% !important;
+      margin: 0 0 1.25rem !important;
+      flex-direction: unset !important;
+      align-items: unset !important;
     }
+    .tap-hero-actions-override .hero-button:first-child {
+      grid-column: 1 / -1 !important;
+      justify-content: center !important;
+    }
+    .tap-hero-actions-override .hero-button {
+      width: 100% !important;
+      min-height: 46px !important;
+      padding: 0.65rem 0.875rem !important;
+      font-size: 0.875rem !important;
+      border-radius: 12px !important;
+      justify-content: center !important;
+    }
+    .tap-hero-actions-override .hero-button span:first-child {
+      margin-right: 8px !important;
+    }
+
     .tap-hero-faucet-card {
-      flex-direction: column;
-      text-align: center;
-      padding: 1.25rem;
+      flex-direction: row;
+      text-align: left;
+      padding: 0.875rem 1rem;
+      gap: 0.875rem;
+      border-radius: 14px;
+    }
+    .faucet-icon-wrapper {
+      padding: 8px;
+      border-radius: 10px;
+    }
+    .tap-hero-faucet-card strong { font-size: 0.9rem; }
+    .tap-hero-faucet-card p { font-size: 0.8rem; }
+
+    .tap-main-screenshot { max-width: 190px; }
+  }
+
+  @media (max-width: 400px) {
+    .tap-main-screenshot { max-width: 160px; }
+    .tap-hero-actions-override .hero-button {
+      font-size: 0.8rem !important;
+      padding: 0.6rem 0.6rem !important;
     }
   }
 `}</style>
@@ -283,7 +310,7 @@ import Heading from '@theme/Heading';
     <div className="card padding--lg shadow--lw" style={{height: '100%'}}>
       <Heading as="h3"><Monitor size={22} style={{verticalAlign: 'middle', marginRight: '8px'}} /> 桌面端（Chrome/Edge）</Heading>
       <ol style={{paddingLeft: '1.2rem', marginBottom: 0}}>
-        <li>点击地址栏右侧的<strong>安装</strong>图标（<PlusSquare size={16} inline />）。</li>
+        <li>点击地址栏个人右上角的<strong>安装</strong>图标（<PlusSquare size={16} inline />）。</li>
       </ol>
     </div>
   </div>
