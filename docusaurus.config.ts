@@ -251,6 +251,12 @@ const config: Config = {
             className: 'discord-link no-external-icon',
           },
           {
+            to: 'https://flokicoin.org/telegram',
+            position: 'right',
+            target: '_blank',
+            className: 'telegram-link no-external-icon',
+          },
+          {
             to: 'https://github.com/flokiorg',
             position: 'right',
             target: '_blank',
@@ -327,6 +333,10 @@ const config: Config = {
               {
                 label: 'Discord',
                 to: 'https://flokicoin.org/discord',
+              },
+              {
+                label: 'Telegram',
+                to: 'https://flokicoin.org/telegram',
               },
               {
                 label: 'GitHub',
