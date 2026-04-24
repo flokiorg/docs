@@ -12,41 +12,262 @@ import { Smartphone, Zap, Globe, MessageSquare, Award, Share2, MoreVertical, Plu
 import tapHomeImage from './tapwallet_home.png';
 import Heading from '@theme/Heading';
 
-<div className="hero-modern__wrapper tap-wallet-hero-wrapper">
-  <div className="container hero-modern">
-    <div className="hero-modern__content">
-      <Heading as="h1" className="hero-modern__title">Tap Wallet</Heading>
-      <p className="hero-modern__subtitle">One Wallet, Every Device. Direct iOS, Android, and Desktop experience without the App Store.</p>
-      
-      <div className="hero-modern__actions">
-        <Link className="hero-button hero-button--primary" href="https://taploki.com">
-          <span><Globe size={20} /></span><span>Launch Web Wallet</span>
-        </Link>
-        <div className="tap-social-actions">
+<div className="tap-hero-container">
+  <div className="container">
+    <div className="tap-hero-inner">
+      <div className="tap-hero-content">
+        <Heading as="h1" className="tap-hero-title">Tap Wallet</Heading>
+        <p className="tap-hero-subtitle">One Wallet. Every Device. Direct FLC access without the App Store.</p>
+
+        <div className="hero-modern__actions tap-hero-actions-override">
+          <Link className="hero-button hero-button--primary" href="https://taploki.com">
+            <span><Globe size={18} /></span><span>Launch Web Wallet</span>
+          </Link>
           <Link className="hero-button" href="https://flokicoin.org/discord">
-            <span><MessageSquare size={20} /></span><span>Discord App Launcher</span>
+            <span><MessageSquare size={18} /></span><span>Discord App</span>
           </Link>
           <Link className="hero-button" href="https://t.me/taplokibot">
-            <span><Zap size={20} /></span><span>Telegram Mini App</span>
+            <span><Zap size={18} /></span><span>Telegram Bot</span>
           </Link>
         </div>
-      </div>
 
-      <div className="wallet-benefits tap-hero-benefits">
-        <div className="wallet-benefit" style={{background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.1)'}}>
-          <div className="wallet-benefit__icon"><Layers size={22} /></div>
+        <div className="tap-hero-faucet-card">
+          <div className="faucet-icon-wrapper"><Award size={22} /></div>
           <div>
-            <strong>Cross-Platform Freedom</strong>
-            <span>Sync your FLC across Discord, Telegram, Web, and Mobile seamlessly.</span>
+            <strong>Tap Days & Faucet</strong>
+            <p>Enter a Tap Code, receive real FLC on-chain. No sign-up needed.</p>
           </div>
         </div>
       </div>
-    </div>
-    <div className="hero-modern__image">
-      <img src={tapHomeImage} alt="Tap Wallet Interface" className="tap-screenshot-img" />
+
+      <div className="tap-hero-visual">
+        <div className="tap-visual-wrapper">
+          <img src={tapHomeImage.src ?? tapHomeImage} alt="Tap Wallet" className="tap-main-screenshot" />
+          <div className="tap-visual-glow"></div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
+
+<style>{`
+  .tap-hero-container {
+    margin: 0 -2rem 4rem;
+    padding: 5rem 2rem 6rem;
+    background:
+      radial-gradient(ellipse at 70% 20%, rgba(208, 151, 15, 0.13) 0%, transparent 52%),
+      radial-gradient(ellipse at 15% 80%, rgba(208, 151, 15, 0.06) 0%, transparent 42%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tap-hero-container::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(to bottom, transparent 0%, var(--ifm-background-color) 100%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .tap-hero-inner {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    align-items: center;
+    gap: 3.5rem;
+  }
+
+  /* Typography */
+  .tap-hero-title {
+    font-size: clamp(2.8rem, 6vw, 4.5rem);
+    font-weight: 900;
+    line-height: 1.0;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.04em;
+    background: linear-gradient(135deg, #ffffff 0%, #f0b832 55%, rgba(255,255,255,0.85) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .tap-hero-subtitle {
+    font-size: clamp(1rem, 1.8vw, 1.3rem);
+    color: rgba(255, 255, 255, 0.68);
+    margin-bottom: 2rem;
+    max-width: 480px;
+    line-height: 1.55;
+  }
+
+  /* Button row override — margin-bottom before faucet card */
+  .tap-hero-actions-override {
+    margin-bottom: 2rem !important;
+    margin-top: 0 !important;
+  }
+
+  /* Faucet Card */
+  .tap-hero-faucet-card {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.1rem 1.4rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 18px;
+    max-width: 440px;
+    backdrop-filter: blur(12px);
+  }
+
+  .tap-hero-faucet-card strong {
+    display: block;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.2rem;
+  }
+
+  .tap-hero-faucet-card p {
+    margin: 0;
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.4;
+  }
+
+  .faucet-icon-wrapper {
+    flex-shrink: 0;
+    background: var(--ifm-color-primary);
+    color: #000;
+    padding: 10px;
+    border-radius: 12px;
+    display: flex;
+    box-shadow: 0 6px 14px rgba(208, 151, 15, 0.35);
+  }
+
+  /* Phone visual */
+  .tap-hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1200px;
+  }
+
+  .tap-visual-wrapper {
+    position: relative;
+    transform: rotateY(-14deg) rotateX(4deg);
+    transition: transform 0.55s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .tap-visual-wrapper:hover {
+    transform: rotateY(-4deg) rotateX(1deg) scale(1.02);
+  }
+
+  .tap-main-screenshot {
+    width: 100%;
+    max-width: 260px;
+    border-radius: 36px;
+    box-shadow: 0 40px 80px -15px rgba(0,0,0,0.75),
+                0 20px 40px -20px rgba(0,0,0,0.6);
+    display: block;
+  }
+
+  .tap-visual-glow {
+    position: absolute;
+    inset: -20%;
+    background: radial-gradient(circle, rgba(208, 151, 15, 0.18) 0%, transparent 65%);
+    z-index: -1;
+    filter: blur(35px);
+    pointer-events: none;
+  }
+
+  /* Wide tablet — still 2-col but tighter */
+  @media (max-width: 1100px) {
+    .tap-hero-inner { gap: 2rem; }
+    .tap-main-screenshot { max-width: 220px; }
+  }
+
+  /* iPad portrait / narrow tablet — single column */
+  @media (max-width: 996px) {
+    .tap-hero-container {
+      padding: 3.5rem 1.5rem;
+      margin: 0 -1rem 3rem;
+    }
+    .tap-hero-inner {
+      grid-template-columns: 1fr;
+      text-align: center;
+      gap: 2.5rem;
+    }
+    .tap-hero-subtitle,
+    .tap-hero-faucet-card {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .tap-visual-wrapper { transform: none !important; }
+    .tap-hero-visual { perspective: none; }
+    .tap-main-screenshot { max-width: 210px; }
+  }
+
+  /* Mobile */
+  @media (max-width: 600px) {
+    .tap-hero-container {
+      padding: 2.5rem 1rem 3rem;
+      margin: 0 -1rem 2rem;
+    }
+    .tap-hero-inner { gap: 1.75rem; }
+
+    /* Compact buttons: primary full-width, Discord + Telegram side by side */
+    .tap-hero-actions-override {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 0.5rem !important;
+      max-width: 100% !important;
+      margin: 0 0 1.25rem !important;
+      flex-direction: unset !important;
+      align-items: unset !important;
+    }
+    .tap-hero-actions-override .hero-button:first-child {
+      grid-column: 1 / -1 !important;
+      justify-content: center !important;
+    }
+    .tap-hero-actions-override .hero-button {
+      width: 100% !important;
+      min-height: 46px !important;
+      padding: 0.65rem 0.875rem !important;
+      font-size: 0.875rem !important;
+      border-radius: 12px !important;
+      justify-content: center !important;
+    }
+    .tap-hero-actions-override .hero-button span:first-child {
+      margin-right: 8px !important;
+    }
+
+    /* Faucet card: keep horizontal, compact */
+    .tap-hero-faucet-card {
+      flex-direction: row;
+      text-align: left;
+      padding: 0.875rem 1rem;
+      gap: 0.875rem;
+      border-radius: 14px;
+    }
+    .faucet-icon-wrapper {
+      padding: 8px;
+      border-radius: 10px;
+    }
+    .tap-hero-faucet-card strong { font-size: 0.9rem; }
+    .tap-hero-faucet-card p { font-size: 0.8rem; }
+
+    .tap-main-screenshot { max-width: 190px; }
+  }
+
+  @media (max-width: 400px) {
+    .tap-main-screenshot { max-width: 160px; }
+    .tap-hero-actions-override .hero-button {
+      font-size: 0.8rem !important;
+      padding: 0.6rem 0.6rem !important;
+    }
+  }
+`}</style>
 
 **Tap Wallet** is a high-performance application that delivers a smooth, app-like experience on every platform. By bypassing traditional app stores, you get instant updates and total privacy with zero friction.
 
@@ -71,76 +292,38 @@ import Heading from '@theme/Heading';
   </div>
 </div>
 
-<style>{`
-  .tap-wallet-hero-wrapper {
-    margin: 0 -2rem 3rem;
-    padding: 3rem 2rem;
-  }
-  .tap-social-actions {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-  .tap-hero-benefits {
-    margin-top: 3rem;
-    grid-template-columns: 1fr;
-  }
-  .tap-screenshot-img {
-    width: 100%;
-    max-width: 320px;
-    height: auto;
-    border: 10px solid #1a1a1a;
-    border-radius: 40px;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
-  }
-
-  @media (max-width: 996px) {
-    .tap-wallet-hero-wrapper {
-      margin: 0 -1rem 2rem;
-      padding: 2rem 1rem;
-      border-radius: 0;
-    }
-    .hero-modern {
-      display: flex;
-      flex-direction: column;
-      text-align: center;
-      gap: 2rem;
-    }
-    .tap-social-actions {
-      justify-content: center;
-    }
-    .tap-screenshot-img {
-      max-width: 280px;
-    }
-    .tap-hero-benefits {
-      margin-top: 2rem;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .hero-modern__title {
-      font-size: 2.5rem;
-    }
-    .tap-screenshot-img {
-      max-width: 220px;
-    }
-  }
-`}</style>
-
-## Quick Start (No App Store Needed)
+## <Smartphone size={24} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Quick Start (No App Store Needed)
 
 You can install the Tap Wallet directly to your device in seconds. Open [taploki.com](https://taploki.com) in your browser and follow these steps:
 
-### <Apple size={22} style={{verticalAlign: 'middle', marginRight: '8px'}} /> iPhone (Safari)
-1. Tap the **Share** icon (<Share2 size={18} inline />) at the bottom.
-2. Scroll down and select **Add to Home Screen**.
-
-### <Bot size={22} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Android (Chrome)
-1. Tap the **Menu** (<MoreVertical size={18} inline />) icon at the top right.
-2. Select **Install App** or **Add to Home Screen**.
-
-### <Monitor size={22} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Desktop (Chrome/Edge)
-1. Click the **Install** icon (<PlusSquare size={18} inline />) on the right side of the address bar.
+<div className="row margin-top--lg">
+  <div className="col col--4 margin-bottom--md">
+    <div className="card padding--lg shadow--lw" style={{height: '100%'}}>
+      <Heading as="h3"><Apple size={22} style={{verticalAlign: 'middle', marginRight: '8px'}} /> iPhone (Safari)</Heading>
+      <ol style={{paddingLeft: '1.2rem', marginBottom: 0}}>
+        <li>Tap the <strong>Share</strong> icon (<Share2 size={16} inline />) at the bottom.</li>
+        <li>Scroll down and select <strong>Add to Home Screen</strong>.</li>
+      </ol>
+    </div>
+  </div>
+  <div className="col col--4 margin-bottom--md">
+    <div className="card padding--lg shadow--lw" style={{height: '100%'}}>
+      <Heading as="h3"><Bot size={22} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Android (Chrome)</Heading>
+      <ol style={{paddingLeft: '1.2rem', marginBottom: 0}}>
+        <li>Tap the <strong>Menu</strong> (<MoreVertical size={16} />) icon at the top right.</li>
+        <li>Select <strong>Install App</strong> or <strong>Add to Home Screen</strong>.</li>
+      </ol>
+    </div>
+  </div>
+  <div className="col col--4 margin-bottom--md">
+    <div className="card padding--lg shadow--lw" style={{height: '100%'}}>
+      <Heading as="h3"><Monitor size={22} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Desktop (Chrome/Edge)</Heading>
+      <ol style={{paddingLeft: '1.2rem', marginBottom: 0}}>
+        <li>Click the <strong>Install</strong> icon (<PlusSquare size={16} inline />) on the right side of the address bar.</li>
+      </ol>
+    </div>
+  </div>
+</div>
 
 ---
 
@@ -160,10 +343,6 @@ Once your account is linked, you will soon be able to "tap" other users directly
 
 ## <PartyPopper size={24} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Tap Days
 
-**Tap Days** are community-driven initiatives powered by miners and holders to let everyone experience the Flokicoin network firsthand. During these events, limited-time **Tap Codes** are dropped exclusively in our Discord and Telegram communities.
-
-Every tap helps generate entry codes, allowing you to benefit from the network and reserve your seat for upcoming features. These codes have a strict time limit—once they drop, the clock starts ticking, so you'll need to claim yours quickly before they expire.
-
-The entire initiative is 100% community-funded. Miners and contributors can fuel the tap directly through the Tap Wallet Mini App to keep it flowing for new users, unlocking exclusive **contributor roles and badges** on their connected social accounts as a mark of their support.
+**Tap Days** are community events where miners and holders fund the faucet so new users can experience the Flokicoin network firsthand. During these events, limited-time **Tap Codes** (`TAP-XXXXXXXXXX`) are dropped exclusively in our Discord and Telegram communities.
 
 [Start Tapping Today →](https://taploki.com)
