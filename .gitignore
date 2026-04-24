@@ -35,6 +35,7 @@ yarn-error.log*
 
 .vale
 .vscode
+.claude
 knowledge
 skills-lock.json
 .agents
