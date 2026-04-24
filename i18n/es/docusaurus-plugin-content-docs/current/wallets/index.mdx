@@ -1,44 +1,85 @@
 ---
-title: Monederos
-description: Elige el monedero adecuado para tus necesidades. Ofrecemos opciones desde herramientas avanzadas basadas en terminal hasta interfaces gráficas fáciles de usar.
-sidebar_position: 1
+title: Carteras
+sidebar_label: Descripción general
+description: Elige la cartera adecuada para tus necesidades. Desde herramientas de terminal para usuarios avanzados hasta interfaces gráficas amigables.
+sidebar_position: 0
 ---
 
 import Link from '@docusaurus/Link';
 
-# Monederos Flokicoin
+# Carteras Flokicoin
 
-Para interactuar con la red Flokicoin, necesitas un lugar seguro para gestionar tus claves. Tanto si eres un usuario avanzado que necesita soporte Lightning como si eres un principiante que busca una interfaz sencilla, tenemos una opción para ti.
+Para interactuar con la red Flokicoin, necesitas un lugar seguro para gestionar tus claves. Tanto si eres un usuario avanzado que necesita soporte Lightning como un principiante buscando una interfaz sencilla, tenemos una opción para ti.
 
 <div className="row">
-  {/* --- tWallet Card --- */}
+  {/* --- Tap Wallet --- */}
   <div className="col col--6 margin-bottom--lg">
     <div className="card shadow--md" style={{height: '100%', display: 'flex', flexDirection: 'column'}}>
       <div className="card__header">
-        <h3>tWallet (Recomendado)</h3>
+        <h3>Tap Wallet (PWA)</h3>
       </div>
       <div className="card__body" style={{flex: '1 1 auto'}}>
-        <p><strong>La Elección del Usuario Avanzado.</strong> Un monedero rápido basado en terminal con un nodo Lightning integrado (FLND). Ideal para usuarios que desean control total y privacidad sin complicaciones innecesarias.</p>
+        <p><strong>La forma más fácil de empezar.</strong> Una cartera ligera y mobile-first que funciona directamente en tu navegador o como Mini App en Discord y Telegram.</p>
         <ul>
-          <li>Lightning Network integrada</li>
-          <li>Orientado a la privacidad (Neutrino)</li>
-          <li>Rápido, ligero y de bajo consumo de recursos</li>
+          <li>Sin instalación en App Store</li>
+          <li>Vinculada a tus cuentas de Discord y Telegram</li>
+          <li>Experiencia Tap Days y Faucet</li>
         </ul>
       </div>
       <div className="card__footer">
-        <Link className="button button--primary button--block" to="/wallets/twallet">Comenzar con tWallet</Link>
+        <Link className="button button--primary button--block" to="/wallets/tap-wallet">Obtener Tap Wallet</Link>
       </div>
     </div>
   </div>
 
-  {/* --- Komodo Card --- */}
+  {/* --- tWallet --- */}
+  <div className="col col--6 margin-bottom--lg">
+    <div className="card shadow--md" style={{height: '100%', display: 'flex', flexDirection: 'column'}}>
+      <div className="card__header">
+        <h3>tWallet</h3>
+      </div>
+      <div className="card__body" style={{flex: '1 1 auto'}}>
+        <p><strong>La elección del usuario avanzado.</strong> Una cartera rápida de terminal (TUI) con nodo Lightning integrado. Ideal para quienes quieren control total y privacidad sin complicaciones.</p>
+        <ul>
+          <li>Lightning Network integrada</li>
+          <li>Enfocada en privacidad (Neutrino)</li>
+          <li>Rápida, ligera y de bajo consumo de recursos</li>
+        </ul>
+      </div>
+      <div className="card__footer">
+        <Link className="button button--secondary button--block" to="/wallets/twallet">Obtener tWallet</Link>
+      </div>
+    </div>
+  </div>
+
+  {/* --- flnd --- */}
+  <div className="col col--6 margin-bottom--lg">
+    <div className="card shadow--md" style={{height: '100%', display: 'flex', flexDirection: 'column'}}>
+      <div className="card__header">
+        <h3>flnd (Daemon)</h3>
+      </div>
+      <div className="card__body" style={{flex: '1 1 auto'}}>
+        <p><strong>La elección del operador de nodo.</strong> Un daemon de Lightning Network y cartera de alto rendimiento. El motor para automatización y operaciones de nodo robustas.</p>
+        <ul>
+          <li>Experiencia completa Daemon y CLI</li>
+          <li>API gRPC/REST robusta</li>
+          <li>Ideal para nodos servidor 24/7</li>
+        </ul>
+      </div>
+      <div className="card__footer">
+        <Link className="button button--secondary button--block" to="/wallets/flnd">Explorar flnd</Link>
+      </div>
+    </div>
+  </div>
+
+  {/* --- Komodo --- */}
   <div className="col col--6 margin-bottom--lg">
     <div className="card shadow--md" style={{height: '100%', display: 'flex', flexDirection: 'column'}}>
       <div className="card__header">
         <h3>Komodo Wallet</h3>
       </div>
       <div className="card__body" style={{flex: '1 1 auto'}}>
-        <p><strong>La Elección Fácil de Usar.</strong> Un monedero multi-moneda con una interfaz gráfica tradicional y atractiva. Perfecto para usuarios cotidianos en escritorio o móvil.</p>
+        <p><strong>La elección amigable.</strong> Una cartera multi-moneda con interfaz gráfica tradicional. Perfecta para usuarios cotidianos en escritorio o móvil.</p>
         <ul>
           <li>Interfaz gráfica de usuario (GUI)</li>
           <li>Compatible con direcciones F y Segwit</li>
@@ -46,7 +87,7 @@ Para interactuar con la red Flokicoin, necesitas un lugar seguro para gestionar 
         </ul>
       </div>
       <div className="card__footer">
-        <Link className="button button--secondary button--block" to="/wallets/komodo-wallet">Comenzar con Komodo</Link>
+        <Link className="button button--secondary button--block" to="/wallets/komodo-wallet">Obtener Komodo</Link>
       </div>
     </div>
   </div>
@@ -54,13 +95,13 @@ Para interactuar con la red Flokicoin, necesitas un lugar seguro para gestionar 
 
 ## Comparación Rápida
 
-| Característica  | tWallet           | Komodo Wallet       |
-| :---            | :---              | :---                |
-| **Interfaz**    | Terminal (TUI)    | Gráfica (GUI)       |
-| **Lightning**   | Sí (Integrada)    | No                  |
-| **Experiencia** | Intermedio        | Principiante        |
-| **Recomendado para** | Operadores de nodos y privacidad | Usuarios cotidianos y móvil |
+| Característica | Tap Wallet | tWallet | flnd | Komodo Wallet |
+| :--- | :--- | :--- | :--- | :--- |
+| **Interfaz** | Web / Mini App | Terminal (TUI) | Línea de comandos (CLI) | Gráfica (GUI) |
+| **Lightning** | No | Sí (Integrada) | Sí (Nativa) | No |
+| **Experiencia** | Principiante | Intermedio | Avanzado | Principiante |
+| **Ideal Para** | Móvil y Social | Privacidad escritorio | Operadores de nodo | Usuarios cotidianos |
 
 :::tip[¿Usas Lokihub?]
-Si planeas usar **Lokihub**, te recomendamos ampliamente comenzar con **tWallet v1**, ya que proporciona el backend Lightning necesario para las operaciones del nodo.
+Si planeas usar **Lokihub**, te recomendamos empezar con **tWallet v1**, ya que proporciona el backend Lightning necesario para las operaciones de nodo.
 :::

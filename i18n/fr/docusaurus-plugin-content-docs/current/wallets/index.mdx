@@ -1,55 +1,106 @@
 ---
 title: Portefeuilles
-description: Choisissez le portefeuille adapté à vos besoins. Nous proposons des options allant des outils en ligne de commande pour utilisateurs avancés aux interfaces graphiques conviviales.
-sidebar_position: 1
+sidebar_label: Aperçu
+description: Choisissez le portefeuille adapté à vos besoins. Des outils en ligne de commande pour utilisateurs avancés aux interfaces graphiques conviviales.
+sidebar_position: 0
 ---
+
 import Link from '@docusaurus/Link';
 
 # Portefeuilles Flokicoin
+
 Pour interagir avec le réseau Flokicoin, vous avez besoin d'un endroit sûr pour gérer vos clés. Que vous soyez un utilisateur avancé nécessitant la prise en charge de Lightning ou un débutant cherchant une interface simple, nous avons une solution pour vous.
 
 <div className="row">
+  {/* --- Tap Wallet --- */}
   <div className="col col--6 margin-bottom--lg">
-    <div className="card shadow--md" style={{height:'100%',display:'flex',flexDirection:'column'}}>
-      <div className="card__header"><h3>tWallet (Recommandé)</h3></div>
-      <div className="card__body" style={{flex:'1 1 auto'}}>
-        <p><strong>Le Choix de l'Utilisateur Avancé.</strong> Un portefeuille rapide en ligne de commande avec un nœud Lightning intégré (FLND). Idéal pour les utilisateurs qui veulent un contrôle total et la confidentialité sans superflu.</p>
+    <div className="card shadow--md" style={{height: '100%', display: 'flex', flexDirection: 'column'}}>
+      <div className="card__header">
+        <h3>Tap Wallet (PWA)</h3>
+      </div>
+      <div className="card__body" style={{flex: '1 1 auto'}}>
+        <p><strong>La façon la plus simple de commencer.</strong> Un portefeuille léger et mobile-first qui fonctionne directement dans votre navigateur ou comme Mini App dans Discord et Telegram.</p>
         <ul>
-          <li>Lightning Network intégré</li>
-          <li>Axé sur la confidentialité (Neutrino)</li>
-          <li>Rapide, léger et peu gourmand en ressources</li>
+          <li>Aucune installation via l'App Store requise</li>
+          <li>Lié à vos comptes Discord & Telegram</li>
+          <li>Expérience Tap Days & Robinet</li>
         </ul>
       </div>
       <div className="card__footer">
-        <Link className="button button--primary button--block" to="/wallets/twallet">Démarrer avec tWallet</Link>
+        <Link className="button button--primary button--block" to="/wallets/tap-wallet">Obtenir Tap Wallet</Link>
       </div>
     </div>
   </div>
+
+  {/* --- tWallet --- */}
   <div className="col col--6 margin-bottom--lg">
-    <div className="card shadow--md" style={{height:'100%',display:'flex',flexDirection:'column'}}>
-      <div className="card__header"><h3>Komodo Wallet</h3></div>
-      <div className="card__body" style={{flex:'1 1 auto'}}>
-        <p><strong>Le Choix Convivial.</strong> Un portefeuille multi-devises avec une interface graphique traditionnelle et élégante. Parfait pour les utilisateurs du quotidien sur bureau ou mobile.</p>
+    <div className="card shadow--md" style={{height: '100%', display: 'flex', flexDirection: 'column'}}>
+      <div className="card__header">
+        <h3>tWallet</h3>
+      </div>
+      <div className="card__body" style={{flex: '1 1 auto'}}>
+        <p><strong>Le choix de l'utilisateur avancé.</strong> Un portefeuille rapide en ligne de commande (TUI) avec un nœud Lightning intégré. Idéal pour ceux qui veulent un contrôle total et la confidentialité.</p>
         <ul>
-          <li>Interface Graphique Utilisateur (GUI)</li>
-          <li>Supporte les adresses F et Segwit</li>
-          <li>Fonctionne sur Mobile, Bureau et Web</li>
+          <li>Lightning Network intégré</li>
+          <li>Axé sur la confidentialité (Neutrino)</li>
+          <li>Rapide, léger et peu gourmand</li>
         </ul>
       </div>
       <div className="card__footer">
-        <Link className="button button--secondary button--block" to="/wallets/komodo-wallet">Démarrer avec Komodo</Link>
+        <Link className="button button--secondary button--block" to="/wallets/twallet">Obtenir tWallet</Link>
+      </div>
+    </div>
+  </div>
+
+  {/* --- flnd --- */}
+  <div className="col col--6 margin-bottom--lg">
+    <div className="card shadow--md" style={{height: '100%', display: 'flex', flexDirection: 'column'}}>
+      <div className="card__header">
+        <h3>flnd (Daemon)</h3>
+      </div>
+      <div className="card__body" style={{flex: '1 1 auto'}}>
+        <p><strong>Le choix de l'opérateur de nœud.</strong> Un daemon Lightning Network et portefeuille haute performance. Le moteur pour l'automatisation et les opérations de nœud robustes.</p>
+        <ul>
+          <li>Expérience Daemon & CLI complète</li>
+          <li>API gRPC/REST robuste</li>
+          <li>Idéal pour les nœuds serveur 24/7</li>
+        </ul>
+      </div>
+      <div className="card__footer">
+        <Link className="button button--secondary button--block" to="/wallets/flnd">Explorer flnd</Link>
+      </div>
+    </div>
+  </div>
+
+  {/* --- Komodo --- */}
+  <div className="col col--6 margin-bottom--lg">
+    <div className="card shadow--md" style={{height: '100%', display: 'flex', flexDirection: 'column'}}>
+      <div className="card__header">
+        <h3>Komodo Wallet</h3>
+      </div>
+      <div className="card__body" style={{flex: '1 1 auto'}}>
+        <p><strong>Le choix convivial.</strong> Un portefeuille multi-devises avec une interface graphique traditionnelle. Parfait pour les utilisateurs du quotidien sur bureau ou mobile.</p>
+        <ul>
+          <li>Interface Graphique Utilisateur (GUI)</li>
+          <li>Supporte les adresses F et Segwit</li>
+          <li>Mobile, Bureau et Web</li>
+        </ul>
+      </div>
+      <div className="card__footer">
+        <Link className="button button--secondary button--block" to="/wallets/komodo-wallet">Obtenir Komodo</Link>
       </div>
     </div>
   </div>
 </div>
 
 ## Comparaison Rapide
-| Fonctionnalité | tWallet | Komodo Wallet |
-| :--- | :--- | :--- |
-| **Interface** | Terminal (TUI) | Graphique (GUI) |
-| **Lightning** | Oui (Intégré) | Non |
-| **Expérience** | Intermédiaire | Débutant |
-| **Idéal Pour** | Opérateurs de nœuds & Confidentialité | Utilisateurs du quotidien & Mobile |
+
+| Fonctionnalité | Tap Wallet | tWallet | flnd | Komodo Wallet |
+| :--- | :--- | :--- | :--- | :--- |
+| **Interface** | Web / Mini App | Terminal (TUI) | Ligne de commande (CLI) | Graphique (GUI) |
+| **Lightning** | Non | Oui (Intégré) | Oui (Natif) | Non |
+| **Expérience** | Débutant | Intermédiaire | Avancé | Débutant |
+| **Idéal Pour** | Mobile & Social | Confidentialité bureau | Opérateurs de nœuds | Utilisateurs du quotidien |
 
 :::tip[Vous utilisez Lokihub ?]
 Si vous prévoyez d'utiliser **Lokihub**, nous recommandons vivement de commencer avec **tWallet v1**, car il fournit le backend Lightning nécessaire aux opérations de nœud.

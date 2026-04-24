@@ -1,24 +1,45 @@
 ---
 title: 钱包
-description: 选择适合您需求的钱包。我们提供从基于终端的专业工具到用户友好图形界面的多种选项。
-sidebar_position: 1
+sidebar_label: 概览
+description: 选择适合您需求的钱包。从面向高级用户的终端工具到用户友好的图形界面，一应俱全。
+sidebar_position: 0
 ---
 
 import Link from '@docusaurus/Link';
 
 # Flokicoin 钱包
 
-要与 Flokicoin 网络交互，您需要一个安全管理密钥的地方。无论您是需要 Lightning Network 支持的高级用户，还是寻找简单界面的新手，我们都有适合您的选项。
+要与 Flokicoin 网络交互，您需要一个安全的地方来管理您的密钥。无论您是需要 Lightning 支持的高级用户，还是寻找简单界面的初学者，我们都有适合您的选择。
 
 <div className="row">
-  {/* --- tWallet 卡片 --- */}
+  {/* --- Tap Wallet --- */}
   <div className="col col--6 margin-bottom--lg">
     <div className="card shadow--md" style={{height: '100%', display: 'flex', flexDirection: 'column'}}>
       <div className="card__header">
-        <h3>tWallet（推荐）</h3>
+        <h3>Tap Wallet (PWA)</h3>
       </div>
       <div className="card__body" style={{flex: '1 1 auto'}}>
-        <p><strong>高级用户的首选。</strong>一款快速的基于终端的钱包，内置 Lightning 节点（FLND）。适合追求完全掌控和隐私保护、不需要多余功能的用户。</p>
+        <p><strong>最简单的入门方式。</strong>一款轻量级、移动优先的钱包，直接在浏览器中运行，或作为 Discord 和 Telegram 的小程序使用。</p>
+        <ul>
+          <li>无需应用商店安装</li>
+          <li>关联 Discord 和 Telegram 账户</li>
+          <li>Tap Days 和水龙头体验</li>
+        </ul>
+      </div>
+      <div className="card__footer">
+        <Link className="button button--primary button--block" to="/wallets/tap-wallet">获取 Tap Wallet</Link>
+      </div>
+    </div>
+  </div>
+
+  {/* --- tWallet --- */}
+  <div className="col col--6 margin-bottom--lg">
+    <div className="card shadow--md" style={{height: '100%', display: 'flex', flexDirection: 'column'}}>
+      <div className="card__header">
+        <h3>tWallet</h3>
+      </div>
+      <div className="card__body" style={{flex: '1 1 auto'}}>
+        <p><strong>高级用户之选。</strong>一款快速的终端钱包 (TUI)，内置 Lightning 节点。适合需要完全控制和隐私的用户。</p>
         <ul>
           <li>集成 Lightning Network</li>
           <li>注重隐私（Neutrino 轻节点协议）</li>
@@ -26,19 +47,39 @@ import Link from '@docusaurus/Link';
         </ul>
       </div>
       <div className="card__footer">
-        <Link className="button button--primary button--block" to="/wallets/twallet">开始使用 tWallet</Link>
+        <Link className="button button--secondary button--block" to="/wallets/twallet">获取 tWallet</Link>
       </div>
     </div>
   </div>
 
-  {/* --- Komodo 卡片 --- */}
+  {/* --- flnd --- */}
+  <div className="col col--6 margin-bottom--lg">
+    <div className="card shadow--md" style={{height: '100%', display: 'flex', flexDirection: 'column'}}>
+      <div className="card__header">
+        <h3>flnd（守护进程）</h3>
+      </div>
+      <div className="card__body" style={{flex: '1 1 auto'}}>
+        <p><strong>节点运营者之选。</strong>高性能的 Lightning Network 和钱包守护进程。是自动化和稳健节点运营的核心引擎。</p>
+        <ul>
+          <li>完整的 Daemon 和 CLI 体验</li>
+          <li>强大的 gRPC/REST API</li>
+          <li>适合 24/7 服务器节点</li>
+        </ul>
+      </div>
+      <div className="card__footer">
+        <Link className="button button--secondary button--block" to="/wallets/flnd">探索 flnd</Link>
+      </div>
+    </div>
+  </div>
+
+  {/* --- Komodo --- */}
   <div className="col col--6 margin-bottom--lg">
     <div className="card shadow--md" style={{height: '100%', display: 'flex', flexDirection: 'column'}}>
       <div className="card__header">
         <h3>Komodo Wallet</h3>
       </div>
       <div className="card__body" style={{flex: '1 1 auto'}}>
-        <p><strong>用户友好的选择。</strong>一款具有传统精美图形界面的多币种钱包，非常适合桌面端或移动端的日常用户。</p>
+        <p><strong>用户友好之选。</strong>一款具有传统图形界面 (GUI) 的多币种钱包。适合日常用户在桌面或移动端使用。</p>
         <ul>
           <li>图形用户界面（GUI）</li>
           <li>支持 F 地址和 Segwit（隔离见证）</li>
@@ -46,7 +87,7 @@ import Link from '@docusaurus/Link';
         </ul>
       </div>
       <div className="card__footer">
-        <Link className="button button--secondary button--block" to="/wallets/komodo-wallet">开始使用 Komodo</Link>
+        <Link className="button button--secondary button--block" to="/wallets/komodo-wallet">获取 Komodo</Link>
       </div>
     </div>
   </div>
@@ -54,13 +95,13 @@ import Link from '@docusaurus/Link';
 
 ## 快速对比
 
-| 功能 | tWallet | Komodo Wallet |
-| :--- | :--- | :--- |
-| **界面** | 终端（TUI） | 图形（GUI） |
-| **Lightning** | 是（内置） | 否 |
-| **使用门槛** | 中级 | 入门级 |
-| **适用场景** | 节点运营者及注重隐私的用户 | 日常用户及移动端用户 |
+| 功能 | Tap Wallet | tWallet | flnd | Komodo Wallet |
+| :--- | :--- | :--- | :--- | :--- |
+| **界面** | 网页 / 小程序 | 终端 (TUI) | 命令行 (CLI) | 图形 (GUI) |
+| **Lightning** | 否 | 是（内置） | 是（原生） | 否 |
+| **经验要求** | 初学者 | 中级 | 高级 | 初学者 |
+| **最适合** | 移动端和社交 | 桌面隐私 | 节点运营者 | 日常用户 |
 
 :::tip[正在使用 Lokihub？]
-如果您计划使用 **Lokihub**，强烈建议从 **tWallet v1** 开始，因为它为节点操作提供了必要的 Lightning 后端支持。
+如果您计划使用 **Lokihub**，我们强烈建议从 **tWallet v1** 开始，因为它提供了节点运营所需的 Lightning 后端。
 :::
