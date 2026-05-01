@@ -34,6 +34,26 @@ To interact with the Flokicoin network, you need a safe place to manage your key
     </div>
   </div>
 
+  {/* --- Lokinode Card --- */}
+  <div className="col col--6 margin-bottom--lg">
+    <div className="card shadow--md" style={{height: '100%', display: 'flex', flexDirection: 'column'}}>
+      <div className="card__header">
+        <h3>Lokinode (GUI)</h3>
+      </div>
+      <div className="card__body" style={{flex: '1 1 auto'}}>
+        <p><strong>The Node Operator's GUI.</strong> A powerful desktop application for managing your Flokicoin full node and Lightning channels with a professional graphic interface.</p>
+        <ul>
+          <li>Native Desktop Experience</li>
+          <li>Real-time Node Monitoring</li>
+          <li>Full Lightning Integration</li>
+        </ul>
+      </div>
+      <div className="card__footer">
+        <Link className="button button--secondary button--block" to="/wallets/lokinode">Get Lokinode</Link>
+      </div>
+    </div>
+  </div>
+
   {/* --- tWallet Card --- */}
   <div className="col col--6 margin-bottom--lg">
     <div className="card shadow--md" style={{height: '100%', display: 'flex', flexDirection: 'column'}}>
@@ -97,12 +117,12 @@ To interact with the Flokicoin network, you need a safe place to manage your key
 
 ## Quick Comparison
 
-| Feature | Tap Wallet | tWallet | flnd | Komodo Wallet |
-| :--- | :--- | :--- | :--- | :--- |
-| **Interface** | Web / Mini App | Terminal (TUI) | Command Line (CLI) | Graphic (GUI) |
-| **Lightning** | No | Yes (Built-in) | Yes (Natively) | No |
-| **Experience** | Beginner | Intermediate | Advanced | Beginner |
-| **Best For** | Mobile & Social | Desktop privacy | Node operators | Everyday users |
+| Feature | Tap Wallet | Lokinode | tWallet | flnd | Komodo Wallet |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Interface** | Web / Mini App | Graphic (GUI) | Terminal (TUI) | Command Line (CLI) | Graphic (GUI) |
+| **Lightning** | No | Yes (Built-in) | Yes (Built-in) | Yes (Natively) | No |
+| **Experience** | Beginner | Intermediate | Intermediate | Advanced | Beginner |
+| **Best For** | Mobile & Social | Desktop Nodes | Desktop Privacy | Node Operators | Everyday Users |
 
 :::tip[Running Lokihub?]
 If you plan on using **Lokihub**, we highly recommend starting with **tWallet v1**, as it provides the necessary Lightning backend for node operations.
