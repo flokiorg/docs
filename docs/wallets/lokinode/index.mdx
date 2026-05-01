@@ -1,6 +1,6 @@
 ---
 title: Lokinode
-description: The ultimate desktop GUI for Flokicoin node operators. Manage your FLND node, wallet, and lightning channels with a native desktop experience.
+description: Cross-platform desktop GUI for Flokicoin node operators. Manage your FLND node, wallet, and lightning channels with a native desktop experience.
 sidebar_position: 2
 hide_title: true
 keywords: [Lokinode, Flokicoin, GUI wallet, node manager, desktop wallet, Wails, FLND, lightning node]
@@ -17,22 +17,22 @@ import Heading from '@theme/Heading';
     <div className="lokinode-hero-inner">
       <div className="lokinode-hero-content">
         <Heading as="h1" className="lokinode-hero-title">Lokinode</Heading>
-        <p className="lokinode-hero-subtitle">The Node Operator's GUI. Complete sovereignty over your Flokicoin full node with a native desktop experience.</p>
+        <p className="lokinode-hero-subtitle">Cross-platform desktop graphic user interface for managing Flokicoin full nodes and Lightning Network operations.</p>
 
         <div className="hero-modern__actions lokinode-hero-actions-override">
           <Link className="hero-button hero-button--primary" href="https://github.com/flokiorg/lokinode/releases">
-            <span><Download size={18} /></span><span>Download for Desktop</span>
+            <span><Download size={18} /></span><span>Download v0.1.0</span>
           </Link>
           <Link className="hero-button" href="https://github.com/flokiorg/lokinode">
-            <span><Terminal size={18} /></span><span>View Source</span>
+            <span><Terminal size={18} /></span><span>Source Code</span>
           </Link>
         </div>
 
         <div className="lokinode-hero-status-card">
           <div className="status-icon-wrapper"><Activity size={22} /></div>
           <div>
-            <strong>Latest Release: v0.1.0</strong>
-            <p>Full global language support, RTL support for Arabic/Farsi, and UI/UX improvements.</p>
+            <strong>Latest Release: 0.1.0</strong>
+            <p>Integrated global language support and RTL layout compatibility.</p>
           </div>
         </div>
       </div>
@@ -207,90 +207,85 @@ import Heading from '@theme/Heading';
   }
 `}</style>
 
-**Lokinode** is a powerful, native desktop application built for users who want a professional-grade interface for their Flokicoin node. It combines the raw power of the **FLND** daemon with a modern, intuitive GUI.
+**Lokinode** is a native desktop application designed for running and managing a Flokicoin full node (FLND). It provides a graphic environment for wallet initialization, channel management, and real-time node monitoring without requiring command-line interaction.
 
 <div className="row margin-top--lg">
   <div className="col col--4 margin-bottom--lg">
     <div className="card shadow--md padding--lg" style={{height: '100%'}}>
-      <Heading as="h3"><Layout size={20} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Native Desktop</Heading>
-      <p>Built with <strong>Wails</strong> for a high-performance experience on <strong>Windows, macOS, and Linux</strong>. No browser required.</p>
+      <Heading as="h3"><Layout size={20} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Desktop Environment</Heading>
+      <p>Native application built with <strong>Wails</strong> for Windows, macOS, and Linux.</p>
     </div>
   </div>
   <div className="col col--4 margin-bottom--lg">
     <div className="card shadow--md padding--lg" style={{height: '100%'}}>
-      <Heading as="h3"><Zap size={20} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Lightning Ready</Heading>
-      <p>Direct integration with the <strong>Lightning Network</strong>. Manage channels, liquidity, and payments with visual clarity.</p>
+      <Heading as="h3"><Zap size={20} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Lightning Support</Heading>
+      <p>Integrated management for Lightning Network channels and liquidity.</p>
     </div>
   </div>
   <div className="col col--4 margin-bottom--lg">
     <div className="card shadow--md padding--lg" style={{height: '100%'}}>
-      <Heading as="h3"><Shield size={20} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Full Node Control</Heading>
-      <p>Total control over your node settings, wallet initialization, and security with a user-friendly interface.</p>
+      <Heading as="h3"><Shield size={20} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Node Control</Heading>
+      <p>Direct interface for node configuration, wallet security, and logs.</p>
     </div>
   </div>
 </div>
 
 ## Download Assets
 
-Download the latest [v0.1.0 release](https://github.com/flokiorg/lokinode/releases/tag/v0.1.0) for your platform.
+Download the latest release for your operating system from [GitHub](https://github.com/flokiorg/lokinode/releases/tag/v0.1.0).
 
-| Platform | Download Link |
+| OS | Asset |
 | --- | --- |
-| **Windows** (x86_64) | [lokinode_0.1.0_windows_amd64.exe](https://github.com/flokiorg/lokinode/releases/download/v0.1.0/lokinode_0.1.0_windows_amd64.exe) |
-| **macOS** (Intel/Silicon) | [lokinode_0.1.0_darwin_amd64.dmg](https://github.com/flokiorg/lokinode/releases/download/v0.1.0/lokinode_0.1.0_darwin_amd64.dmg) |
-| **Linux** (Debian/Ubuntu) | [lokinode_0.1.0_linux_amd64.deb](https://github.com/flokiorg/lokinode/releases/download/v0.1.0/lokinode_0.1.0_linux_amd64.deb) |
+| **Windows** | [lokinode_0.1.0_windows_amd64.exe](https://github.com/flokiorg/lokinode/releases/download/v0.1.0/lokinode_0.1.0_windows_amd64.exe) |
+| **macOS** | [lokinode_0.1.0_darwin_amd64.dmg](https://github.com/flokiorg/lokinode/releases/download/v0.1.0/lokinode_0.1.0_darwin_amd64.dmg) |
+| **Linux** | [lokinode_0.1.0_linux_amd64.deb](https://github.com/flokiorg/lokinode/releases/download/v0.1.0/lokinode_0.1.0_linux_amd64.deb) |
 
-## Installation & Setup
+## Installation
 
-1.  **Download** the installer or package for your operating system.
-2.  **Run the application**:
-    *   **Windows**: Run the `.exe` installer.
-    *   **macOS**: Open the `.dmg` and drag Lokinode to your Applications folder.
-    *   **Linux**: Install the `.deb` package using `sudo dpkg -i lokinode_*.deb`.
-3.  **Initialize Wallet**: On first launch, you will be prompted to create a new wallet or restore an existing one using a 24-word seed phrase.
-4.  **Sync Node**: Lokinode will start the internal **FLND** node. Wait for it to catch up with the Flokicoin network.
+1.  **Download** the package for your operating system.
+2.  **Run the installer**:
+    *   **Windows**: Execute the `.exe` and follow the prompts.
+    *   **macOS**: Open the `.dmg` and move Lokinode to Applications.
+    *   **Linux**: Install via `sudo dpkg -i lokinode_*.deb`.
+3.  **Setup**: Follow the on-screen instructions to create a new 24-word seed phrase or import an existing one.
 
-## Key Capabilities
+## Capabilities
 
-### <Activity size={24} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Professional Dashboard
-Get a high-level overview of your node's health. Monitor synchronization progress, peer connections, and network stats in real-time without touching the command line.
+### Node Monitoring
+Monitor synchronization status, block height, and mempool activity. The dashboard provides real-time updates on peer connections and network health.
 
-### <Zap size={24} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Wallet & Transactions
-*   **Send & Receive**: Intuitive forms for FLC transactions with built-in fee estimation.
-*   **History**: Searchable and filterable transaction logs for both on-chain and lightning payments.
-*   **Security**: Manage your 24-word seed phrase and wallet passwords securely.
+### Wallet Operations
+Manage on-chain FLC balances. The interface supports sending and receiving payments with built-in fee estimation and comprehensive transaction history.
 
-### <Settings size={24} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Advanced Management
-Access deep node configurations through a structured settings menu. View internal logs, manage RPC credentials, and tune your node's performance to match your hardware.
+### Channel Management
+Interact with the Lightning Network. Users can open and close channels, monitor liquidity, and manage invoices within the GUI.
+
+## Data Locations
+
+Lokinode stores node data, logs, and channel databases in the default FLND directory:
+
+| OS | Default Path |
+| :--- | :--- |
+| **Linux** | `~/.flnd/` |
+| **macOS** | `~/Library/Application Support/Flnd/` |
+| **Windows** | `%APPDATA%\Flnd\` |
+
+## CRITICAL: Lightning Backups
+
+A 24-word seed phrase **does not recover Lightning channel funds**. It only recovers your on-chain balance.
+
+1.  **Static Channel Backups (SCB)**: Your node generates a `channel.backup` file (located in `.flnd/data/chain/flokicoin/mainnet/`). This file is required to recover funds from open channels.
+2.  **Requirement**: To fully restore a node, you must have **both** the 24-word seed and the most recent `channel.backup` file.
+
+:::danger[DATA LOSS RISK]
+Automate the backup of your `channel.backup` file. Without it, funds in Lightning channels cannot be recovered if local data is lost.
+:::
 
 ## Technical Specifications
 
-<div className="row margin-top--lg">
-  <div className="col col--6 margin-bottom--md">
-    <div className="card padding--lg shadow--lw" style={{height: '100%'}}>
-      <Heading as="h3"><Cpu size={22} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Architecture</Heading>
-      <ul>
-        <li><strong>Core</strong>: Go (Golang)</li>
-        <li><strong>Frontend</strong>: TypeScript / Vite</li>
-        <li><strong>Bridge</strong>: Wails v2 Framework</li>
-        <li><strong>Engine</strong>: FLND (Flokicoin Lightning Network Daemon)</li>
-      </ul>
-    </div>
-  </div>
-  <div className="col col--6 margin-bottom--md">
-    <div className="card padding--lg shadow--lw" style={{height: '100%'}}>
-      <Heading as="h3"><HardDrive size={22} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Requirements</Heading>
-      <ul>
-        <li><strong>OS</strong>: Windows 10+, macOS 11+, Linux (Ubuntu/Fedora)</li>
-        <li><strong>Disk</strong>: ~2GB for binaries + blockchain data</li>
-        <li><strong>RAM</strong>: 2GB minimum (4GB recommended)</li>
-      </ul>
-    </div>
-  </div>
-</div>
-
----
-
-### Ready to take control?
-
-[Download Lokinode for Desktop](https://github.com/flokiorg/lokinode/releases) or [View the Documentation](/wallets/flnd) for the underlying daemon.
+| Component | Technology |
+| --- | --- |
+| **Core** | Go (Golang) |
+| **Frontend** | TypeScript / Vite |
+| **Engine** | FLND |
+| **Framework** | Wails v2 |
