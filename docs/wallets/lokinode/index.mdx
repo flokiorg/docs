@@ -263,6 +263,27 @@ Monitor synchronization status, block height, and mempool activity. The dashboar
 ### Wallet Operations
 Manage on-chain FLC balances. The interface supports sending and receiving payments with built-in fee estimation and comprehensive transaction history.
 
+---
+
+## Managing with Lokihub
+
+While **Lokinode** provides a built-in interface for basic operations, many node operators use **Lokihub** for advanced liquidity management and automated node health dashboards.
+
+### Quick Connection
+To connect Lokihub to your Lokinode instance:
+1.  **Launch Lokinode**: Ensure your node is running and synchronized.
+2.  **Open Lokihub**: Use the web interface or local installation.
+3.  **Automated Sync**: Lokihub can automatically detect and retrieve the gRPC credentials from your local `.flnd/` directory.
+
+### Why use Lokihub?
+*   **Liquidity Visualization**: Detailed graphs of channel balance distribution and routing history.
+*   **App Integration**: Connect external applications to your node via Nostr Wallet Connect (NWC).
+*   **Automated Backups**: Simplified workflows for managing your Static Channel Backups (SCB).
+
+[View the Lokihub Setup Guide →](/lokihub/setup)
+
+---
+
 ## Data Locations
 
 Lokinode stores node data, logs, and channel databases in the following directories:
