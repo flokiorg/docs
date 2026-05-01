@@ -1,9 +1,9 @@
 ---
 title: Lokinode
-description: Cross-platform desktop GUI for Flokicoin node operators. Manage your FLND node, wallet, and lightning channels with a native desktop experience.
+description: Desktop GUI for Flokicoin node operators. Manage your FLND node, wallet, and lightning channels with a native desktop experience.
 sidebar_position: 2
 hide_title: true
-keywords: [Lokinode, Flokicoin, GUI wallet, node manager, desktop wallet, Wails, FLND, lightning node]
+keywords: [Lokinode, Flokicoin, GUI wallet, node manager, desktop wallet, FLND, lightning node]
 custom_edit_url: null
 ---
 
@@ -17,7 +17,7 @@ import Heading from '@theme/Heading';
     <div className="lokinode-hero-inner">
       <div className="lokinode-hero-content">
         <Heading as="h1" className="lokinode-hero-title">Lokinode</Heading>
-        <p className="lokinode-hero-subtitle">Cross-platform desktop graphic user interface for managing Flokicoin full nodes and Lightning Network operations.</p>
+        <p className="lokinode-hero-subtitle">Desktop interface for managing Flokicoin full nodes and Lightning Network operations.</p>
 
         <div className="hero-modern__actions lokinode-hero-actions-override">
           <Link className="hero-button hero-button--primary" href="https://github.com/flokiorg/lokinode/releases">
@@ -207,25 +207,25 @@ import Heading from '@theme/Heading';
   }
 `}</style>
 
-**Lokinode** is a native desktop application designed for running and managing a Flokicoin full node (FLND). It provides a graphic environment for wallet initialization, channel management, and real-time node monitoring without requiring command-line interaction.
+**Lokinode** is a desktop application designed for running and managing a Flokicoin full node. It provides a graphic environment for wallet operations, channel management, and real-time node monitoring.
 
 <div className="row margin-top--lg">
   <div className="col col--4 margin-bottom--lg">
     <div className="card shadow--md padding--lg" style={{height: '100%'}}>
-      <Heading as="h3"><Layout size={20} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Desktop Environment</Heading>
-      <p>Native application built with <strong>Wails</strong> for Windows, macOS, and Linux.</p>
+      <Heading as="h3"><Layout size={20} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Desktop App</Heading>
+      <p>Native application for Windows, macOS, and Linux. No terminal usage required for daily operations.</p>
     </div>
   </div>
   <div className="col col--4 margin-bottom--lg">
     <div className="card shadow--md padding--lg" style={{height: '100%'}}>
-      <Heading as="h3"><Zap size={20} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Lightning Support</Heading>
-      <p>Integrated management for Lightning Network channels and liquidity.</p>
+      <Heading as="h3"><Zap size={20} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Lightning Node</Heading>
+      <p>Complete management for Lightning Network channels, invoices, and liquidity.</p>
     </div>
   </div>
   <div className="col col--4 margin-bottom--lg">
     <div className="card shadow--md padding--lg" style={{height: '100%'}}>
-      <Heading as="h3"><Shield size={20} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Node Control</Heading>
-      <p>Direct interface for node configuration, wallet security, and logs.</p>
+      <Heading as="h3"><Shield size={20} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Secure Control</Heading>
+      <p>Direct interface for node security, encrypted wallet storage, and internal logs.</p>
     </div>
   </div>
 </div>
@@ -251,18 +251,21 @@ Download the latest release for your operating system from [GitHub](https://gith
 
 ## Capabilities
 
+### Lightning Network Management
+Lokinode is primarily focused on making Lightning Network node operations accessible. Users can:
+*   **Manage Channels**: Open, close, and monitor channel states visually.
+*   **Liquidity Control**: Track inbound and outbound capacity in real-time.
+*   **Invoicing**: Generate and pay Lightning invoices with instant settlement.
+
 ### Node Monitoring
-Monitor synchronization status, block height, and mempool activity. The dashboard provides real-time updates on peer connections and network health.
+Monitor synchronization status, block height, and mempool activity. The dashboard provides live updates on peer connections and network health.
 
 ### Wallet Operations
 Manage on-chain FLC balances. The interface supports sending and receiving payments with built-in fee estimation and comprehensive transaction history.
 
-### Channel Management
-Interact with the Lightning Network. Users can open and close channels, monitor liquidity, and manage invoices within the GUI.
-
 ## Data Locations
 
-Lokinode stores node data, logs, and channel databases in the default FLND directory:
+Lokinode stores node data, logs, and channel databases in the following directories:
 
 | OS | Default Path |
 | :--- | :--- |
@@ -281,11 +284,11 @@ A 24-word seed phrase **does not recover Lightning channel funds**. It only reco
 Automate the backup of your `channel.backup` file. Without it, funds in Lightning channels cannot be recovered if local data is lost.
 :::
 
-## Technical Specifications
+## System Requirements
 
-| Component | Technology |
-| --- | --- |
-| **Core** | Go (Golang) |
-| **Frontend** | TypeScript / Vite |
-| **Engine** | FLND |
-| **Framework** | Wails v2 |
+| Resource | Minimum | Recommended |
+| --- | --- | --- |
+| **CPU** | Dual-core | Quad-core+ |
+| **RAM** | 2GB | 4GB+ |
+| **Disk** | 2GB (SSD) | 10GB+ (SSD) |
+| **Network** | Stable broadband | 10Mbps+ upload |
