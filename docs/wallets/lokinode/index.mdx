@@ -1,14 +1,14 @@
 ---
 title: Lokinode
-description: Desktop GUI for Flokicoin node operators. Manage your FLND node, wallet, and lightning channels with a native desktop experience.
+description: Desktop interface for Flokicoin node operators. Manage your full node and Lightning Network operations with a native background service.
 sidebar_position: 2
 hide_title: true
-keywords: [Lokinode, Flokicoin, GUI wallet, node manager, desktop wallet, FLND, lightning node]
+keywords: [Lokinode, Flokicoin, GUI wallet, node manager, desktop wallet, FLND, lightning node, background service, FLN]
 custom_edit_url: null
 ---
 
 import Link from '@docusaurus/Link';
-import { Monitor, Zap, Shield, Activity, Settings, Download, Cpu, HardDrive, Layout, ChevronRight, Terminal } from 'lucide-react';
+import { Monitor, Zap, Shield, Activity, Settings, Download, Cpu, HardDrive, Layout, ChevronRight, Terminal, Box } from 'lucide-react';
 import tapHomeImage from '../tapwallet_home.png';
 import Heading from '@theme/Heading';
 
@@ -17,7 +17,7 @@ import Heading from '@theme/Heading';
     <div className="lokinode-hero-inner">
       <div className="lokinode-hero-content">
         <Heading as="h1" className="lokinode-hero-title">Lokinode</Heading>
-        <p className="lokinode-hero-subtitle">Desktop interface for managing Flokicoin full nodes and Lightning Network operations.</p>
+        <p className="lokinode-hero-subtitle">Desktop interface for managing Flokicoin full nodes and Lightning Network (FLN) operations.</p>
 
         <div className="hero-modern__actions lokinode-hero-actions-override">
           <Link className="hero-button hero-button--primary" href="https://github.com/flokiorg/lokinode/releases">
@@ -212,20 +212,20 @@ import Heading from '@theme/Heading';
 <div className="row margin-top--lg">
   <div className="col col--4 margin-bottom--lg">
     <div className="card shadow--md padding--lg" style={{height: '100%'}}>
-      <Heading as="h3"><Layout size={20} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Desktop App</Heading>
-      <p>Native application for Windows, macOS, and Linux. No terminal usage required for daily operations.</p>
+      <Heading as="h3"><Monitor size={20} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Background Service</Heading>
+      <p>Runs as a persistent background process with a system tray interface. Closing the window keeps the node active.</p>
     </div>
   </div>
   <div className="col col--4 margin-bottom--lg">
     <div className="card shadow--md padding--lg" style={{height: '100%'}}>
-      <Heading as="h3"><Zap size={20} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Lightning Node</Heading>
-      <p>Complete management for Lightning Network channels, invoices, and liquidity.</p>
+      <Heading as="h3"><Zap size={20} style={{verticalAlign: 'middle', marginRight: '8px'}} /> FLN Node</Heading>
+      <p>Full-featured Flokicoin Lightning Network (FLN) node with integrated channel and liquidity management.</p>
     </div>
   </div>
   <div className="col col--4 margin-bottom--lg">
     <div className="card shadow--md padding--lg" style={{height: '100%'}}>
-      <Heading as="h3"><Shield size={20} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Secure Control</Heading>
-      <p>Direct interface for node security, encrypted wallet storage, and internal logs.</p>
+      <Heading as="h3"><Box size={20} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Node Management</Heading>
+      <p>Initialize and manage multiple node configurations with custom data locations and advanced security settings.</p>
     </div>
   </div>
 </div>
@@ -251,17 +251,23 @@ Download the latest release for your operating system from [GitHub](https://gith
 
 ## Capabilities
 
-### Lightning Network Management
-Lokinode is primarily focused on making Lightning Network node operations accessible. Users can:
-*   **Manage Channels**: Open, close, and monitor channel states visually.
-*   **Liquidity Control**: Track inbound and outbound capacity in real-time.
-*   **Invoicing**: Generate and pay Lightning invoices with instant settlement.
+### Lightning Network (FLN) Operations
+Lokinode provides a dedicated interface for Flokicoin Lightning Network operations:
+*   **Visual Channel Management**: Open and close channels with a few clicks.
+*   **Liquidity Tracking**: Monitor inbound and outbound capacity in real-time.
+*   **Instant Payments**: Generate and pay Lightning invoices with immediate settlement.
 
-### Node Monitoring
-Monitor synchronization status, block height, and mempool activity. The dashboard provides live updates on peer connections and network health.
+### Persistent Background Service
+Lokinode is designed to run in the background to maintain node uptime:
+*   **System Tray Integration**: Access common actions and status directly from your OS tray.
+*   **Window Management**: Hiding the main window does not stop the node; the process remains active to ensure network connectivity.
+*   **Auto-Restart**: Built-in logic to maintain node stability and recover from unexpected interruptions.
 
-### Wallet Operations
-Manage on-chain FLC balances. The interface supports sending and receiving payments with built-in fee estimation and comprehensive transaction history.
+### Flexible Node Management
+Unlike terminal-based tools, Lokinode allows users to manage multiple node configurations:
+*   **Custom Data Locations**: Choose any directory for storing your blockchain data and channel databases.
+*   **Real-time Monitoring**: The dashboard provides live updates on sync status, block height, and peer connections.
+*   **Security Controls**: Change passwords and manage your recovery phrase within a secure graphic environment.
 
 ---
 
@@ -273,12 +279,7 @@ While **Lokinode** provides a built-in interface for basic operations, many node
 To connect Lokihub to your Lokinode instance:
 1.  **Launch Lokinode**: Ensure your node is running and synchronized.
 2.  **Open Lokihub**: Use the web interface or local installation.
-3.  **Automated Sync**: Lokihub can automatically detect and retrieve the gRPC credentials from your local `.flnd/` directory.
-
-### Why use Lokihub?
-*   **Liquidity Visualization**: Detailed graphs of channel balance distribution and routing history.
-*   **App Integration**: Connect external applications to your node via Nostr Wallet Connect (NWC).
-*   **Automated Backups**: Simplified workflows for managing your Static Channel Backups (SCB).
+3.  **Automated Sync**: Lokihub can automatically detect and retrieve the gRPC credentials from your local node directory.
 
 [View the Lokihub Setup Guide →](/lokihub/setup)
 
@@ -286,7 +287,7 @@ To connect Lokihub to your Lokinode instance:
 
 ## Data Locations
 
-Lokinode stores node data, logs, and channel databases in the following directories:
+By default, Lokinode stores node data, logs, and channel databases in the standard FLND directory. However, you can specify a custom data location during the initialization process or via the application settings.
 
 | OS | Default Path |
 | :--- | :--- |
@@ -298,18 +299,9 @@ Lokinode stores node data, logs, and channel databases in the following director
 
 A 24-word seed phrase **does not recover Lightning channel funds**. It only recovers your on-chain balance.
 
-1.  **Static Channel Backups (SCB)**: Your node generates a `channel.backup` file (located in `.flnd/data/chain/flokicoin/mainnet/`). This file is required to recover funds from open channels.
+1.  **Static Channel Backups (SCB)**: Your node generates a `channel.backup` file. This file is required to recover funds from open channels in the event of data loss.
 2.  **Requirement**: To fully restore a node, you must have **both** the 24-word seed and the most recent `channel.backup` file.
 
 :::danger[DATA LOSS RISK]
-Automate the backup of your `channel.backup` file. Without it, funds in Lightning channels cannot be recovered if local data is lost.
+Always ensure you have a backup of your `channel.backup` file. Without it, funds in Lightning channels cannot be recovered if local data is lost.
 :::
-
-## System Requirements
-
-| Resource | Minimum | Recommended |
-| --- | --- | --- |
-| **CPU** | Dual-core | Quad-core+ |
-| **RAM** | 2GB | 4GB+ |
-| **Disk** | 2GB (SSD) | 10GB+ (SSD) |
-| **Network** | Stable broadband | 10Mbps+ upload |
