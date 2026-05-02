@@ -3,6 +3,7 @@ title: Tap Wallet
 description: The easiest way to get started with Flokicoin. A cross-platform wallet for iOS, Android, and Desktop without App Store requirements.
 sidebar_position: 1
 hide_title: true
+hide_table_of_contents: true
 keywords: [Tap Wallet, Flokicoin, Discord Mini App, Telegram Mini App, iOS wallet, Android wallet, Desktop wallet, cross-platform]
 custom_edit_url: null
 ---
@@ -21,15 +22,17 @@ import Heading from '@theme/Heading';
         <p className="tap-hero-subtitle">One Wallet. Every Device. Direct FLC access without the App Store.</p>
 
         <div className="hero-modern__actions tap-hero-actions-override">
-          <Link className="hero-button hero-button--primary" href="https://taploki.com">
+          <Link className="hero-button hero-button--primary no-external-icon" href="https://taploki.com/wallet">
             <span><Globe size={18} /></span><span>Launch Web Wallet</span>
           </Link>
-          <Link className="hero-button" href="https://flokicoin.org/discord">
-            <span><MessageSquare size={18} /></span><span>Discord App</span>
-          </Link>
-          <Link className="hero-button" href="https://t.me/taplokibot">
-            <span><Zap size={18} /></span><span>Telegram Bot</span>
-          </Link>
+          <div className="tap-social-btns">
+            <Link className="hero-button no-external-icon" href="https://flokicoin.org/discord">
+              <span><MessageSquare size={18} /></span><span>Discord App</span>
+            </Link>
+            <Link className="hero-button no-external-icon" href="https://t.me/taplokibot">
+              <span><Zap size={18} /></span><span>Telegram Bot</span>
+            </Link>
+          </div>
         </div>
 
         <div className="tap-hero-faucet-card">
@@ -55,23 +58,22 @@ import Heading from '@theme/Heading';
   .tap-hero-container {
     margin: 0 -2rem 4rem;
     padding: 5rem 2rem 6rem;
-    /* Use the theme background as the base for seamless integration */
+    /* Base color matching the theme */
     background-color: var(--ifm-background-color);
     background-image: 
-      radial-gradient(ellipse at 70% 30%, rgba(208, 151, 15, 0.12) 0%, var(--ifm-background-color) 100%),
-      radial-gradient(circle at 20% 80%, rgba(208, 151, 15, 0.05) 0%, transparent 50%);
+      radial-gradient(circle at 70% 30%, rgba(208, 151, 15, 0.1) 0%, rgba(208, 151, 15, 0) 70%),
+      radial-gradient(circle at 20% 80%, rgba(208, 151, 15, 0.04) 0%, rgba(208, 151, 15, 0) 60%);
+    
+    /* Physically fade all edges to 0% opacity to ensure no borders */
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent),
+                        linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent),
+                linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
+
     position: relative;
     overflow: hidden;
-  }
-
-  /* Soften all edges (top, bottom, and corners) */
-  .tap-hero-container::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, var(--ifm-background-color) 0%, transparent 15%, transparent 85%, var(--ifm-background-color) 100%);
-    pointer-events: none;
-    z-index: 1;
   }
 
   .tap-hero-inner {
@@ -106,8 +108,24 @@ import Heading from '@theme/Heading';
 
   /* Button row override */
   .tap-hero-actions-override {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
     margin-bottom: 2rem !important;
     margin-top: 0 !important;
+  }
+
+  .tap-social-btns {
+    display: flex;
+    gap: 1rem;
+    flex: 1 1 auto;
+    min-width: 280px;
+  }
+
+  .tap-social-btns .hero-button {
+    flex: 1;
+    justify-content: center;
+    white-space: nowrap;
   }
 
   /* Faucet Card */
@@ -121,6 +139,7 @@ import Heading from '@theme/Heading';
     border-radius: 18px;
     max-width: 440px;
     backdrop-filter: blur(12px);
+    text-align: left;
   }
 
   .tap-hero-faucet-card strong {
@@ -200,15 +219,26 @@ import Heading from '@theme/Heading';
     }
     .tap-visual-wrapper { transform: none !important; }
     .tap-main-screenshot { max-width: 220px; }
+    
+    .tap-hero-actions-override {
+      justify-content: center;
+    }
   }
 
   @media (max-width: 600px) {
     .tap-hero-actions-override {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 0.5rem !important;
+    }
+    
+    .tap-social-btns {
       display: grid !important;
       grid-template-columns: 1fr 1fr !important;
       gap: 0.5rem !important;
+      width: 100%;
+      min-width: unset;
     }
-    .tap-hero-actions-override .hero-button:first-child { grid-column: 1 / -1; }
   }
 `}</style>
 
@@ -276,12 +306,8 @@ Link your Flokicoin address to your social accounts to unlock cross-platform fea
 *   **Telegram**: Launch via [@taplokiBot](https://t.me/taplokibot).
 *   **Web**: Access anytime at [taploki.com](https://taploki.com).
 
-:::info[Coming Soon]
-Once your account is linked, you will soon be able to "tap" other users directly within Discord and Telegram chat interfaces to send FLC on-chain!
-:::
-
 ## <PartyPopper size={24} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Tap Days
 
 **Tap Days** are community events where miners and holders fund the faucet so new users can experience the Flokicoin network firsthand. During these events, limited-time **Tap Codes** (`TAP-XXXXXXXXXX`) are dropped exclusively in our Discord and Telegram communities.
 
-[Start Tapping Today →](https://taploki.com)
+<Link className="no-external-icon" to="https://taploki.com/wallet">Start Tapping Today →</Link>

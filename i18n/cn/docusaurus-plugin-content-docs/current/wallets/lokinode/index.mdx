@@ -1,6 +1,6 @@
 ---
 title: Lokinode
-description: 运行和管理 Flokicoin 全节点 (FLND) 和 Lightning Network 运营的桌面界面。
+description: Flokicoin 节点运营者的桌面界面。通过原生的后台服务管理您的全节点和 Lightning Network 运营。
 sidebar_position: 2
 hide_title: true
 keywords: [Lokinode, Flokicoin, GUI wallet, node manager, desktop wallet, FLND, lightning node, background service, FLN]
@@ -9,50 +9,43 @@ custom_edit_url: null
 
 import Link from '@docusaurus/Link';
 import { Monitor, Zap, Shield, Activity, Settings, Download, Cpu, HardDrive, Layout, ChevronRight, Terminal, Box, Apple, Globe } from 'lucide-react';
-import lokiImage from '../../../../../../../docs/wallets/lokinode/assets/loki-lazereyes.png';
+import lokiLazerSvg from '../../../../../../../docs/wallets/lokinode/assets/loki-lazereyes.svg';
 import Heading from '@theme/Heading';
 
 <div className="lokinode-lazereyes-hero">
   <div className="container">
-    <div className="lokinode-hero-content">
+    <div className="lokinode-hero-grid">
+      <div className="lokinode-hero-info">
+        <div className="lokinode-badge">FLN 节点运营者</div>
+        <Heading as="h1" className="lokinode-glitch-title">Lokinode</Heading>
+        <p className="lokinode-hero-description">
+          Flokicoin Lightning 网络的权威桌面界面。
+          通过原生的后台服务和专业级仪表板保持节点 24/7 在线。
+        </p>
+
+        <div className="lokinode-download-buttons">
+          <Link className="lokinode-btn lokinode-btn--win no-external-icon" href="https://github.com/flokiorg/lokinode/releases/download/v0.1.0/lokinode_0.1.0_windows_amd64.exe">
+            <Monitor size={20} /> <span>Windows</span>
+          </Link>
+          <Link className="lokinode-btn lokinode-btn--mac no-external-icon" href="https://github.com/flokiorg/lokinode/releases/download/v0.1.0/lokinode_0.1.0_darwin_amd64.dmg">
+            <Apple size={20} /> <span>macOS</span>
+          </Link>
+          <Link className="lokinode-btn lokinode-btn--linux no-external-icon" href="https://github.com/flokiorg/lokinode/releases/download/v0.1.0/lokinode_0.1.0_linux_amd64.deb">
+            <Terminal size={20} /> <span>Linux</span>
+          </Link>
+        </div>
+        
+        <div className="lokinode-hero-meta">
+          <span className="meta-item"><Activity size={14} /> 版本 0.1.0</span>
+          <Link className="meta-item" href="https://github.com/flokiorg/lokinode" style={{color: 'inherit', textDecoration: 'none'}}>
+            <Shield size={14} /> 开源
+          </Link>
+        </div>
+      </div>
+
       <div className="lokinode-hero-artwork">
         <div className="lazereyes-glow"></div>
-        <img src={lokiImage} alt="Loki Lazereyes" className="loki-lazer-img" />
-      </div>
-
-      <Heading as="h1" className="lokinode-glitch-title">Lokinode</Heading>
-      <p className="lokinode-hero-description">
-        Flokicoin Lightning 网络的本地桌面客户端。
-        将您的 Lightning 节点作为无缝的后台服务部署和运行。
-      </p>
-
-      <div className="lokinode-download-buttons">
-        <a className="lokinode-btn lokinode-btn--win" href="https://github.com/flokiorg/lokinode/releases/download/v0.1.0/lokinode_0.1.0_windows_amd64.exe">
-          <Monitor size={24} className="lokinode-btn-icon" /> 
-          <div className="lokinode-btn-text">
-            <span className="lokinode-btn-title">Windows</span>
-            <span className="lokinode-btn-sub">.exe (64-bit)</span>
-          </div>
-        </a>
-        <a className="lokinode-btn lokinode-btn--mac" href="https://github.com/flokiorg/lokinode/releases/download/v0.1.0/lokinode_0.1.0_darwin_amd64.dmg">
-          <Apple size={24} className="lokinode-btn-icon" />
-          <div className="lokinode-btn-text">
-            <span className="lokinode-btn-title">macOS</span>
-            <span className="lokinode-btn-sub">Intel & Apple Silicon</span>
-          </div>
-        </a>
-        <a className="lokinode-btn lokinode-btn--linux" href="https://github.com/flokiorg/lokinode/releases/download/v0.1.0/lokinode_0.1.0_linux_amd64.deb">
-          <Terminal size={24} className="lokinode-btn-icon" />
-          <div className="lokinode-btn-text">
-            <span className="lokinode-btn-title">Linux</span>
-            <span className="lokinode-btn-sub">.deb (Debian/Ubuntu)</span>
-          </div>
-        </a>
-      </div>
-      
-      <div className="lokinode-hero-meta">
-        <span className="meta-item"><Activity size={14} /> Version 0.1.0</span>
-        <span className="meta-item"><Shield size={14} /> 开源</span>
+        <img src={lokiLazerSvg} alt="Loki Lazereyes" className="loki-lazer-img" loading="eager" />
       </div>
     </div>
   </div>
@@ -60,59 +53,47 @@ import Heading from '@theme/Heading';
 
 <style>{`
   .lokinode-lazereyes-hero {
-    margin: 0 -2rem 2rem;
-    padding: 6rem 2rem 3rem;
+    margin: 0 -2rem 4rem;
+    padding: 6rem 2rem 8rem;
+    /* Base color matching the theme */
+    background-color: var(--ifm-background-color);
+    background-image: 
+      radial-gradient(circle at 50% 50%, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0) 80%),
+      radial-gradient(circle at 80% 20%, rgba(255, 0, 0, 0.05) 0%, rgba(255, 0, 0, 0) 60%);
+    
+    /* Physically fade all edges to 0% opacity to ensure no borders */
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent),
+                        linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent),
+                linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
+    
     position: relative;
     overflow: hidden;
-    color: var(--ifm-font-color-base);
-    background: transparent;
+    color: #fff;
   }
 
-  [data-theme='dark'] .lokinode-lazereyes-hero {
-    background: transparent;
-  }
-
-  .lokinode-lazereyes-hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: 
-      radial-gradient(ellipse closest-side at 75% 50%, rgba(255, 0, 0, 0.1) 0%, transparent 100%),
-      radial-gradient(ellipse closest-side at 25% 50%, rgba(240, 184, 50, 0.06) 0%, transparent 100%);
-    pointer-events: none;
-  }
-
-  .lokinode-hero-content {
-    display: flex;
-    flex-direction: column;
+  .lokinode-hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
     align-items: center;
-    text-align: center;
+    gap: 4rem;
     position: relative;
     z-index: 2;
-    max-width: 860px;
-    margin: 0 auto;
   }
 
-  .lokinode-hero-artwork {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: -0.6rem;
-    z-index: 3;
-  }
-
-  .loki-lazer-img {
-    width: 100%;
-    height: auto;
-    max-width: 240px;
-    object-fit: contain;
-    filter: drop-shadow(0 0 30px rgba(255, 0, 0, 0.15));
-    position: relative;
-    z-index: 2;
+  .lokinode-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: rgba(255, 0, 0, 0.1);
+    border: 1px solid rgba(255, 0, 0, 0.3);
+    color: #ff3333;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
   }
 
   .lokinode-glitch-title {
@@ -122,106 +103,54 @@ import Heading from '@theme/Heading';
     margin-bottom: 1.5rem;
     text-transform: uppercase;
     letter-spacing: -0.02em;
-    color: var(--ifm-heading-color);
-  }
-
-  [data-theme='dark'] .lokinode-glitch-title {
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    color: #fff;
+    text-shadow: 0 0 30px rgba(255, 0, 0, 0.2);
   }
 
   .lokinode-hero-description {
     font-size: 1.25rem;
     line-height: 1.6;
-    color: var(--ifm-color-emphasis-700);
-    max-width: 580px;
-    margin: 0 auto 2.5rem;
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 540px;
+    margin-bottom: 2.5rem;
   }
 
   .lokinode-download-buttons {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     gap: 1rem;
     margin-bottom: 2rem;
-    width: 100%;
   }
 
   .lokinode-btn {
     display: flex;
     align-items: center;
-    gap: 0.8rem;
-    padding: 0.85rem 1.25rem;
-    background: var(--ifm-color-emphasis-100);
-    border: 1px solid var(--ifm-color-emphasis-300);
-    border-radius: 12px;
-    color: var(--ifm-font-color-base) !important;
+    gap: 0.75rem;
+    padding: 0.8rem 1.5rem;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    color: #fff !important;
+    font-weight: 600;
     text-decoration: none !important;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    flex: 1 1 210px;
-    max-width: 260px;
-  }
-
-  [data-theme='dark'] .lokinode-btn {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .lokinode-btn-text {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    line-height: 1.2;
-  }
-
-  .lokinode-btn-title {
-    font-size: 1.05rem;
-    font-weight: 700;
-  }
-
-  .lokinode-btn-sub {
-    font-size: 0.75rem;
-    opacity: 0.7;
-    font-weight: 500;
-    margin-top: 0.1rem;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(10px);
   }
 
   .lokinode-btn:hover {
+    background: rgba(255,255,255,0.08);
     transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
   }
 
-  .lokinode-btn--win:hover { 
-    background: #0078D4; 
-    color: #fff !important; 
-    border-color: #0078D4; 
-    box-shadow: 0 8px 16px rgba(0, 120, 212, 0.2); 
-  }
-  
-  .lokinode-btn--mac:hover { 
-    background: #000; 
-    color: #fff !important; 
-    border-color: #000; 
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
-  }
-  
-  [data-theme='dark'] .lokinode-btn--mac:hover {
-    background: #fff;
-    color: #000 !important;
-    border-color: #fff;
-    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.1);
-  }
-  
-  .lokinode-btn--linux:hover { 
-    background: #E9B000; 
-    color: #000 !important; 
-    border-color: #E9B000; 
-    box-shadow: 0 8px 16px rgba(233, 176, 0, 0.2); 
-  }
+  .lokinode-btn--win:hover { border-color: #00a4ef; box-shadow: 0 0 15px rgba(0, 164, 239, 0.2); }
+  .lokinode-btn--mac:hover { border-color: #fff; box-shadow: 0 0 15px rgba(255, 255, 255, 0.1); }
+  .lokinode-btn--linux:hover { border-color: #f0b832; box-shadow: 0 0 15px rgba(240, 184, 50, 0.2); }
 
   .lokinode-hero-meta {
     display: flex;
-    justify-content: center;
     gap: 2rem;
-    color: var(--ifm-color-emphasis-500);
+    color: rgba(255, 255, 255, 0.4);
     font-size: 0.85rem;
     font-weight: 500;
   }
@@ -231,48 +160,124 @@ import Heading from '@theme/Heading';
     align-items: center;
     gap: 0.5rem;
   }
+
+  .lokinode-hero-artwork {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+
+  .loki-lazer-img {
+    width: 100%;
+    max-width: 420px;
+    filter: drop-shadow(0 0 30px rgba(255, 0, 0, 0.2));
+    position: relative;
+    z-index: 2;
+    transform: perspective(1000px) rotateY(-5deg);
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .lokinode-hero-artwork:hover .loki-lazer-img {
+    transform: perspective(1000px) rotateY(0deg) scale(1.02);
+  }
+
+  .lazereyes-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle, rgba(255, 0, 0, 0.15) 0%, transparent 70%);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  @media (max-width: 996px) {
+    .lokinode-lazereyes-hero {
+      padding: 4rem 1.5rem 6rem;
+      margin: 0 -1rem 3rem;
+    }
+    .lokinode-hero-grid {
+      grid-template-columns: 1fr;
+      text-align: center;
+      gap: 3rem;
+    }
+    .lokinode-hero-description, .lokinode-download-buttons, .lokinode-hero-meta {
+      margin-left: auto;
+      margin-right: auto;
+      justify-content: center;
+    }
+    .loki-lazer-img { max-width: 300px; transform: none !important; }
+  }
 `}</style>
 
-Lokinode 是一个跨平台桌面应用程序，它为运行和管理 Flokicoin 全节点（FLND）提供了图形界面。它允许您操作链上钱包并参与 Flokicoin Lightning Network（FLN）。
+**Lokinode** 是 Flokicoin 节点运营的原生桌面环境。它为管理复杂的 Lightning Network 配置提供了一个视觉层，同时通过专用的后台进程确保节点的稳定性。
 
-## 功能
+<div className="row margin-top--lg">
+  <div className="col col--4 margin-bottom--lg">
+    <div className="card shadow--md padding--lg" style={{height: '100%', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)'}}>
+      <Heading as="h3"><Monitor size={20} style={{verticalAlign: 'middle', marginRight: '8px', color: '#ff3333'}} /> 后台服务</Heading>
+      <p>无需保持 UI 开启即可维持网络存在。Lokinode 作为具有系统托盘控制功能的持久服务运行。</p>
+    </div>
+  </div>
+  <div className="col col--4 margin-bottom--lg">
+    <div className="card shadow--md padding--lg" style={{height: '100%', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)'}}>
+      <Heading as="h3"><Zap size={20} style={{verticalAlign: 'middle', marginRight: '8px', color: '#f0b832'}} /> FLN 节点</Heading>
+      <p>集成的 Flokicoin Lightning Network (FLN) 管理。以视觉精确度处理渠道、流动性和发票。</p>
+    </div>
+  </div>
+  <div className="col col--4 margin-bottom--lg">
+    <div className="card shadow--md padding--lg" style={{height: '100%', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)'}}>
+      <Heading as="h3"><Box size={20} style={{verticalAlign: 'middle', marginRight: '8px', color: '#ff3333'}} /> 高级管理</Heading>
+      <p>部署多个节点配置文件，指定自定义数据位置，并从统一仪表板监控系统日志。</p>
+    </div>
+  </div>
+</div>
 
-- **后台服务**：Lokinode 作为持久服务运行。您可以关闭用户界面，而节点将继续在系统托盘中运行。
-- **链上钱包**：初始化和解锁您的钱包，发送/接收 FLC，并查看交易历史。
-- **节点管理**：监控区块高度、同步状态和内存池顶端。直接在界面中查看应用程序日志。
-- **多节点配置文件**：在同一台机器上运行和管理多个节点。Lokinode 会自动跟踪您的数据目录和配置，允许您在不同的节点配置文件之间快速切换。
+## 安装
 
-## 安装与设置
+1.  **下载**：使用上面的按钮下载适合您操作系统的安装包。
+2.  **执行安装程序**：
+    *   **Windows**：运行 `.exe` 并按照设置向导操作。
+    *   **macOS**：打开 `.dmg` 并将 Lokinode 拖到您的应用程序文件夹。
+    *   **Linux**：通过您的软件包管理器安装 `.deb` 软件包。
+3.  **设置**：启动应用程序以初始化您的节点。您可以创建一个新的 24 个单词的助记词或导入现有钱包。
 
-:::tip[正在使用 tWallet 吗？]
-如果您已经在使用 [**tWallet**](/wallets/twallet)，则**不需要任何迁移**。您的 24 个单词的助记词是完全兼容的。更好的是，由于这两个应用程序共享相同的默认数据目录，Lokinode 会自动检测到您现有的节点。您可以简单地启动该应用程序并启动您的默认节点配置文件，**完全无需设置**。
-:::
+## 能力
 
-1. **下载**：下载对应您操作系统的可执行文件。
-2. **节点配置**：启动 Lokinode。设置向导将首先要求您设置一个公共别名并选择一个本地数据目录。
-3. **钱包设置**：选择创建一个新钱包（它提供了一个新的 24 个单词的助记词），或通过助记词恢复现有钱包。
-4. **安全性**：设置一个强大的加密密码以保护您的本地数据。
-5. **同步**：节点启动后，它将自动开始与 Flokicoin 区块链同步。
+### Lightning Network (FLN) 运营
+Lokinode 简化了高级 Lightning Network 管理：
+*   **视觉渠道控制**：无需终端命令即可开启、关闭和监控渠道状态。
+*   **流动性管理**：通过实时视觉反馈追踪入站和出站容量。
+*   **结算**：生成并支付 Lightning 发票，并获得即时网络确认。
 
-:::info[面向节点运营者和开发者]
-您是否希望在 VPS 上部署无头（headless）节点、运行自动化操作（Ops）或与 Docker 集成？您可能更愿意直接运行 [**`flnd`** 守护进程](/wallets/flnd)，而不是 Lokinode 图形界面。`flnd` 提供了核心后端，可以完全通过命令行进行管理。
-:::
+### 持久体验
+专为节点可靠性而设计，Lokinode 将节点进程与图形界面分离：
+*   **系统托盘集成**：从操作系统托盘控制节点状态并查看快速状态更新。
+*   **非侵入式运行时**：关闭应用程序窗口会隐藏 UI，但保持节点在后台活动。
+*   **自动稳定性**：内置逻辑处理网络中断并维持对等节点连接。
+
+### 灵活配置
+Lokinode 为需要控制其环境的高级用户而构建：
+*   **自定义路径**：为区块链和渠道数据存储指定任何本地或外部目录。
+*   **实时指标**：直接从仪表板监控区块高度、同步进度和对等节点数量。
+*   **安全套件**：在安全的本地环境中管理加密钱包存储和恢复凭据。
 
 ## 使用 Lokihub 进行管理
 
-虽然 Lokinode 处理运行您的后台 Lightning 节点并提供基础链上钱包操作的界面，但您必须使用 **Lokihub** 来使用高级 Lightning Network 功能。
+虽然 **Lokinode** 为基础运营提供了内置界面，但高级运营商可以使用 **Lokihub** 进行详细的路由分析和远程节点管理。
 
-当您在同一台机器上打开 Lokihub 时，它会自动尝试连接到您活动的 Lokinode 目录，从而解锁以下功能：
+### 快速连接
+1.  **活动节点**：确保 Lokinode 正在运行且已同步。
+2.  **连接**：打开 Lokihub；它将自动尝试从您的活动 Lokinode 目录检测凭据。
+3.  **同步**：获得高级流动性图表和路由历史记录的访问权限。
 
-- **流动性管理**：开启、关闭和监控 Lightning 渠道，以管理您的入站和出站容量。
-- **子钱包**：创建专用的钱包来组织您的资金，用于不同的应用程序或个人预算。
-- **应用集成（NWC）**：使用 Nostr Wallet Connect，通过细粒度的权限控制将外部应用程序无缝连接到您的节点。
-
-[查看 Lokihub 设置指南 →](/lokihub/setup)
+<Link className="no-external-icon" to="/lokihub/setup">查看 Lokihub 设置指南 →</Link>
 
 ## 数据位置
 
-默认情况下，Lokinode 将区块链和钱包数据存储在以下目录：
+Lokinode 默认使用标准路径，但允许在初始设置期间或通过设置进行完全自定义。
 
 | 操作系统 | 默认路径 |
 | :--- | :--- |
@@ -280,14 +285,13 @@ Lokinode 是一个跨平台桌面应用程序，它为运行和管理 Flokicoin 
 | **macOS** | `~/Library/Application Support/Flnd/` |
 | **Windows** | `%APPDATA%\Flnd\` |
 
-您可以在初始设置或应用程序设置中指定自定义数据路径。
-
 ## 极其重要：Lightning 备份
 
 您的 24 个单词助记词**只能恢复链上资金**。 
 
-要恢复锁定在开放 Lightning 渠道中的资金，您需要一个**静态渠道备份（SCB）**。 
+1.  **静态渠道备份 (SCB)**：需要 `channel.backup` 文件来恢复开放的 Lightning 渠道中的资金。
+2.  **安全要求**：您必须在助记词旁边保留 `channel.backup` 文件的独立备份。
 
 :::danger[数据丢失风险]
-始终确保您在助记词旁边有一个独立的、经过验证的 `channel.backup` 文件备份。如果没有它，如果本地数据丢失，则无法恢复 Lightning 渠道的资金。
+始终确保您拥有经过验证的 `channel.backup` 文件备份。如果没有它，如果本地数据丢失，则无法恢复 Lightning 渠道资金。
 :::
