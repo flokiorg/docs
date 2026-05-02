@@ -43,7 +43,7 @@ import Heading from '@theme/Heading';
 
       <div className="tap-hero-visual">
         <div className="tap-visual-wrapper">
-          <img src={tapHomeImage.src ?? tapHomeImage} alt="Tap Wallet" className="tap-main-screenshot" />
+          <img src={tapHomeImage.src ?? tapHomeImage} alt="Tap Wallet" className="tap-main-screenshot" loading="eager" />
           <div className="tap-visual-glow"></div>
         </div>
       </div>
@@ -55,21 +55,23 @@ import Heading from '@theme/Heading';
   .tap-hero-container {
     margin: 0 -2rem 4rem;
     padding: 5rem 2rem 6rem;
-    background:
-      radial-gradient(ellipse at 70% 20%, rgba(208, 151, 15, 0.13) 0%, transparent 52%),
-      radial-gradient(ellipse at 15% 80%, rgba(208, 151, 15, 0.06) 0%, transparent 42%);
+    /* Smooth background integration */
+    background: radial-gradient(circle at 70% 30%, rgba(208, 151, 15, 0.12) 0%, transparent 60%),
+                radial-gradient(circle at 20% 80%, rgba(208, 151, 15, 0.05) 0%, transparent 50%),
+                var(--ifm-background-color);
     position: relative;
     overflow: hidden;
   }
 
+  /* Fade out bottom edge to remove border effect */
   .tap-hero-container::after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    height: 120px;
-    background: linear-gradient(to bottom, transparent 0%, var(--ifm-background-color) 100%);
+    height: 150px;
+    background: linear-gradient(to bottom, transparent, var(--ifm-background-color));
     pointer-events: none;
     z-index: 1;
   }
@@ -79,6 +81,8 @@ import Heading from '@theme/Heading';
     grid-template-columns: 1.15fr 0.85fr;
     align-items: center;
     gap: 3.5rem;
+    position: relative;
+    z-index: 2;
   }
 
   /* Typography */
@@ -102,7 +106,7 @@ import Heading from '@theme/Heading';
     line-height: 1.55;
   }
 
-  /* Button row override — margin-bottom before faucet card */
+  /* Button row override */
   .tap-hero-actions-override {
     margin-bottom: 2rem !important;
     margin-top: 0 !important;
@@ -114,8 +118,8 @@ import Heading from '@theme/Heading';
     align-items: center;
     gap: 1.25rem;
     padding: 1.1rem 1.4rem;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.09);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
     border-radius: 18px;
     max-width: 440px;
     backdrop-filter: blur(12px);
@@ -146,7 +150,7 @@ import Heading from '@theme/Heading';
     box-shadow: 0 6px 14px rgba(208, 151, 15, 0.35);
   }
 
-  /* Phone visual */
+  /* Phone visual with 3D perspective */
   .tap-hero-visual {
     display: flex;
     justify-content: center;
@@ -156,42 +160,35 @@ import Heading from '@theme/Heading';
 
   .tap-visual-wrapper {
     position: relative;
-    transform: rotateY(-14deg) rotateX(4deg);
-    transition: transform 0.55s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transform: rotateY(-12deg) rotateX(2deg);
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 
   .tap-visual-wrapper:hover {
-    transform: rotateY(-4deg) rotateX(1deg) scale(1.02);
+    transform: rotateY(-2deg) rotateX(0deg) scale(1.03);
   }
 
   .tap-main-screenshot {
     width: 100%;
     max-width: 260px;
     border-radius: 36px;
-    box-shadow: 0 40px 80px -15px rgba(0,0,0,0.75),
-                0 20px 40px -20px rgba(0,0,0,0.6);
+    box-shadow: 0 40px 100px -15px rgba(0,0,0,0.8);
     display: block;
+    border: 1px solid rgba(255,255,255,0.1);
   }
 
   .tap-visual-glow {
     position: absolute;
     inset: -20%;
-    background: radial-gradient(circle, rgba(208, 151, 15, 0.18) 0%, transparent 65%);
+    background: radial-gradient(circle, rgba(208, 151, 15, 0.15) 0%, transparent 65%);
     z-index: -1;
     filter: blur(35px);
     pointer-events: none;
   }
 
-  /* Wide tablet — still 2-col but tighter */
-  @media (max-width: 1100px) {
-    .tap-hero-inner { gap: 2rem; }
-    .tap-main-screenshot { max-width: 220px; }
-  }
-
-  /* iPad portrait / narrow tablet — single column */
   @media (max-width: 996px) {
     .tap-hero-container {
-      padding: 3.5rem 1.5rem;
+      padding: 3.5rem 1.5rem 5rem;
       margin: 0 -1rem 3rem;
     }
     .tap-hero-inner {
@@ -199,74 +196,21 @@ import Heading from '@theme/Heading';
       text-align: center;
       gap: 2.5rem;
     }
-    .tap-hero-subtitle,
-    .tap-hero-faucet-card {
+    .tap-hero-subtitle, .tap-hero-faucet-card {
       margin-left: auto;
       margin-right: auto;
     }
     .tap-visual-wrapper { transform: none !important; }
-    .tap-hero-visual { perspective: none; }
-    .tap-main-screenshot { max-width: 210px; }
+    .tap-main-screenshot { max-width: 220px; }
   }
 
-  /* Mobile */
   @media (max-width: 600px) {
-    .tap-hero-container {
-      padding: 2.5rem 1rem 3rem;
-      margin: 0 -1rem 2rem;
-    }
-    .tap-hero-inner { gap: 1.75rem; }
-
-    /* Compact buttons: primary full-width, Discord + Telegram side by side */
     .tap-hero-actions-override {
       display: grid !important;
       grid-template-columns: 1fr 1fr !important;
       gap: 0.5rem !important;
-      max-width: 100% !important;
-      margin: 0 0 1.25rem !important;
-      flex-direction: unset !important;
-      align-items: unset !important;
     }
-    .tap-hero-actions-override .hero-button:first-child {
-      grid-column: 1 / -1 !important;
-      justify-content: center !important;
-    }
-    .tap-hero-actions-override .hero-button {
-      width: 100% !important;
-      min-height: 46px !important;
-      padding: 0.65rem 0.875rem !important;
-      font-size: 0.875rem !important;
-      border-radius: 12px !important;
-      justify-content: center !important;
-    }
-    .tap-hero-actions-override .hero-button span:first-child {
-      margin-right: 8px !important;
-    }
-
-    /* Faucet card: keep horizontal, compact */
-    .tap-hero-faucet-card {
-      flex-direction: row;
-      text-align: left;
-      padding: 0.875rem 1rem;
-      gap: 0.875rem;
-      border-radius: 14px;
-    }
-    .faucet-icon-wrapper {
-      padding: 8px;
-      border-radius: 10px;
-    }
-    .tap-hero-faucet-card strong { font-size: 0.9rem; }
-    .tap-hero-faucet-card p { font-size: 0.8rem; }
-
-    .tap-main-screenshot { max-width: 190px; }
-  }
-
-  @media (max-width: 400px) {
-    .tap-main-screenshot { max-width: 160px; }
-    .tap-hero-actions-override .hero-button {
-      font-size: 0.8rem !important;
-      padding: 0.6rem 0.6rem !important;
-    }
+    .tap-hero-actions-override .hero-button:first-child { grid-column: 1 / -1; }
   }
 `}</style>
 
@@ -274,20 +218,20 @@ import Heading from '@theme/Heading';
 
 <div className="row margin-top--lg">
   <div className="col col--4 margin-bottom--lg">
-    <div className="card shadow--md padding--lg" style={{height: '100%'}}>
-      <Heading as="h3"><Smartphone size={20} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Home Screen App</Heading>
+    <div className="card shadow--md padding--lg" style={{height: '100%', background: 'rgba(255,255,255,0.01)', border: '1px solid rgba(255,255,255,0.04)'}}>
+      <Heading as="h3"><Smartphone size={20} style={{verticalAlign: 'middle', marginRight: '8px', color: 'var(--ifm-color-primary)'}} /> Home Screen App</Heading>
       <p>Install directly to your <strong>iOS</strong> or <strong>Android</strong> home screen. It looks, feels, and behaves like a dedicated app.</p>
     </div>
   </div>
   <div className="col col--4 margin-bottom--lg">
-    <div className="card shadow--md padding--lg" style={{height: '100%'}}>
-      <Heading as="h3"><Monitor size={20} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Desktop for Miners</Heading>
+    <div className="card shadow--md padding--lg" style={{height: '100%', background: 'rgba(255,255,255,0.01)', border: '1px solid rgba(255,255,255,0.04)'}}>
+      <Heading as="h3"><Monitor size={20} style={{verticalAlign: 'middle', marginRight: '8px', color: 'var(--ifm-color-primary)'}} /> Desktop for Miners</Heading>
       <p>A perfect companion for <strong>Miners</strong> and power users. Run it as a dedicated application on Windows, macOS, or Linux.</p>
     </div>
   </div>
   <div className="col col--4 margin-bottom--lg">
-    <div className="card shadow--md padding--lg" style={{height: '100%'}}>
-      <Heading as="h3"><ShieldCheck size={20} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Store-Free</Heading>
+    <div className="card shadow--md padding--lg" style={{height: '100%', background: 'rgba(255,255,255,0.01)', border: '1px solid rgba(255,255,255,0.04)'}}>
+      <Heading as="h3"><ShieldCheck size={20} style={{verticalAlign: 'middle', marginRight: '8px', color: 'var(--ifm-color-primary)'}} /> Store-Free</Heading>
       <p>No Apple App Store or Google Play Store required. Total independence from big-tech gatekeepers.</p>
     </div>
   </div>
