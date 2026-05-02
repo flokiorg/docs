@@ -55,23 +55,21 @@ import Heading from '@theme/Heading';
   .tap-hero-container {
     margin: 0 -2rem 4rem;
     padding: 5rem 2rem 6rem;
-    /* Smooth background integration */
-    background: radial-gradient(circle at 70% 30%, rgba(208, 151, 15, 0.12) 0%, transparent 60%),
-                radial-gradient(circle at 20% 80%, rgba(208, 151, 15, 0.05) 0%, transparent 50%),
-                var(--ifm-background-color);
+    /* Use the theme background as the base for seamless integration */
+    background-color: var(--ifm-background-color);
+    background-image: 
+      radial-gradient(ellipse at 70% 30%, rgba(208, 151, 15, 0.12) 0%, var(--ifm-background-color) 100%),
+      radial-gradient(circle at 20% 80%, rgba(208, 151, 15, 0.05) 0%, transparent 50%);
     position: relative;
     overflow: hidden;
   }
 
-  /* Fade out bottom edge to remove border effect */
+  /* Soften all edges (top, bottom, and corners) */
   .tap-hero-container::after {
     content: '';
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 150px;
-    background: linear-gradient(to bottom, transparent, var(--ifm-background-color));
+    inset: 0;
+    background: linear-gradient(to bottom, var(--ifm-background-color) 0%, transparent 15%, transparent 85%, var(--ifm-background-color) 100%);
     pointer-events: none;
     z-index: 1;
   }

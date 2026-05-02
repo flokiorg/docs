@@ -55,23 +55,24 @@ import Heading from '@theme/Heading';
   .lokinode-lazereyes-hero {
     margin: 0 -2rem 4rem;
     padding: 6rem 2rem 8rem;
-    /* Smooth integration with page background */
-    background: radial-gradient(circle at 50% 50%, #0a0a0a 0%, var(--ifm-background-color) 100%);
+    /* Use the theme background as the base */
+    background-color: var(--ifm-background-color);
+    background-image: 
+      radial-gradient(ellipse at 50% 40%, rgba(10, 10, 10, 0.95) 0%, var(--ifm-background-color) 100%),
+      radial-gradient(circle at 80% 10%, rgba(255, 0, 0, 0.06) 0%, transparent 50%);
     position: relative;
     overflow: hidden;
     color: #fff;
   }
 
-  /* Fade out bottom edge to remove border effect */
+  /* Soften all edges */
   .lokinode-lazereyes-hero::after {
     content: '';
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 150px;
-    background: linear-gradient(to bottom, transparent, var(--ifm-background-color));
+    inset: 0;
+    background: linear-gradient(to bottom, var(--ifm-background-color) 0%, transparent 15%, transparent 85%, var(--ifm-background-color) 100%);
     pointer-events: none;
+    z-index: 1;
   }
 
   .lokinode-hero-grid {
