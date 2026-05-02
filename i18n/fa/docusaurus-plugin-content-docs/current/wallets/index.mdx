@@ -32,6 +32,26 @@ import Link from '@docusaurus/Link';
     </div>
   </div>
 
+  {/* --- Lokinode Card --- */}
+  <div className="col col--6 margin-bottom--lg">
+    <div className="card shadow--md" style={{height: '100%', display: 'flex', flexDirection: 'column'}}>
+      <div className="card__header">
+        <h3>Lokinode (GUI)</h3>
+      </div>
+      <div className="card__body" style={{flex: '1 1 auto'}}>
+        <p>کلاینت دسکتاپ بومی برای Flokicoin Lightning Network. گره Lightning خود را به عنوان یک سرویس پس‌زمینه بدون وقفه مستقر و اجرا کنید.</p>
+        <ul>
+          <li>سرویس پس‌زمینه بومی</li>
+          <li>مدیریت پروفایل‌های گره</li>
+          <li>کیف‌پول On-chain داخلی</li>
+        </ul>
+      </div>
+      <div className="card__footer">
+        <Link className="button button--secondary button--block button--lazereyes" to="/wallets/lokinode">دریافت Lokinode</Link>
+      </div>
+    </div>
+  </div>
+
   {/* --- tWallet --- */}
   <div className="col col--6 margin-bottom--lg">
     <div className="card shadow--md" style={{height: '100%', display: 'flex', flexDirection: 'column'}}>
@@ -79,7 +99,7 @@ import Link from '@docusaurus/Link';
         <h3>Komodo Wallet</h3>
       </div>
       <div className="card__body" style={{flex: '1 1 auto'}}>
-        <p><strong>انتخاب کاربرپسند.</strong> یک کیف‌پول چندسکه با رابط گرافیکی سنتی. مناسب برای کاربران روزمره در دسکتاپ یا موبایل.</p>
+        <p>یک کیف‌پول چندسکه با رابط گرافیکی سنتی. مناسب برای کاربران روزمره در دسکتاپ یا موبایل.</p>
         <ul>
           <li>رابط کاربری گرافیکی (GUI)</li>
           <li>پشتیبانی از آدرس‌های F و Segwit</li>
@@ -95,13 +115,13 @@ import Link from '@docusaurus/Link';
 
 ## مقایسه سریع
 
-| ویژگی | Tap Wallet | tWallet | flnd | Komodo Wallet |
-| :--- | :--- | :--- | :--- | :--- |
-| **رابط** | وب / Mini App | ترمینال (TUI) | خط فرمان (CLI) | گرافیکی (GUI) |
-| **Lightning** | خیر | بله (داخلی) | بله (بومی) | خیر |
-| **تجربه** | مبتدی | متوسط | پیشرفته | مبتدی |
-| **بهترین برای** | موبایل و اجتماعی | حریم خصوصی دسکتاپ | اپراتورهای گره | کاربران روزمره |
+| ویژگی | Tap Wallet | Lokinode | tWallet | flnd | Komodo Wallet |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **رابط** | وب / Mini App | گرافیکی (GUI) | ترمینال (TUI) | خط فرمان (CLI) | گرافیکی (GUI) |
+| **Lightning** | خیر | بله (داخلی) | بله (داخلی) | بله (بومی) | خیر |
+| **تجربه** | مبتدی | مبتدی | متوسط | پیشرفته | مبتدی |
+| **بهترین برای** | موبایل و اجتماعی | گره دسکتاپ | حریم خصوصی دسکتاپ | اپراتورهای گره | کاربران روزمره |
 
 :::tip[از Lokihub استفاده می‌کنید؟]
-اگر قصد استفاده از **Lokihub** را دارید، به شدت توصیه می‌کنیم با **tWallet v1** شروع کنید، زیرا backend Lightning لازم برای عملیات گره را فراهم می‌کند.
+اگر قصد استفاده از [**Lokihub**](/lokihub) را دارید، به شدت توصیه می‌کنیم با [**Lokinode**](/wallets/lokinode) شروع کنید، زیرا backend بومی Lightning لازم برای عملیات گره را فراهم می‌کند.
 :::

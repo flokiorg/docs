@@ -1,6 +1,6 @@
 ---
 title: Lokinode
-description: Desktop interface for running and managing a Flokicoin full node (FLND) and Lightning Network operations.
+description: 运行和管理 Flokicoin 全节点 (FLND) 和 Lightning Network 运营的桌面界面。
 sidebar_position: 2
 hide_title: true
 keywords: [Lokinode, Flokicoin, GUI wallet, node manager, desktop wallet, FLND, lightning node, background service, FLN]
@@ -9,7 +9,7 @@ custom_edit_url: null
 
 import Link from '@docusaurus/Link';
 import { Monitor, Zap, Shield, Activity, Settings, Download, Cpu, HardDrive, Layout, ChevronRight, Terminal, Box, Apple, Globe } from 'lucide-react';
-import lokiImage from './assets/loki-lazereyes.png';
+import lokiImage from '../../../../../../../docs/wallets/lokinode/assets/loki-lazereyes.png';
 import Heading from '@theme/Heading';
 
 <div className="lokinode-lazereyes-hero">
@@ -22,8 +22,8 @@ import Heading from '@theme/Heading';
 
       <Heading as="h1" className="lokinode-glitch-title">Lokinode</Heading>
       <p className="lokinode-hero-description">
-        The native desktop client for the Flokicoin Lightning Network. 
-        Deploy and run your Lightning node as a seamless background service.
+        Flokicoin Lightning 网络的本地桌面客户端。
+        将您的 Lightning 节点作为无缝的后台服务部署和运行。
       </p>
 
       <div className="lokinode-download-buttons">
@@ -52,10 +52,9 @@ import Heading from '@theme/Heading';
       
       <div className="lokinode-hero-meta">
         <span className="meta-item"><Activity size={14} /> Version 0.1.0</span>
-        <Link className="meta-item" href="https://github.com/flokiorg/lokinode" style={{color: 'inherit', textDecoration: 'none'}}>
-          <Shield size={14} /> Open Source
-        </Link>
-      </div>    </div>
+        <span className="meta-item"><Shield size={14} /> 开源</span>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -234,61 +233,61 @@ import Heading from '@theme/Heading';
   }
 `}</style>
 
-Lokinode is a cross-platform desktop application that provides a graphical interface for running and managing a Flokicoin full node (FLND). It allows you to operate an on-chain wallet and participate in the Flokicoin Lightning Network (FLN).
+Lokinode 是一个跨平台桌面应用程序，它为运行和管理 Flokicoin 全节点（FLND）提供了图形界面。它允许您操作链上钱包并参与 Flokicoin Lightning Network（FLN）。
 
-## Features
+## 功能
 
-- **Background Service**: Lokinode runs as a persistent service. You can close the user interface while the node continues to run in the system tray.
-- **On-chain Wallet**: Initialize and unlock your wallet, send/receive FLC, and view transaction history.
-- **Node Management**: Monitor block height, sync status, and mempool tip. View application logs directly in the interface.
-- **Multi-Node Profiles**: Run and manage multiple nodes on the same machine. Lokinode automatically tracks your data directories and configurations, allowing you to quickly switch between different node profiles.
+- **后台服务**：Lokinode 作为持久服务运行。您可以关闭用户界面，而节点将继续在系统托盘中运行。
+- **链上钱包**：初始化和解锁您的钱包，发送/接收 FLC，并查看交易历史。
+- **节点管理**：监控区块高度、同步状态和内存池顶端。直接在界面中查看应用程序日志。
+- **多节点配置文件**：在同一台机器上运行和管理多个节点。Lokinode 会自动跟踪您的数据目录和配置，允许您在不同的节点配置文件之间快速切换。
 
-## Installation and Setup
+## 安装与设置
 
-:::tip[Coming from tWallet?]
-If you already use [**tWallet**](/wallets/twallet), **no migration is needed**. Your 24-word seed phrase is fully compatible. Even better, because both applications share the same default data directories, Lokinode will automatically detect your existing node. You can simply launch the app and power on your default node profile with **zero setup required**.
+:::tip[正在使用 tWallet 吗？]
+如果您已经在使用 [**tWallet**](/wallets/twallet)，则**不需要任何迁移**。您的 24 个单词的助记词是完全兼容的。更好的是，由于这两个应用程序共享相同的默认数据目录，Lokinode 会自动检测到您现有的节点。您可以简单地启动该应用程序并启动您的默认节点配置文件，**完全无需设置**。
 :::
 
-1. **Download**: Download the executable for your corresponding operating system.
-2. **Node Configuration**: Launch Lokinode. The setup wizard will first ask you to set a public alias and select a local data directory.
-3. **Wallet Setup**: Choose to either create a new wallet (which provides a new 24-word seed phrase) or restore an existing one via mnemonic.
-4. **Security**: Set a strong encryption password to protect your local data.
-5. **Sync**: Once the node boots, it will automatically begin synchronizing with the Flokicoin blockchain.
+1. **下载**：下载对应您操作系统的可执行文件。
+2. **节点配置**：启动 Lokinode。设置向导将首先要求您设置一个公共别名并选择一个本地数据目录。
+3. **钱包设置**：选择创建一个新钱包（它提供了一个新的 24 个单词的助记词），或通过助记词恢复现有钱包。
+4. **安全性**：设置一个强大的加密密码以保护您的本地数据。
+5. **同步**：节点启动后，它将自动开始与 Flokicoin 区块链同步。
 
-:::info[For Node Operators & Developers]
-Are you looking to deploy a headless node on a VPS, run automated operations (Ops), or integrate with Docker? You may prefer to run the [**`flnd`** daemon](/wallets/flnd) directly instead of the Lokinode graphical interface. `flnd` provides the core backend and can be managed entirely via the command line.
+:::info[面向节点运营者和开发者]
+您是否希望在 VPS 上部署无头（headless）节点、运行自动化操作（Ops）或与 Docker 集成？您可能更愿意直接运行 [**`flnd`** 守护进程](/wallets/flnd)，而不是 Lokinode 图形界面。`flnd` 提供了核心后端，可以完全通过命令行进行管理。
 :::
 
-## Managing with Lokihub
+## 使用 Lokihub 进行管理
 
-While Lokinode handles running your background Lightning node and provides an interface for basic on-chain wallet operations, you must use **Lokihub** for advanced Lightning Network features.
+虽然 Lokinode 处理运行您的后台 Lightning 节点并提供基础链上钱包操作的界面，但您必须使用 **Lokihub** 来使用高级 Lightning Network 功能。
 
-When you open Lokihub on the same machine, it will automatically attempt to connect to your active Lokinode directory, unlocking the following capabilities:
+当您在同一台机器上打开 Lokihub 时，它会自动尝试连接到您活动的 Lokinode 目录，从而解锁以下功能：
 
-- **Liquidity Management**: Open, close, and monitor Lightning channels to manage your inbound and outbound capacity.
-- **Sub-Wallets**: Create dedicated wallets to organize your funds for different applications or personal budgets.
-- **App Integrations (NWC)**: Seamlessly connect external applications to your node using Nostr Wallet Connect, with granular permission controls.
+- **流动性管理**：开启、关闭和监控 Lightning 渠道，以管理您的入站和出站容量。
+- **子钱包**：创建专用的钱包来组织您的资金，用于不同的应用程序或个人预算。
+- **应用集成（NWC）**：使用 Nostr Wallet Connect，通过细粒度的权限控制将外部应用程序无缝连接到您的节点。
 
-[View the Lokihub Setup Guide →](/lokihub/setup)
+[查看 Lokihub 设置指南 →](/lokihub/setup)
 
-## Data Locations
+## 数据位置
 
-By default, Lokinode stores blockchain and wallet data in the following directories:
+默认情况下，Lokinode 将区块链和钱包数据存储在以下目录：
 
-| OS | Default Path |
+| 操作系统 | 默认路径 |
 | :--- | :--- |
 | **Linux** | `~/.flnd/` |
 | **macOS** | `~/Library/Application Support/Flnd/` |
 | **Windows** | `%APPDATA%\Flnd\` |
 
-You can specify a custom data path during the initial setup or in the application settings.
+您可以在初始设置或应用程序设置中指定自定义数据路径。
 
-## CRITICAL: Lightning Backups
+## 极其重要：Lightning 备份
 
-Your 24-word seed phrase **only recovers on-chain funds**. 
+您的 24 个单词助记词**只能恢复链上资金**。 
 
-To recover funds locked in open Lightning channels, you need a **Static Channel Backup (SCB)**. 
+要恢复锁定在开放 Lightning 渠道中的资金，您需要一个**静态渠道备份（SCB）**。 
 
-:::danger[DATA LOSS RISK]
-Always ensure you have a separate, verified backup of your `channel.backup` file alongside your seed phrase. Without it, Lightning channel funds cannot be recovered if local data is lost.
+:::danger[数据丢失风险]
+始终确保您在助记词旁边有一个独立的、经过验证的 `channel.backup` 文件备份。如果没有它，如果本地数据丢失，则无法恢复 Lightning 渠道的资金。
 :::

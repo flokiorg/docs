@@ -1,6 +1,6 @@
 ---
 title: Lokinode
-description: Desktop interface for running and managing a Flokicoin full node (FLND) and Lightning Network operations.
+description: Interface de bureau pour exécuter et gérer un nœud complet Flokicoin (FLND) et les opérations du Lightning Network.
 sidebar_position: 2
 hide_title: true
 keywords: [Lokinode, Flokicoin, GUI wallet, node manager, desktop wallet, FLND, lightning node, background service, FLN]
@@ -9,7 +9,7 @@ custom_edit_url: null
 
 import Link from '@docusaurus/Link';
 import { Monitor, Zap, Shield, Activity, Settings, Download, Cpu, HardDrive, Layout, ChevronRight, Terminal, Box, Apple, Globe } from 'lucide-react';
-import lokiImage from './assets/loki-lazereyes.png';
+import lokiImage from '../../../../../../../docs/wallets/lokinode/assets/loki-lazereyes.png';
 import Heading from '@theme/Heading';
 
 <div className="lokinode-lazereyes-hero">
@@ -22,8 +22,8 @@ import Heading from '@theme/Heading';
 
       <Heading as="h1" className="lokinode-glitch-title">Lokinode</Heading>
       <p className="lokinode-hero-description">
-        The native desktop client for the Flokicoin Lightning Network. 
-        Deploy and run your Lightning node as a seamless background service.
+        Le client de bureau natif pour le Flokicoin Lightning Network. 
+        Déployez et exécutez votre nœud Lightning comme un service en arrière-plan transparent.
       </p>
 
       <div className="lokinode-download-buttons">
@@ -52,10 +52,9 @@ import Heading from '@theme/Heading';
       
       <div className="lokinode-hero-meta">
         <span className="meta-item"><Activity size={14} /> Version 0.1.0</span>
-        <Link className="meta-item" href="https://github.com/flokiorg/lokinode" style={{color: 'inherit', textDecoration: 'none'}}>
-          <Shield size={14} /> Open Source
-        </Link>
-      </div>    </div>
+        <span className="meta-item"><Shield size={14} /> Open Source</span>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -234,61 +233,61 @@ import Heading from '@theme/Heading';
   }
 `}</style>
 
-Lokinode is a cross-platform desktop application that provides a graphical interface for running and managing a Flokicoin full node (FLND). It allows you to operate an on-chain wallet and participate in the Flokicoin Lightning Network (FLN).
+Lokinode est une application de bureau multiplateforme qui fournit une interface graphique pour exécuter et gérer un nœud complet Flokicoin (FLND). Il vous permet d'opérer un portefeuille on-chain et de participer au Flokicoin Lightning Network (FLN).
 
-## Features
+## Fonctionnalités
 
-- **Background Service**: Lokinode runs as a persistent service. You can close the user interface while the node continues to run in the system tray.
-- **On-chain Wallet**: Initialize and unlock your wallet, send/receive FLC, and view transaction history.
-- **Node Management**: Monitor block height, sync status, and mempool tip. View application logs directly in the interface.
-- **Multi-Node Profiles**: Run and manage multiple nodes on the same machine. Lokinode automatically tracks your data directories and configurations, allowing you to quickly switch between different node profiles.
+- **Service en arrière-plan** : Lokinode s'exécute comme un service persistant. Vous pouvez fermer l'interface utilisateur pendant que le nœud continue de fonctionner dans la barre d'état système.
+- **Portefeuille On-chain** : Initialisez et déverrouillez votre portefeuille, envoyez/recevez des FLC et consultez l'historique des transactions.
+- **Gestion de nœud** : Surveillez la hauteur de bloc, l'état de synchronisation et la pointe du mempool. Consultez les journaux de l'application directement dans l'interface.
+- **Profils Multi-Nœuds** : Exécutez et gérez plusieurs nœuds sur la même machine. Lokinode suit automatiquement vos répertoires de données et configurations, vous permettant de basculer rapidement entre différents profils de nœuds.
 
-## Installation and Setup
+## Installation et Configuration
 
-:::tip[Coming from tWallet?]
-If you already use [**tWallet**](/wallets/twallet), **no migration is needed**. Your 24-word seed phrase is fully compatible. Even better, because both applications share the same default data directories, Lokinode will automatically detect your existing node. You can simply launch the app and power on your default node profile with **zero setup required**.
+:::tip[Vous venez de tWallet ?]
+Si vous utilisez déjà [**tWallet**](/wallets/twallet), **aucune migration n'est nécessaire**. Votre phrase de récupération de 24 mots est entièrement compatible. Mieux encore, comme les deux applications partagent les mêmes répertoires de données par défaut, Lokinode détectera automatiquement votre nœud existant. Vous pouvez simplement lancer l'application et allumer votre profil de nœud par défaut **sans aucune configuration**.
 :::
 
-1. **Download**: Download the executable for your corresponding operating system.
-2. **Node Configuration**: Launch Lokinode. The setup wizard will first ask you to set a public alias and select a local data directory.
-3. **Wallet Setup**: Choose to either create a new wallet (which provides a new 24-word seed phrase) or restore an existing one via mnemonic.
-4. **Security**: Set a strong encryption password to protect your local data.
-5. **Sync**: Once the node boots, it will automatically begin synchronizing with the Flokicoin blockchain.
+1. **Téléchargement** : Téléchargez l'exécutable correspondant à votre système d'exploitation.
+2. **Configuration du nœud** : Lancez Lokinode. L'assistant de configuration vous demandera d'abord de définir un alias public et de sélectionner un répertoire de données local.
+3. **Configuration du portefeuille** : Choisissez de créer un nouveau portefeuille (qui fournit une nouvelle phrase de récupération de 24 mots) ou de restaurer un portefeuille existant via la mnémotechnique.
+4. **Sécurité** : Définissez un mot de passe de cryptage fort pour protéger vos données locales.
+5. **Synchronisation** : Une fois le nœud démarré, il commencera automatiquement à se synchroniser avec la blockchain Flokicoin.
 
-:::info[For Node Operators & Developers]
-Are you looking to deploy a headless node on a VPS, run automated operations (Ops), or integrate with Docker? You may prefer to run the [**`flnd`** daemon](/wallets/flnd) directly instead of the Lokinode graphical interface. `flnd` provides the core backend and can be managed entirely via the command line.
+:::info[Pour les Opérateurs de Nœuds & Développeurs]
+Cherchez-vous à déployer un nœud sans interface (headless) sur un VPS, à exécuter des opérations automatisées (Ops) ou à vous intégrer avec Docker ? Vous préférerez peut-être exécuter le [daemon **`flnd`**](/wallets/flnd) directement au lieu de l'interface graphique de Lokinode. `flnd` fournit le backend central et peut être entièrement géré via la ligne de commande.
 :::
 
-## Managing with Lokihub
+## Gestion avec Lokihub
 
-While Lokinode handles running your background Lightning node and provides an interface for basic on-chain wallet operations, you must use **Lokihub** for advanced Lightning Network features.
+Bien que Lokinode gère l'exécution de votre nœud Lightning en arrière-plan et fournisse une interface pour les opérations de base de portefeuille on-chain, vous devez utiliser **Lokihub** pour les fonctionnalités avancées du Lightning Network.
 
-When you open Lokihub on the same machine, it will automatically attempt to connect to your active Lokinode directory, unlocking the following capabilities:
+Lorsque vous ouvrez Lokihub sur la même machine, il tentera automatiquement de se connecter à votre répertoire Lokinode actif, déverrouillant les capacités suivantes :
 
-- **Liquidity Management**: Open, close, and monitor Lightning channels to manage your inbound and outbound capacity.
-- **Sub-Wallets**: Create dedicated wallets to organize your funds for different applications or personal budgets.
-- **App Integrations (NWC)**: Seamlessly connect external applications to your node using Nostr Wallet Connect, with granular permission controls.
+- **Gestion de la liquidité** : Ouvrez, fermez et surveillez les canaux Lightning pour gérer votre capacité entrante et sortante.
+- **Sous-portefeuilles** : Créez des portefeuilles dédiés pour organiser vos fonds pour différentes applications ou budgets personnels.
+- **Intégrations d'applications (NWC)** : Connectez des applications externes à votre nœud en toute transparence à l'aide de Nostr Wallet Connect, avec des contrôles d'autorisations granulaires.
 
-[View the Lokihub Setup Guide →](/lokihub/setup)
+[Voir le Guide de Configuration de Lokihub →](/lokihub/setup)
 
-## Data Locations
+## Emplacements des Données
 
-By default, Lokinode stores blockchain and wallet data in the following directories:
+Par défaut, Lokinode stocke les données de la blockchain et du portefeuille dans les répertoires suivants :
 
-| OS | Default Path |
+| OS | Chemin par défaut |
 | :--- | :--- |
 | **Linux** | `~/.flnd/` |
 | **macOS** | `~/Library/Application Support/Flnd/` |
 | **Windows** | `%APPDATA%\Flnd\` |
 
-You can specify a custom data path during the initial setup or in the application settings.
+Vous pouvez spécifier un chemin de données personnalisé lors de la configuration initiale ou dans les paramètres de l'application.
 
-## CRITICAL: Lightning Backups
+## CRITIQUE : Sauvegardes Lightning
 
-Your 24-word seed phrase **only recovers on-chain funds**. 
+Votre phrase de récupération de 24 mots **ne récupère que les fonds on-chain**. 
 
-To recover funds locked in open Lightning channels, you need a **Static Channel Backup (SCB)**. 
+Pour récupérer les fonds verrouillés dans les canaux Lightning ouverts, vous avez besoin d'une **Sauvegarde Statique de Canal (SCB)**. 
 
-:::danger[DATA LOSS RISK]
-Always ensure you have a separate, verified backup of your `channel.backup` file alongside your seed phrase. Without it, Lightning channel funds cannot be recovered if local data is lost.
+:::danger[RISQUE DE PERTE DE DONNÉES]
+Assurez-vous toujours d'avoir une sauvegarde séparée et vérifiée de votre fichier `channel.backup` à côté de votre phrase de récupération. Sans cela, les fonds des canaux Lightning ne peuvent pas être récupérés si les données locales sont perdues.
 :::

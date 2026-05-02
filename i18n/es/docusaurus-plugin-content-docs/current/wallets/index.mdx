@@ -32,6 +32,26 @@ Para interactuar con la red Flokicoin, necesitas un lugar seguro para gestionar 
     </div>
   </div>
 
+  {/* --- Lokinode Card --- */}
+  <div className="col col--6 margin-bottom--lg">
+    <div className="card shadow--md" style={{height: '100%', display: 'flex', flexDirection: 'column'}}>
+      <div className="card__header">
+        <h3>Lokinode (GUI)</h3>
+      </div>
+      <div className="card__body" style={{flex: '1 1 auto'}}>
+        <p>El cliente de escritorio nativo para Flokicoin Lightning Network. Despliegue y ejecute su nodo Lightning como un servicio en segundo plano sin interrupciones.</p>
+        <ul>
+          <li>Servicio nativo en segundo plano</li>
+          <li>Gestión de perfiles de nodo</li>
+          <li>Cartera On-chain integrada</li>
+        </ul>
+      </div>
+      <div className="card__footer">
+        <Link className="button button--secondary button--block button--lazereyes" to="/wallets/lokinode">Obtener Lokinode</Link>
+      </div>
+    </div>
+  </div>
+
   {/* --- tWallet --- */}
   <div className="col col--6 margin-bottom--lg">
     <div className="card shadow--md" style={{height: '100%', display: 'flex', flexDirection: 'column'}}>
@@ -79,7 +99,7 @@ Para interactuar con la red Flokicoin, necesitas un lugar seguro para gestionar 
         <h3>Komodo Wallet</h3>
       </div>
       <div className="card__body" style={{flex: '1 1 auto'}}>
-        <p><strong>La elección amigable.</strong> Una cartera multi-moneda con interfaz gráfica tradicional. Perfecta para usuarios cotidianos en escritorio o móvil.</p>
+        <p>Una cartera multi-moneda con interfaz gráfica tradicional. Perfecta para usuarios cotidianos en escritorio o móvil.</p>
         <ul>
           <li>Interfaz gráfica de usuario (GUI)</li>
           <li>Compatible con direcciones F y Segwit</li>
@@ -95,13 +115,13 @@ Para interactuar con la red Flokicoin, necesitas un lugar seguro para gestionar 
 
 ## Comparación Rápida
 
-| Característica | Tap Wallet | tWallet | flnd | Komodo Wallet |
-| :--- | :--- | :--- | :--- | :--- |
-| **Interfaz** | Web / Mini App | Terminal (TUI) | Línea de comandos (CLI) | Gráfica (GUI) |
-| **Lightning** | No | Sí (Integrada) | Sí (Nativa) | No |
-| **Experiencia** | Principiante | Intermedio | Avanzado | Principiante |
-| **Ideal Para** | Móvil y Social | Privacidad escritorio | Operadores de nodo | Usuarios cotidianos |
+| Característica | Tap Wallet | Lokinode | tWallet | flnd | Komodo Wallet |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Interfaz** | Web / Mini App | Gráfica (GUI) | Terminal (TUI) | Línea de comandos (CLI) | Gráfica (GUI) |
+| **Lightning** | No | Sí (Integrada) | Sí (Integrada) | Sí (Nativa) | No |
+| **Experiencia** | Principiante | Principiante | Intermedio | Avanzado | Principiante |
+| **Ideal Para** | Móvil y Social | Nodo de escritorio | Privacidad escritorio | Operadores de nodo | Usuarios cotidianos |
 
 :::tip[¿Usas Lokihub?]
-Si planeas usar **Lokihub**, te recomendamos empezar con **tWallet v1**, ya que proporciona el backend Lightning necesario para las operaciones de nodo.
+Si planeas usar [**Lokihub**](/lokihub), te recomendamos encarecidamente empezar con [**Lokinode**](/wallets/lokinode), ya que proporciona el backend Lightning nativo necesario para las operaciones de nodo.
 :::

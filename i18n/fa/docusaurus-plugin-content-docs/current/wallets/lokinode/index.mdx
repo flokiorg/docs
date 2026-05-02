@@ -1,0 +1,293 @@
+---
+title: Lokinode
+description: رابط کاربری دسکتاپ برای اجرای و مدیریت یک گره کامل Flokicoin (FLND) و عملیات شبکه Lightning.
+sidebar_position: 2
+hide_title: true
+keywords: [Lokinode, Flokicoin, GUI wallet, node manager, desktop wallet, FLND, lightning node, background service, FLN]
+custom_edit_url: null
+---
+
+import Link from '@docusaurus/Link';
+import { Monitor, Zap, Shield, Activity, Settings, Download, Cpu, HardDrive, Layout, ChevronRight, Terminal, Box, Apple, Globe } from 'lucide-react';
+import lokiImage from '../../../../../../../docs/wallets/lokinode/assets/loki-lazereyes.png';
+import Heading from '@theme/Heading';
+
+<div className="lokinode-lazereyes-hero">
+  <div className="container">
+    <div className="lokinode-hero-content">
+      <div className="lokinode-hero-artwork">
+        <div className="lazereyes-glow"></div>
+        <img src={lokiImage} alt="Loki Lazereyes" className="loki-lazer-img" />
+      </div>
+
+      <Heading as="h1" className="lokinode-glitch-title">Lokinode</Heading>
+      <p className="lokinode-hero-description">
+        کلاینت دسکتاپ بومی برای Flokicoin Lightning Network. 
+        گره Lightning خود را به عنوان یک سرویس پس‌زمینه بدون وقفه مستقر و اجرا کنید.
+      </p>
+
+      <div className="lokinode-download-buttons">
+        <a className="lokinode-btn lokinode-btn--win" href="https://github.com/flokiorg/lokinode/releases/download/v0.1.0/lokinode_0.1.0_windows_amd64.exe">
+          <Monitor size={24} className="lokinode-btn-icon" /> 
+          <div className="lokinode-btn-text">
+            <span className="lokinode-btn-title">Windows</span>
+            <span className="lokinode-btn-sub">.exe (64-bit)</span>
+          </div>
+        </a>
+        <a className="lokinode-btn lokinode-btn--mac" href="https://github.com/flokiorg/lokinode/releases/download/v0.1.0/lokinode_0.1.0_darwin_amd64.dmg">
+          <Apple size={24} className="lokinode-btn-icon" />
+          <div className="lokinode-btn-text">
+            <span className="lokinode-btn-title">macOS</span>
+            <span className="lokinode-btn-sub">Intel & Apple Silicon</span>
+          </div>
+        </a>
+        <a className="lokinode-btn lokinode-btn--linux" href="https://github.com/flokiorg/lokinode/releases/download/v0.1.0/lokinode_0.1.0_linux_amd64.deb">
+          <Terminal size={24} className="lokinode-btn-icon" />
+          <div className="lokinode-btn-text">
+            <span className="lokinode-btn-title">Linux</span>
+            <span className="lokinode-btn-sub">.deb (Debian/Ubuntu)</span>
+          </div>
+        </a>
+      </div>
+      
+      <div className="lokinode-hero-meta">
+        <span className="meta-item"><Activity size={14} /> Version 0.1.0</span>
+        <span className="meta-item"><Shield size={14} /> متن‌باز</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>{`
+  .lokinode-lazereyes-hero {
+    margin: 0 -2rem 2rem;
+    padding: 6rem 2rem 3rem;
+    position: relative;
+    overflow: hidden;
+    color: var(--ifm-font-color-base);
+    background: transparent;
+  }
+
+  [data-theme='dark'] .lokinode-lazereyes-hero {
+    background: transparent;
+  }
+
+  .lokinode-lazereyes-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(ellipse closest-side at 75% 50%, rgba(255, 0, 0, 0.1) 0%, transparent 100%),
+      radial-gradient(ellipse closest-side at 25% 50%, rgba(240, 184, 50, 0.06) 0%, transparent 100%);
+    pointer-events: none;
+  }
+
+  .lokinode-hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .lokinode-hero-artwork {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: -0.6rem;
+    z-index: 3;
+  }
+
+  .loki-lazer-img {
+    width: 100%;
+    height: auto;
+    max-width: 240px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 30px rgba(255, 0, 0, 0.15));
+    position: relative;
+    z-index: 2;
+  }
+
+  .lokinode-glitch-title {
+    font-size: clamp(3.5rem, 8vw, 5.5rem);
+    font-weight: 950;
+    line-height: 0.9;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    color: var(--ifm-heading-color);
+  }
+
+  [data-theme='dark'] .lokinode-glitch-title {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  }
+
+  .lokinode-hero-description {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: var(--ifm-color-emphasis-700);
+    max-width: 580px;
+    margin: 0 auto 2.5rem;
+  }
+
+  .lokinode-download-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    width: 100%;
+  }
+
+  .lokinode-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.85rem 1.25rem;
+    background: var(--ifm-color-emphasis-100);
+    border: 1px solid var(--ifm-color-emphasis-300);
+    border-radius: 12px;
+    color: var(--ifm-font-color-base) !important;
+    text-decoration: none !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    flex: 1 1 210px;
+    max-width: 260px;
+  }
+
+  [data-theme='dark'] .lokinode-btn {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .lokinode-btn-text {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    line-height: 1.2;
+  }
+
+  .lokinode-btn-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+  }
+
+  .lokinode-btn-sub {
+    font-size: 0.75rem;
+    opacity: 0.7;
+    font-weight: 500;
+    margin-top: 0.1rem;
+  }
+
+  .lokinode-btn:hover {
+    transform: translateY(-2px);
+  }
+
+  .lokinode-btn--win:hover { 
+    background: #0078D4; 
+    color: #fff !important; 
+    border-color: #0078D4; 
+    box-shadow: 0 8px 16px rgba(0, 120, 212, 0.2); 
+  }
+  
+  .lokinode-btn--mac:hover { 
+    background: #000; 
+    color: #fff !important; 
+    border-color: #000; 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
+  }
+  
+  [data-theme='dark'] .lokinode-btn--mac:hover {
+    background: #fff;
+    color: #000 !important;
+    border-color: #fff;
+    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.1);
+  }
+  
+  .lokinode-btn--linux:hover { 
+    background: #E9B000; 
+    color: #000 !important; 
+    border-color: #E9B000; 
+    box-shadow: 0 8px 16px rgba(233, 176, 0, 0.2); 
+  }
+
+  .lokinode-hero-meta {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    color: var(--ifm-color-emphasis-500);
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+
+  .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+`}</style>
+
+Lokinode یک برنامه دسکتاپ چند پلتفرمی است که یک رابط گرافیکی برای اجرای و مدیریت یک گره کامل Flokicoin (FLND) ارائه می‌دهد. این امکان را به شما می‌دهد تا یک کیف‌پول on-chain را مدیریت کرده و در Flokicoin Lightning Network (FLN) شرکت کنید.
+
+## ویژگی‌ها
+
+- **سرویس پس‌زمینه**: Lokinode به عنوان یک سرویس مداوم اجرا می‌شود. می‌توانید رابط کاربری را ببندید در حالی که گره به کار خود در سینی سیستم ادامه می‌دهد.
+- **کیف‌پول On-chain**: کیف‌پول خود را مقداردهی اولیه و باز کنید، FLC ارسال/دریافت کنید و تاریخچه تراکنش‌ها را مشاهده کنید.
+- **مدیریت گره**: ارتفاع بلوک، وضعیت همگام‌سازی و نوک mempool را کنترل کنید. گزارش‌های برنامه را مستقیماً در رابط کاربری مشاهده کنید.
+- **پروفایل‌های چند گره**: چندین گره را روی یک ماشین اجرا و مدیریت کنید. Lokinode به طور خودکار دایرکتوری‌های داده و پیکربندی‌های شما را ردیابی می‌کند و به شما امکان می‌دهد سریعاً بین پروفایل‌های مختلف گره جابه‌جا شوید.
+
+## نصب و راه‌اندازی
+
+:::tip[از tWallet می‌آیید؟]
+اگر از قبل از [**tWallet**](/wallets/twallet) استفاده می‌کنید، **نیازی به مهاجرت نیست**. عبارت بازیابی ۲۴ کلمه‌ای شما کاملاً سازگار است. بهتر از آن، از آنجا که هر دو برنامه از دایرکتوری‌های داده پیش‌فرض یکسانی استفاده می‌کنند، Lokinode به طور خودکار گره موجود شما را تشخیص می‌دهد. می‌توانید به سادگی برنامه را راه‌اندازی کرده و پروفایل پیش‌فرض گره خود را **بدون نیاز به هیچ تنظیمی** روشن کنید.
+:::
+
+1. **دانلود**: فایل اجرایی مربوط به سیستم‌عامل خود را دانلود کنید.
+2. **پیکربندی گره**: Lokinode را اجرا کنید. جادوگر راه‌اندازی ابتدا از شما می‌خواهد که یک نام مستعار عمومی تعیین کرده و یک دایرکتوری داده محلی را انتخاب کنید.
+3. **راه‌اندازی کیف‌پول**: انتخاب کنید که آیا می‌خواهید یک کیف‌پول جدید ایجاد کنید (که یک عبارت بازیابی ۲۴ کلمه‌ای جدید ارائه می‌دهد) یا یک کیف‌پول موجود را از طریق عبارت بازیابی بازیابی کنید.
+4. **امنیت**: یک رمز عبور رمزگذاری قوی برای محافظت از داده‌های محلی خود تنظیم کنید.
+5. **همگام‌سازی**: پس از بوت شدن گره، به طور خودکار شروع به همگام‌سازی با بلاک‌چین Flokicoin می‌کند.
+
+:::info[برای اپراتورهای گره و توسعه‌دهندگان]
+آیا به دنبال استقرار یک گره بدون رابط در VPS، اجرای عملیات خودکار (Ops)، یا ادغام با Docker هستید؟ ممکن است ترجیح دهید به جای رابط گرافیکی Lokinode، مستقیماً [daemon **`flnd`**](/wallets/flnd) را اجرا کنید. `flnd` backend اصلی را فراهم می‌کند و می‌تواند کاملاً از طریق خط فرمان مدیریت شود.
+:::
+
+## مدیریت با Lokihub
+
+در حالی که Lokinode اجرای گره Lightning پس‌زمینه شما را مدیریت می‌کند و رابطی برای عملیات پایه کیف‌پول on-chain فراهم می‌کند، باید از **Lokihub** برای ویژگی‌های پیشرفته Lightning Network استفاده کنید.
+
+هنگامی که Lokihub را روی همان ماشین باز می‌کنید، به طور خودکار سعی می‌کند به دایرکتوری فعال Lokinode متصل شود، و قابلیت‌های زیر را باز می‌کند:
+
+- **مدیریت نقدینگی**: باز کردن، بستن، و نظارت بر کانال‌های Lightning برای مدیریت ظرفیت ورودی و خروجی شما.
+- **کیف‌پول‌های فرعی**: ایجاد کیف‌پول‌های اختصاصی برای سازماندهی وجوه خود برای برنامه‌های مختلف یا بودجه‌های شخصی.
+- **ادغام برنامه‌ها (NWC)**: با استفاده از Nostr Wallet Connect، برنامه‌های خارجی را به طور یکپارچه با کنترل‌های دقیق مجوزها به گره خود متصل کنید.
+
+[مشاهده راهنمای راه‌اندازی Lokihub →](/lokihub/setup)
+
+## مکان‌های داده
+
+به طور پیش‌فرض، Lokinode داده‌های بلاک‌چین و کیف‌پول را در دایرکتوری‌های زیر ذخیره می‌کند:
+
+| سیستم‌عامل | مسیر پیش‌فرض |
+| :--- | :--- |
+| **Linux** | `~/.flnd/` |
+| **macOS** | `~/Library/Application Support/Flnd/` |
+| **Windows** | `%APPDATA%\Flnd\` |
+
+می‌توانید در حین راه‌اندازی اولیه یا در تنظیمات برنامه یک مسیر داده سفارشی مشخص کنید.
+
+## بسیار مهم: پشتیبان‌گیری Lightning
+
+عبارت بازیابی ۲۴ کلمه‌ای شما **فقط وجوه on-chain را بازیابی می‌کند**. 
+
+برای بازیابی وجوه قفل شده در کانال‌های باز Lightning، به یک **نسخه پشتیبان استاتیک کانال (SCB)** نیاز دارید. 
+
+:::danger[خطر از دست دادن داده‌ها]
+همیشه مطمئن شوید که علاوه بر عبارت بازیابی خود، یک نسخه پشتیبان جداگانه و تأیید شده از فایل `channel.backup` دارید. بدون آن، در صورت از دست رفتن داده‌های محلی، وجوه کانال Lightning قابل بازیابی نیست.
+:::

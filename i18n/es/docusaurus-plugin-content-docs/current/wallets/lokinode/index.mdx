@@ -1,6 +1,6 @@
 ---
 title: Lokinode
-description: Desktop interface for running and managing a Flokicoin full node (FLND) and Lightning Network operations.
+description: Interfaz de escritorio para ejecutar y gestionar un nodo completo de Flokicoin (FLND) y operaciones de Lightning Network.
 sidebar_position: 2
 hide_title: true
 keywords: [Lokinode, Flokicoin, GUI wallet, node manager, desktop wallet, FLND, lightning node, background service, FLN]
@@ -9,7 +9,7 @@ custom_edit_url: null
 
 import Link from '@docusaurus/Link';
 import { Monitor, Zap, Shield, Activity, Settings, Download, Cpu, HardDrive, Layout, ChevronRight, Terminal, Box, Apple, Globe } from 'lucide-react';
-import lokiImage from './assets/loki-lazereyes.png';
+import lokiImage from '../../../../../../../docs/wallets/lokinode/assets/loki-lazereyes.png';
 import Heading from '@theme/Heading';
 
 <div className="lokinode-lazereyes-hero">
@@ -22,8 +22,8 @@ import Heading from '@theme/Heading';
 
       <Heading as="h1" className="lokinode-glitch-title">Lokinode</Heading>
       <p className="lokinode-hero-description">
-        The native desktop client for the Flokicoin Lightning Network. 
-        Deploy and run your Lightning node as a seamless background service.
+        El cliente de escritorio nativo para Flokicoin Lightning Network. 
+        Despliegue y ejecute su nodo Lightning como un servicio en segundo plano sin interrupciones.
       </p>
 
       <div className="lokinode-download-buttons">
@@ -52,10 +52,9 @@ import Heading from '@theme/Heading';
       
       <div className="lokinode-hero-meta">
         <span className="meta-item"><Activity size={14} /> Version 0.1.0</span>
-        <Link className="meta-item" href="https://github.com/flokiorg/lokinode" style={{color: 'inherit', textDecoration: 'none'}}>
-          <Shield size={14} /> Open Source
-        </Link>
-      </div>    </div>
+        <span className="meta-item"><Shield size={14} /> Código Abierto</span>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -234,61 +233,61 @@ import Heading from '@theme/Heading';
   }
 `}</style>
 
-Lokinode is a cross-platform desktop application that provides a graphical interface for running and managing a Flokicoin full node (FLND). It allows you to operate an on-chain wallet and participate in the Flokicoin Lightning Network (FLN).
+Lokinode es una aplicación de escritorio multiplataforma que proporciona una interfaz gráfica para ejecutar y gestionar un nodo completo de Flokicoin (FLND). Le permite operar una cartera on-chain y participar en la Flokicoin Lightning Network (FLN).
 
-## Features
+## Características
 
-- **Background Service**: Lokinode runs as a persistent service. You can close the user interface while the node continues to run in the system tray.
-- **On-chain Wallet**: Initialize and unlock your wallet, send/receive FLC, and view transaction history.
-- **Node Management**: Monitor block height, sync status, and mempool tip. View application logs directly in the interface.
-- **Multi-Node Profiles**: Run and manage multiple nodes on the same machine. Lokinode automatically tracks your data directories and configurations, allowing you to quickly switch between different node profiles.
+- **Servicio en segundo plano**: Lokinode se ejecuta como un servicio persistente. Puede cerrar la interfaz de usuario mientras el nodo sigue funcionando en la bandeja del sistema.
+- **Cartera On-chain**: Inicialice y desbloquee su cartera, envíe/reciba FLC y vea el historial de transacciones.
+- **Gestión de nodos**: Supervise la altura de bloque, el estado de sincronización y la punta del mempool. Vea los registros de la aplicación directamente en la interfaz.
+- **Perfiles Multi-Nodo**: Ejecute y gestione múltiples nodos en la misma máquina. Lokinode rastrea automáticamente sus directorios de datos y configuraciones, lo que le permite cambiar rápidamente entre diferentes perfiles de nodos.
 
-## Installation and Setup
+## Instalación y Configuración
 
-:::tip[Coming from tWallet?]
-If you already use [**tWallet**](/wallets/twallet), **no migration is needed**. Your 24-word seed phrase is fully compatible. Even better, because both applications share the same default data directories, Lokinode will automatically detect your existing node. You can simply launch the app and power on your default node profile with **zero setup required**.
+:::tip[¿Viene de tWallet?]
+Si ya utiliza [**tWallet**](/wallets/twallet), **no es necesaria ninguna migración**. Su frase semilla de 24 palabras es totalmente compatible. Aún mejor, como ambas aplicaciones comparten los mismos directorios de datos predeterminados, Lokinode detectará automáticamente su nodo existente. Simplemente puede iniciar la aplicación y encender su perfil de nodo predeterminado con **cero configuración**.
 :::
 
-1. **Download**: Download the executable for your corresponding operating system.
-2. **Node Configuration**: Launch Lokinode. The setup wizard will first ask you to set a public alias and select a local data directory.
-3. **Wallet Setup**: Choose to either create a new wallet (which provides a new 24-word seed phrase) or restore an existing one via mnemonic.
-4. **Security**: Set a strong encryption password to protect your local data.
-5. **Sync**: Once the node boots, it will automatically begin synchronizing with the Flokicoin blockchain.
+1. **Descarga**: Descargue el ejecutable correspondiente a su sistema operativo.
+2. **Configuración del nodo**: Inicie Lokinode. El asistente de configuración primero le pedirá que establezca un alias público y seleccione un directorio de datos local.
+3. **Configuración de la cartera**: Elija entre crear una nueva cartera (que proporciona una nueva frase semilla de 24 palabras) o restaurar una existente mediante mnemotecnia.
+4. **Seguridad**: Establezca una contraseña de encriptación fuerte para proteger sus datos locales.
+5. **Sincronización**: Una vez que el nodo se inicie, comenzará automáticamente a sincronizarse con la blockchain de Flokicoin.
 
-:::info[For Node Operators & Developers]
-Are you looking to deploy a headless node on a VPS, run automated operations (Ops), or integrate with Docker? You may prefer to run the [**`flnd`** daemon](/wallets/flnd) directly instead of the Lokinode graphical interface. `flnd` provides the core backend and can be managed entirely via the command line.
+:::info[Para Operadores de Nodos y Desarrolladores]
+¿Está buscando desplegar un nodo sin interfaz (headless) en un VPS, ejecutar operaciones automatizadas (Ops) o integrarse con Docker? Puede que prefiera ejecutar el [daemon **`flnd`**](/wallets/flnd) directamente en lugar de la interfaz gráfica de Lokinode. `flnd` proporciona el backend central y se puede gestionar completamente a través de la línea de comandos.
 :::
 
-## Managing with Lokihub
+## Gestión con Lokihub
 
-While Lokinode handles running your background Lightning node and provides an interface for basic on-chain wallet operations, you must use **Lokihub** for advanced Lightning Network features.
+Mientras que Lokinode se encarga de ejecutar su nodo Lightning en segundo plano y proporciona una interfaz para operaciones básicas de cartera on-chain, debe utilizar **Lokihub** para las funciones avanzadas de Lightning Network.
 
-When you open Lokihub on the same machine, it will automatically attempt to connect to your active Lokinode directory, unlocking the following capabilities:
+Cuando abra Lokihub en la misma máquina, intentará conectarse automáticamente a su directorio Lokinode activo, desbloqueando las siguientes capacidades:
 
-- **Liquidity Management**: Open, close, and monitor Lightning channels to manage your inbound and outbound capacity.
-- **Sub-Wallets**: Create dedicated wallets to organize your funds for different applications or personal budgets.
-- **App Integrations (NWC)**: Seamlessly connect external applications to your node using Nostr Wallet Connect, with granular permission controls.
+- **Gestión de Liquidez**: Abra, cierre y supervise los canales de Lightning para gestionar su capacidad de entrada y salida.
+- **Sub-Carteras**: Cree carteras dedicadas para organizar sus fondos para diferentes aplicaciones o presupuestos personales.
+- **Integraciones de Apps (NWC)**: Conecte aplicaciones externas a su nodo de manera transparente utilizando Nostr Wallet Connect, con controles de permisos granulares.
 
-[View the Lokihub Setup Guide →](/lokihub/setup)
+[Ver la Guía de Configuración de Lokihub →](/lokihub/setup)
 
-## Data Locations
+## Ubicaciones de Datos
 
-By default, Lokinode stores blockchain and wallet data in the following directories:
+Por defecto, Lokinode almacena los datos de la blockchain y de la cartera en los siguientes directorios:
 
-| OS | Default Path |
+| SO | Ruta predeterminada |
 | :--- | :--- |
 | **Linux** | `~/.flnd/` |
 | **macOS** | `~/Library/Application Support/Flnd/` |
 | **Windows** | `%APPDATA%\Flnd\` |
 
-You can specify a custom data path during the initial setup or in the application settings.
+Puede especificar una ruta de datos personalizada durante la configuración inicial o en la configuración de la aplicación.
 
-## CRITICAL: Lightning Backups
+## CRÍTICO: Copias de seguridad de Lightning
 
-Your 24-word seed phrase **only recovers on-chain funds**. 
+Su frase semilla de 24 palabras **sólo recupera los fondos on-chain**. 
 
-To recover funds locked in open Lightning channels, you need a **Static Channel Backup (SCB)**. 
+Para recuperar los fondos bloqueados en canales de Lightning abiertos, necesita una **Copia de seguridad estática de canales (SCB)**. 
 
-:::danger[DATA LOSS RISK]
-Always ensure you have a separate, verified backup of your `channel.backup` file alongside your seed phrase. Without it, Lightning channel funds cannot be recovered if local data is lost.
+:::danger[RIESGO DE PÉRDIDA DE DATOS]
+Asegúrese siempre de tener una copia de seguridad separada y verificada de su archivo `channel.backup` junto a su frase semilla. Sin él, los fondos de los canales de Lightning no se podrán recuperar si se pierden los datos locales.
 :::
