@@ -1,0 +1,54 @@
+---
+title: 0.1.21-beta
+description: Release notes for flnd v0.1.21-beta covering production Taproot support, enhanced reorg protection, and Flokicoin rebranding milestones.
+sidebar_position: 0
+---
+
+<div className="release-header-meta release-header-left">
+  <a className="github-link release-github no-external-icon" href="https://github.com/flokiorg/flnd/releases/tag/v0.1.21-beta" target="_blank" rel="noreferrer" title="View v0.1.21-beta on GitHub">
+    <span className="release-header-label">GitHub</span>
+  </a>
+</div>
+
+Please report bugs using the issue tracker at GitHub:
+
+https://github.com/flokiorg/flnd/issues
+
+This release marks a significant milestone in the Flokicoin rebranding and synchronization with the latest upstream improvements. It introduces production-ready Taproot channels, enhanced reorg protection, and several stability fixes.
+
+## Highlights
+
+### Production Taproot Channels
+- **Full Support**: Full support for production simple taproot channels is now enabled.
+- **Integrations**: Includes integration with Static Channel Backups (SCB) and Watchtowers.
+- **CLI Additions**: Added `--taproot-final` flag to the `flncli openchannel` command.
+
+### Features & Improvements
+- **Reorg Protection**: Channel closures now require between 3 and 6 confirmations (scaled by capacity) to protect against chain reorganizations.
+- **Onion Messaging**: Introduced basic support for onion message forwarding, laying the groundwork for improved privacy and cross-peer communication.
+- **EstimateFee Enhancements**: The `EstimateFee` RPC now returns the specific inputs used for the estimation, providing better transparency for fee calculations.
+- **Neutrino Defaults**: Set a reliable default fee URL for Neutrino on Flokicoin mainnet: `https://lokichain.info/api/v1/fees/recommended`.
+
+### Core Improvements
+* **Flokicoin Rebranding**: Continued the comprehensive replacement of BTC/Bitcoin terminology with FLC/Flokicoin across logs, documentation, and the test suite.
+* **Gossiper Stability**: Fixed a shutdown deadlock and a panic that occurred if `TrickleDelay` was configured with a non-positive value.
+* **TLV Decoding**: Improved strictness in rejecting malformed TLV records with incorrect lengths.
+
+### Technical Updates
+- **Go Toolchain**: Updated minimum supported Go version and fixed compatibility issues with Go 1.24+.
+- **Chain Parameters**: 
+    * Increased `MinCLTVDelta` to 24 blocks.
+    * Increased `DefaultIncomingBroadcastDelta` to 16 blocks.
+    * Restored 1-minute block safety parameters specific to the Flokicoin network.
+
+## Assets
+
+| OS/Arch | flnd (daemon) | flncli (CLI) |
+| --- | --- | --- |
+| macOS (Apple Silicon) | [flnd-arm64](https://github.com/flokiorg/flnd/releases/download/v0.1.21-beta/flnd-darwin-arm64-v0.1.21-beta.tar.gz) | [flncli-arm64](https://github.com/flokiorg/flnd/releases/download/v0.1.21-beta/flncli-darwin-arm64-v0.1.21-beta.tar.gz) |
+| macOS (Intel) | [flnd-amd64](https://github.com/flokiorg/flnd/releases/download/v0.1.21-beta/flnd-darwin-amd64-v0.1.21-beta.tar.gz) | [flncli-amd64](https://github.com/flokiorg/flnd/releases/download/v0.1.21-beta/flncli-darwin-amd64-v0.1.21-beta.tar.gz) |
+| Linux x86_64 | [flnd-amd64](https://github.com/flokiorg/flnd/releases/download/v0.1.21-beta/flnd-linux-amd64-v0.1.21-beta.tar.gz) | [flncli-amd64](https://github.com/flokiorg/flnd/releases/download/v0.1.21-beta/flncli-linux-amd64-v0.1.21-beta.tar.gz) |
+| Linux arm64 | [flnd-arm64](https://github.com/flokiorg/flnd/releases/download/v0.1.21-beta/flnd-linux-arm64-v0.1.21-beta.tar.gz) | [flncli-arm64](https://github.com/flokiorg/flnd/releases/download/v0.1.21-beta/flncli-linux-arm64-v0.1.21-beta.tar.gz) |
+| Windows x86_64 | [flnd-amd64](https://github.com/flokiorg/flnd/releases/download/v0.1.21-beta/flnd-windows-amd64-v0.1.21-beta.zip) | [flncli-amd64](https://github.com/flokiorg/flnd/releases/download/v0.1.21-beta/flncli-windows-amd64-v0.1.21-beta.zip) |
+
+Additional builds (ppc64, mips, and *BSD) are available on the [GitHub release page](https://github.com/flokiorg/flnd/releases/tag/v0.1.21-beta).
