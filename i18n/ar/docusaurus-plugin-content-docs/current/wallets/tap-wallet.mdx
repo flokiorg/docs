@@ -1,16 +1,17 @@
 ---
-title: Tap Wallet
-description: أسهل طريقة للبدء مع Flokicoin. محفظة متعددة المنصات لـ iOS وAndroid وسطح المكتب دون الحاجة إلى متاجر التطبيقات.
+title: محفظة تاب
+description: أسهل طريقة للبدء مع Flokicoin. محفظة متعددة المنصات لأنظمة iOS و Android و Desktop دون الحاجة لمتطلبات متجر التطبيقات.
 sidebar_position: 1
 hide_title: true
 hide_table_of_contents: true
-keywords: [Tap Wallet, Flokicoin, Discord Mini App, Telegram Mini App, محفظة iOS, محفظة Android, محفظة سطح المكتب, متعددة المنصات]
+keywords: [Tap Wallet, Flokicoin, Discord Mini App, Telegram Mini App, iOS wallet, Android wallet, Desktop wallet, cross-platform]
 custom_edit_url: null
 ---
 
 
 import Link from '@docusaurus/Link';
 import { Smartphone, Zap, Globe, MessageSquare, Award, Share2, MoreVertical, PlusSquare, Monitor, Wallet, ShieldCheck, Layers, Apple, Bot, Link as LinkIcon, PartyPopper } from 'lucide-react';
+import Image from '@theme/IdealImage';
 import tapHomeImage from '@site/docs/wallets/tapwallet_home.png';
 import Heading from '@theme/Heading';
 
@@ -18,19 +19,19 @@ import Heading from '@theme/Heading';
   <div className="container">
     <div className="tap-hero-inner">
       <div className="tap-hero-content">
-        <Heading as="h1" className="tap-hero-title">Tap Wallet</Heading>
-        <p className="tap-hero-subtitle">محفظة واحدة. كل جهاز. وصول مباشر إلى FLC بدون متجر التطبيقات.</p>
+        <Heading as="h1" className="tap-hero-title">محفظة تاب</Heading>
+        <p className="tap-hero-subtitle">محفظة واحدة. كل الأجهزة. وصول مباشر لـ FLC بدون متجر التطبيقات.</p>
 
         <div className="hero-modern__actions tap-hero-actions-override">
           <Link className="hero-button hero-button--primary no-external-icon" href="https://taploki.com/wallet">
-            <span><Globe size={18} /></span><span>تشغيل المحفظة الويب</span>
+            <span><Globe size={18} /></span><span>تشغيل محفظة الويب</span>
           </Link>
           <div className="tap-social-btns">
             <Link className="hero-button no-external-icon" href="https://flokicoin.org/discord">
-              <span><MessageSquare size={18} /></span><span>تطبيق Discord</span>
+              <span><MessageSquare size={18} /></span><span>تطبيق ديسكورد</span>
             </Link>
             <Link className="hero-button no-external-icon" href="https://t.me/taplokibot">
-              <span><Zap size={18} /></span><span>بوت Telegram</span>
+              <span><Zap size={18} /></span><span>بوت تيليجرام</span>
             </Link>
           </div>
         </div>
@@ -38,15 +39,15 @@ import Heading from '@theme/Heading';
         <div className="tap-hero-faucet-card">
           <div className="faucet-icon-wrapper"><Award size={22} /></div>
           <div>
-            <strong>Tap Days و فاست</strong>
-            <p>أدخل رمز Tap، واستلم FLC حقيقي على السلسلة. لا حاجة للتسجيل.</p>
+            <strong>أيام تاب والصنبور</strong>
+            <p>أدخل رمز تاب، واحصل على FLC حقيقي على الشبكة. لا يلزم التسجيل.</p>
           </div>
         </div>
       </div>
 
       <div className="tap-hero-visual">
         <div className="tap-visual-wrapper">
-          <img src={tapHomeImage.src ?? tapHomeImage} alt="Tap Wallet" className="tap-main-screenshot" loading="eager" />
+          <Image img={tapHomeImage} alt="محفظة تاب" className="tap-main-screenshot" />
           <div className="tap-visual-glow"></div>
         </div>
       </div>
@@ -78,31 +79,37 @@ import Heading from '@theme/Heading';
 
   .tap-hero-inner {
     display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
+    grid-template-columns: 1.2fr 0.8fr;
     align-items: center;
-    gap: 3.5rem;
+    text-align: left;
+    gap: 4rem;
     position: relative;
     z-index: 2;
   }
 
+  .tap-hero-content {
+    /* No flex: 1 needed in grid */
+  }
+
   /* Typography */
   .tap-hero-title {
-    font-size: clamp(2.8rem, 6vw, 4.5rem);
+    font-size: clamp(2.2rem, 8vw, 4.5rem);
     font-weight: 900;
-    line-height: 1.0;
+    line-height: 1.1;
     margin-bottom: 1.25rem;
     letter-spacing: -0.04em;
     background: linear-gradient(135deg, #ffffff 0%, #f0b832 55%, rgba(255,255,255,0.85) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    display: inline-block;
   }
 
   .tap-hero-subtitle {
     font-size: clamp(1rem, 1.8vw, 1.3rem);
     color: rgba(255, 255, 255, 0.68);
-    margin-bottom: 2rem;
-    max-width: 480px;
+    margin: 0 0 2rem;
+    max-width: 580px;
     line-height: 1.55;
   }
 
@@ -110,6 +117,7 @@ import Heading from '@theme/Heading';
   .tap-hero-actions-override {
     display: flex;
     flex-wrap: wrap;
+    justify-content: flex-start;
     gap: 1rem;
     margin-bottom: 2rem !important;
     margin-top: 0 !important;
@@ -118,8 +126,7 @@ import Heading from '@theme/Heading';
   .tap-social-btns {
     display: flex;
     gap: 1rem;
-    flex: 1 1 auto;
-    min-width: 280px;
+    flex: 0 1 auto;
   }
 
   .tap-social-btns .hero-button {
@@ -192,6 +199,20 @@ import Heading from '@theme/Heading';
     box-shadow: 0 40px 100px -15px rgba(0,0,0,0.8);
     display: block;
     border: 1px solid rgba(255,255,255,0.1);
+    animation: tapFadeIn 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes tapFadeIn {
+    0% { 
+      opacity: 0; 
+      transform: translateY(60px) rotateY(-30deg) scale(0.8);
+      filter: blur(15px);
+    }
+    100% { 
+      opacity: 1; 
+      transform: translateY(0) rotateY(-12deg) scale(1);
+      filter: blur(0px);
+    }
   }
 
   .tap-visual-glow {
@@ -209,16 +230,22 @@ import Heading from '@theme/Heading';
       margin: 0 -1rem 3rem;
     }
     .tap-hero-inner {
-      grid-template-columns: 1fr;
+      display: flex;
+      flex-direction: column;
       text-align: center;
       gap: 2.5rem;
     }
-    .tap-hero-subtitle, .tap-hero-faucet-card {
-      margin-left: auto;
-      margin-right: auto;
+    .tap-hero-subtitle {
+      margin: 0 auto 2rem;
+    }
+    .tap-hero-faucet-card {
+      margin: 0 auto;
     }
     .tap-visual-wrapper { transform: none !important; }
     .tap-main-screenshot { max-width: 220px; }
+    .tap-hero-visual {
+      justify-content: center;
+    }
     
     .tap-hero-actions-override {
       justify-content: center;
@@ -242,46 +269,46 @@ import Heading from '@theme/Heading';
   }
 `}</style>
 
-**Tap Wallet** هو تطبيق عالي الأداء يوفر تجربة سلسة وأصيلة على جميع المنصات. من خلال تجاوز متاجر التطبيقات التقليدية، تحصل على تحديثات فورية وخصوصية تامة دون أي عوائق.
+**محفظة تاب** هي تطبيق عالي الأداء يوفر تجربة سلسة تشبه التطبيقات الأصلية على كل المنصات. من خلال تجاوز متاجر التطبيقات التقليدية، تحصل على تحديثات فورية وخصوصية تامة دون أي عوائق.
 
 <div className="row margin-top--lg">
   <div className="col col--4 margin-bottom--lg">
     <div className="card shadow--md padding--lg" style={{height: '100%', background: 'rgba(255,255,255,0.01)', border: '1px solid rgba(255,255,255,0.04)'}}>
       <Heading as="h3"><Smartphone size={20} style={{verticalAlign: 'middle', marginRight: '8px', color: 'var(--ifm-color-primary)'}} /> تطبيق الشاشة الرئيسية</Heading>
-      <p>ثبّته مباشرة على شاشتك الرئيسية في <strong>iOS</strong> أو <strong>Android</strong>. يبدو ويشعر ويتصرف تماماً كتطبيق مخصص.</p>
+      <p>قم بالتثبيت مباشرة على شاشة <strong>iOS</strong> أو <strong>Android</strong> الرئيسية. يبدو ويشعر ويتصرف كتطبيق مخصص.</p>
     </div>
   </div>
   <div className="col col--4 margin-bottom--lg">
     <div className="card shadow--md padding--lg" style={{height: '100%', background: 'rgba(255,255,255,0.01)', border: '1px solid rgba(255,255,255,0.04)'}}>
-      <Heading as="h3"><Monitor size={20} style={{verticalAlign: 'middle', marginRight: '8px', color: 'var(--ifm-color-primary)'}} /> سطح المكتب للمعدّنين</Heading>
-      <p>الرفيق المثالي للمعدّنين (<strong>Miners</strong>) ومستخدمي القدرة. شغّله كتطبيق مخصص على Windows أو macOS أو Linux.</p>
+      <Heading as="h3"><Monitor size={20} style={{verticalAlign: 'middle', marginRight: '8px', color: 'var(--ifm-color-primary)'}} /> نسخة الحاسوب للمعدنين</Heading>
+      <p>رفيق مثالي لـ <strong>المعدنين</strong> والمستخدمين المتقدمين. قم بتشغيله كتطبيق مخصص على Windows أو macOS أو Linux.</p>
     </div>
   </div>
   <div className="col col--4 margin-bottom--lg">
     <div className="card shadow--md padding--lg" style={{height: '100%', background: 'rgba(255,255,255,0.01)', border: '1px solid rgba(255,255,255,0.04)'}}>
-      <Heading as="h3"><ShieldCheck size={20} style={{verticalAlign: 'middle', marginRight: '8px', color: 'var(--ifm-color-primary)'}} /> بدون متجر</Heading>
-      <p>لا حاجة لـ Apple App Store أو Google Play Store. استقلالية تامة عن حراس شركات التقنية الكبرى.</p>
+      <Heading as="h3"><ShieldCheck size={20} style={{verticalAlign: 'middle', marginRight: '8px', color: 'var(--ifm-color-primary)'}} /> خالي من المتاجر</Heading>
+      <p>لا حاجة لمتجر تطبيقات Apple أو متجر Google Play. استقلال تام عن عمالقة التكنولوجيا.</p>
     </div>
   </div>
 </div>
 
-## <Smartphone size={24} style={{verticalAlign: 'middle', marginRight: '8px'}} /> بداية سريعة (بدون متجر تطبيقات)
+## <Smartphone size={24} style={{verticalAlign: 'middle', marginRight: '8px'}} /> البدء السريع (لا حاجة لمتجر تطبيقات)
 
-يمكنك تثبيت Tap Wallet مباشرة على جهازك في ثوانٍ. افتح <Link className="no-external-icon" to="https://taploki.com/wallet">taploki.com</Link> في متصفحك واتبع هذه الخطوات:
+يمكنك تثبيت محفظة تاب مباشرة على جهازك في ثوانٍ. افتح [taploki.com](https://taploki.com) في متصفحك واتبع هذه الخطوات:
 
 <div className="row margin-top--lg">
   <div className="col col--4 margin-bottom--md">
     <div className="card padding--lg shadow--lw" style={{height: '100%'}}>
-      <Heading as="h3"><Apple size={22} style={{verticalAlign: 'middle', marginRight: '8px'}} /> iPhone (Safari)</Heading>
+      <Heading as="h3"><Apple size={22} style={{verticalAlign: 'middle', marginRight: '8px'}} /> آيفون (سفاري)</Heading>
       <ol style={{paddingLeft: '1.2rem', marginBottom: 0}}>
         <li>اضغط على أيقونة <strong>المشاركة</strong> (<Share2 size={16} inline />) في الأسفل.</li>
-        <li>انزل للأسفل واختر <strong>إضافة إلى الشاشة الرئيسية</strong>.</li>
+        <li>مرر لأسفل واختر <strong>إضافة إلى الشاشة الرئيسية</strong>.</li>
       </ol>
     </div>
   </div>
   <div className="col col--4 margin-bottom--md">
     <div className="card padding--lg shadow--lw" style={{height: '100%'}}>
-      <Heading as="h3"><Bot size={22} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Android (Chrome)</Heading>
+      <Heading as="h3"><Bot size={22} style={{verticalAlign: 'middle', marginRight: '8px'}} /> أندرويد (كروم)</Heading>
       <ol style={{paddingLeft: '1.2rem', marginBottom: 0}}>
         <li>اضغط على أيقونة <strong>القائمة</strong> (<MoreVertical size={16} />) في أعلى اليمين.</li>
         <li>اختر <strong>تثبيت التطبيق</strong> أو <strong>إضافة إلى الشاشة الرئيسية</strong>.</li>
@@ -290,9 +317,9 @@ import Heading from '@theme/Heading';
   </div>
   <div className="col col--4 margin-bottom--md">
     <div className="card padding--lg shadow--lw" style={{height: '100%'}}>
-      <Heading as="h3"><Monitor size={22} style={{verticalAlign: 'middle', marginRight: '8px'}} /> سطح المكتب (Chrome/Edge)</Heading>
+      <Heading as="h3"><Monitor size={22} style={{verticalAlign: 'middle', marginRight: '8px'}} /> الحاسوب (كروم/إيدج)</Heading>
       <ol style={{paddingLeft: '1.2rem', marginBottom: 0}}>
-        <li>انقر على أيقونة <strong>التثبيت</strong> (<PlusSquare size={16} inline />) على الجانب الأيمن من شريط العنوان.</li>
+        <li>انقر على أيقونة <strong>التثبيت</strong> (<PlusSquare size={16} inline />) على الجانب الأيمن من شريط العناوين.</li>
       </ol>
     </div>
   </div>
@@ -300,14 +327,14 @@ import Heading from '@theme/Heading';
 
 ## <LinkIcon size={24} style={{verticalAlign: 'middle', marginRight: '8px'}} /> محفظة واحدة، في كل مكان
 
-اربط عنوان Flokicoin الخاص بك بحساباتك الاجتماعية لفتح ميزات متعددة المنصات. يبقى FLC الخاص بك متزامناً سواء كنت على الحاسوب المحمول أو هاتفك.
+اربط عنوان Flokicoin الخاص بك بحساباتك الاجتماعية لفتح ميزات متعددة المنصات. يبقى رصيد FLC الخاص بك متزامنًا سواء كنت على الكمبيوتر المحمول أو هاتفك.
 
-*   **Discord**: انضم إلى [Discord Flokicoin](https://flokicoin.org/discord) وافتح **App Launcher**.
-*   **Telegram**: شغّله عبر [@taplokiBot](https://t.me/taplokibot).
-*   **الويب**: ادخل في أي وقت على <Link className="no-external-icon" to="https://taploki.com/wallet">taploki.com</Link>.
+*   **ديسكورد**: انضم إلى [ديسكورد Flokicoin](https://flokicoin.org/discord) وافتح **مشغل التطبيقات**.
+*   **تيليجرام**: ابدأ عبر [@taplokiBot](https://t.me/taplokibot).
+*   **الويب**: الوصول في أي وقت عبر [taploki.com](https://taploki.com).
 
-## <PartyPopper size={24} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Tap Days
+## <PartyPopper size={24} style={{verticalAlign: 'middle', marginRight: '8px'}} /> أيام تاب
 
-**Tap Days** هي أحداث مجتمعية يقوم فيها المعدّنون والمالكون بتمويل الصنبور ليتمكن المستخدمون الجدد من تجربة شبكة Flokicoin مباشرة. خلال هذه الأحداث، يتم توزيع **Tap Codes** (`TAP-XXXXXXXXXX`) محدودة الوقت حصرياً في مجتمعات Discord وTelegram الخاصة بنا.
+**أيام تاب** هي فعاليات مجتمعية حيث يقوم المعدنون وحاملو العملة بتمويل الصنبور حتى يتمكن المستخدمون الجدد من تجربة شبكة Flokicoin بشكل مباشر. خلال هذه الفعاليات، يتم توزيع رموز **تاب** (`TAP-XXXXXXXXXX`) محدودة الوقت حصريًا في مجتمعاتنا على ديسكورد وتيليجرام.
 
-<Link className="no-external-icon" to="https://taploki.com/wallet">ابدأ التنقير اليوم ←</Link>
+<Link className="no-external-icon" to="https://taploki.com/wallet">ابدأ اليوم ←</Link>

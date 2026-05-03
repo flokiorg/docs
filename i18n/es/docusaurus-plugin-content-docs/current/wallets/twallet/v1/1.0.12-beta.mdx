@@ -1,0 +1,40 @@
+---
+title: 1.0.12-beta
+description: "Notas de la versión de tWallet v1.0.12-beta que cubre la integración de flnd v0.1.21-beta con soporte para canales Taproot."
+sidebar_position: 1
+---
+
+<div className="release-header-meta release-header-left">
+  <a className="github-link release-github no-external-icon" href="https://github.com/flokiorg/tWallet/releases/tag/v1.0.12-beta" target="_blank" rel="noreferrer" title="Ver v1.0.12-beta en GitHub">
+    <span className="release-header-label">GitHub</span>
+  </a>
+</div>
+
+Por favor, reporte cualquier error utilizando el rastreador de problemas en GitHub:
+
+https://github.com/flokiorg/tWallet/issues
+
+Este lanzamiento se enfoca en actualizar las dependencias centrales para integrar completamente `flnd v0.1.21-beta`, habilitando el soporte para canales Taproot listos para producción y resolviendo la compatibilidad con plataformas de 32 bits.
+
+## Cambios notables
+
+### Sincronización del núcleo
+Actualizado a la última versión de nuestro demonio lightning principal:
+- **flnd**: Actualizado a `v0.1.21-beta` (canales Taproot y correcciones de desbordamiento de 32 bits).
+
+### Mejoras
+- Limpiezas internas rutinarias y optimizaciones de rendimiento.
+- Se actualizaron las dependencias del módulo y se organizó `go.mod`.
+
+## Activos
+
+| SO/Arq | Activo |
+| --- | --- |
+| macOS (Apple Silicon) | https://github.com/flokiorg/tWallet/releases/download/v1.0.12-beta/twallet-darwin-arm64-v1.0.12-beta.tar.gz |
+| macOS (Intel) | https://github.com/flokiorg/tWallet/releases/download/v1.0.12-beta/twallet-darwin-amd64-v1.0.12-beta.tar.gz |
+| Linux x86_64 | https://github.com/flokiorg/tWallet/releases/download/v1.0.12-beta/twallet-linux-amd64-v1.0.12-beta.tar.gz |
+| Linux arm64 | https://github.com/flokiorg/tWallet/releases/download/v1.0.12-beta/twallet-linux-arm64-v1.0.12-beta.tar.gz |
+| Windows x86_64 | https://github.com/flokiorg/tWallet/releases/download/v1.0.12-beta/twallet-windows-amd64-v1.0.12-beta.zip |
+| Windows 32 bits | https://github.com/flokiorg/tWallet/releases/download/v1.0.12-beta/twallet-windows-386-v1.0.12-beta.zip |
+
+Hay construcciones adicionales (ppc64, mips y *BSD) disponibles en la [página de lanzamientos en GitHub](https://github.com/flokiorg/tWallet/releases/tag/v1.0.12-beta).

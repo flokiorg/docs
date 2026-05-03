@@ -1,99 +1,135 @@
 ---
 title: Lokinode
-description: Interfaz de escritorio para operadores de nodos Flokicoin. Gestione su nodo completo y las operaciones de Lightning Network con un servicio nativo en segundo plano.
+description: Interfaz de escritorio para ejecutar y administrar un nodo completo de Flokicoin (FLND) y operaciones de la Red Lightning.
 sidebar_position: 2
 hide_title: true
-keywords: [Lokinode, Flokicoin, GUI wallet, node manager, desktop wallet, FLND, lightning node, background service, FLN]
+keywords: [Lokinode, Flokicoin, billetera GUI, gestor de nodos, billetera de escritorio, FLND, nodo lightning, servicio en segundo plano, FLN]
 custom_edit_url: null
 ---
 
 import Link from '@docusaurus/Link';
 import { Monitor, Zap, Shield, Activity, Settings, Download, Cpu, HardDrive, Layout, ChevronRight, Terminal, Box, Apple, Globe } from 'lucide-react';
-import lokiLazerSvg from '../../../../../../../docs/wallets/lokinode/assets/loki-lazereyes.svg';
+import Image from '@theme/IdealImage';
+import lokiImage from '@site/docs/wallets/lokinode/assets/loki-lazereyes.png';
 import Heading from '@theme/Heading';
 
 <div className="lokinode-lazereyes-hero">
   <div className="container">
-    <div className="lokinode-hero-grid">
-      <div className="lokinode-hero-info">
-        <div className="lokinode-badge">OPERADOR DE NODO FLN</div>
-        <Heading as="h1" className="lokinode-glitch-title">Lokinode</Heading>
-        <p className="lokinode-hero-description">
-          La interfaz de escritorio definitiva para Flokicoin Lightning Network. 
-          Mantenga su nodo activo 24/7 con un servicio nativo en segundo plano y un panel de control profesional.
-        </p>
-
-        <div className="lokinode-download-buttons">
-          <Link className="lokinode-btn lokinode-btn--win no-external-icon" href="https://github.com/flokiorg/lokinode/releases/download/v0.1.0/lokinode_0.1.0_windows_amd64.exe">
-            <Monitor size={20} /> <span>Windows</span>
-          </Link>
-          <Link className="lokinode-btn lokinode-btn--mac no-external-icon" href="https://github.com/flokiorg/lokinode/releases/download/v0.1.0/lokinode_0.1.0_darwin_amd64.dmg">
-            <Apple size={20} /> <span>macOS</span>
-          </Link>
-          <Link className="lokinode-btn lokinode-btn--linux no-external-icon" href="https://github.com/flokiorg/lokinode/releases/download/v0.1.0/lokinode_0.1.0_linux_amd64.deb">
-            <Terminal size={20} /> <span>Linux</span>
-          </Link>
-        </div>
-        
-        <div className="lokinode-hero-meta">
-          <span className="meta-item"><Activity size={14} /> Versión 0.1.0</span>
-          <Link className="meta-item" href="https://github.com/flokiorg/lokinode" style={{color: 'inherit', textDecoration: 'none'}}>
-            <Shield size={14} /> Código Abierto
-          </Link>
-        </div>
-      </div>
-
+    <div className="lokinode-hero-content">
       <div className="lokinode-hero-artwork">
         <div className="lazereyes-glow"></div>
-        <img src={lokiLazerSvg} alt="Loki Lazereyes" className="loki-lazer-img" loading="eager" />
+        <Image img={lokiImage} alt="Loki Lazereyes" className="loki-lazer-img" />
       </div>
-    </div>
+
+      <Heading as="h1" className="lokinode-glitch-title">Lokinode</Heading>
+      <p className="lokinode-hero-description">
+        El cliente de escritorio nativo para la Red Lightning de Flokicoin. 
+        Despliega y ejecuta tu nodo Lightning como un servicio fluido en segundo plano.
+      </p>
+
+      <div className="lokinode-download-buttons">
+        <a className="lokinode-btn lokinode-btn--win" href="https://github.com/flokiorg/lokinode/releases/download/v0.1.0/lokinode_0.1.0_windows_amd64.exe">
+          <Monitor size={24} className="lokinode-btn-icon" /> 
+          <div className="lokinode-btn-text">
+            <span className="lokinode-btn-title">Windows</span>
+            <span className="lokinode-btn-sub">.exe (64-bit)</span>
+          </div>
+        </a>
+        <a className="lokinode-btn lokinode-btn--mac" href="https://github.com/flokiorg/lokinode/releases/download/v0.1.0/lokinode_0.1.0_darwin_amd64.dmg">
+          <Apple size={24} className="lokinode-btn-icon" />
+          <div className="lokinode-btn-text">
+            <span className="lokinode-btn-title">macOS</span>
+            <span className="lokinode-btn-sub">Intel y Apple Silicon</span>
+          </div>
+        </a>
+        <a className="lokinode-btn lokinode-btn--linux" href="https://github.com/flokiorg/lokinode/releases/download/v0.1.0/lokinode_0.1.0_linux_amd64.deb">
+          <Terminal size={24} className="lokinode-btn-icon" />
+          <div className="lokinode-btn-text">
+            <span className="lokinode-btn-title">Linux</span>
+            <span className="lokinode-btn-sub">.deb (Debian/Ubuntu)</span>
+          </div>
+        </a>
+      </div>
+      
+      <div className="lokinode-hero-meta">
+        <span className="meta-item"><Activity size={14} /> Versión 0.1.0</span>
+        <Link className="meta-item" href="https://github.com/flokiorg/lokinode" style={{color: 'inherit', textDecoration: 'none'}}>
+          <Shield size={14} /> Código Abierto
+        </Link>
+      </div>    </div>
   </div>
 </div>
 
 <style>{`
   .lokinode-lazereyes-hero {
-    margin: 0 -2rem 4rem;
-    padding: 6rem 2rem 8rem;
-    /* Base color matching the theme */
-    background-color: var(--ifm-background-color);
-    background-image: 
-      radial-gradient(circle at 50% 50%, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0) 80%),
-      radial-gradient(circle at 80% 20%, rgba(255, 0, 0, 0.05) 0%, rgba(255, 0, 0, 0) 60%);
-    
-    /* Physically fade all edges to 0% opacity to ensure no borders */
-    -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent),
-                        linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-    mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent),
-                linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-    -webkit-mask-composite: source-in;
-    mask-composite: intersect;
-    
+    margin: 0 -2rem 2rem;
+    padding: 6rem 2rem 3rem;
     position: relative;
     overflow: hidden;
-    color: #fff;
+    color: var(--ifm-font-color-base);
+    background: transparent;
   }
 
-  .lokinode-hero-grid {
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
+  [data-theme='dark'] .lokinode-lazereyes-hero {
+    background: transparent;
+  }
+
+  .lokinode-lazereyes-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(ellipse closest-side at 75% 50%, rgba(255, 0, 0, 0.1) 0%, transparent 100%),
+      radial-gradient(ellipse closest-side at 25% 50%, rgba(240, 184, 50, 0.06) 0%, transparent 100%);
+    pointer-events: none;
+  }
+
+  .lokinode-hero-content {
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 4rem;
+    text-align: center;
     position: relative;
     z-index: 2;
+    max-width: 860px;
+    margin: 0 auto;
   }
 
-  .lokinode-badge {
-    display: inline-block;
-    padding: 0.25rem 0.75rem;
-    background: rgba(255, 0, 0, 0.1);
-    border: 1px solid rgba(255, 0, 0, 0.3);
-    color: #ff3333;
-    font-size: 0.7rem;
-    font-weight: 800;
-    letter-spacing: 0.15em;
-    border-radius: 4px;
-    margin-bottom: 1.5rem;
+  .lokinode-hero-artwork {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: -0.6rem;
+    z-index: 3;
+  }
+
+  .loki-lazer-img {
+    width: 100%;
+    height: auto;
+    max-width: 240px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 30px rgba(255, 0, 0, 0.15));
+    position: relative;
+    z-index: 2;
+    animation: lokiFadeIn 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    filter: drop-shadow(0 0 30px rgba(255, 0, 0, 0.15));
+  }
+
+  @keyframes lokiFadeIn {
+    0% { 
+      opacity: 0; 
+      transform: scale(0.7) translateY(40px) rotate(-5deg); 
+      filter: drop-shadow(0 0 0px rgba(255, 0, 0, 0)) blur(10px);
+    }
+    100% { 
+      opacity: 1; 
+      transform: scale(1) translateY(0) rotate(0deg);
+      filter: drop-shadow(0 0 30px rgba(255, 0, 0, 0.15)) blur(0px);
+    }
   }
 
   .lokinode-glitch-title {
@@ -103,181 +139,158 @@ import Heading from '@theme/Heading';
     margin-bottom: 1.5rem;
     text-transform: uppercase;
     letter-spacing: -0.02em;
-    color: #fff;
-    text-shadow: 0 0 30px rgba(255, 0, 0, 0.2);
+    color: var(--ifm-heading-color);
+  }
+
+  [data-theme='dark'] .lokinode-glitch-title {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
   }
 
   .lokinode-hero-description {
     font-size: 1.25rem;
     line-height: 1.6;
-    color: rgba(255, 255, 255, 0.7);
-    max-width: 540px;
-    margin-bottom: 2.5rem;
+    color: var(--ifm-color-emphasis-700);
+    max-width: 580px;
+    margin: 0 auto 2.5rem;
   }
 
   .lokinode-download-buttons {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 1rem;
     margin-bottom: 2rem;
+    width: 100%;
   }
 
   .lokinode-btn {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    padding: 0.8rem 1.5rem;
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 8px;
-    color: #fff !important;
-    font-weight: 600;
+    gap: 0.8rem;
+    padding: 0.85rem 1.25rem;
+    background: var(--ifm-color-emphasis-100);
+    border: 1px solid var(--ifm-color-emphasis-300);
+    border-radius: 12px;
+    color: var(--ifm-font-color-base) !important;
     text-decoration: none !important;
-    transition: all 0.2s ease;
-    backdrop-filter: blur(10px);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    flex: 1 1 210px;
+    max-width: 260px;
+  }
+
+  [data-theme='dark'] .lokinode-btn {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .lokinode-btn-text {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    line-height: 1.2;
+  }
+
+  .lokinode-btn-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+  }
+
+  .lokinode-btn-sub {
+    font-size: 0.75rem;
+    opacity: 0.7;
+    font-weight: 500;
+    margin-top: 0.1rem;
   }
 
   .lokinode-btn:hover {
-    background: rgba(255,255,255,0.08);
     transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
   }
 
-  .lokinode-btn--win:hover { border-color: #00a4ef; box-shadow: 0 0 15px rgba(0, 164, 239, 0.2); }
-  .lokinode-btn--mac:hover { border-color: #fff; box-shadow: 0 0 15px rgba(255, 255, 255, 0.1); }
-  .lokinode-btn--linux:hover { border-color: #f0b832; box-shadow: 0 0 15px rgba(240, 184, 50, 0.2); }
+  .lokinode-btn--win:hover { 
+    background: #0078D4; 
+    color: #fff !important; 
+    border-color: #0078D4; 
+    box-shadow: 0 8px 16px rgba(0, 120, 212, 0.2); 
+  }
+  
+  .lokinode-btn--mac:hover { 
+    background: #000; 
+    color: #fff !important; 
+    border-color: #000; 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
+  }
+  
+  [data-theme='dark'] .lokinode-btn--mac:hover {
+    background: #fff;
+    color: #000 !important;
+    border-color: #fff;
+    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.1);
+  }
+  
+  .lokinode-btn--linux:hover { 
+    background: #E9B000; 
+    color: #000 !important; 
+    border-color: #E9B000; 
+    box-shadow: 0 8px 16px rgba(233, 176, 0, 0.2); 
+  }
 
   .lokinode-hero-meta {
     display: flex;
+    justify-content: center;
     gap: 2rem;
-    color: rgba(255, 255, 255, 0.4);
+    color: var(--ifm-color-emphasis-500);
     font-size: 0.85rem;
     font-weight: 500;
   }
 
   .meta-item {
-    display: flex;
-    align-items: center;
+    display: inline-flex;
     gap: 0.5rem;
-  }
-
-  .lokinode-hero-artwork {
-    position: relative;
-    display: flex;
-    justify-content: center;
-  }
-
-  .loki-lazer-img {
-    width: 100%;
-    max-width: 420px;
-    filter: drop-shadow(0 0 30px rgba(255, 0, 0, 0.2));
-    position: relative;
-    z-index: 2;
-    transform: perspective(1000px) rotateY(-5deg);
-    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
-  }
-
-  .lokinode-hero-artwork:hover .loki-lazer-img {
-    transform: perspective(1000px) rotateY(0deg) scale(1.02);
-  }
-
-  .lazereyes-glow {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 120%;
-    height: 120%;
-    background: radial-gradient(circle, rgba(255, 0, 0, 0.15) 0%, transparent 70%);
-    z-index: 1;
-    pointer-events: none;
-  }
-
-  @media (max-width: 996px) {
-    .lokinode-lazereyes-hero {
-      padding: 4rem 1.5rem 6rem;
-      margin: 0 -1rem 3rem;
-    }
-    .lokinode-hero-grid {
-      grid-template-columns: 1fr;
-      text-align: center;
-      gap: 3rem;
-    }
-    .lokinode-hero-description, .lokinode-download-buttons, .lokinode-hero-meta {
-      margin-left: auto;
-      margin-right: auto;
-      justify-content: center;
-    }
-    .loki-lazer-img { max-width: 300px; transform: none !important; }
+    line-height: 1;
+    text-decoration: none !important;
   }
 `}</style>
 
-**Lokinode** es un entorno de escritorio nativo para las operaciones de nodos Flokicoin. Proporciona una capa visual para gestionar configuraciones complejas de Lightning Network mientras garantiza la estabilidad del nodo a través de un proceso dedicado en segundo plano.
+Lokinode es una aplicación de escritorio multiplataforma que proporciona una interfaz gráfica para ejecutar y administrar un nodo completo de Flokicoin (FLND). Te permite operar una billetera on-chain y participar en la Red Lightning de Flokicoin (FLN).
 
-<div className="row margin-top--lg">
-  <div className="col col--4 margin-bottom--lg">
-    <div className="card shadow--md padding--lg" style={{height: '100%', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)'}}>
-      <Heading as="h3"><Monitor size={20} style={{verticalAlign: 'middle', marginRight: '8px', color: '#ff3333'}} /> Servicio en segundo plano</Heading>
-      <p>Mantenga su presencia en la red sin tener que dejar la interfaz abierta. Lokinode se ejecuta como un servicio persistente con controles en la bandeja del sistema.</p>
-    </div>
-  </div>
-  <div className="col col--4 margin-bottom--lg">
-    <div className="card shadow--md padding--lg" style={{height: '100%', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)'}}>
-      <Heading as="h3"><Zap size={20} style={{verticalAlign: 'middle', marginRight: '8px', color: '#f0b832'}} /> Nodo FLN</Heading>
-      <p>Gestión integrada de Flokicoin Lightning Network (FLN). Maneje canales, liquidez y facturas con precisión visual.</p>
-    </div>
-  </div>
-  <div className="col col--4 margin-bottom--lg">
-    <div className="card shadow--md padding--lg" style={{height: '100%', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)'}}>
-      <Heading as="h3"><Box size={20} style={{verticalAlign: 'middle', marginRight: '8px', color: '#ff3333'}} /> Gestión Avanzada</Heading>
-      <p>Despliegue múltiples perfiles de nodos, especifique ubicaciones de datos personalizadas y supervise los registros del sistema desde un panel unificado.</p>
-    </div>
-  </div>
-</div>
+## Características
 
-## Instalación
+- **Servicio en segundo plano**: Lokinode se ejecuta como un servicio persistente. Puedes cerrar la interfaz de usuario mientras el nodo continúa ejecutándose en la bandeja del sistema.
+- **Billetera on-chain**: Inicializa y desbloquea tu billetera, envía/recibe FLC y consulta el historial de transacciones.
+- **Gestión de nodos**: Supervisa la altura del bloque, el estado de sincronización y el tip del mempool. Visualiza los registros de la aplicación directamente en la interfaz.
+- **Perfiles multi-nodo**: Ejecuta y gestiona varios nodos en la misma máquina. Lokinode rastrea automáticamente tus directorios de datos y configuraciones, lo que te permite cambiar rápidamente entre diferentes perfiles de nodo.
 
-1.  **Descargue** el paquete para su sistema operativo utilizando los botones de arriba.
-2.  **Ejecute el instalador**:
-    *   **Windows**: Ejecute el `.exe` y siga el asistente de configuración.
-    *   **macOS**: Abra el `.dmg` y arrastre Lokinode a su carpeta de Aplicaciones.
-    *   **Linux**: Instale el paquete `.deb` a través de su gestor de paquetes.
-3.  **Configuración**: Inicie la aplicación para inicializar su nodo. Puede crear una nueva frase semilla de 24 palabras o importar una cartera existente.
+## Instalación y configuración
 
-## Capacidades
+:::tip[¿Vienes de tWallet?]
+Si ya usas [**tWallet**](/wallets/twallet), **no es necesaria ninguna migración**. Tu frase semilla de 24 palabras es totalmente compatible. Mejor aún, debido a que ambas aplicaciones comparten los mismos directorios de datos predeterminados, Lokinode detectará automáticamente tu nodo existente. Simplemente puedes iniciar la aplicación y encender tu perfil de nodo predeterminado con **cero configuración requerida**.
+:::
 
-### Operaciones de Lightning Network (FLN)
-Lokinode simplifica la gestión avanzada de Lightning Network:
-*   **Control Visual de Canales**: Abra, cierre y supervise el estado de los canales sin comandos de terminal.
-*   **Gestión de Liquidez**: Rastree la capacidad entrante y saliente con retroalimentación visual en tiempo real.
-*   **Liquidación**: Genere y pague facturas de Lightning con confirmación instantánea en la red.
+1. **Descarga**: Descarga el ejecutable para tu sistema operativo correspondiente.
+2. **Configuración del nodo**: Inicia Lokinode. El asistente de configuración te pedirá primero que establezcas un alias público y selecciones un directorio de datos local.
+3. **Configuración de la billetera**: Elige entre crear una nueva billetera (que proporciona una nueva frase semilla de 24 palabras) o restaurar una existente mediante un mnemónico.
+4. **Seguridad**: Establece una contraseña de cifrado sólida para proteger tus datos locales.
+5. **Sincronización**: Una vez que el nodo arranque, comenzará automáticamente a sincronizarse con la cadena de bloques de Flokicoin.
 
-### Experiencia Persistente
-Diseñado para la fiabilidad del nodo, Lokinode separa el proceso del nodo de la interfaz gráfica:
-*   **Integración en la Bandeja del Sistema**: Controle el estado del nodo y vea actualizaciones rápidas de estado desde la bandeja del sistema operativo.
-*   **Tiempo de Ejecución no Intrusivo**: Al cerrar la ventana de la aplicación se oculta la interfaz, pero se mantiene el nodo activo en segundo plano.
-*   **Auto-Estabilidad**: Lógica integrada para manejar interrupciones de red y mantener la conectividad con los pares.
-
-### Configuración Flexible
-Lokinode está diseñado para usuarios avanzados que requieren control sobre su entorno:
-*   **Rutas Personalizadas**: Especifique cualquier directorio local o externo para el almacenamiento de datos de la cadena de bloques y de los canales.
-*   **Métricas en Tiempo Real**: Supervise la altura de los bloques, el progreso de la sincronización y el número de pares directamente desde el panel de control.
-*   **Suite de Seguridad**: Gestione el almacenamiento de carteras encriptadas y las credenciales de recuperación dentro de un entorno local seguro.
+:::info[Para operadores de nodos y desarrolladores]
+¿Estás buscando desplegar un nodo sin cabezal en un VPS, ejecutar operaciones automatizadas (Ops) o integrarlo con Docker? Es posible que prefieras ejecutar el demonio [**`flnd`**](/wallets/flnd) directamente en lugar de la interfaz gráfica de Lokinode. `flnd` proporciona el backend central y se puede gestionar completamente a través de la línea de comandos.
+:::
 
 ## Gestión con Lokihub
 
-Mientras que **Lokinode** proporciona una interfaz integrada para las operaciones básicas, los operadores avanzados pueden utilizar **Lokihub** para análisis detallados de enrutamiento y gestión remota de nodos.
+Mientras que Lokinode se encarga de ejecutar tu nodo Lightning en segundo plano y proporciona una interfaz para operaciones básicas de billetera on-chain, debes usar **Lokihub** para las funciones avanzadas de la Red Lightning.
 
-### Conexión Rápida
-1.  **Nodo Activo**: Asegúrese de que Lokinode esté funcionando y sincronizado.
-2.  **Conectar**: Abra Lokihub; intentará detectar automáticamente las credenciales de su directorio activo de Lokinode.
-3.  **Sincronizar**: Obtenga acceso a gráficos de liquidez avanzados e historial de enrutamiento.
+Cuando abras Lokihub en la misma máquina, intentará conectarse automáticamente a tu directorio activo de Lokinode, desbloqueando las siguientes capacidades:
 
-<Link className="no-external-icon" to="/lokihub/setup">Ver la Guía de Configuración de Lokihub →</Link>
+- **Gestión de liquidez**: Abre, cierra y supervisa los canales Lightning para gestionar tu capacidad entrante y saliente.
+- **Sub-billeteras**: Crea billeteras dedicadas para organizar tus fondos para diferentes aplicaciones o presupuestos personales.
+- **Integraciones de aplicaciones (NWC)**: Conecta aplicaciones externas a tu nodo de forma fluida mediante Nostr Wallet Connect, con controles de permisos granulares.
 
-## Ubicaciones de Datos
+[Ver la Guía de configuración de Lokihub →](/lokihub/setup)
 
-Lokinode utiliza rutas estándar por defecto, pero permite una personalización total durante la configuración inicial o a través de los ajustes.
+## Ubicaciones de datos
+
+Por defecto, Lokinode almacena los datos de la cadena de bloques y de la billetera en los siguientes directorios:
 
 | SO | Ruta predeterminada |
 | :--- | :--- |
@@ -285,13 +298,14 @@ Lokinode utiliza rutas estándar por defecto, pero permite una personalización 
 | **macOS** | `~/Library/Application Support/Flnd/` |
 | **Windows** | `%APPDATA%\Flnd\` |
 
-## CRÍTICO: Copias de seguridad de Lightning
+Más allá de estas rutas predeterminadas, puedes crear un nuevo perfil en una ubicación personalizada o mover un perfil existente copiando su directorio de datos a una nueva ruta y volviéndolo a abrir a través de la gestión de perfiles de la aplicación.
 
-Su frase semilla de 24 palabras **sólo recupera los fondos on-chain**. 
+## CRÍTICO: Respaldos de Lightning
 
-1.  **Copias de seguridad estáticas de canales (SCB)**: Se requiere un archivo `channel.backup` para recuperar los fondos de los canales Lightning abiertos.
-2.  **Requisito de Seguridad**: Debe mantener una copia de seguridad separada del archivo `channel.backup` junto con su frase semilla.
+Tu frase semilla de 24 palabras **solo recupera fondos on-chain**.
+
+Para recuperar fondos bloqueados en canales Lightning abiertos, necesitas un **Respaldo Estático de Canales (SCB)**.
 
 :::danger[RIESGO DE PÉRDIDA DE DATOS]
-Asegúrese siempre de tener una copia de seguridad verificada de su archivo `channel.backup`. Sin él, los fondos de los canales Lightning no se podrán recuperar si se pierden los datos locales.
+Asegúrate siempre de tener un respaldo separado y verificado de tu archivo `channel.backup` junto con tu frase semilla. Sin él, los fondos de los canales Lightning no se pueden recuperar si se pierden los datos locales.
 :::
