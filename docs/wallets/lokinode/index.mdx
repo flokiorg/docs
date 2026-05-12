@@ -9,6 +9,7 @@ custom_edit_url: null
 
 import Link from '@docusaurus/Link';
 import { Monitor, Zap, Shield, Activity, Settings, Download, Cpu, HardDrive, Layout, ChevronRight, Terminal, Box, Apple, Globe } from 'lucide-react';
+import Image from '@theme/IdealImage';
 import lokiImage from './assets/loki-lazereyes.png';
 import Heading from '@theme/Heading';
 
@@ -17,7 +18,7 @@ import Heading from '@theme/Heading';
     <div className="lokinode-hero-content">
       <div className="lokinode-hero-artwork">
         <div className="lazereyes-glow"></div>
-        <img src={lokiImage} alt="Loki Lazereyes" className="loki-lazer-img" />
+        <Image img={lokiImage} alt="Loki Lazereyes" className="loki-lazer-img" />
       </div>
 
       <Heading as="h1" className="lokinode-glitch-title">Lokinode</Heading>
@@ -114,6 +115,21 @@ import Heading from '@theme/Heading';
     filter: drop-shadow(0 0 30px rgba(255, 0, 0, 0.15));
     position: relative;
     z-index: 2;
+    animation: lokiFadeIn 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    filter: drop-shadow(0 0 30px rgba(255, 0, 0, 0.15));
+  }
+
+  @keyframes lokiFadeIn {
+    0% { 
+      opacity: 0; 
+      transform: scale(0.7) translateY(40px) rotate(-5deg); 
+      filter: drop-shadow(0 0 0px rgba(255, 0, 0, 0)) blur(10px);
+    }
+    100% { 
+      opacity: 1; 
+      transform: scale(1) translateY(0) rotate(0deg);
+      filter: drop-shadow(0 0 30px rgba(255, 0, 0, 0.15)) blur(0px);
+    }
   }
 
   .lokinode-glitch-title {
@@ -228,9 +244,10 @@ import Heading from '@theme/Heading';
   }
 
   .meta-item {
-    display: flex;
-    align-items: center;
+    display: inline-flex;
     gap: 0.5rem;
+    line-height: 1;
+    text-decoration: none !important;
   }
 `}</style>
 
@@ -255,9 +272,38 @@ If you already use [**tWallet**](/wallets/twallet), **no migration is needed**. 
 4. **Security**: Set a strong encryption password to protect your local data.
 5. **Sync**: Once the node boots, it will automatically begin synchronizing with the Flokicoin blockchain.
 
-:::info[For Node Operators & Developers]
-Are you looking to deploy a headless node on a VPS, run automated operations (Ops), or integrate with Docker? You may prefer to run the [**`flnd`** daemon](/wallets/flnd) directly instead of the Lokinode graphical interface. `flnd` provides the core backend and can be managed entirely via the command line.
-:::
+## For Node Operators & Developers
+
+If you are looking to deploy a headless node on a VPS or run automated operations, you have two primary options:
+
+<div className="row">
+  <div className="col col--6 margin-bottom--lg" style={{display: 'flex'}}>
+    <Card shadow="md" style={{display: 'flex', flexDirection: 'column', width: '100%'}}>
+      <CardHeader>
+        <Heading as="h3"><Terminal size={22} style={{marginRight: '8px', verticalAlign: 'middle'}} /> Automated Server Setup</Heading>
+      </CardHeader>
+      <CardBody style={{flex: '1 1 auto'}}>
+        A plug-and-play Docker bundle for VPS deployments. It automates the setup of <code>flnd</code> and <strong>Lokihub</strong> with a single script, making it perfect for running a 24/7 cloud node.
+      </CardBody>
+      <CardFooter>
+        <Button variant="primary" link="https://github.com/myfloki/lokinode-operator" label="View Setup Guide" block />
+      </CardFooter>
+    </Card>
+  </div>
+  <div className="col col--6 margin-bottom--lg" style={{display: 'flex'}}>
+    <Card shadow="md" style={{display: 'flex', flexDirection: 'column', width: '100%'}}>
+      <CardHeader>
+        <Heading as="h3"><Box size={22} style={{marginRight: '8px', verticalAlign: 'middle'}} /> Direct <code>flnd</code></Heading>
+      </CardHeader>
+      <CardBody style={{flex: '1 1 auto'}}>
+        Run the <strong><code>flnd</code></strong> daemon directly for maximum control. This is the core backend service that can be managed entirely via CLI or RPC.
+      </CardBody>
+      <CardFooter>
+        <Button variant="secondary" link="/wallets/flnd" label="Read flnd Docs" block />
+      </CardFooter>
+    </Card>
+  </div>
+</div>
 
 ## Managing with Lokihub
 

@@ -4,12 +4,13 @@ title: "Guide d'installation"
 description: "Guide d'installation rapide pour connecter Lokihub au nœud FLND intégré dans tWallet."
 sidebar_position: 3
 ---
-
-import setupFlndImage from '@site/docs/lokihub/setup-flnd.png';
 import Heading from '@theme/Heading';
+import { Terminal } from 'lucide-react';
+
+import setupFlndImage from './setup-flnd.png';
 
 
-# Guide d'installation
+# Guide de configuration
 
 Connectez Lokihub à votre nœud et commencez à gérer votre liquidité Lightning en quelques minutes.
 
@@ -29,7 +30,18 @@ Si vous utilisez **tWallet v1** sur le même ordinateur, Lokihub le trouvera aut
 1. Ouvrez Lokihub.
 2. Suivez l'assistant de configuration pour commencer.
 
+## Alternative : Configuration prête à l'emploi
+
+:::info[Prêt à l'emploi : Configuration serveur automatisée]
+Si vous cherchez à déployer un nœud sur un VPS ou un serveur dédié, vous pouvez utiliser ce **Pack prêt pour serveur** pour mettre en service à la fois `flnd` et Lokihub en quelques minutes.
+
+Il utilise Docker pour automatiser l'installation et fournit un script de configuration simple pour l'initialisation du portefeuille.
+
+[**Voir le guide de configuration sur GitHub →**](https://github.com/myfloki/lokinode-operator)
+:::
+
 ## Configuration étape par étape
+
 
 ### 1. Créer un mot de passe
 

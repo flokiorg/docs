@@ -1,16 +1,17 @@
 ---
-title: Tap Wallet
-description: 开始使用 Flokicoin 的最简单方式。无需应用商店的跨平台钱包，支持 iOS、Android 和桌面端。
+title: Tap 钱包
+description: 开始使用 Flokicoin 最简单的方式。一款适用于 iOS、Android 和桌面的跨平台钱包，无需应用商店。
 sidebar_position: 1
 hide_title: true
 hide_table_of_contents: true
-keywords: [Tap Wallet, Flokicoin, Discord 小程序, Telegram 小程序, iOS 钱包, Android 钱包, 桌面钱包, 跨平台]
+keywords: [Tap Wallet, Flokicoin, Discord Mini App, Telegram Mini App, iOS wallet, Android wallet, Desktop wallet, cross-platform]
 custom_edit_url: null
 ---
 
 
 import Link from '@docusaurus/Link';
 import { Smartphone, Zap, Globe, MessageSquare, Award, Share2, MoreVertical, PlusSquare, Monitor, Wallet, ShieldCheck, Layers, Apple, Bot, Link as LinkIcon, PartyPopper } from 'lucide-react';
+import Image from '@theme/IdealImage';
 import tapHomeImage from '@site/docs/wallets/tapwallet_home.png';
 import Heading from '@theme/Heading';
 
@@ -18,8 +19,8 @@ import Heading from '@theme/Heading';
   <div className="container">
     <div className="tap-hero-inner">
       <div className="tap-hero-content">
-        <Heading as="h1" className="tap-hero-title">Tap Wallet</Heading>
-        <p className="tap-hero-subtitle">一个钱包。每台设备。无需应用商店，直接访问 FLC。</p>
+        <Heading as="h1" className="tap-hero-title">Tap 钱包</Heading>
+        <p className="tap-hero-subtitle">一个钱包，全端通用。无需应用商店即可直接访问 FLC。</p>
 
         <div className="hero-modern__actions tap-hero-actions-override">
           <Link className="hero-button hero-button--primary no-external-icon" href="https://taploki.com/wallet">
@@ -39,14 +40,14 @@ import Heading from '@theme/Heading';
           <div className="faucet-icon-wrapper"><Award size={22} /></div>
           <div>
             <strong>Tap Days 与水龙头</strong>
-            <p>输入 Tap 码，直接在链上接收真实 FLC。无需注册。</p>
+            <p>输入 Tap 代码，在链上获取真实的 FLC。无需注册。</p>
           </div>
         </div>
       </div>
 
       <div className="tap-hero-visual">
         <div className="tap-visual-wrapper">
-          <img src={tapHomeImage.src ?? tapHomeImage} alt="Tap Wallet" className="tap-main-screenshot" loading="eager" />
+          <Image img={tapHomeImage} alt="Tap 钱包" className="tap-main-screenshot" />
           <div className="tap-visual-glow"></div>
         </div>
       </div>
@@ -78,31 +79,37 @@ import Heading from '@theme/Heading';
 
   .tap-hero-inner {
     display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
+    grid-template-columns: 1.2fr 0.8fr;
     align-items: center;
-    gap: 3.5rem;
+    text-align: left;
+    gap: 4rem;
     position: relative;
     z-index: 2;
   }
 
+  .tap-hero-content {
+    /* No flex: 1 needed in grid */
+  }
+
   /* Typography */
   .tap-hero-title {
-    font-size: clamp(2.8rem, 6vw, 4.5rem);
+    font-size: clamp(2.2rem, 8vw, 4.5rem);
     font-weight: 900;
-    line-height: 1.0;
+    line-height: 1.1;
     margin-bottom: 1.25rem;
     letter-spacing: -0.04em;
     background: linear-gradient(135deg, #ffffff 0%, #f0b832 55%, rgba(255,255,255,0.85) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    display: inline-block;
   }
 
   .tap-hero-subtitle {
     font-size: clamp(1rem, 1.8vw, 1.3rem);
     color: rgba(255, 255, 255, 0.68);
-    margin-bottom: 2rem;
-    max-width: 480px;
+    margin: 0 0 2rem;
+    max-width: 580px;
     line-height: 1.55;
   }
 
@@ -110,6 +117,7 @@ import Heading from '@theme/Heading';
   .tap-hero-actions-override {
     display: flex;
     flex-wrap: wrap;
+    justify-content: flex-start;
     gap: 1rem;
     margin-bottom: 2rem !important;
     margin-top: 0 !important;
@@ -118,8 +126,7 @@ import Heading from '@theme/Heading';
   .tap-social-btns {
     display: flex;
     gap: 1rem;
-    flex: 1 1 auto;
-    min-width: 280px;
+    flex: 0 1 auto;
   }
 
   .tap-social-btns .hero-button {
@@ -192,6 +199,20 @@ import Heading from '@theme/Heading';
     box-shadow: 0 40px 100px -15px rgba(0,0,0,0.8);
     display: block;
     border: 1px solid rgba(255,255,255,0.1);
+    animation: tapFadeIn 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes tapFadeIn {
+    0% { 
+      opacity: 0; 
+      transform: translateY(60px) rotateY(-30deg) scale(0.8);
+      filter: blur(15px);
+    }
+    100% { 
+      opacity: 1; 
+      transform: translateY(0) rotateY(-12deg) scale(1);
+      filter: blur(0px);
+    }
   }
 
   .tap-visual-glow {
@@ -209,16 +230,22 @@ import Heading from '@theme/Heading';
       margin: 0 -1rem 3rem;
     }
     .tap-hero-inner {
-      grid-template-columns: 1fr;
+      display: flex;
+      flex-direction: column;
       text-align: center;
       gap: 2.5rem;
     }
-    .tap-hero-subtitle, .tap-hero-faucet-card {
-      margin-left: auto;
-      margin-right: auto;
+    .tap-hero-subtitle {
+      margin: 0 auto 2rem;
+    }
+    .tap-hero-faucet-card {
+      margin: 0 auto;
     }
     .tap-visual-wrapper { transform: none !important; }
     .tap-main-screenshot { max-width: 220px; }
+    .tap-hero-visual {
+      justify-content: center;
+    }
     
     .tap-hero-actions-override {
       justify-content: center;
@@ -242,72 +269,72 @@ import Heading from '@theme/Heading';
   }
 `}</style>
 
-**Tap Wallet** 是一款高性能应用，可在每个平台上提供流畅的原生应用体验。通过绕过传统应用商店，您可以获得即时更新和完全隐私保护，零摩擦。
+**Tap 钱包** 是一款高性能应用程序，在每个平台上都能提供流畅的、类原生应用的体验。通过绕过传统的应用商店，您可以获得即时更新和完全隐私，零摩擦。
 
 <div className="row margin-top--lg">
   <div className="col col--4 margin-bottom--lg">
     <div className="card shadow--md padding--lg" style={{height: '100%', background: 'rgba(255,255,255,0.01)', border: '1px solid rgba(255,255,255,0.04)'}}>
       <Heading as="h3"><Smartphone size={20} style={{verticalAlign: 'middle', marginRight: '8px', color: 'var(--ifm-color-primary)'}} /> 主屏幕应用</Heading>
-      <p>直接安装到您的 <strong>iOS</strong> 或 <strong>Android</strong> 主屏幕。外观、感觉和行为完全像一款专用应用程序。</p>
+      <p>直接安装到您的 <strong>iOS</strong> 或 <strong>Android</strong> 主屏幕。它的外观、感觉和行为都像是一个专用应用程序。</p>
     </div>
   </div>
   <div className="col col--4 margin-bottom--lg">
     <div className="card shadow--md padding--lg" style={{height: '100%', background: 'rgba(255,255,255,0.01)', border: '1px solid rgba(255,255,255,0.04)'}}>
-      <Heading as="h3"><Monitor size={20} style={{verticalAlign: 'middle', marginRight: '8px', color: 'var(--ifm-color-primary)'}} /> 矿工桌面版</Heading>
-      <p>专为<strong>矿工</strong>和高级用户打造的完美工具。在 Windows、macOS 或 Linux 上作为专用应用程序运行。</p>
+      <Heading as="h3"><Monitor size={20} style={{verticalAlign: 'middle', marginRight: '8px', color: 'var(--ifm-color-primary)'}} /> 矿工桌面端</Heading>
+      <p><strong>矿工</strong>和高级用户的完美伴侣。在 Windows、macOS 或 Linux 上作为独立应用程序运行。</p>
     </div>
   </div>
   <div className="col col--4 margin-bottom--lg">
     <div className="card shadow--md padding--lg" style={{height: '100%', background: 'rgba(255,255,255,0.01)', border: '1px solid rgba(255,255,255,0.04)'}}>
       <Heading as="h3"><ShieldCheck size={20} style={{verticalAlign: 'middle', marginRight: '8px', color: 'var(--ifm-color-primary)'}} /> 无需商店</Heading>
-      <p>无需 Apple App Store 或 Google Play Store。完全摆脱大型科技公司的管控。</p>
+      <p>无需 Apple App Store 或 Google Play Store。完全独立于大科技公司的看门人。</p>
     </div>
   </div>
 </div>
 
-## <Smartphone size={24} style={{verticalAlign: 'middle', marginRight: '8px'}} /> 快速入门（无需应用商店）
+## <Smartphone size={24} style={{verticalAlign: 'middle', marginRight: '8px'}} /> 快速开始（无需应用商店）
 
-您可以在几秒钟内将 Tap Wallet 直接安装到您的设备。在浏览器中打开 <Link className="no-external-icon" to="https://taploki.com/wallet">taploki.com</Link> 并按照以下步骤操作：
+您可以在几秒钟内将 Tap 钱包直接安装到您的设备上。在浏览器中打开 [taploki.com](https://taploki.com) 并按照以下步骤操作：
 
 <div className="row margin-top--lg">
   <div className="col col--4 margin-bottom--md">
     <div className="card padding--lg shadow--lw" style={{height: '100%'}}>
-      <Heading as="h3"><Apple size={22} style={{verticalAlign: 'middle', marginRight: '8px'}} /> iPhone（Safari）</Heading>
+      <Heading as="h3"><Apple size={22} style={{verticalAlign: 'middle', marginRight: '8px'}} /> iPhone (Safari)</Heading>
       <ol style={{paddingLeft: '1.2rem', marginBottom: 0}}>
-        <li>点击底部的<strong>分享</strong>图标（<Share2 size={16} inline />）。</li>
-        <li>向下滚动并选择<strong>添加到主屏幕</strong>。</li>
+        <li>点击底部的 <strong>分享</strong> 图标 (<Share2 size={16} inline />)。</li>
+        <li>向下滚动并选择 <strong>添加到主屏幕</strong>。</li>
       </ol>
     </div>
   </div>
   <div className="col col--4 margin-bottom--md">
     <div className="card padding--lg shadow--lw" style={{height: '100%'}}>
-      <Heading as="h3"><Bot size={22} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Android（Chrome）</Heading>
+      <Heading as="h3"><Bot size={22} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Android (Chrome)</Heading>
       <ol style={{paddingLeft: '1.2rem', marginBottom: 0}}>
-        <li>点击右上角的<strong>菜单</strong>图标（<MoreVertical size={16} />）。</li>
-        <li>选择<strong>安装应用</strong>或<strong>添加到主屏幕</strong>。</li>
+        <li>点击右上角的 <strong>菜单</strong> (<MoreVertical size={16} />) 图标。</li>
+        <li>选择 <strong>安装应用</strong> 或 <strong>添加到主屏幕</strong>。</li>
       </ol>
     </div>
   </div>
   <div className="col col--4 margin-bottom--md">
     <div className="card padding--lg shadow--lw" style={{height: '100%'}}>
-      <Heading as="h3"><Monitor size={22} style={{verticalAlign: 'middle', marginRight: '8px'}} /> 桌面端（Chrome/Edge）</Heading>
+      <Heading as="h3"><Monitor size={22} style={{verticalAlign: 'middle', marginRight: '8px'}} /> 桌面端 (Chrome/Edge)</Heading>
       <ol style={{paddingLeft: '1.2rem', marginBottom: 0}}>
-        <li>点击地址栏个人右上角的<strong>安装</strong>图标（<PlusSquare size={16} inline />）。</li>
+        <li>点击地址栏右侧的 <strong>安装</strong> 图标 (<PlusSquare size={16} inline />)。</li>
       </ol>
     </div>
   </div>
 </div>
 
-## <LinkIcon size={24} style={{verticalAlign: 'middle', marginRight: '8px'}} /> 一个钱包，随处可用
+## <LinkIcon size={24} style={{verticalAlign: 'middle', marginRight: '8px'}} /> 一个钱包，无处不在
 
-将您的 Flokicoin 地址链接到社交账户，解锁跨平台功能。无论使用笔记本还是手机，您的 FLC 始终保持同步。
+将您的 Flokicoin 地址链接到您的社交账户，以解锁跨平台功能。无论您是在笔记本电脑还是手机上，您的 FLC 都会保持同步。
 
-*   **Discord**：加入 [Flokicoin Discord](https://flokicoin.org/discord) 并打开**应用启动器**。
-*   **Telegram**：通过 [@taplokiBot](https://t.me/taplokibot) 启动。
-*   **网页**：随时在 <Link className="no-external-icon" to="https://taploki.com/wallet">taploki.com</Link> 访问。
+*   **Discord**: 加入 [Flokicoin Discord](https://flokicoin.org/discord) 并打开 **应用启动器**。
+*   **Telegram**: 通过 [@taplokiBot](https://t.me/taplokibot) 启动。
+*   **Web**: 随时访问 [taploki.com](https://taploki.com)。
 
 ## <PartyPopper size={24} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Tap Days
 
-**Tap Days** 是社区活动，矿工和持有者会资助水龙头，以便新用户可以直接体验 Flokicoin 网络。在这些活动期间，限时的 **Tap Codes** (`TAP-XXXXXXXXXX`) 将专门在我们的 Discord 和 Telegram 社区分发。
+**Tap Days** 是社区活动，矿工和持有者为水龙头提供资金，让新用户能够亲身体验 Flokicoin 网络。在这些活动期间，限时的 **Tap 代码** (`TAP-XXXXXXXXXX`) 会专门在我们的 Discord 和 Telegram 社区中发布。
 
-<Link className="no-external-icon" to="https://taploki.com/wallet">立即开始点击 →</Link>
+<Link className="no-external-icon" to="https://taploki.com/wallet">立即开始 →</Link>

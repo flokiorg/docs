@@ -56,7 +56,7 @@ export default function Button ({
     // If the button is disabled, set the destination to null.
     const destination = disabled ? null : link;
     return (
-        <Link to={destination}>
+        <Link to={destination} className="no-external-icon">
             <button
                 className={clsx(
                     'button',

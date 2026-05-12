@@ -5,13 +5,14 @@ description: "将 Lokihub 连接到 tWallet 中集成的 FLND 节点的快速设
 sidebar_position: 3
 ---
 import Heading from '@theme/Heading';
+import { Terminal } from 'lucide-react';
 
-import setupFlndImage from '@site/docs/lokihub/setup-flnd.png';
+import setupFlndImage from './setup-flnd.png';
 
 
-# 安装指南
+# 设置指南
 
-在几分钟内将 Lokihub 连接到您的节点，并开始管理您的闪电网络流动性。
+连接 Lokihub 到您的节点，并在几分钟内开始管理您的闪电网络流动性。
 
 ## 在您开始之前
 
@@ -29,7 +30,18 @@ import setupFlndImage from '@site/docs/lokihub/setup-flnd.png';
 1. 打开 Lokihub。
 2. 按照设置向导开始操作。
 
+## 替代方案：即插即用设置
+
+:::info[即插即用：自动化服务器设置]
+如果您希望在 VPS 或专用服务器上部署节点，可以使用此**服务器就绪组合包**，在几分钟内启动并运行 `flnd` 和 Lokihub。
+
+它使用 Docker 自动进行安装，并提供一个简单的设置脚本用于钱包初始化。
+
+[**在 GitHub 上查看设置指南 →**](https://github.com/myfloki/lokinode-operator)
+:::
+
 ## 逐步设置
+
 
 ### 1. 创建密码
 
