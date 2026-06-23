@@ -12,12 +12,8 @@ import Link from '@docusaurus/Link';
 
 # أتقن إدارة عقدة Lightning الخاصة بك
 
-**Lokihub** يمنحك سيادة مالية كاملة على عقدة Lightning الخاصة بك. أكثر من مجرد مدير، إنه بوابتك إلى الويب اللامركزي — متكامل مع [tWallet](/wallets/twallet) لمساعدتك على إدارة المحافظ الفرعية والتعامل مع القنوات وربط التطبيقات عبر NWC.
+**Lokihub** يمنحك سيادة مالية كاملة على عقدة Lightning الخاصة بك. أكثر من مجرد مدير، إنه بوابتك إلى الويب اللامركزي — متكامل مع [Lokinode](/wallets/lokinode) لمساعدتك على إدارة المحافظ الفرعية والتعامل مع القنوات وربط التطبيقات عبر NWC.
 
-:::caution[بالغ الأهمية: خطر النسخ الاحتياطي]
-**أموال قناة Lightning غير مخزّنة على سلسلة الكتل.** عبارة البذور المكونة من 24 كلمة تستعيد رصيدك على السلسلة فقط. لتجنب الخسارة الكاملة لأموال القناة، يجب عليك الاحتفاظ بنسخة احتياطية من **النسخ الاحتياطية الثابتة للقناة (SCB)**.
-[تعرّف على كيفية حماية عقدتك →](/wallets/twallet/v1#critical-lightning-backups)
-:::
 
 <div className="download-box">
   <div className="download-box__content">
@@ -47,7 +43,7 @@ import Link from '@docusaurus/Link';
 <div className="guide-card">
 
 ### 2. ربط عقدتك
-اربط Lokihub بعقدة FLND المدمجة في [tWallet](/wallets/twallet).
+اربط Lokihub بعقدة Lightning الخاصة بك. يعمل مباشرةً مع [Lokinode](/wallets/lokinode).
 
 [دليل الإعداد →](/lokihub/setup)
 
@@ -114,6 +110,11 @@ import { Zap, Droplet } from 'lucide-react';
 - **[الموارد](/lokihub/resources)** — المستكشفات والصنابير والأدوات
 
 تحتاج مساعدة؟ انضم إلى [Discord](https://flokicoin.org/discord) #lokihub
+
+:::caution[مهم: احتفظ بنسخة احتياطية لقنواتك]
+**أموال قناة Lightning غير مخزّنة على سلسلة الكتل.** عبارة البذور المكونة من 24 كلمة تستعيد رصيدك على السلسلة فقط. بمجرد أن تبدأ في فتح القنوات، يجب عليك الاحتفاظ بنسخة من ملف **Static Channel Backup (SCB)**.
+[تعرّف على كيفية حماية عقدتك →](/wallets/lokinode#critical-lightning-backups)
+:::
 
 <style>
 {`

@@ -1,7 +1,7 @@
 ---
 sourceTitle: "Setup Guide"
 title: "دليل الإعداد"
-description: "دليل إعداد سريع لربط Lokihub بعقدة FLND المدمجة داخل tWallet."
+description: "دليل إعداد سريع لربط Lokihub بعقدة FLND Lightning الخاصة بك عبر Lokinode أو tWallet."
 sidebar_position: 3
 ---
 
@@ -20,10 +20,12 @@ import setupFlndImage from '@site/docs/lokihub/setup-flnd.png';
 لاستخدام Lokihub، ستحتاج إلى:
 
 - **تطبيق Lokihub**: [حمله من هنا](/lokihub/downloads).
-- **tWallet v1**: يجب أن تكون عقدة Lightning الخاصة بك (FLND) قيد التشغيل. إذا لم تكن قد أعددتها بعد، فاتبع [دليل tWallet](/wallets/twallet).
+- **عقدة FLND نشطة** — اختر أحد الخيارين التاليين:
+  - **Lokinode** *(موصى به)*: العميل الرسومي لسطح المكتب لتشغيل عقدة Lightning. [تنزيل Lokinode →](/wallets/lokinode)
+  - **tWallet v1** *(مستخدمو TUI)*: المحفظة الطرفية تعمل أيضًا كخلفية للعقدة. [دليل tWallet →](/wallets/twallet)
 
 :::tip
-إذا كنت تقوم بتشغيل **tWallet v1** على نفس الكمبيوتر، فسيقوم Lokihub بالعثور عليها تلقائيًا. استخدم خيار [الاتصال الآلي](#automated-connection)!
+إذا كنت تشغّل **Lokinode** على نفس الكمبيوتر، سيعثر عليه Lokihub تلقائيًا. استخدم خيار [الاتصال الآلي](#automated-connection)!
 :::
 
 ## التشغيل الأول
@@ -33,10 +35,8 @@ import setupFlndImage from '@site/docs/lokihub/setup-flnd.png';
 
 ## بديل: إعداد جاهز للاستخدام
 
-:::info[جاهز للاستخدام: إعداد الخادم الآلي]
-إذا كنت تبحث عن نشر نود على VPS أو خادم مخصص، يمكنك استخدام **حزمة الخادم الجاهزة** هذه لبدء تشغيل كل من `flnd` و Lokihub في دقائق.
-
-تستخدم Docker لأتمتة التثبيت وتوفر نصًا برميًا بسيطًا لإعداد المحفظة.
+:::info[نشر تلقائي للخادم]
+تريد تشغيل عقدة على مدار الساعة على VPS أو خادم مخصص؟ هذه **حزمة الخادم الجاهزة** تستخدم Docker لأتمتة تثبيت `flnd` و Lokihub، مع سكريبت بسيط لتهيئة المحفظة — دون أي إعداد يدوي.
 
 [**عرض دليل الإعداد على GitHub ←**](https://github.com/myfloki/lokinode-operator)
 :::
@@ -56,22 +56,22 @@ import setupFlndImage from '@site/docs/lokihub/setup-flnd.png';
 - **مستكشف الكتل (Block Explorer)**: يعرض لك تفاصيل المعاملات.
 - **اختياري**: يمكنك أيضًا إضافة خدمات السيولة (LSP) أو التبادل (Swap) لاحقًا.
 
-### 3. الاتصال بـ tWallet
+### 3. الاتصال بعقدة FLND الخاصة بك
 
-يتصل Lokihub بعقدة Lightning المدمجة في **tWallet v1**.
+يتصل Lokihub بعقدة Lightning النشطة على جهازك (Lokinode أو tWallet v1).
 
 <img src={setupFlndImage.src ?? setupFlndImage} alt="Local Node Setup" style={{ display: 'block', margin: '1.5rem auto', width: '450px', borderRadius: '8px', boxShadow: '0 4px 12px rgba(0,0,0,0.3)' }} />
 
 <Heading as="h4" id="automated-connection">الخيار أ: الاتصال الآلي (موصى به)</Heading>
 
-إذا كان tWallet يعمل على **نفس الجهاز**:
+إذا كان **Lokinode** (أو tWallet v1) يعمل على **نفس الجهاز**:
 1. اختر **"Local Node"** أثناء معالج الإعداد.
-2. سيقوم Lokihub بالارتباط تلقائيًا ببيانات اعتماد tWallet الخاصة بك.
+2. سيكتشف Lokihub عقدتك النشطة تلقائيًا ويتصل بها.
 3. أنت جاهز للانطلاق!
 
-#### الخيار ب: تكوين tWallet مخصص (متقدم)
+#### الخيار ب: اتصال مخصص بالعقدة (متقدم)
 
-إذا كنت تقوم بتشغيل [tWallet](/wallets/twallet) على جهاز آخر (VPS، Raspberry Pi، إلخ):
+إذا كانت عقدتك تعمل على جهاز بعيد (VPS، Raspberry Pi، إلخ) أو تريد الاتصال يدويًا:
 
 1. اختر "Advanced Mode"
 2. أدخل تفاصيل الاتصال:
@@ -82,14 +82,14 @@ import setupFlndImage from '@site/docs/lokihub/setup-flnd.png';
 3. انقر فوق "Connect"
 
 :::tip[كيفية العثور على بيانات الاعتماد هذه]
-في tWallet، اضغط على <kbd>CTRL</kbd> + <kbd>N</kbd> لفتح نافذة تكوين Lightning.
-يعرض هذا **عنوان gRPC**، و **Macaroon Hex**، و **TLS Certificate Hex**. ما عليك سوى نسخها ولصقها في Lokihub.
+- **tWallet**: اضغط على <kbd>CTRL</kbd> + <kbd>N</kbd> لفتح نافذة تكوين Lightning. ستجد **عنوان gRPC** و **Macaroon Hex** و **TLS Certificate Hex** — انسخها والصقها في Lokihub.
+- **Lokinode**: افتح لوحة إعدادات العقدة داخل التطبيق للعثور على نفس تفاصيل الاتصال.
 :::
 
 ## استكشاف الأخطاء وإصلاحها
 
-**لا يمكنك الاتصال بـ tWallet المحلي؟**
-- تأكد من أن tWallet قيد التشغيل.
+**لا يمكنك الاتصال بالعقدة المحلية؟**
+- تأكد من أن Lokinode (أو tWallet) قيد التشغيل ومتزامن بالكامل.
 - تحقق من أن المنافذ ليست محظورة بواسطة جدار الحماية.
 
 **فشل الاتصال عن بعد؟**
@@ -112,7 +112,7 @@ import setupFlndImage from '@site/docs/lokihub/setup-flnd.png';
 
 1.  **الموقع**: في نظام Linux، يوجد هذا الملف عادةً في `~/.flnd/data/chain/flokicoin/mainnet/channel.backup`.
 2.  **النسخ الاحتياطي**: انسخ هذا الملف إلى جهاز منفصل (USB، سحابة، إلخ) في كل مرة تفتح فيها أو تغلق قناة.
-3.  **تعلم المزيد**: اقرأ [دليل النسخ الاحتياطي الكامل لـ Lightning](/wallets/twallet/v1#critical-lightning-backups).
+3.  **تعلم المزيد**: اقرأ [دليل النسخ الاحتياطي الكامل لـ Lightning](/wallets/lokinode#critical-lightning-backups).
 
 ### 2. قراءات إضافية
 

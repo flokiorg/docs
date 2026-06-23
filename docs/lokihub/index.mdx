@@ -14,12 +14,7 @@ import Link from '@docusaurus/Link';
 
 # Master Your Lightning Node
 
-**Lokihub** gives you complete financial sovereignty over your Lightning node. Beyond just a manager, it's your gateway to the decentralized web—integrated with [tWallet](/wallets/twallet) to help you manage sub-wallets, handle channels, and connect apps via NWC.
-
-:::caution[CRITICAL: BACKUP RISK]
-**Lightning channel funds are NOT stored on the blockchain.** A 24-word seed phrase only recovers your on-chain balance. To avoid total loss of channel funds, you must back up your **Static Channel Backups (SCB)**.
-[Learn how to protect your node →](/wallets/twallet/v1#critical-lightning-backups)
-:::
+**Lokihub** gives you complete financial sovereignty over your Lightning node. Beyond just a manager, it's your gateway to the decentralized web—integrated with [Lokinode](/wallets/lokinode) to help you manage sub-wallets, handle channels, and connect apps via NWC.
 
 <div className="download-box">
   <div className="download-box__content">
@@ -49,7 +44,7 @@ Get Lokihub for your platform and install the binary.
 <div className="guide-card">
 
 ### 2. Connect Your Node
-Connect Lokihub to the FLND node integrated within [tWallet](/wallets/twallet).
+Connect Lokihub to your Lightning node. Works out of the box with [Lokinode](/wallets/lokinode).
 
 [Setup Guide →](/lokihub/setup)
 
@@ -116,6 +111,11 @@ import { Zap, Droplet } from 'lucide-react';
 - **[Resources](/lokihub/resources)** — Explorers, faucets, tools
 
 Need help? Join [Discord](https://flokicoin.org/discord) #lokihub
+
+:::caution[Important: Back Up Your Channels]
+**Lightning channel funds are NOT stored on the blockchain.** A 24-word seed phrase only recovers your on-chain balance. Once you start opening channels, you must keep a copy of your **Static Channel Backup (SCB)** file.
+[Learn how to protect your node →](/wallets/lokinode#critical-lightning-backups)
+:::
 
 <style>
 {`

@@ -12,12 +12,8 @@ import Link from '@docusaurus/Link';
 
 # 掌控您的闪电节点
 
-**Lokihub** 让您对闪电节点拥有完整的金融主权。它不仅仅是一个管理器，更是您通往去中心化网络的门户——与 [tWallet](/wallets/twallet) 深度集成，帮助您管理子钱包、处理通道，并通过 NWC（Nostr 钱包连接协议）连接应用程序。
+**Lokihub** 让您对闪电节点拥有完整的金融主权。它不仅仅是一个管理器，更是您通往去中心化网络的门户——与 [Lokinode](/wallets/lokinode) 深度集成，帮助您管理子钱包、处理通道，并通过 NWC（Nostr 钱包连接协议）连接应用程序。
 
-:::caution[重要提示：备份风险]
-**闪电通道资金不存储在区块链上。** 24 个助记词仅能恢复您的链上余额。为避免通道资金彻底损失，您必须备份**静态通道备份（SCB）**。
-[了解如何保护您的节点 →](/wallets/twallet/v1#critical-lightning-backups)
-:::
 
 <div className="download-box">
   <div className="download-box__content">
@@ -47,7 +43,7 @@ import Link from '@docusaurus/Link';
 <div className="guide-card">
 
 ### 2. 连接您的节点
-将 Lokihub 连接到集成在 [tWallet](/wallets/twallet) 中的 FLND 节点。
+将 Lokihub 连接到您的闪电节点。开箱即用，与 [Lokinode](/wallets/lokinode) 无缝协作。
 
 [设置指南 →](/lokihub/setup)
 
@@ -114,6 +110,11 @@ import { Zap, Droplet } from 'lucide-react';
 - **[资源](/lokihub/resources)** — 浏览器、水龙头、工具
 
 需要帮助？加入 [Discord](https://flokicoin.org/discord) #lokihub 频道
+
+:::caution[重要：备份您的通道]
+**闪电通道资金不存储在区块链上。** 24 个助记词仅能恢复您的链上余额。一旦您开始开通通道，必须保留一份**静态通道备份（SCB）**文件。
+[了解如何保护您的节点 →](/wallets/lokinode#critical-lightning-backups)
+:::
 
 <style>
 {`

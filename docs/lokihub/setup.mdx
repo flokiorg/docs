@@ -1,6 +1,6 @@
 ---
 title: "Setup Guide"
-description: "Quick setup guide to connect Lokihub to the FLND node integrated within tWallet."
+description: "Quick setup guide to connect Lokihub to your FLND Lightning node via Lokinode or tWallet."
 sidebar_position: 3
 ---
 import Heading from '@theme/Heading';
@@ -13,15 +13,17 @@ import setupFlndImage from './setup-flnd.png';
 
 Connect Lokihub to your node and start managing your Lightning liquidity in minutes.
 
-## Before you start
+## Before You Start
 
 To use Lokihub, you'll need:
 
 - **Lokihub App**: [Download it here](/lokihub/downloads).
-- **tWallet v1**: Your Lightning node (FLND) must be running. If you haven't set it up yet, follow the [tWallet guide](/wallets/twallet).
+- **A running FLND node** — choose one of the following:
+  - **Lokinode** *(Recommended)*: The desktop GUI client for running your Lightning node. [Download Lokinode →](/wallets/lokinode)
+  - **tWallet v1** *(TUI users)*: The terminal wallet also works as a node backend. [See the tWallet guide →](/wallets/twallet)
 
 :::tip
-If you're running **tWallet v1** on the same computer, Lokihub will find it for you automatically. Use the [Automated Connection](#automated-connection) option!
+If you're running **Lokinode** on the same computer, Lokihub will find it automatically. Use the [Automated Connection](#automated-connection) option!
 :::
 
 ## First Launch
@@ -29,12 +31,10 @@ If you're running **tWallet v1** on the same computer, Lokihub will find it for 
 1. Open Lokihub.
 2. Follow the setup wizard to get started.
 
-## Alternative: Plug-and-Play Setup
+## Alternative: Plug-and-Play Server Setup
 
-:::info[Plug-and-Play: Automated Server Setup]
-If you're looking to deploy a node on a VPS or dedicated server, you can use this **Server-Ready Bundle** to get up and running with both `flnd` and Lokihub in minutes.
-
-It uses Docker to automate the installation and provides a simple setup script for wallet initialization.
+:::info[Automated Server Deployment]
+Want to run a 24/7 node on a VPS or dedicated server? This **server-ready bundle** uses Docker to automate the installation of both `flnd` and Lokihub, with a simple script for wallet initialization — no manual configuration needed.
 
 [**View Setup Guide on GitHub →**](https://github.com/myfloki/lokinode-operator)
 :::
@@ -54,62 +54,62 @@ Lokihub uses specific services to interact with the network:
 - **Block Explorer**: Shows you transaction details.
 - **Optional**: You can also add Liquidity (LSP) or Swap services later.
 
-### 3. Connect to tWallet
+### 3. Connect to Your FLND Node
 
-Lokihub connects to the Lightning node built into **tWallet v1**.
+Lokihub connects to the Lightning node running on your machine (Lokinode or tWallet v1).
 
 <img src={setupFlndImage.src ?? setupFlndImage} alt="Local Node Setup" style={{ display: 'block', margin: '1.5rem auto', width: '450px', borderRadius: '8px', boxShadow: '0 4px 12px rgba(0,0,0,0.3)' }} />
 
 <Heading as="h4" id="automated-connection">Option A: Automated Connection (Recommended)</Heading>
 
-If tWallet is running on the **same machine**:
+If **Lokinode** (or tWallet v1) is running on the **same machine**:
 1. Choose **"Local Node"** during the setup wizard.
-2. Lokihub will automatically link with your tWallet credentials.
+2. Lokihub will automatically detect your running node and link up.
 3. You're ready to go!
 
-#### Option B: Custom tWallet configuration (Advanced)
+#### Option B: Custom Node Connection (Advanced)
 
-If you're running [tWallet](/wallets/twallet) on another machine (VPS, Raspberry Pi, etc.):
+If your node is running on a remote machine (VPS, Raspberry Pi, etc.) or you want to connect manually:
 
-1. Select "Advanced Mode"
-2. Enter connection details:
+1. Select **"Advanced Mode"**
+2. Enter the connection details:
    - **gRPC Address**: IP and port (example: `127.0.0.1:10005`)
-   - **Macaroon**: Paste `admin.macaroon` hex content
-   - **TLS Certificate**: Paste `tls.cert` hex content (Optional)
+   - **Macaroon**: Paste the `admin.macaroon` hex content
+   - **TLS Certificate**: Paste the `tls.cert` hex content (Optional)
 
-3. Click "Connect"
+3. Click **"Connect"**
 
 :::tip[How to find these credentials]
-In tWallet, press <kbd>CTRL</kbd> + <kbd>N</kbd> to open the Lightning configuration window.
-This displays your **gRPC Address**, **Macaroon Hex**, and **TLS Certificate Hex**. Simply copy and paste them into Lokihub.
+- **tWallet**: Press <kbd>CTRL</kbd> + <kbd>N</kbd> to open the Lightning configuration window. It shows your **gRPC Address**, **Macaroon Hex**, and **TLS Certificate Hex** — copy and paste them into Lokihub.
+- **Lokinode**: Open the node settings panel inside the app to find the same connection details.
 :::
 
 ## Troubleshooting
 
-**Can't connect to local tWallet?**
-- Make sure tWallet is running
-- Check that ports aren't blocked by firewall
+**Can't connect to a local node?**
+- Make sure Lokinode (or tWallet) is running and fully synced
+- Check that the relevant ports aren't blocked by your firewall
 
 **Remote connection fails?**
 - Verify the gRPC address is correct
-- Ensure your node is accessible from your network
-- Check that macaroon and TLS cert hex strings are correct
+- Ensure your node is reachable from the network
+- Double-check that your macaroon and TLS cert hex strings are correct
 
 **Need help?**  
 Join the community on [Discord](https://flokicoin.org/discord) in #lokihub
 
 ## Next Steps
 
-### 1. Secure Your Sovereignty (Required)
-Before you open your first channel, you must establish a reliable recovery plan. Unlike traditional on-chain funds, Lightning liquidity needs active protection.
+### 1. Secure Your Node (Required)
+Before you open your first channel, you need a solid recovery plan. Unlike on-chain funds, Lightning liquidity requires active protection.
 
 :::important[CHANNEL BACKUPS ARE NOT AUTOMATIC]
-Your 24-word seed phrase **ONLY** recovers funds on the blockchain. To protect your channel liquidity from system failures, you MUST maintain a copy of your `channel.backup` file.
+Your 24-word seed phrase **only** recovers funds on the blockchain. To protect your channel liquidity from system failures, you **must** keep a copy of your `channel.backup` file.
 :::
 
-1.  **Locate**: On Linux, this is typically in `~/.flnd/data/chain/flokicoin/mainnet/channel.backup`.
-2.  **Backup**: Copy this file to a separate device (USB, Cloud, etc.) every time you open or close a channel.
-3.  **Learn More**: Read the full [Lightning Backup Guide](/wallets/twallet/v1#critical-lightning-backups).
+1. **Locate**: On Linux, the file is typically at `~/.flnd/data/chain/flokicoin/mainnet/channel.backup`.
+2. **Backup**: Copy it to a separate device (USB, cloud storage, etc.) every time you open or close a channel.
+3. **Learn More**: Read the full [Lightning Backup Guide](/wallets/lokinode#critical-lightning-backups).
 
 ### 2. Further Reading
 Once connected, you can:

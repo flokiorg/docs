@@ -1,7 +1,7 @@
 ---
 sourceTitle: "Setup Guide"
 title: "安装指南"
-description: "将 Lokihub 连接到 tWallet 中集成的 FLND 节点的快速设置指南。"
+description: "将 Lokihub 连接到您的 FLND 闪电节点的快速设置指南，支持 Lokinode 或 tWallet。"
 sidebar_position: 3
 ---
 import Heading from '@theme/Heading';
@@ -19,10 +19,12 @@ import setupFlndImage from '@site/docs/lokihub/setup-flnd.png';
 要使用 Lokihub，您需要：
 
 - **Lokihub 应用**：[在此下载](/lokihub/downloads)。
-- **tWallet v1**：您的闪电网络节点 (FLND) 必须正在运行。如果您尚未设置，请遵循 [tWallet 指南](/wallets/twallet)。
+- **正在运行的 FLND 节点** — 请选择以下任一方式：
+  - **Lokinode** *（推荐）*：用于运行闪电节点的桌面 GUI 客户端。[下载 Lokinode →](/wallets/lokinode)
+  - **tWallet v1** *（TUI 用户）*：终端钱包也可作为节点后端使用。[查看 tWallet 指南 →](/wallets/twallet)
 
 :::tip
-如果您在同一台计算机上运行 **tWallet v1**，Lokihub 将为您自动找到它。请使用 [自动连接](#automated-connection) 选项！
+如果您在同一台计算机上运行 **Lokinode**，Lokihub 将自动找到它。请使用 [自动连接](#automated-connection) 选项！
 :::
 
 ## 首次启动
@@ -32,10 +34,8 @@ import setupFlndImage from '@site/docs/lokihub/setup-flnd.png';
 
 ## 替代方案：即插即用设置
 
-:::info[即插即用：自动化服务器设置]
-如果您希望在 VPS 或专用服务器上部署节点，可以使用此**服务器就绪组合包**，在几分钟内启动并运行 `flnd` 和 Lokihub。
-
-它使用 Docker 自动进行安装，并提供一个简单的设置脚本用于钱包初始化。
+:::info[自动化服务器部署]
+希望在 VPS 或专用服务器上全天候运行节点？此**服务器就绪组合包**使用 Docker 自动完成 `flnd` 和 Lokihub 的安装，并提供简单的钱包初始化脚本——无需手动配置。
 
 [**在 GitHub 上查看设置指南 →**](https://github.com/myfloki/lokinode-operator)
 :::
@@ -56,22 +56,22 @@ Lokihub 使用特定服务与网络进行交互：
 - **区块浏览器 (Block Explorer)**：显示您的交易详情。
 - **可选**：您稍后还可以添加流动性 (LSP) 或 Swap 服务。
 
-### 3. 连接到 tWallet
+### 3. 连接到您的 FLND 节点
 
-Lokihub 连接到内置于 **tWallet v1** 的闪电网络节点。
+Lokihub 连接到您机器上正在运行的闪电节点（Lokinode 或 tWallet v1）。
 
 <img src={setupFlndImage.src ?? setupFlndImage} alt="Local Node Setup" style={{ display: 'block', margin: '1.5rem auto', width: '450px', borderRadius: '8px', boxShadow: '0 4px 12px rgba(0,0,0,0.3)' }} />
 
 <Heading as="h4" id="automated-connection">选项 A：自动连接（推荐）</Heading>
 
-如果 tWallet 在 **同一台机器** 上运行：
+如果 **Lokinode**（或 tWallet v1）在 **同一台机器** 上运行：
 1. 在设置向导中选择 **"Local Node"**。
-2. Lokihub 将自动连接到您的 tWallet 凭据。
+2. Lokihub 将自动检测到您正在运行的节点并完成连接。
 3. 您已准备就绪！
 
-#### 选项 B：自定义 tWallet 配置（高级）
+#### 选项 B：自定义节点连接（高级）
 
-如果您在另一台机器（VPS、树莓派等）上运行 [tWallet](/wallets/twallet)：
+如果您的节点运行在远程机器上（VPS、树莓派等），或希望手动连接：
 
 1. 选择 "Advanced Mode"
 2. 输入连接详情：
@@ -82,14 +82,14 @@ Lokihub 连接到内置于 **tWallet v1** 的闪电网络节点。
 3. 点击 "Connect"
 
 :::tip[如何找到这些凭据]
-在 tWallet 中，按 <kbd>CTRL</kbd> + <kbd>N</kbd> 打开闪电网络配置窗口。
-这将显示您的 **gRPC 地址**、**Macaroon 十六进制** 和 **TLS 证书十六进制**。只需将它们复制并粘贴到 Lokihub 即可。
+- **tWallet**：按 <kbd>CTRL</kbd> + <kbd>N</kbd> 打开闪电网络配置窗口，可以看到 **gRPC 地址**、**Macaroon 十六进制** 和 **TLS 证书十六进制**——复制并粘贴到 Lokihub 即可。
+- **Lokinode**：在应用程序的节点设置面板中找到相同的连接信息。
 :::
 
 ## 故障排除
 
-**无法连接到本地 tWallet？**
-- 确保 tWallet 正在运行
+**无法连接到本地节点？**
+- 确保 Lokinode（或 tWallet）正在运行且已完全同步
 - 检查防火墙是否阻止了相关端口
 
 **远程连接失败？**
@@ -112,7 +112,7 @@ Lokihub 连接到内置于 **tWallet v1** 的闪电网络节点。
 
 1.  **定位**：在 Linux 上，这通常位于 `~/.flnd/data/chain/flokicoin/mainnet/channel.backup`。
 2.  **备份**：每次打开或关闭通道时，将此文件复制到另一个设备（USB、云端等）。
-3.  **了解更多**：阅读完整的 [闪电网络备份指南](/wallets/twallet/v1#critical-lightning-backups)。
+3.  **了解更多**：阅读完整的 [闪电网络备份指南](/wallets/lokinode#critical-lightning-backups)。
 
 ### 2. 延伸阅读
 

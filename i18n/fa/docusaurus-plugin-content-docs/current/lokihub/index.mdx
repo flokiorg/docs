@@ -12,12 +12,8 @@ import Link from '@docusaurus/Link';
 
 # کنترل کامل گره Lightning خود را بدست بگیرید
 
-**Lokihub** حاکمیت مالی کامل بر گره Lightning شما را فراهم می‌کند. فراتر از یک مدیر ساده، دروازه شما به وب غیرمتمرکز است — یکپارچه با [tWallet](/wallets/twallet) تا به شما کمک کند زیرکیف‌پول‌ها را مدیریت کنید، کانال‌ها را کنترل کنید، و اپلیکیشن‌ها را از طریق NWC متصل نمایید.
+**Lokihub** حاکمیت مالی کامل بر گره Lightning شما را فراهم می‌کند. فراتر از یک مدیر ساده، دروازه شما به وب غیرمتمرکز است — یکپارچه با [Lokinode](/wallets/lokinode) تا به شما کمک کند زیرکیف‌پول‌ها را مدیریت کنید، کانال‌ها را کنترل کنید، و اپلیکیشن‌ها را از طریق NWC متصل نمایید.
 
-:::caution[بحرانی: خطر از دست رفتن پشتیبان]
-**وجوه کانال Lightning در بلاکچین ذخیره نمی‌شوند.** یک عبارت seed 24 کلمه‌ای فقط موجودی on-chain شما را بازیابی می‌کند. برای جلوگیری از از دست رفتن کامل وجوه کانال، باید از **Static Channel Backups (SCB)** خود نسخه پشتیبان تهیه کنید.
-[نحوه محافظت از گره خود را بیاموزید →](/wallets/twallet/v1#critical-lightning-backups)
-:::
 
 <div className="download-box">
   <div className="download-box__content">
@@ -47,7 +43,7 @@ Lokihub را برای پلتفرم خود دریافت کنید و باینری 
 <div className="guide-card">
 
 ### ۲. اتصال گره
-Lokihub را به گره FLND یکپارچه‌شده در [tWallet](/wallets/twallet) متصل کنید.
+Lokihub را به گره Lightning خود متصل کنید. به‌صورت خودکار با [Lokinode](/wallets/lokinode) کار می‌کند.
 
 [راهنمای نصب →](/lokihub/setup)
 
@@ -114,6 +110,11 @@ import { Zap, Droplet } from 'lucide-react';
 - **[منابع](/lokihub/resources)** — اکسپلوررها، faucetها، ابزارها
 
 نیاز به کمک دارید؟ به [Discord](https://flokicoin.org/discord) #lokihub بپیوندید
+
+:::caution[مهم: از کانال‌های خود نسخه پشتیبان تهیه کنید]
+**وجوه کانال Lightning در بلاکچین ذخیره نمی‌شوند.** یک عبارت seed 24 کلمه‌ای فقط موجودی on-chain شما را بازیابی می‌کند. پس از شروع به باز کردن کانال‌ها، باید یک کپی از فایل **Static Channel Backup (SCB)** خود نگه دارید.
+[نحوه محافظت از گره خود را بیاموزید →](/wallets/lokinode#critical-lightning-backups)
+:::
 
 <style>
 {`

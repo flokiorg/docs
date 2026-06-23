@@ -12,12 +12,8 @@ import Link from '@docusaurus/Link';
 
 # Domina Tu Nodo Lightning
 
-**Lokihub** te otorga soberanía financiera completa sobre tu nodo Lightning. Más que un simple gestor, es tu puerta de entrada a la web descentralizada — integrado con [tWallet](/wallets/twallet) para ayudarte a gestionar sub-monederos, administrar canales y conectar aplicaciones mediante NWC.
+**Lokihub** te otorga soberanía financiera completa sobre tu nodo Lightning. Más que un simple gestor, es tu puerta de entrada a la web descentralizada — integrado con [Lokinode](/wallets/lokinode) para ayudarte a gestionar sub-monederos, administrar canales y conectar aplicaciones mediante NWC.
 
-:::caution[CRÍTICO: RIESGO DE PÉRDIDA DE RESPALDO]
-**Los fondos de los canales Lightning NO están almacenados en la cadena de bloques.** Una frase semilla de 24 palabras solo recupera tu saldo en cadena. Para evitar la pérdida total de los fondos de los canales, debes realizar una copia de seguridad de tus **Respaldos de Canales Estáticos (SCB)**.
-[Aprende cómo proteger tu nodo →](/wallets/twallet/v1#critical-lightning-backups)
-:::
 
 <div className="download-box">
   <div className="download-box__content">
@@ -47,7 +43,7 @@ Obtén Lokihub para tu plataforma e instala el binario.
 <div className="guide-card">
 
 ### 2. Conectar Tu Nodo
-Conecta Lokihub al nodo FLND integrado en [tWallet](/wallets/twallet).
+Conecta Lokihub a tu nodo Lightning. Funciona de inmediato con [Lokinode](/wallets/lokinode).
 
 [Guía de Configuración →](/lokihub/setup)
 
@@ -114,6 +110,11 @@ import { Zap, Droplet } from 'lucide-react';
 - **[Recursos](/lokihub/resources)** — Exploradores, faucets, herramientas
 
 ¿Necesitas ayuda? Únete a [Discord](https://flokicoin.org/discord) #lokihub
+
+:::caution[Importante: Haz una copia de seguridad de tus canales]
+**Los fondos de los canales Lightning NO están almacenados en la cadena de bloques.** Una frase semilla de 24 palabras solo recupera tu saldo en cadena. Una vez que empieces a abrir canales, debes conservar una copia de tu archivo **Static Channel Backup (SCB)**.
+[Aprende cómo proteger tu nodo →](/wallets/lokinode#critical-lightning-backups)
+:::
 
 <style>
 {`
