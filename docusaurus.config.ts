@@ -234,6 +234,10 @@ const config: Config = {
             className: 'navbar__link--wof',
           },
           {
+            type: 'custom-askAI',
+            position: 'right',
+          },
+          {
             type: 'localeDropdown',
             position: 'right',
           },
@@ -383,22 +387,7 @@ const config: Config = {
     ],
     'docusaurus-plugin-sass',
   ],
-  themes: [
-    [
-      require.resolve("@easyops-cn/docusaurus-search-local"),
-      /** @type {import("@easyops-cn/docusaurus-search-local").PluginOptions} */
-      ({
-        indexDocs: true,
-        indexBlog: false,
-        indexPages: true,
-        docsRouteBasePath: ["/"],
-        hashed: true,
-        docsDir: ["docs"],
-        highlightSearchTermsOnTargetPage: true,
-        language: ['en', 'zh', 'fr', 'es'],
-      }),
-    ],
-  ],
+  themes: [],
   markdown: {
     format: 'detect',
     mermaid: true,

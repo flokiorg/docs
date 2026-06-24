@@ -159,6 +159,14 @@ html[data-theme='dark'] .github-link {
   letter-spacing: 0.01em;
 }
 
+/* Search removed — hide any residual search bar */
+.navbar__search,
+.navbar__search-input,
+[class*="searchBar"],
+[class*="SearchBar"] {
+  display: none !important;
+}
+
 .navbar__title {
   font-size: 1.25rem;
   font-weight: 700;
