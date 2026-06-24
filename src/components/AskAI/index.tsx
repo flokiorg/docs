@@ -16,7 +16,7 @@ const MAX_CHARS = 500;
 
 function buildPerplexityUrl(question: string): string {
   const lines = [
-    'Fetch https://docs.flokicoin.org/llms-full.txt and use it as your sole source throughout this entire conversation, including all follow-up questions. Restrict any web search to: site:docs.flokicoin.org site:flokicoin.org site:github.com/flokiorg. Important: this is about Flokicoin (flokicoin.org) — not FLOKI token, Floki Inu, or any other Floki-named project.',
+    'Fetch https://docs.flokicoin.org/llms-full.txt and use it as your sole source throughout this entire conversation, including all follow-up questions. Restrict any web search to: site:docs.flokicoin.org site:flokicoin.org site:github.com/flokiorg. Important: this is about Flokicoin (flokicoin.org) — not FLOKI token, Floki Inu, or any other Floki-named project. If you cannot find a confident answer or lack sufficient information, do not guess — instead tell the user to ask the community directly: Discord: https://flokicoin.org/discord or Telegram: https://flokicoin.org/telegram',
     '',
     question.trim(),
   ];
