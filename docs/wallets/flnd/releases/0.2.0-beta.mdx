@@ -1,0 +1,63 @@
+---
+title: 0.2.0-beta
+description: Release notes for flnd v0.2.0-beta covering BOLT 12 offers, onion messaging, production Taproot channels, RBF cooperative close, and a major channel-state storage refactor.
+sidebar_position: 0
+---
+
+<div className="release-header-meta release-header-left">
+  <a className="github-link release-github no-external-icon" href="https://github.com/flokiorg/flnd/releases/tag/v0.2.0-beta" target="_blank" rel="noreferrer" title="View v0.2.0-beta on GitHub">
+    <span className="release-header-label">GitHub</span>
+  </a>
+</div>
+
+Please report bugs using the issue tracker at GitHub:
+
+https://github.com/flokiorg/flnd/issues
+
+This is a large sync against upstream lnd, bringing BOLT 12 offers, onion messaging, production Taproot channels, and RBF-based cooperative close, alongside the walletd/neutrino `Start(ctx)` API migration and several fixes from this cycle's review.
+
+## Highlights
+
+### BOLT 12 (new)
+- `Offer` and `InvoiceRequest` message structs with TLV codecs and full BOLT 12 reader/writer validation.
+- `NewInvoiceRequestFromOffer` for building a request from an existing offer.
+
+### Onion Messages (new)
+- Actor-based onion message forwarding with a token-bucket rate limiter and an LRU-cached SCID resolver.
+- BFS pathfinding for onion messages, blinded-path support, and a `--protocol.no-onion-messages` flag.
+
+### Taproot Channels (production)
+- Production Taproot channel negotiation, gated behind explicit negotiation and rejected for public channel opens.
+- Commitment generation, HTLC resolvers, and the nursery all integrate production Taproot support.
+
+### RBF Cooperative Close
+- A dedicated RBF close actor decouples RPC-driven fee bumps from the peer actor.
+- Cooperative close now insta-dispatches `CLOSED_CHANNEL` on first confirmation instead of waiting.
+
+### Channel State Refactor
+- Channel state, commitment, forwarding-package, and revocation-log storage moved behind a new `chanstate.Store` interface.
+- Closed channels on KV-SQL backends are now tombstoned instead of bulk-deleted.
+
+### RPC
+- `DeleteForwardingHistory` and `SubmitPackage` (v3 CPFP package relay) RPCs and CLI commands.
+- Removed the deprecated `SendPayment`, `SendToRoute`, and `TrackPayment` RPCs (routerrpc V2 equivalents remain).
+
+### Fixes
+- `chain.Interface.Start` now takes a `context.Context`, matching the same change in walletd/flokicoin-neutrino.
+- Fixed a panic in the DNS fallback SRV lookup; RPC handler panics are now recovered.
+- BOLT-02 `push_msat` bound is now enforced on the fundee.
+
+### Dependency Security
+- Bumped `golang.org/x/crypto` to `v0.52.0` and `google.golang.org/grpc` to `v1.79.3`, closing GHSA-p77j-4mvh-x3m3 (a gRPC authorization-bypass advisory) among others.
+
+## Assets
+
+| OS/Arch | flnd (daemon) | flncli (CLI) |
+| --- | --- | --- |
+| macOS (Apple Silicon) | [flnd-arm64](https://github.com/flokiorg/flnd/releases/download/v0.2.0-beta/flnd-darwin-arm64-v0.2.0-beta.tar.gz) | [flncli-arm64](https://github.com/flokiorg/flnd/releases/download/v0.2.0-beta/flncli-darwin-arm64-v0.2.0-beta.tar.gz) |
+| macOS (Intel) | [flnd-amd64](https://github.com/flokiorg/flnd/releases/download/v0.2.0-beta/flnd-darwin-amd64-v0.2.0-beta.tar.gz) | [flncli-amd64](https://github.com/flokiorg/flnd/releases/download/v0.2.0-beta/flncli-darwin-amd64-v0.2.0-beta.tar.gz) |
+| Linux x86_64 | [flnd-amd64](https://github.com/flokiorg/flnd/releases/download/v0.2.0-beta/flnd-linux-amd64-v0.2.0-beta.tar.gz) | [flncli-amd64](https://github.com/flokiorg/flnd/releases/download/v0.2.0-beta/flncli-linux-amd64-v0.2.0-beta.tar.gz) |
+| Linux arm64 | [flnd-arm64](https://github.com/flokiorg/flnd/releases/download/v0.2.0-beta/flnd-linux-arm64-v0.2.0-beta.tar.gz) | [flncli-arm64](https://github.com/flokiorg/flnd/releases/download/v0.2.0-beta/flncli-linux-arm64-v0.2.0-beta.tar.gz) |
+| Windows x86_64 | [flnd-amd64](https://github.com/flokiorg/flnd/releases/download/v0.2.0-beta/flnd-windows-amd64-v0.2.0-beta.zip) | [flncli-amd64](https://github.com/flokiorg/flnd/releases/download/v0.2.0-beta/flncli-windows-amd64-v0.2.0-beta.zip) |
+
+Additional builds (ppc64, mips, and *BSD) are available on the [GitHub release page](https://github.com/flokiorg/flnd/releases/tag/v0.2.0-beta).
