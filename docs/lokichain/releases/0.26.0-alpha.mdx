@@ -1,0 +1,50 @@
+---
+title: 0.26.0-alpha
+description: Release notes for go-flokicoin v0.26.0-alpha covering BIP30 enforcement hardening, panic recovery, wire protocol hardening, and RPC client improvements.
+sidebar_position: 1
+---
+
+<div className="release-header-meta release-header-left">
+  <a className="github-link release-github no-external-icon" href="https://github.com/flokiorg/go-flokicoin/releases/tag/v0.26.0-alpha" target="_blank" rel="noreferrer" title="View v0.26.0-alpha on GitHub">
+    <span className="release-header-label">GitHub</span>
+  </a>
+</div>
+
+Please report bugs using the issue tracker at GitHub:
+
+https://github.com/flokiorg/go-flokicoin/issues
+
+This release ports a batch of security hardening, protocol correctness, and RPC client improvements from upstream btcd.
+
+## Highlights
+
+### Security & Robustness
+- **BIP30 Enforcement Hardening**: Ported upstream's stricter BIP30 (duplicate coinbase) enforcement logic.
+- **Panic Recovery**: Peer message-handling goroutines now recover from panics instead of taking down the process.
+- **Wire Protocol Hardening**: `ReadMessage` now enforces full payload consumption; witness item reads are bounded to the remaining decode slab, closing a class of malformed-message issues.
+- **Address Validation**: `addrv2` now rejects/reclassifies IPv4-mapped IPv6 addresses; RFC7343 ORCHIDv2 and zero-prefix IPv6 addresses are rejected as unroutable.
+
+### RPC Client
+- Fixed a shutdown double-resolve race and added `httpURL` caching.
+- In-flight HTTP requests can now be canceled; several batch-request bugs fixed.
+- Added `GetTxOutProof`, a dial-timeout fix, and faster JSON string parsing.
+
+### Networking & Sync
+- `netsync` now allows syncing with non-localhost peers on regtest/simnet.
+- Fixed a peer add/done race between `peerHandler` and `syncManager`.
+
+### Dependency Security
+- Bumped `golang.org/x/crypto` to `v0.52.0`, closing 7 upstream advisories in the SSH subpackage (not reachable from go-flokicoin, but patched as a precaution).
+
+## Assets
+
+| OS/Arch | Asset |
+| --- | --- |
+| macOS (Apple Silicon) | https://github.com/flokiorg/go-flokicoin/releases/download/v0.26.0-alpha/lokid-darwin-arm64-v0.26.0-alpha.tar.gz |
+| macOS (Intel) | https://github.com/flokiorg/go-flokicoin/releases/download/v0.26.0-alpha/lokid-darwin-amd64-v0.26.0-alpha.tar.gz |
+| Linux x86_64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.26.0-alpha/lokid-linux-amd64-v0.26.0-alpha.tar.gz |
+| Linux arm64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.26.0-alpha/lokid-linux-arm64-v0.26.0-alpha.tar.gz |
+| Windows x86_64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.26.0-alpha/lokid-windows-amd64-v0.26.0-alpha.zip |
+| Windows 32-bit | https://github.com/flokiorg/go-flokicoin/releases/download/v0.26.0-alpha/lokid-windows-386-v0.26.0-alpha.zip |
+
+Additional builds (ppc64, mips, *BSD, illumos/solaris) are available on the [GitHub release page](https://github.com/flokiorg/go-flokicoin/releases/tag/v0.26.0-alpha).
