@@ -1,0 +1,39 @@
+---
+title: 1.0.14-beta
+description: "tWallet v1.0.14-beta 发布说明，涵盖 CI、错误格式修复、恢复测试辅助函数行为，以及将集成测试置于构建标签之后。"
+sidebar_position: 1
+---
+
+<div className="release-header-meta release-header-left">
+  <a className="github-link release-github no-external-icon" href="https://github.com/flokiorg/tWallet/releases/tag/v1.0.14-beta" target="_blank" rel="noreferrer" title="在 GitHub 上查看 v1.0.14-beta">
+    <span className="release-header-label">GitHub</span>
+  </a>
+</div>
+
+请通过 GitHub 的问题跟踪器报告错误：
+
+https://github.com/flokiorg/tWallet/issues
+
+## 显著变更
+
+### 修复
+- **`flnd/client.go`**：`PublishTransaction` 曾将一个动态字符串作为格式字符串传给 `fmt.Errorf`；由于不需要格式化，已改用 `errors.New`。
+- **测试辅助函数**：`createTestTempDir` 恢复了其真正的 `os.MkdirTemp` 实现（此前曾被替换为某开发者机器上的硬编码绝对路径）。
+- **测试命名**：一个名为 `TestMain` 但接收 `*testing.T`（而非 `*testing.M`）的函数，实际上从未起到包测试入口钩子的作用——它只是以一个容易引起误解的名字运行了一项非常繁重、会启动真实守护进程的测试。已重命名为 `TestManualFlndTestnetLaunch`。
+- **集成测试**：`flnd/` 目录下全部 4 个测试文件都会启动真实的 `flnd` 守护进程和/或需要实时的测试网连接。现已置于 `//go:build integration` 构建标签之后，因此 CI 中使用的普通 `go test ./...` 会干净地跳过它们；仍可通过 `-tags=integration` 显式运行。
+
+### CI
+- 新增 `.github/workflows/ci.yaml`：在推送到 `main` 分支及提交 Pull Request 时运行 `go build`、`go vet` 和 `go test`。
+
+## 资源
+
+| 操作系统/架构 | 资源链接 |
+| --- | --- |
+| macOS (Apple Silicon) | https://github.com/flokiorg/tWallet/releases/download/v1.0.14-beta/twallet-darwin-arm64-v1.0.14-beta.tar.gz |
+| macOS (Intel) | https://github.com/flokiorg/tWallet/releases/download/v1.0.14-beta/twallet-darwin-amd64-v1.0.14-beta.tar.gz |
+| Linux x86_64 | https://github.com/flokiorg/tWallet/releases/download/v1.0.14-beta/twallet-linux-amd64-v1.0.14-beta.tar.gz |
+| Linux arm64 | https://github.com/flokiorg/tWallet/releases/download/v1.0.14-beta/twallet-linux-arm64-v1.0.14-beta.tar.gz |
+| Windows x86_64 | https://github.com/flokiorg/tWallet/releases/download/v1.0.14-beta/twallet-windows-amd64-v1.0.14-beta.zip |
+| Windows 32位 | https://github.com/flokiorg/tWallet/releases/download/v1.0.14-beta/twallet-windows-386-v1.0.14-beta.zip |
+
+额外的构建版本（ppc64, mips 和 *BSD）可在 [GitHub 发布页面](https://github.com/flokiorg/tWallet/releases/tag/v1.0.14-beta) 获取。
