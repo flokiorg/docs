@@ -1,0 +1,54 @@
+name: Publish docs image
+
+# The site ships as a container image rather than through Pages, which is
+# disabled for this repo. That image was being built by hand -- the ghcr
+# package had a single `latest` tag and no provenance -- so this builds it
+# on every push to main instead.
+#
+# The `caddy` stage is the one published: it already carries the
+# org.opencontainers.image.source label that links the package to this repo,
+# and it serves the built site rather than running a dev server.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  docker:
+    name: Build and push
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to ghcr.io
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      # The Dockerfile is lowercase `dockerfile` in this repo, so it has to be
+      # named explicitly -- buildx looks for `Dockerfile` by default.
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: dockerfile
+          target: caddy
+          push: true
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          tags: |
+            ghcr.io/flokiorg/docs:latest
+            ghcr.io/flokiorg/docs:${{ github.sha }}
+          labels: |
+            org.opencontainers.image.revision=${{ github.sha }}
+            org.opencontainers.image.source=https://github.com/flokiorg/docs
