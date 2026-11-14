@@ -1,0 +1,94 @@
+---
+slug: /wallets/twallet
+title: tWallet — Cartera de Terminal de Flokicoin
+description: "Una cartera de terminal rápida y privada para Flokicoin con soporte Lightning integrado. Elija entre el moderno motor Neutrino y el backend heredado Electrum."
+sidebar_position: 0
+---
+
+import Link from '@docusaurus/Link';
+import { Shield, Zap, Eye, ArrowRight, Terminal, Server } from 'lucide-react';
+
+Una cartera de terminal rápida y ligera que te brinda acceso directo a la red Flokicoin. Sin excesos, sin rastreo, control total.
+
+<div className="wallet-benefits">
+  <div className="wallet-benefit">
+    <div className="wallet-benefit__icon"><Zap size={22} /></div>
+    <div>
+      <strong>Rápida</strong>
+      <span>Se sincroniza con la red en segundos, no en horas.</span>
+    </div>
+  </div>
+  <div className="wallet-benefit">
+    <div className="wallet-benefit__icon"><Eye size={22} /></div>
+    <div>
+      <strong>Privada</strong>
+      <span>Sin rastreo. No se requieren servidores de terceros.</span>
+    </div>
+  </div>
+  <div className="wallet-benefit">
+    <div className="wallet-benefit__icon"><Shield size={22} /></div>
+    <div>
+      <strong>Tus llaves</strong>
+      <span>Control total sobre tus monedas y tu frase de recuperación.</span>
+    </div>
+  </div>
+</div>
+
+## ¿Qué versión es la adecuada para ti?
+
+La mayoría de los usuarios deberían comenzar con la **v1**. Es más nueva, más privada y viene con pagos Lightning integrados.
+
+<div className="wallet-compare">
+  <div className="wallet-compare__card wallet-compare__card--recommended">
+    <div className="wallet-compare__badge">Recomendado</div>
+    <div className="wallet-compare__header">
+      <Terminal size={20} />
+      <h3>v1 — Neutrino</h3>
+    </div>
+    <p className="wallet-compare__audience">Ideal para nuevos usuarios y cualquier persona que desee realizar pagos Lightning.</p>
+    <ul className="wallet-compare__features">
+      <li>Habla directamente con la cadena de bloques, sin intermediarios</li>
+      <li>Envía pagos instantáneos y casi gratuitos con Lightning</li>
+      <li>Soporta formatos de dirección modernos (SegWit, Taproot)</li>
+      <li>La frase de recuperación utiliza el último estándar de seguridad</li>
+    </ul>
+    <div className="wallet-compare__footer">
+      <Link className="button button--primary wallet-compare__cta" to="/wallets/twallet/v1">Comenzar con la v1 <ArrowRight size={16} /></Link>
+    </div>
+  </div>
+
+  <div className="wallet-compare__card">
+    <div className="wallet-compare__header">
+      <Server size={20} />
+      <h3>v0 — Electrum</h3>
+    </div>
+    <p className="wallet-compare__audience">Ideal para usuarios con una semilla BIP39 existente o que necesitan un servidor externo.</p>
+    <ul className="wallet-compare__features">
+      <li>Carga tu historial de transacciones completo al instante</li>
+      <li>Funciona con cualquier frase de recuperación estándar de la industria</li>
+    </ul>
+    <div className="wallet-compare__footer">
+      <Link className="button button--secondary wallet-compare__cta" to="/wallets/twallet/v0">Comenzar con la v0 <ArrowRight size={16} /></Link>
+    </div>
+  </div>
+</div>
+
+:::tip[¿Usas Lokihub?]
+Si planeas administrar un nodo Lightning desde un panel de control, comienza con la **v1** y luego [configura Lokihub](/lokihub/setup).
+:::
+
+## Primeros pasos
+
+Una vez que hayas elegido una versión, la configuración toma unos 5 minutos:
+
+1. **Descarga** la versión para tu sistema operativo.
+2. **Respalda** tu frase de recuperación. Anótala y **nunca la compartas**.
+3. **Sincroniza**: deja que la cartera se ponga al día con la red (unos pocos minutos como máximo).
+4. **Recibe**: genera una dirección y obtén tus primeras monedas.
+
+## Comunidad y soporte
+
+¿Tienes preguntas? La comunidad es activa y acogedora.
+
+- **Discord**: Únete al canal [#tWallet](https://flokicoin.org/discord) para obtener ayuda en tiempo real.
+- **GitHub**: [Explora el código o reporta problemas](https://github.com/flokiorg/twallet).

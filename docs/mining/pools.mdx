@@ -1,0 +1,31 @@
+---
+title: Pools
+slug: /mining/pools
+description: Directory of Flokicoin-compatible mining pools, recommended scrypt miners, Stratum basics, and safety tips.
+---
+
+:::danger[Disclaimer]
+Pools and miners listed here are third‑party. Verify binaries and configs yourself and prefer sandboxed testing before production use.
+:::
+
+import { Fish } from 'lucide-react';
+
+
+## Pools
+- [fpool.net](https://fpool.net) <span style={{display: 'inline-flex', alignItems: 'center', gap: '0.25rem', verticalAlign: 'middle'}}><Fish size={16} /> Mining has never been so easy</span> (solo, PPLNS)
+- [viaflc.com](https://viaflc.com) More Coins Same Power (PPLNS, merge-mining)
+- [hash2.cash](https://hash2.cash) Transparent Mining Powered by Sharenotes
+
+
+### Notes
+- Mainnet: use GPU or scrypt ASIC. CPU mining is not competitive; reserve cpuminer for testnet or experimentation.
+- AuxPoW: If the pool supports merge mining with a scrypt‑family parent and forwards AuxPoW to Flokicoin, follow the pool’s specific instructions. Details vary by pool.
+
+
+## Stratum Basics
+- URL: `stratum+tcp://POOL_HOST:PORT`
+- Username: your Flokicoin payout address (or pool account)
+- Password: often `x` or pool‑specific token
+
+## Support
+Join the [#mining](https://flokicoin.org/discord) channel on Discord for help.

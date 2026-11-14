@@ -1,0 +1,51 @@
+---
+title: 1.0.9-beta
+description: "ملاحظات إصدار tWallet v1.0.9-beta الذي يتميز بموصل Lightning داخلي، ونافذة تهيئة جديدة، وخاصية فتح القفل التلقائي عند التشغيل الأول."
+sidebar_position: 2
+---
+
+<div className="release-header-meta release-header-left">
+  <a className="github-link release-github no-external-icon" href="https://github.com/flokiorg/tWallet/releases/tag/v1.0.9-beta" target="_blank" rel="noreferrer" title="عرض الإصدار v1.0.9-beta على GitHub">
+    <span className="release-header-label">GitHub</span>
+  </a>
+</div>
+
+يرجى الإبلاغ عن الأخطاء باستخدام متتبع المشكلات على GitHub:
+
+https://github.com/flokiorg/tWallet/issues
+
+يدمج هذا الإصدار موصلاً داخلياً مخصصاً لشبكة Lightning ويضيف واجهة تهيئة لإدارة العقد.
+
+## التغييرات الملحوظة
+
+### موصل Lightning داخلي
+تطبق المحفظة الآن استراتيجية موصل داخلي. تم نقل إدارة الاتصال ومنطق الخدمة داخلياً إلى `tWallet` ، مما يؤدي إلى فصل التطبيق عن مستودع `FLND` الخارجي. يوفر هذا واجهة مستقرة وخاصة بالتطبيق لجميع عمليات Lightning.
+
+### تحديثات التهيئة
+- إضافة تعيين لخيارات تهيئة `flnd` الإضافية ومزامنة القيم الافتراضية لضمان الاتساق مع التنفيذ الأساسي لشبكة Lightning.
+
+### جديد: نافذة تهيئة Lightning
+يمكن الوصول إلى نافذة تهيئة جديدة عبر اختصار `Ctrl+N`.
+
+- **تفاصيل الاتصال**: تعرض عنوان RPC، وعنوان النظير (Peer)، ومفتاح الهوية العام (PubKey).
+- **بيانات الاعتماد**: تصدير Macaroon وشهادة TLS بتنسيق سداسي عشري (hex) لتهيئة الأدوات الخارجية مثل `LokiHub` أو `flncli` أو لوحات معلومات الويب.
+- **الحافظة**: تنفيذ آلية نسخ جديدة عبر الأنظمة مع دعم احتياطي قوي (OSC 52، أوامر نظام التشغيل الأصلية) للاستخدام السلس في البيئات المحلية والبعيدة.
+
+### فتح القفل التلقائي عند التشغيل الأول
+لدعم عمليات النشر المؤتمتة وسير عمل العمليات (Ops)، تمت إضافة خيار تهيئة جديد `autounlock`.
+- **بدء التشغيل المؤتمت**: عند تمكينه جنباً إلى جنب مع `defaultpassword` ، تفتح المحفظة قفلها بصمت عند التشغيل الأولي للتطبيق دون الحاجة إلى تفاعل المستخدم.
+- **واجهة مستخدم خفية**: يتم إخفاء نموذج فتح القفل أثناء العملية التلقائية، مع عرض مؤشر الحالة فقط.
+- **الأمان**: يقتصر هذا السلوك على التشغيل الأول فقط؛ بينما تحتفظ عمليات القفل/إلغاء القفل اليدوية اللاحقة بمطالبة كلمة المرور القياسية للأمان.
+
+## الأصول (Assets)
+
+| نظام التشغيل/المعمارية | الأصول |
+| --- | --- |
+| macOS (Apple Silicon) | https://github.com/flokiorg/tWallet/releases/download/v1.0.9-beta/twallet-darwin-arm64-v1.0.9-beta.tar.gz |
+| macOS (Intel) | https://github.com/flokiorg/tWallet/releases/download/v1.0.9-beta/twallet-darwin-amd64-v1.0.9-beta.tar.gz |
+| Linux x86_64 | https://github.com/flokiorg/tWallet/releases/download/v1.0.9-beta/twallet-linux-amd64-v1.0.9-beta.tar.gz |
+| Linux arm64 (Raspberry Pi) | https://github.com/flokiorg/tWallet/releases/download/v1.0.9-beta/twallet-linux-arm64-v1.0.9-beta.tar.gz |
+| Windows x86_64 | https://github.com/flokiorg/tWallet/releases/download/v1.0.9-beta/twallet-windows-amd64-v1.0.9-beta.zip |
+| Windows 32-bit | https://github.com/flokiorg/tWallet/releases/download/v1.0.9-beta/twallet-windows-386-v1.0.9-beta.zip |
+
+تتوفر إصدارات إضافية (ppc64 و mips و *BSD) على [صفحة إصدارات GitHub](https://github.com/flokiorg/tWallet/releases/tag/v1.0.9-beta).

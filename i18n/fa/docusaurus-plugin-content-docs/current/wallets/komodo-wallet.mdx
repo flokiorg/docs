@@ -1,0 +1,117 @@
+---
+sourceTitle: "Komodo Wallet"
+title: "Komodo Wallet"
+description: "مدیریت Flokicoin با Komodo Wallet، یک کیف پول چند‌ارزی و چند‌پلتفرمی با رابط کاربری گرافیکی و پشتیبانی از Segwit."
+sidebar_position: 3
+---
+
+import Link from '@docusaurus/Link';
+import { Monitor, Smartphone, Globe, ArrowRight, MousePointer2, Layers, Repeat } from 'lucide-react';
+
+**Komodo Wallet** (AtomicDEX سابق) یک کیف پول چند‌ارزی و چند‌پلتفرمی با رابط گرافیکی تمیز است. اگر تجربه بصری را به دستورات ترمینال ترجیح می‌دهید، این کیف پول مناسب شماست.
+
+<div className="wallet-benefits">
+  <div className="wallet-benefit">
+    <div className="wallet-benefit__icon"><MousePointer2 size={22} /></div>
+    <div>
+      <strong>رابط کاربری بصری</strong>
+      <span>نیازی به ترمینال نیست. موجودی و تراکنش‌های خود را در یک اپلیکیشن آشنا مشاهده کنید.</span>
+    </div>
+  </div>
+  <div className="wallet-benefit">
+    <div className="wallet-benefit__icon"><Layers size={22} /></div>
+    <div>
+      <strong>چند‌ارزی</strong>
+      <span>Flokicoin را در کنار ده‌ها دارایی دیگر در یک مکان امن مدیریت کنید.</span>
+    </div>
+  </div>
+  <div className="wallet-benefit">
+    <div className="wallet-benefit__icon"><Repeat size={22} /></div>
+    <div>
+      <strong>آماده برای Segwit</strong>
+      <span>کارمزد کمتر و تاییدهای سریع‌تر با آدرس‌های `fc1`.</span>
+    </div>
+  </div>
+</div>
+
+## پلتفرم خود را انتخاب کنید
+
+نسخه‌ای را که با گردش کار شما مطابقت دارد انتخاب کنید. تمام نسخه‌ها از فناوری امن یکسانی استفاده می‌کنند.
+
+<div className="wallet-compare">
+  <div className="wallet-compare__card">
+    <div className="wallet-compare__header">
+      <Monitor size={20} />
+      <h3>دسکتاپ</h3>
+    </div>
+    <p className="wallet-compare__audience">بهترین گزینه برای مدیریت روزانه در ویندوز، مک یا لینوکس.</p>
+    <ul className="wallet-compare__features">
+      <li>مجموعه کامل ویژگی‌ها</li>
+      <li>ذخیره‌سازی کلید خصوصی به‌صورت محلی</li>
+      <li>پشتیبانی از کیف پول‌های سخت‌افزاری</li>
+    </ul>
+    <div className="wallet-compare__footer">
+      <Link className="button button--primary wallet-compare__cta" href="https://komodoplatform.com/en/wallets.html">دانلود نسخه دسکتاپ <ArrowRight size={16} /></Link>
+    </div>
+  </div>
+
+  <div className="wallet-compare__card">
+    <div className="wallet-compare__header">
+      <Smartphone size={20} />
+      <h3>موبایل</h3>
+    </div>
+    <p className="wallet-compare__audience">بهترین گزینه برای ارسال و دریافت Flokicoin در حال حرکت.</p>
+    <ul className="wallet-compare__features">
+      <li>پشتیبانی از iOS و اندروید</li>
+      <li>امنیت بیومتریک (FaceID/اثر انگشت)</li>
+      <li>اسکن کردن کدهای QR برای پرداخت</li>
+    </ul>
+    <div className="wallet-compare__footer">
+      <Link className="button button--secondary wallet-compare__cta" href="https://komodoplatform.com/en/wallets.html">دریافت اپلیکیشن موبایل <ArrowRight size={16} /></Link>
+    </div>
+  </div>
+
+  <div className="wallet-compare__card">
+    <div className="wallet-compare__header">
+      <Globe size={20} />
+      <h3>وب</h3>
+    </div>
+    <p className="wallet-compare__audience">بهترین گزینه برای دسترسی سریع از هر مرورگر بدون نیاز به نصب.</p>
+    <ul className="wallet-compare__features">
+      <li>بدون نیاز به نصب</li>
+      <li>دسترسی از هر دستگاهی</li>
+      <li>رابط کاربری ساده و سریع</li>
+    </ul>
+    <div className="wallet-compare__footer">
+      <Link className="button button--secondary wallet-compare__cta" href="https://app.komodoplatform.com">باز کردن کیف پول تحت وب <ArrowRight size={16} /></Link>
+    </div>
+  </div>
+</div>
+
+## راهنمای راه‌اندازی سریع
+
+شروع کار حدود ۵ دقیقه زمان می‌برد. این مراحل ساده را دنبال کنید:
+
+۱. **دریافت اپلیکیشن**: نسخه مورد نظر خود را از پلتفرم‌های بالا دانلود یا باز کنید.
+۲. **ایجاد کیف پول جدید**: گزینه "Create New Wallet" را انتخاب کرده و **عبارت بازیابی (seed phrase)** خود را یادداشت کنید.
+۳. **پشتیبان‌گیری از کلیدها**: عبارت بازیابی خود را روی کاغذ فیزیکی در مکانی امن نگه دارید.
+۴. **فعال‌سازی Flokicoin**: در لیست دارایی‌ها عبارت **Flokicoin** را جستجو کرده و آن را فعال کنید تا آدرس خود را دریافت کنید.
+
+:::warning[امنیت در اولویت]
+عبارت بازیابی شما *تنها* پشتیبان شماست. اگر آن را گم کنید، سکه‌های خود را از دست می‌دهید. هرگز آن را به‌صورت دیجیتال ذخیره نکنید، هرگز آن را با کسی به اشتراک نگذارید و هرگز از آن اسکرین‌شات نگیرید.
+:::
+
+## درباره آدرس‌ها (F در مقابل fc1)
+
+به‌طور پیش‌فرض، Komodo Wallet آدرسی را ایجاد می‌کند که با **F** شروع می‌شود (Legacy). همچنین به‌طور کامل از آدرس‌های **fc1** (Segwit) پشتیبانی می‌کند.
+
+* **Legacy (F)**: حداکثر سازگاری با سرویس‌های قدیمی.
+* **Segwit (fc1)**: برای استفاده روزمره توصیه می‌شود. منجر به **کارمزد شبکه کمتر** می‌شود و توسط اکثر سرویس‌های مدرن پشتیبانی می‌شود.
+
+شما می‌توانید در تنظیمات کیف پول بین این فرمت‌ها سوئیچ کنید. هر دو فرمت روی یک شبکه Flokicoin کار می‌کنند.
+
+## پشتیبانی و لینک‌ها
+
+- **مستندات کومودو**: [مستندات رسمی](https://docs.komodoplatform.com/) برای راهنمایی‌های فنی دقیق.
+- **دیسکورد**: برای پشتیبانی جامعه به [دیسکورد Flokicoin](https://flokicoin.org/discord) بپیوندید.
+- **گام‌های بعدی**: بیاموزید که [صدور Flokicoin چگونه کار می‌کند](/economy) یا [استخراج را شروع کنید](/mining/pools).

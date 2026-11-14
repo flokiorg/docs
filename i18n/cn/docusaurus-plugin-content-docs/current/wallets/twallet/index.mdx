@@ -1,0 +1,94 @@
+---
+slug: /wallets/twallet
+title: tWallet — Flokicoin 终端钱包
+description: "一个快速、私密的 Flokicoin 终端钱包，内置闪电网络支持。可在现代 Neutrino 引擎和旧版 Electrum 后端之间进行选择。"
+sidebar_position: 0
+---
+
+import Link from '@docusaurus/Link';
+import { Shield, Zap, Eye, ArrowRight, Terminal, Server } from 'lucide-react';
+
+一个快速、轻量级的终端钱包，让你能够直接访问 Flokicoin 网络。无冗余，无跟踪，完全控制。
+
+<div className="wallet-benefits">
+  <div className="wallet-benefit">
+    <div className="wallet-benefit__icon"><Zap size={22} /></div>
+    <div>
+      <strong>快速同步</strong>
+      <span>与网络同步仅需几秒钟，而非数小时。</span>
+    </div>
+  </div>
+  <div className="wallet-benefit">
+    <div className="wallet-benefit__icon"><Eye size={22} /></div>
+    <div>
+      <strong>私密安全</strong>
+      <span>无跟踪，无需第三方服务器。</span>
+    </div>
+  </div>
+  <div className="wallet-benefit">
+    <div className="wallet-benefit__icon"><Shield size={22} /></div>
+    <div>
+      <strong>掌握密钥</strong>
+      <span>完全控制您的代币和助记词。</span>
+    </div>
+  </div>
+</div>
+
+## 哪个版本适合您？
+
+大多数用户应该从 **v1** 开始。它更新、更私密，并内置了闪电网络 (Lightning) 支付功能。
+
+<div className="wallet-compare">
+  <div className="wallet-compare__card wallet-compare__card--recommended">
+    <div className="wallet-compare__badge">推荐</div>
+    <div className="wallet-compare__header">
+      <Terminal size={20} />
+      <h3>v1 — Neutrino</h3>
+    </div>
+    <p className="wallet-compare__audience">最适合新用户以及任何需要闪电网络支付的人。</p>
+    <ul className="wallet-compare__features">
+      <li>直接与区块链对话 —— 无需中间人</li>
+      <li>使用闪电网络发送即时、近乎零成本的支付</li>
+      <li>支持现代地址格式 (SegWit, Taproot)</li>
+      <li>助记词采用最新的安全标准</li>
+    </ul>
+    <div className="wallet-compare__footer">
+      <Link className="button button--primary wallet-compare__cta" to="/wallets/twallet/v1">开始使用 v1 <ArrowRight size={16} /></Link>
+    </div>
+  </div>
+
+  <div className="wallet-compare__card">
+    <div className="wallet-compare__header">
+      <Server size={20} />
+      <h3>v0 — Electrum</h3>
+    </div>
+    <p className="wallet-compare__audience">最适合已有 BIP39 种子或需要使用外部服务器的用户。</p>
+    <ul className="wallet-compare__features">
+      <li>即时加载您的完整交易历史记录</li>
+      <li>兼容任何行业标准的助记词</li>
+    </ul>
+    <div className="wallet-compare__footer">
+      <Link className="button button--secondary wallet-compare__cta" to="/wallets/twallet/v0">开始使用 v0 <ArrowRight size={16} /></Link>
+    </div>
+  </div>
+</div>
+
+:::tip[正在使用 Lokihub？]
+如果您打算通过仪表板管理闪电网络节点，请先从 **v1** 开始，然后 [设置 Lokihub](/lokihub/setup)。
+:::
+
+## 快速入门
+
+选定版本后，设置大约需要 5 分钟：
+
+1. **下载** 适合您操作系统的版本。
+2. **备份** 您的助记词。将其写下来并 **切勿泄露**。
+3. **同步** —— 让钱包追赶上网络进度（最多几分钟）。
+4. **接收** —— 生成一个地址并接收您的首批代币。
+
+## 社区与支持
+
+有问题？社区非常活跃且友好。
+
+- **Discord**: 加入 [#tWallet 频道](https://flokicoin.org/discord) 获取实时帮助。
+- **GitHub**: [浏览代码或提交问题](https://github.com/flokiorg/twallet)。

@@ -1,0 +1,48 @@
+---
+slug: /wof/sharenote
+title: Sharenote
+description: 透明的挖掘工作提供商
+---
+
+import ScratchReveal from '@site/src/components/ScratchReveal'; // eslint-disable-line no-unused-vars
+
+## 摘要
+
+Sharenote 是一种由矿工控制的工作量证明票据：每一个被接受的份额 (share) 都会铸造一个经过签名的 sharenote，这是一种关于矿工所解决工作的持票人记录。Sharenotes 可以用于社交互动、解决挖矿区块、购买情报等。矿工能够保持对模板选择和支付结算的控制权。更多信息请访问 [sharenote.xyz](https://sharenote.xyz)。
+
+## 动机
+
+即使在算力不断增长的情况下，矿工仍然依赖于少数几家工作提供商巨头（<ScratchReveal>Foundry USA</ScratchReveal> · <ScratchReveal>AntPool</ScratchReveal> · <ScratchReveal>F2Pool</ScratchReveal> · <ScratchReveal>ViaBTC</ScratchReveal>）。有两个突出的问题：
+
+**不透明的支付结算**
+- 除了单机挖矿，矿工很少知道他们提交的份额是如何转化为奖励的。支付逻辑存在于专有的控制面板内部。
+- 尽管第三方工具会估算收益，但矿工必须相信他们的份额被正确计算，而不是被重新优先级化分配给另一个客户。
+
+**隐藏的区块模板价值**
+- 矿池可以在区块模板中嵌入辅助链或自定义策略，而不披露额外的奖励。
+- 在工作组装之前，矿工没有任何渠道可以检查或提出更改建议，即使是使用他们的算力铸造了额外的价值。
+
+WoF 旨在围绕 Nostr 和工作量支持的激励机制重新设计日常互联网服务。如果没有透明的支付和模板，矿工将始终依赖于中心化的工作提供商，从而削弱了 WoF 关于参与者控制互动的使命。
+
+## Sharenote 概念总结（草案）
+
+Sharenote 是连接 Web of Fun (WoF) 所愿景的充满趣味、工作量支持服务与矿工日常工作之间的纽带。每一个被接受的份额都变成了一张经过签名的收据，矿工可以对其进行指向、重定向或销毁。这张收据就是一个 sharenote：它是计算工作已经发生的切实证明，也是一张可编程的门票，可以用于社交互动、解决挖矿区块、购买情报等。
+
+其生命周期刻意设计得很简单：
+- **铸造 (Mint)** – 矿工从工作提供商处接受模板，执行哈希工作，并看到产生的份额被捕获为 sharenote。
+- **记录 (Record)** – 一个伴随应用对 sharenote 进行签名，并将其作为“由中继器传输的笔记和其它内容 (Nostr)”事件发布，以便矿工授权的任何人都可以审计该流。
+- **花费 (Spend)** – 矿工赎回 sharenote 用于社交互动、解决挖矿区块、购买情报等；也可以将其销毁；或者将其作为可审计的支付收据保留。
+
+Sharenote 让矿工而非矿池掌握主动权。矿工可以比较模板，追踪每个模板铸造了多少 sharenote，并决定支持哪些模板。矿池运营商获得了一个渠道来发布模板更改、支付调整和异常警报，而无需让矿工猜测。观察者——如钱包开发者、会计工具或社区审计员——可以关注 Nostr 订阅源来构建控制面板，而无需依赖封闭的后台或网页抓取。
+
+由于这项“趣味增强提案 (FEP)”仍处于草案阶段，Sharenote 坚持“在不破坏现有事物的前提下 (WBET)”进行推广。Stratum 流量保持流动，伴随应用在后台监听、签名份额并广播，而不会中断主客户端。这种渐进式的路径允许矿工在致力于公共中继或模板治理仪式之前，逐个矿池地私下测试 Sharenote。
+
+## 状态与后续步骤
+
+Sharenote 目前是一项 FEP 草案。近期的工作包括：
+- 确定 NIP 引用，或为 sharenote 特定事件创建新的 NIP。
+- 构建原型中继器/客户端栈，以便与志愿者矿池进行测试。
+- 遵循 WBET 阶段，确保 sharenote 能够与现有的挖矿流程干净地协同工作。
+
+如果您想参与，请加入 WoF Discord (#WoF) 并寻找 Sharenote 讨论帖。
+更多信息请访问 [sharenote.xyz](https://sharenote.xyz)。

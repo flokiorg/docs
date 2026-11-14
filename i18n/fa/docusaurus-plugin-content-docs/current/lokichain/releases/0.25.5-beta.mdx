@@ -1,0 +1,31 @@
+---
+title: 0.25.5-beta
+description: "نکات برجسته فلوکی‌کوین کور (Flokicoin Core) نسخه 0.25.5-beta شامل ارتقای PSBT، نقاط بازبینی (checkpoints) جدید و تغییر نام فایل‌های اجرایی CLI."
+sidebar_position: 3
+---
+
+لطفاً مشکلات را با استفاده از سیستم گزارش در گیت‌هاب اعلام کنید:
+
+https://github.com/flokiorg/go-flokicoin/issues
+
+## تغییرات مهم
+
+- اضافه شدن نقاط بازبینی (checkpoints) جدید بلاک‌چین، از جمله در بلاک ۰ و ارتفاع‌های بالاتر.
+- بهبود مدیریت PSBT: پشتیبانی از کلیدهای عمومی گسترده (XPubs) و اعتبارسنجی مسیر.
+- اضافه شدن پوشش تست برای سریال‌سازی و دی‌سریال‌سازی مسیر BIP32 در PSBT.
+- بهبود اعتبارسنجی حداقل طول مسیر در PSBT.
+- بهبود اعتبارسنجی برچسب زمانی (timestamp) هدر بلوک.
+- به‌روزرسانی mempool، txscript و wallet برای استفاده از `maps.Copy` جهت مدیریت ایمن‌تر و تمیزتر مپ‌ها.
+- اصلاح غلط املایی: تغییر ثابت PSBT از `XpubType` به `XPubType`.
+- رفع مشکلات جزئی در کدگذاری/کدگشایی PSBT و کامنت‌ها.
+- تغییر نام `flokicoin-cli` به `flokicoind-cli` در تمامی فایل‌های اجرایی، مسیرهای پیکربندی و مستندات.
+
+## دارایی‌ها (Assets)
+
+| سیستم‌عامل/معماری | لینک دانلود |
+| --- | --- |
+| macOS (Apple Silicon) | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.5-beta/flokicoind-darwin-arm64-v0.25.5-beta.tar.gz |
+| macOS (Intel) | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.5-beta/flokicoind-darwin-amd64-v0.25.5-beta.tar.gz |
+| Linux x86_64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.5-beta/flokicoind-linux-amd64-v0.25.5-beta.tar.gz |
+| Linux arm64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.5-beta/flokicoind-linux-arm64-v0.25.5-beta.tar.gz |
+| Windows x86_64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.5-beta/flokicoind-windows-amd64-v0.25.5-beta.zip |

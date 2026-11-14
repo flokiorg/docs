@@ -1,0 +1,49 @@
+---
+title: 0.26.1-alpha
+description: Release notes for go-flokicoin v0.26.1-alpha adding CI and fixing 13 go vet findings surfaced by the first vet run under CI.
+sidebar_position: 1
+---
+
+<div className="release-header-meta release-header-left">
+  <a className="github-link release-github no-external-icon" href="https://github.com/flokiorg/go-flokicoin/releases/tag/v0.26.1-alpha" target="_blank" rel="noreferrer" title="View v0.26.1-alpha on GitHub">
+    <span className="release-header-label">GitHub</span>
+  </a>
+</div>
+
+Please report bugs using the issue tracker at GitHub:
+
+https://github.com/flokiorg/go-flokicoin/issues
+
+This release adds CI (build/vet/test on every push and PR) and fixes 13 `go vet` findings surfaced by the first real vet run under CI.
+
+## Highlights
+
+### CI
+- Added `.github/workflows/ci.yaml`: runs `go build`, `go vet`, and `go test` on push to `main` and on pull requests.
+
+### Fixes
+- **`rpcclient`**: fixed bare IPv6 literal handling in `ParseAddressString`.
+- **`peer`**, **`mining/cpuminer`**: two call sites passed an already-formatted error string as the format string itself to `Errorf` — a real risk if the message ever contains a literal `%`. Switched to passing the string as an argument.
+- **`mining`**: fixed a wrong format verb for `feePerKB` in a log line.
+- **`chainjson`**: fixed a non-constant format string in the help-text writer.
+- **`server`**: switched a filter-type log call from `Debug` to `Debugf` so its arguments are actually interpolated.
+- **`txscript`**: fixed the format verb used for `ScriptInfo` in a test failure message.
+- **`crypto/schnorr/musig2`**: stopped calling `t.Fatalf` from worker goroutines (not safe outside the test's own goroutine).
+- **`blockchain`**: removed unreachable code left after a disabled rule-activation warning path; switched two disabled tests from a bare `return` to `t.Skip` so they're reported as skipped rather than silently doing nothing.
+- **`integration`**: switched a disabled invalidate/reconsider block test from a bare `return` to `t.Skip`.
+- **`wire`**: removed a duplicate `return` statement in an auxpow test helper.
+
+All 13 are mechanical vet-driven fixes — no behavioral changes to consensus, signing, or networking logic.
+
+## Assets
+
+| OS/Arch | Asset |
+| --- | --- |
+| macOS (Apple Silicon) | https://github.com/flokiorg/go-flokicoin/releases/download/v0.26.1-alpha/lokid-darwin-arm64-v0.26.1-alpha.tar.gz |
+| macOS (Intel) | https://github.com/flokiorg/go-flokicoin/releases/download/v0.26.1-alpha/lokid-darwin-amd64-v0.26.1-alpha.tar.gz |
+| Linux x86_64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.26.1-alpha/lokid-linux-amd64-v0.26.1-alpha.tar.gz |
+| Linux arm64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.26.1-alpha/lokid-linux-arm64-v0.26.1-alpha.tar.gz |
+| Windows x86_64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.26.1-alpha/lokid-windows-amd64-v0.26.1-alpha.zip |
+| Windows 32-bit | https://github.com/flokiorg/go-flokicoin/releases/download/v0.26.1-alpha/lokid-windows-386-v0.26.1-alpha.zip |
+
+Additional builds (ppc64, mips, *BSD, illumos/solaris) are available on the [GitHub release page](https://github.com/flokiorg/go-flokicoin/releases/tag/v0.26.1-alpha).

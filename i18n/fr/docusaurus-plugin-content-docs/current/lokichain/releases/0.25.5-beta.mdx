@@ -1,0 +1,31 @@
+---
+title: 0.25.5-beta
+description: "Points forts de Flokicoin Core 0.25.5-beta incluant les mises à jour PSBT, de nouveaux points de contrôle et le renommage des téléchargements CLI."
+sidebar_position: 3
+---
+
+Veuillez signaler les bogues en utilisant le gestionnaire de problèmes sur GitHub :
+
+https://github.com/flokiorg/go-flokicoin/issues
+
+## Changements notables
+
+- Ajout de nouveaux points de contrôle (checkpoints) de la blockchain, y compris au bloc 0 et aux hauteurs ultérieures.
+- Amélioration de la gestion des PSBT : prise en charge des clés publiques étendues (XPubs) et validation du chemin.
+- Ajout d'une couverture de tests PSBT pour la sérialisation/désérialisation du chemin BIP32.
+- Amélioration de la validation de la longueur minimale du chemin PSBT.
+- Amélioration de la validation de l'horodatage de l'en-tête de bloc.
+- Mise à jour de mempool, txscript et wallet pour utiliser `maps.Copy` pour une manipulation des maps plus sûre et plus propre.
+- Correction d'une erreur de frappe : correction de la constante PSBT de `XpubType` à `XPubType`.
+- Correction de problèmes mineurs dans l'encodage/décodage des PSBT et les commentaires.
+- Renommage de `flokicoin-cli` en `flokicoind-cli` pour tous les binaires, chemins de configuration et documentation.
+
+## Actifs (Assets)
+
+| OS/Arch | Actif |
+| --- | --- |
+| macOS (Apple Silicon) | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.5-beta/flokicoind-darwin-arm64-v0.25.5-beta.tar.gz |
+| macOS (Intel) | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.5-beta/flokicoind-darwin-amd64-v0.25.5-beta.tar.gz |
+| Linux x86_64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.5-beta/flokicoind-linux-amd64-v0.25.5-beta.tar.gz |
+| Linux arm64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.5-beta/flokicoind-linux-arm64-v0.25.5-beta.tar.gz |
+| Windows x86_64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.5-beta/flokicoind-windows-amd64-v0.25.5-beta.zip |

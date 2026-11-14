@@ -1,0 +1,117 @@
+---
+title: 0.25.7-beta
+description: "ملاحظات الإصدار لـ Flokicoin Core 0.25.7-beta والتي تقدم ضبط صعوبة Digishield وتنشيط AuxPoW وبنيات المنصات المختلفة."
+sidebar_position: 1
+---
+
+يرجى الإبلاغ عن الأخطاء (bugs) باستخدام متتبع المشكلات على GitHub:
+
+https://github.com/flokiorg/go-flokicoin/issues
+
+هذا إصدار بيتا فرعي من Flokicoin Core يتضمن خوارزمية جديدة لإعادة استهداف الصعوبة لكل كتلة (بأسلوب Digishield)، ودعم ترويسة وإجماع AuxPoW، وتحديثات ميزات شبكة الاختبار (testnet)، وتصحيحات RPC، وتحسينات في البناء والاختبار. يجدول هذا الإصدار `التنشيط على الشبكة الرئيسية (MAINNET ACTIVATION)` لكل من Digishield و AuxPoW عبر معاملات السلسلة. يجب على جميع عقد الشبكة الرئيسية الترقية قبل ارتفاعات التنشيط المذكورة أدناه لتجنب انقسام السلسلة (chain splits).
+
+## تغييرات ملحوظة
+
+- **الإجماع: إعادة استهداف صعوبة Digishield**
+  - يقدم إعادة استهداف بالمتوسط المتحرك الأسي لكل كتلة باتجاه الزمن المستهدف مع مقسم سعة قدره 8.
+  - يطبق تخميداً محدوداً في كل خطوة (بحد أدنى 0.75x، وبحد أقصى 1.5x من تأثير الزمن المستهدف) لتقليل التقلبات.
+  - يدعم الصعوبة الدنيا في الكتل المتأخرة حيثما تم تمكينه بواسطة معاملات السلسلة.
+  - يتكامل في عمليات التحقق والتعدين (التالي المطلوب للبتات، وهدف قالب الكتلة) ويوسع اختبارات الوحدات والكتل الكاملة.
+
+- **P2P/البروتوكول: دعم ترويسة AuxPoW**
+  - يضيف هياكل AuxPoW (coinbase، وفروع ميركل، والترويسة الرئيسية) وأدوات التسلسل المساعدة.
+  - يوسع `BlockHeader` بعلامة AuxPoW وأدوات معرف السلسلة (ChainID) بالإضافة إلى تشفير/فك تشفير حمولة AuxPoW الاختياري.
+  - يحدث فك تشفير `MsgBlock` لتحليل حمولات AuxPoW عند وجودها؛ ويضيف تغطية لمسارات القراءة/الكتابة.
+  - **الإجماع:** يتم تنشيط AuxPoW على الشبكة الرئيسية عند الارتفاع المدرج أدناه.
+
+- **تحديثات شبكة الاختبار/regtest**
+  - تمكين ميزات SegWit و Taproot على شبكة الاختبار حيثما تم تكوينها.
+  - ضبط `MinHighPriority` وزيادة حد `MaxLoki` المستخدم في التحقق من مبالغ RPC.
+
+- **تصحيحات وتحسينات RPC**
+  - مواءمة إصدار بروتوكول P2P المبلغ عنه مع `wire.ProtocolVersion` وملء حقول `getinfo` (الإصدار الفرعي، الخدمات المحلية، الاتصالات الواردة/الصادرة، العناوين المحلية) من حالة الخادم المباشرة.
+
+- **الأدوات والاختبارات**
+  - إضافة هدف `make testexport` ومصدر بيانات اختبار حتمي.
+  - توحيد محمل مجموعة بيانات الكتل مع التحقق الإلزامي من "سحر الشبكة" (network-magic)؛ وإعادة هيكلة مواقع الاستدعاء.
+  - إضافة تحقق من الصعوبة من البداية إلى النهاية (E2E) على مجموعات بيانات مختارة وإصدار مقاييس الضبط للحالة المستقرة.
+
+- **البناء والتكوين**
+  - إلغاء تجاوز `replace` المحلي لـ `flokicoin-neutrino` لتجنب المسارات الخاصة بالمطورين فقط.
+  - طباعة شعار بدء تشغيل واحد مع الإصدار الدلالي أثناء تحميل التكوين؛ إعادة هيكلة ثوابت ASCII-art.
+
+## التوافقية
+
+- ستقوم الشبكة الرئيسية بتنشيط Digishield و AuxPoW عند ارتفاعات ثابتة (أدناه). هذه تغييرات في الإجماع وتشكل انقساماً كلياً (hard fork) عند التنشيط. يجب على جميع المعدنين والموثقين والخدمات الترقية قبل تلك الارتفاعات.
+- يظل دعم بروتوكول AuxPoW متوافقاً مع الإصدارات السابقة للترويسات التي لا تدعم AuxPoW حتى ارتفاع التنشيط.
+- لم يتم إدخال أي تغييرات على تنسيق قاعدة البيانات.
+
+## جدول التنشيط (الشبكة الرئيسية)
+
+- **إعادة استهداف صعوبة Digishield:** يتم تنشيطه عند الارتفاع 115,000 (`DigishieldActivationHeight` في `chaincfg/params.go`).
+- **إجماع AuxPoW:** يتم تنشيطه عند الارتفاع 115,840 (`AuxpowHeightEffective` في `chaincfg/params.go`).
+
+تم تعيين هذه التنشيطات في `repos/flokiorg/go-flokicoin/chaincfg/params.go` ضمن `MainNetParams`.
+
+## ملاحظات الترقية
+
+- **مشغلو عقد الشبكة الرئيسية:** قم بالترقية إلى 0.25.7-beta قبل الارتفاعين 115,000 (Digishield) و 115,840 (AuxPoW) للبقاء في السلسلة الرسمية.
+- **يجب على مشغلي شبكة الاختبار/regtest** الترقية للمشاركة في سياسات الصعوبة والميزات المحدثة.
+- **يجب على مطوري التطبيقات** إعادة تحديث التبعيات (re-vendor)/التحديث لالتقاط إصلاحات مخطط RPC وإضافات البروتوكول المتعلقة بـ AuxPoW.
+
+## تغييرات RPC
+
+- يبلغ `getinfo` الآن بدقة عن `subversion` و `localservices` و `localservicesnames` و `connections_in` و `connections_out` و `localaddresses`.
+- يتوافق الحد الأقصى لإصدار البروتوكول المبلغ عنه مع `wire.ProtocolVersion` (70016).
+
+## نظام البناء والأدوات
+
+- هدف `make testexport` جديد لتصدير مجموعات بيانات الكتل للاختبارات الحتمية.
+- تمت إزالة `replace` المحلي لـ `flokicoin-neutrino` لإنتاج رسوم بيانية نظيفة للوحدات في البنيات.
+
+## الاختبارات وضمان الجودة
+
+- يفرض محمل الكتل الموحد سحر الشبكة (network magic) ويستخدم قراءات كاملة الطول ومخزنة مؤقتاً.
+- إضافة تحقق الصعوبة E2E مع إخراج المقاييس لتحليل الحالة المستقرة.
+- تعمل مجموعات بيانات الاختبار المختارة والأصغر على تحسين الحتمية ووقت التكامل المستمر (CI).
+
+## سجل التغييرات منذ [v0.25.6-beta](/lokichain/releases/0.25.6-beta)
+
+- b4f439e consensus: add Digishield difficulty retarget
+- dec0948 wire: integrate AuxPoW header support
+- 31eff16 chore: repo updates for rpc/db, tests, fixtures
+- e2ac6e7 tests: validate difficulty dataset and expose tuning metrics
+- 735410f tests: unify block loader to enforce network magic; refactor call sites
+- 0e5dcd3 make: add testexport target for exporting block datasets
+- 651a453 rpc: report correct p2p protocol and fill getinfo fields
+- bea6a7a build: drop local replace for flokicoin-neutrino
+- 2e92497 config: print startup banner with version; refactor art constants
+- b24e870 wire: remove stale TODO comment in protocol.go
+- 60460f8 enable segiwit/taproot for testnet
+- f9bf3ae increase maxloki const
+- 712355d update MinHighPriority const
+- fa96bbd bump version 0.25.7-dev
+- 4523b79 version: bump to 0.25.7-beta
+
+## الاعتمادات
+
+شكراً لكل من ساهم بشكل مباشر في هذا الإصدار:
+
+- naliyi
+- izimmerma
+- mechion
+- repins
+- nanovex
+- liarpo11
+- arowqo
+- thiniboy
+
+## الأصول (Assets)
+
+| نظام التشغيل/المعمارية | الرابط |
+| --- | --- |
+| macOS (Apple Silicon) | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.7-beta/flokicoind-darwin-arm64-v0.25.7-beta.tar.gz |
+| macOS (Intel) | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.7-beta/flokicoind-darwin-amd64-v0.25.7-beta.tar.gz |
+| Linux x86_64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.7-beta/flokicoind-linux-amd64-v0.25.7-beta.tar.gz |
+| Linux arm64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.7-beta/flokicoind-linux-arm64-v0.25.7-beta.tar.gz |
+| Windows x86_64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.7-beta/flokicoind-windows-amd64-v0.25.7-beta.zip |

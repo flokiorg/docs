@@ -1,0 +1,7 @@
+{
+  "label": "tWallet",
+  "position": 3,
+  "collapsed": true,
+  "collapsible": true,
+  "link": { "type": "doc", "id": "wallets/twallet/index" }
+}

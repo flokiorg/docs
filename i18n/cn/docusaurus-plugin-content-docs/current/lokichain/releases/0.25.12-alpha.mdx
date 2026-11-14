@@ -1,0 +1,49 @@
+---
+title: 0.25.12-alpha
+description: "go-flokicoin v0.25.12-alpha 发行说明，涵盖费用估算改进、持久化更新及其它要点。"
+sidebar_position: -1
+---
+
+<div className="release-header-meta release-header-left">
+  <a className="github-link release-github no-external-icon" href="https://github.com/flokiorg/go-flokicoin/releases/tag/v0.25.12-alpha" target="_blank" rel="noreferrer" title="在 GitHub 上查看 v0.25.12-alpha">
+    <span className="release-header-label">GitHub</span>
+  </a>
+</div>
+
+请在 GitHub 上使用问题报告器报告 Bug：
+
+https://github.com/flokiorg/go-flokicoin/issues
+
+此版本对费用估算逻辑进行了重大改进，包括磁盘原子持久化、更好的历史记录追踪以及更智能的移除原因处理。
+
+## 升级说明
+
+- 费用估算器快照现在以 `fee_estimates.dat` 的形式保存在数据目录下（原子读/写）。请确保守护进程在关闭时有权限写入该目录；启动时将忽略超过约 60 小时的陈旧文件。
+
+## 要点变更
+
+- **费用估算**
+  - 可追踪多达 1008 个区块的历史记录，并对长周期查询进行限制而非拒绝，与 Bitcoin Core 行为保持一致 (`mempool/estimatefee.go`)。
+  - 记录内存池移除原因，以便未确认的掉落（冲突、重组、驱逐、拒绝）能清除估算器状态并减少陈旧观察数据 (`mempool` 管道, `netsync/manager.go`, `rpcserver.go`)。
+  - `estimatesmartfee` 现在支持 `economical` (经济) 或 `conservative` (保守) 模式（默认为保守），并能清晰报告无效模式；结果现在包含一个显式的 `errors` 字段 (`rpcserver.go`)。
+- **持久化**
+  - 费用估算器状态在关闭时原子化保存到磁盘，并在启动且数据新鲜时恢复；陈旧数据会提示错误并被跳过。辅助程序和测试涵盖了二进制格式和最大时长强制执行 (`mempool/fee_persist*.go`, `server.go`)。
+
+## 显著提交 (计划批次)
+
+- mempool: 在费用估算中追踪移除原因；将历史追踪扩大至 1008 个区块并限制查询。
+- mempool: 通过原子化写入和陈旧性检查将费用估算器持久化到磁盘。
+- 为 MuSig2 添加了聚合随机数 (nonce) 签名流，包括更新的上下文处理和详尽测试。
+
+## 资源文件 (Assets)
+
+| 操作系统/架构 | 资源链接 |
+| --- | --- |
+| macOS (Apple Silicon) | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.12-alpha/lokid-darwin-arm64-v0.25.12-alpha.tar.gz |
+| macOS (Intel) | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.12-alpha/lokid-darwin-amd64-v0.25.12-alpha.tar.gz |
+| Linux x86_64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.12-alpha/lokid-linux-amd64-v0.25.12-alpha.tar.gz |
+| Linux arm64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.12-alpha/lokid-linux-arm64-v0.25.12-alpha.tar.gz |
+| Windows x86_64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.12-alpha/lokid-windows-amd64-v0.25.12-alpha.zip |
+| Windows 32-bit | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.12-alpha/lokid-windows-386-v0.25.12-alpha.zip |
+
+其它构建版本 (ppc64, mips, *BSD, illumos/solaris) 可以在 [GitHub 发行页面](https://github.com/flokiorg/go-flokicoin/releases/tag/v0.25.12-alpha) 找到。

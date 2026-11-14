@@ -1,0 +1,62 @@
+---
+title: 0.25.10-beta
+description: "Flokicoin Core 0.25.10-beta 发行说明，涵盖 lokid 守护进程更名、检查点更新、RPC 正确性及同步稳定性更新。"
+sidebar_position: 0
+---
+
+<div className="release-header-meta release-header-left">
+  <a className="github-link release-github no-external-icon" href="https://github.com/flokiorg/go-flokicoin/releases/tag/v0.25.10-beta" target="_blank" rel="noreferrer" title="在 GitHub 上查看 v0.25.10-beta">
+    <span className="release-header-label">GitHub</span>
+  </a>
+</div>
+
+请在 GitHub 上使用问题报告器报告 Bug：
+
+https://github.com/flokiorg/go-flokicoin/issues
+
+此版本提高了 RPC 的正确性，改进了同步启发式算法，更新了检查点，并重命名了守护进程/命令行 (CLI) 二进制文件。请及时升级以保持与网络同步并启用新的 `lokid`/`lokid-cli` 名称。
+
+## 升级说明
+
+- 守护进程和命令行工具已重命名为 `lokid` 和 `lokid-cli`（之前为 `flokicoind`/`flokicoind-cli`）。请相应地更新服务文件、脚本和容器入口点。
+
+## 要点变更
+
+- **共识与检查点**
+  - 更新了主网检查点直至区块高度 209,771，以加快初始同步速度。
+- **网络与同步**
+  - 改进了出站节点组追踪，并确保节点响应 `getblocks` 请求，减少了靠近区块顶端时的同步停滞。
+  - 在节点已处于最新状态时细化了下载调度，以避免冗余抓取。
+  - 优化了区块头/消息的序列化，以增强 I/O 路径的稳定性。
+- **RPC**
+  - `getblockchaininfo` 现在根据最佳节点的区块头推导验证进度；`getblock` 公开了更丰富的区块细节。
+  - `getrawtransaction` 的响应类型和帮助文本现在与负载相匹配；`createrawtransaction` 强制执行更严格的金额验证。
+  - 添加了区块统计聚合功能，支持 `getblockstats`（费用/大小百分位数、UTXO 增量）。
+  - `getinfo` 现在报告正确的 P2P 协议版本并填充缺失字段。
+- **内存池与验证**
+  - 将数值范围切换为完整的 `int64` 范围，并在计算 `MaxLoki`/费用策略时为粉尘检查 (dust checks) 添加了溢出保护。
+  - 验证错误现在能正确输出转换后的 `MaxLoki` 值，以避免出现误导性信息。
+- **工具与测试**
+  - 添加了确定性区块数据集生成器 (`make testexport`) 并更新了固件 (fixtures) 以提高 CI 稳定性。
+  - 加强了难度/统计信息以及出站组计算的测试覆盖范围。
+
+## 显著提交 (按时间顺序)
+
+- 工具/固件更新及 `testexport` 辅助程序 ([`31eff16`](https://github.com/flokiorg/go-flokicoin/commit/31eff16), [`0e5dcd3`](https://github.com/flokiorg/go-flokicoin/commit/0e5dcd3))。
+- RPC/构建修复，涉及协议版本报告及横幅 ([`651a453`](https://github.com/flokiorg/go-flokicoin/commit/651a453), [`2e92497`](https://github.com/flokiorg/go-flokicoin/commit/2e92497))。
+- `MaxLoki` 范围的策略安全及粉尘溢出保护 ([`9d9eef1`](https://github.com/flokiorg/go-flokicoin/commit/9d9eef1), [`5b583c0`](https://github.com/flokiorg/go-flokicoin/commit/5b583c0))。
+- RPC 正确性更新及区块统计包 ([`4483bfa`](https://github.com/flokiorg/go-flokicoin/commit/4483bfa), [`ed3f11b`](https://github.com/flokiorg/go-flokicoin/commit/ed3f11b), [`04bfa8b`](https://github.com/flokiorg/go-flokicoin/commit/04bfa8b))。
+- 守护进程更名、检查点、同步/P2P/RPC 优化，最终定稿 0.25.10-beta ([`66a4658`](https://github.com/flokiorg/go-flokicoin/commit/66a4658), [`037c55c`](https://github.com/flokiorg/go-flokicoin/commit/037c55c), [`9f457dd`](https://github.com/flokiorg/go-flokicoin/commit/9f457dd), [`3388ec1`](https://github.com/flokiorg/go-flokicoin/commit/3388ec1), [`3d115e4`](https://github.com/flokiorg/go-flokicoin/commit/3d115e4), [`5eadc7b`](https://github.com/flokiorg/go-flokicoin/commit/5eadc7b), [`91a004e`](https://github.com/flokiorg/go-flokicoin/commit/91a004e), [`fbbef28`](https://github.com/flokiorg/go-flokicoin/commit/fbbef28))。
+
+## 资源文件 (Assets)
+
+| 操作系统/架构 | 资源链接 |
+| --- | --- |
+| macOS (Apple Silicon) | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.10-beta/lokid-darwin-arm64-v0.25.10-beta.tar.gz |
+| macOS (Intel) | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.10-beta/lokid-darwin-amd64-v0.25.10-beta.tar.gz |
+| Linux x86_64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.10-beta/lokid-linux-amd64-v0.25.10-beta.tar.gz |
+| Linux arm64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.10-beta/lokid-linux-arm64-v0.25.10-beta.tar.gz |
+| Windows x86_64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.10-beta/lokid-windows-amd64-v0.25.10-beta.zip |
+| Windows 32-bit | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.10-beta/lokid-windows-386-v0.25.10-beta.zip |
+
+其它构建版本 (ppc64, mips, *BSD, illumos/solaris) 可以在 [GitHub 发行页面](https://github.com/flokiorg/go-flokicoin/releases/tag/v0.25.10-beta) 找到。

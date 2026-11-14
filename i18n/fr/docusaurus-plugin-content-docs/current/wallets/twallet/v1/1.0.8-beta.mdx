@@ -1,0 +1,77 @@
+---
+title: 1.0.8-beta
+description: "Notes de version pour tWallet v1.0.8-beta avec une récupération guidée, une intégration plus stable, une interface utilisateur affinée et des dépendances Lightning actualisées."
+sidebar_position: 3
+---
+
+<div className="release-header-meta release-header-left">
+  <a className="github-link release-github no-external-icon" href="https://github.com/flokiorg/tWallet/releases/tag/v1.0.8-beta.2" target="_blank" rel="noreferrer" title="Voir v1.0.8-beta.2 sur GitHub">
+    <span className="release-header-label">GitHub</span>
+  </a>
+</div>
+
+:::info[Mise à jour Hotfix : v1.0.8-beta.2]
+**Publié le 19 déc. 2025**
+
+Un correctif a été poussé pour résoudre des problèmes spécifiques sur **Windows** et mettre à jour les dépendances de base.
+*   **Correctifs Windows** : Résolution des problèmes de saisie au clavier et de redimensionnement de fenêtre (via la mise à niveau de `tcell`).
+*   **Stabilité de l'UI** : Suppression de la protection anti-redimensionnement de la TUI pour un rendu plus fluide.
+*   **Dépendances** : Mise à jour des versions de `flnd` et `tcell`.
+
+Nous recommandons à tous les utilisateurs de Windows de passer immédiatement à la version **beta.2**. Les liens de téléchargement ci-dessous ont été mis à jour vers cette version.
+:::
+
+Veuillez signaler les bogues en utilisant le gestionnaire de problèmes sur GitHub :  
+https://github.com/flokiorg/tWallet/issues
+
+Cette version bêta se concentre sur des flux de démarrage/récupération plus fluides, une intégration plus claire, des affinements de l'interface utilisateur, une mise en cache renforcée et des dépendances actualisées.
+
+## Changements
+
+### Démarrage et récupération
+- Ajout d'un chemin de récupération guidé qui efface les fichiers cache Neutrino et redémarre le service du portefeuille en cas d'échec du démarrage (appuyez sur R sur l'écran d'accueil).
+- Le démarrage bloque désormais jusqu'à ce que le service signale un état sain ; les conditions de panne/EOF affichent des instructions claires pour récupérer ou quitter.
+
+### Restauration et intégration
+- Le flux de restauration surveille la progression de la récupération, affiche des notifications toast et attend que le RPC soit prêt avant d'entrer dans l'application principale.
+- Les transitions de création/restauration de graine évitent une navigation prématurée en suivant l'état de restauration et en attendant la disponibilité du portefeuille.
+
+### Interface utilisateur du portefeuille
+- Les commutateurs/boutons ont gagné des couleurs configurables et maintiennent le style actif en synchronisation avec l'état.
+- La copie du code de chiffrement est désormais confirmée par une notification toast ; les messages du flux de réception sont plus clairs.
+- La TUI saute les dessins lorsque le terminal rapporte des dimensions nulles et efface l'écran après le retour à une taille valide, empêchant les crashs de redimensionnement et les cadres obsolètes.
+- L'en-tête du solde affiche toujours les fonds non confirmés, même lorsque des fonds verrouillés sont présents, afin de maintenir la cohérence de l'exposition en attente.
+
+### Configuration et valeurs par défaut
+- L'exemple de config documente `transactiondisplaylimit`, précisant qu'il limite le nombre de transactions affichées (et non récupérées).
+- Les valeurs par défaut de la CLI définissent désormais une limite d'affichage des transactions et clarifient les conseils sur l'URL des frais ; l'exemple de config documente la réponse attendue de l'API de frais.
+
+### Stabilité, mise en cache et surveillance
+- Le cache de chargement suit désormais les soldes et la hauteur du sommet de la chaîne ; les notifications mettent à jour le sommet lors de nouveaux blocs/transactions.
+- La surveillance de la récupération réessaie jusqu'à ce que le RPC du portefeuille soit prêt et signale la fin de la récupération.
+
+### Dépendances
+- Passage à `flnd` **v0.1.8-beta** et `walletd` **v0.1.5-beta**.
+- VERSION définie sur **1.0.8-beta**.
+
+## Exemple de configuration
+
+```ini title="Extrait de twallet.conf"
+; Limite le nombre de transactions affichées (l'ensemble récupéré reste inchangé)
+transactiondisplaylimit=50
+; Le format du point de terminaison de frais recommandé reste le même
+feeurl=https://flokichain.info/api/v1/fees/recommended
+```
+
+## Actifs
+
+| OS/Arch | Actif |
+| --- | --- |
+| macOS (Apple Silicon) | https://github.com/flokiorg/tWallet/releases/download/v1.0.8-beta.2/twallet-darwin-arm64-v1.0.8-beta.2.tar.gz |
+| macOS (Intel) | https://github.com/flokiorg/tWallet/releases/download/v1.0.8-beta.2/twallet-darwin-amd64-v1.0.8-beta.2.tar.gz |
+| Linux x86_64 | https://github.com/flokiorg/tWallet/releases/download/v1.0.8-beta.2/twallet-linux-amd64-v1.0.8-beta.2.tar.gz |
+| Linux arm64 (Raspberry Pi) | https://github.com/flokiorg/tWallet/releases/download/v1.0.8-beta.2/twallet-linux-arm64-v1.0.8-beta.2.tar.gz |
+| Windows x86_64 | https://github.com/flokiorg/tWallet/releases/download/v1.0.8-beta.2/twallet-windows-amd64-v1.0.8-beta.2.zip |
+| Windows 32-bit | https://github.com/flokiorg/tWallet/releases/download/v1.0.8-beta.2/twallet-windows-386-v1.0.8-beta.2.zip |
+
+D'autres builds (ppc64, mips et *BSD) sont disponibles sur la [page des versions GitHub](https://github.com/flokiorg/tWallet/releases/tag/v1.0.8-beta.2).

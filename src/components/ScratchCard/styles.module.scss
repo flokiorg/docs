@@ -1,0 +1,77 @@
+.card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid rgba(95, 60, 227, 0.25);
+  background: rgba(95, 60, 227, 0.08);
+  padding: 1.25rem;
+  cursor: pointer;
+  transition: box-shadow 0.18s ease, transform 0.18s ease, border-color 0.18s ease;
+  outline: none;
+
+  &:focus-visible {
+    box-shadow: 0 0 0 3px rgba(95, 60, 227, 0.35);
+    border-color: rgba(95, 60, 227, 0.5);
+  }
+
+  &:hover:not(.revealed) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(95, 60, 227, 0.18);
+  }
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+}
+
+.prompt {
+  position: absolute;
+  inset: auto 1rem 1rem 1rem;
+  z-index: 2;
+  padding: 0.4rem 0.75rem;
+  background: rgba(17, 16, 26, 0.72);
+  color: #f5f3ff;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+.revealed {
+  cursor: default;
+  border-color: rgba(95, 60, 227, 0.4);
+  background: rgba(95, 60, 227, 0.12);
+
+  .prompt,
+  .canvas {
+    display: none;
+  }
+}
+
+html[data-theme='dark'] .card {
+  border-color: rgba(159, 123, 255, 0.32);
+  background: rgba(159, 123, 255, 0.12);
+
+  &:focus-visible {
+    box-shadow: 0 0 0 3px rgba(159, 123, 255, 0.4);
+    border-color: rgba(159, 123, 255, 0.55);
+  }
+
+  &:hover:not(.revealed) {
+    box-shadow: 0 8px 24px rgba(159, 123, 255, 0.25);
+  }
+}
+
+html[data-theme='dark'] .prompt {
+  background: rgba(15, 14, 28, 0.78);
+  color: #efe9ff;
+}
