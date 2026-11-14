@@ -1,0 +1,80 @@
+---
+slug: /economy
+title: Economía
+description: Sigue la emisión de Flokicoin, la cadencia de halvings, la emisión de cola, las proyecciones de inflación y las métricas de suministro en tiempo real.
+---
+import EconomyNow from '@site/src/components/EconomyNow'; // eslint-disable-line no-unused-vars
+import Amount from '@site/src/components/Amount'; // eslint-disable-line no-unused-vars
+import rewardOverTimeImage from '@site/docs/economy/reward_over_time.webp';
+import supplyOverTimeImage from '@site/docs/economy/supply_over_time.webp';
+import inflationRateImage from '@site/docs/economy/inflation_rate_over_10_years.webp';
+
+
+## Cómo Funciona el Dinero
+La política monetaria de Flokicoin está programada en el código fuente. Cada número en esta página es verificable en la cadena — sin sorpresas, sin cambios a puerta cerrada.
+
+## Cifras Clave
+
+- **Tiempo de bloque** — 1 minuto.
+- **Halving** — Cada 210.000 bloques (~5 meses).
+- **Recompensa inicial** — <Amount value={1000} /> FLC por bloque.
+- **Emisión de cola** — Un permanente <Amount value={21} /> FLC por bloque una vez finalicen los halvings.
+- **Madurez de la coinbase** — 300 bloques (~5 horas antes de poder gastar las monedas minadas).
+
+## Cómo Cambia la Recompensa por Bloque a lo Largo del Tiempo
+La recompensa comienza alta y se reduce a la mitad según un calendario fijo. Una vez que caería por debajo de <Amount value={21} />, se mantiene ahí permanentemente. Esa es la emisión de cola: un presupuesto de seguridad permanente que mantiene a los mineros incentivados indefinidamente.
+
+:::important[Por qué importa la emisión de cola]
+La mayoría de las cadenas con un límite máximo de suministro eventualmente dependerán únicamente de las comisiones de transacción para pagar a los mineros. Flokicoin evita esa apuesta con una pequeña recompensa por bloque constante que nunca se detiene.
+:::
+
+## Calendario de Recompensas
+
+| Bloques             | Recompensa                    | Fecha aprox. de halving | Suministro acumulado (millones de FLC) |
+|---------------------|------------------------------:|-------------------------|---------------------------------------:|
+| → 210.000           | <Amount value={1000} />        | 2025-11-26              | 210,00                                 |
+| 210.000 → 420.000   | <Amount value={500} />         | 2026-04-20              | 315,00                                 |
+| 420.000 → 630.000   | <Amount value={250} />         | 2026-09-13              | 367,50                                 |
+| 630.000 → 840.000   | <Amount value={125} />         | 2027-02-06              | 393,75                                 |
+| 840.000 → 1.050.000 | <Amount value={62.5} decimals={1} />  | 2027-07-02        | 406,88                                 |
+| 1.050.000 → 1.260.000 | <Amount value={31.25} decimals={2} /> | 2027-11-25      | 413,44                                 |
+| 1.260.000+          | <Amount value={21} /> (fijo)   | —                       | -                                      |
+
+<img src={rewardOverTimeImage.src ?? rewardOverTimeImage} alt="Reward over Time" className="themed-graph" />
+
+<img src={supplyOverTimeImage.src ?? supplyOverTimeImage} alt="Supply over Time" className="themed-graph" />
+
+
+## Inflación a Largo Plazo
+
+Una vez que comience la emisión de cola, se acuñan nuevas monedas a una tasa fija de <Amount value={11037600} /> FLC por año. Dado que el suministro total sigue creciendo, la tasa de inflación disminuye cada año:
+
+### Definiciones
+
+- Emisión anual E = R × B, donde R es la recompensa por bloque (<Amount value={21} />) y B es el número de bloques por año (525.600).
+- Inflación anual (%) = (E ÷ suministro total al inicio del año) × 100.
+
+:::note
+Las proyecciones asumen que el intervalo promedio entre bloques se mantiene cerca de 1 minuto. La emisión en el mundo real varía según las condiciones de la red.
+:::
+
+| Año  | Suministro total<br />(millones de FLC) | Tasa de inflación anual<br />(%) |
+|-----:|----------------------------------------:|---------------------------------:|
+| 1    | 424,48                                  | 2,67                             |
+| 2    | 435,51                                  | 2,60                             |
+| 3    | 446,55                                  | 2,53                             |
+| 4    | 457,59                                  | 2,47                             |
+| 5    | 468,63                                  | 2,41                             |
+| 6    | 479,67                                  | 2,36                             |
+| 7    | 490,70                                  | 2,30                             |
+| 8    | 501,74                                  | 2,25                             |
+| 9    | 512,78                                  | 2,20                             |
+| 10   | 523,82                                  | 2,15                             |
+
+<img src={inflationRateImage.src ?? inflationRateImage} alt="Projection: Inflation rate over 10 years" className="themed-graph" />
+
+## Métricas en Tiempo Real
+
+Datos en tiempo real de la red Flokicoin:
+
+<EconomyNow />

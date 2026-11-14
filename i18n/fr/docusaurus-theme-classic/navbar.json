@@ -1,0 +1,38 @@
+{
+  "title": {
+    "message": "Lokiwiki",
+    "description": "The title in the navbar"
+  },
+  "logo.alt": {
+    "message": "Logo Flokicoin",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.Wallets": {
+    "message": "Portefeuilles",
+    "description": "Navbar item with label Wallets"
+  },
+  "item.label.Lokichain": {
+    "message": "Lokichain",
+    "description": "Navbar item with label Lokichain"
+  },
+  "item.label.Economy": {
+    "message": "Économie",
+    "description": "Navbar item with label Economy"
+  },
+  "item.label.Mining": {
+    "message": "Minage",
+    "description": "Navbar item with label Mining"
+  },
+  "item.label.Lokihub": {
+    "message": "Lokihub",
+    "description": "Navbar item with label Lokihub"
+  },
+  "item.label.Web of Fun": {
+    "message": "Web of Fun",
+    "description": "Navbar item with label Web of Fun"
+  },
+  "item.label.Donate": {
+    "message": "Faire un don",
+    "description": "Navbar item with label Donate"
+  }
+}

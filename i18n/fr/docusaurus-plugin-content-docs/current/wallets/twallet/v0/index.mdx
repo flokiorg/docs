@@ -1,0 +1,163 @@
+---
+slug: /wallets/twallet/v0
+title: tWallet v0 (Electrum)
+description: "Guide d'installation pour le mode tWallet v0 Electrum avec des exemples de configuration, les limitations et le téléchargement des versions."
+sidebar_position: 1
+---
+
+import Link from '@docusaurus/Link';
+import { History } from 'lucide-react';
+
+v0 est la lignée héritée de tWallet. Elle se connecte à un serveur Electrum qui indexe la blockchain et répond aux requêtes du portefeuille.
+
+## Electrum
+- Electrum est un protocole de client léger : le serveur maintient un index ; les clients interrogent les soldes, l'historique et diffusent les transactions.
+- **Simplicité** : Rapide à démarrer, synchronisation minimale.
+- **Compromis** : Vous faites confiance à la vue du serveur sur la chaîne. Les serveurs publics voient également vos schémas de requêtes.
+
+### Configuration d'Electrum
+
+:::note[Vous n'êtes pas un utilisateur technique ou vous ne voulez pas vous occuper de l'installation ?]
+Consultez l'option communautaire plug-and-play : https://myfloki.com/operator
+:::
+
+:::tip
+Besoin d'aide ou d'un point de terminaison Electrum prêt à l'emploi ?  
+Rejoignez le **Discord Flokicoin** ; les membres de la communauté peuvent partager des instances Electrum publiques.  
+👉 [Rejoindre le Discord](https://flokicoin.org/discord)
+:::
+
+Pour utiliser **tWallet v0**, vous devez exécuter votre propre serveur compatible Electrum.  
+Pour Flokicoin, l'implémentation de référence est [`flokicoin-electrs`](https://github.com/flokiorg/flokicoin-electrs), un fork de `electrs` qui indexe la chaîne et sert à la fois les API Electrum et [Esplora](https://github.com/Blockstream/esplora/blob/master/API.md).
+
+#### Exigences
+- Un **démon de nœud complet Flokicoin entièrement synchronisé** (`lokid`)  
+- Identifiants RPC pour votre nœud (`rpcuser` / `rpcpassword`)  
+- Espace disque pour la base de données d'index Electrum (`--db-dir`)
+
+#### Exemple de commande d'exécution
+```bash
+electrs -vvv \
+  --network mainnet \
+  --db-dir /data \
+  --jsonrpc-import \
+  --daemon-rpc-addr <HOTE_NOEUD_FLOKICOIN>:15213 \
+  --electrum-rpc-addr 0.0.0.0:50001 \
+  --http-addr 0.0.0.0:3000 \
+  --cookie <RPCUSER>:<RPCPASS> \
+  --enable-json-rpc-logging \
+  --index-unspendables
+```
+
+Remplacez :
+- `<HOTE_NOEUD_FLOKICOIN>` → nom d'hôte ou IP de votre `lokid`  
+- `<RPCUSER>` / `<RPCPASS>` → vos identifiants RPC du démon
+
+Une fois en cours d'exécution, pointez `twallet.conf` vers votre serveur :
+
+```ini title="twallet.conf (exemple)"
+electserver = 127.0.0.1:50001
+```
+
+## Limitations de tWallet v0 vs v1
+
+- **Adresses** : format d'adresse Flokicoin hérité uniquement (pas de génération segwit/taproot).
+- **Pas de démon Lightning intégré** : FLND n'est pas inclus.
+- **Format de graine** : mnémonique [BIP39](https://bips.dev/39/) (différent de l'aezeed de la v1).
+
+:::tip
+Vous restaurez une graine [BIP39](https://bips.dev/39/) existante ? Utilisez la v0. La v1 (aezeed) n'est pas compatible avec le [BIP39](https://bips.dev/39/).
+:::
+
+**Statut** : Les points de terminaison Electrum publics listés précédemment sont obsolètes. Préférez votre propre serveur ou un fournisseur communautaire de confiance.
+
+## Installation
+
+Dernière build v0 connue : 0.1.1-alpha
+
+| OS/Arch | Actif |
+| --- | --- |
+| macOS (Apple Silicon) | https://github.com/flokiorg/tWallet/releases/download/v0.1.1-alpha/twallet-darwin-arm64-v0.1.1-alpha.tar.gz |
+| macOS (Intel) | https://github.com/flokiorg/tWallet/releases/download/v0.1.1-alpha/twallet-darwin-amd64-v0.1.1-alpha.tar.gz |
+| Linux x86_64 | https://github.com/flokiorg/tWallet/releases/download/v0.1.1-alpha/twallet-linux-amd64-v0.1.1-alpha.tar.gz |
+| Linux arm64 (Raspberry Pi) | https://github.com/flokiorg/tWallet/releases/download/v0.1.1-alpha/twallet-linux-arm64-v0.1.1-alpha.tar.gz |
+| Windows x86_64 | https://github.com/flokiorg/tWallet/releases/download/v0.1.1-alpha/twallet-windows-amd64-v0.1.1-alpha.zip |
+
+Extrayez et rendez le binaire exécutable le cas échéant :
+
+```bash
+tar -xvf twallet-*.tar.gz
+chmod +x twallet
+```
+
+## Configuration
+
+Créez un fichier `twallet.conf` à côté du binaire et pointez-le vers votre serveur Electrum :
+
+```ini title="twallet.conf (v0 minimal)"
+electserver = electrum.example.com:50001
+# timeout = 10s
+```
+
+<details>
+<summary><b>Exemple complet (v0) — Cliquez pour agrandir</b></summary>
+
+```ini title="Exemple complet (v0)"
+; Répertoire pour la base de données du portefeuille
+; walletdir = /private/link/flc/db
+
+; Paramètres réseau (un seul peut être vrai)
+; Si regtest et testnet sont tous deux faux, mainnet sera utilisé par défaut.
+; Utiliser le réseau de test de régression
+; regtest = false
+; Utiliser le réseau de test
+; testnet = false
+
+; Délai d'attente de connexion à la base de données (en secondes)
+timeout = 10s
+
+; Configuration du serveur Electrum (hote:port)
+electserver = electrum.example.com:50001
+
+# Frais pour les transactions lentes (en loki/vB)
+# feeslow = 1
+
+# Frais pour les transactions moyennes (en loki/vB)
+# feemedium = 2
+
+# Frais pour les transactions rapides (en loki/vB) # disponible sur v0.1.1
+# feefast = 3
+```
+
+</details>
+
+## Exécution
+
+Sur macOS/Linux :
+
+```bash
+./twallet
+```
+
+Sur Windows :
+
+```powershell
+twallet.exe
+```
+
+Si votre système d'exploitation signale le binaire, autorisez-le explicitement.
+
+<div className="wallet-releases-card">
+  <div className="wallet-releases-content">
+    <h3>Historique des Versions Héritées</h3>
+    <p>Accédez aux notes techniques complètes et aux actifs binaires multiplateformes pour toutes les versions historiques de tWallet v0 (Electrum).</p>
+  </div>
+  <div className="wallet-releases-action">
+    <Link className="wallet-action-button" to="/wallets/twallet/v0/releases"><span><History size={18} /></span><span>Voir l'Archive</span></Link>
+  </div>
+</div>
+
+## Sécurité
+- Sauvegardez votre phrase de graine (24 mots recommandés) et testez la restauration.
+- Définissez une phrase secrète de dépense et verrouillez votre portefeuille lorsqu'il est inactif.
+- Gardez tWallet à jour : https://github.com/flokiorg/tWallet/releases

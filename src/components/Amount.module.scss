@@ -1,0 +1,44 @@
+.amount {
+  font-variant-numeric: tabular-nums; /* align digits nicely */
+  white-space: nowrap;
+}
+
+.inline {
+  color: var(--ifm-color-primary);
+  font-weight: 500;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.125rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--ifm-toc-border-color);
+  background: var(--ifm-background-surface-color);
+  color: var(--ifm-font-color-base);
+  font-weight: 600;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.25rem;
+  background: var(--ifm-color-primary);
+  color: var(--ifm-color-emphasis-0);
+  font-weight: 700;
+}
+
+.code {
+  opacity: 0.8;
+  // margin-left: 0.25rem;
+}
+
+.icon {
+  display: inline-block;
+  width: 0.9em;
+  height: 0.9em;
+}
+

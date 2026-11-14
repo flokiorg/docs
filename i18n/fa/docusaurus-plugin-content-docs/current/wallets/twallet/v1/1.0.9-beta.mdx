@@ -1,0 +1,51 @@
+---
+title: 1.0.9-beta
+description: "یادداشت‌های انتشار tWallet v1.0.9-beta شامل رابط داخلی لایتنینگ، مودال جدید پیکربندی، و باز کردن خودکار قفل در اولین اجرا."
+sidebar_position: 2
+---
+
+<div className="release-header-meta release-header-left">
+  <a className="github-link release-github no-external-icon" href="https://github.com/flokiorg/tWallet/releases/tag/v1.0.9-beta" target="_blank" rel="noreferrer" title="مشاهده نسخه v1.0.9-beta در گیت‌هاب">
+    <span className="release-header-label">GitHub</span>
+  </a>
+</div>
+
+لطفاً باگ‌ها را از طریق سیستم گزارش موجود در گیت‌هاب اعلام کنید:
+
+https://github.com/flokiorg/tWallet/issues
+
+این نسخه شامل یک رابط داخلی اختصاصی برای شبکه لایتنینگ است و یک بخش پیکربندی برای مدیریت نود به آن اضافه شده است.
+
+## تغییرات قابل توجه
+
+### رابط داخلی شبکه لایتنینگ
+کیف پول اکنون از یک استراتژی جدید برای مدیریت رابط‌های داخلی استفاده می‌کند. لایه مدیریت اتصال و منطق سرویس‌ها به داخل `tWallet` منتقل شده است که باعث جداسازی اپلیکیشن از مخزن خارجی `FLND` می‌شود. این کار باعث ایجاد یک رابط پایدار و اختصاصی برای تمامی عملیات لایتنینگ در داخل اپلیکیشن شده است.
+
+### به‌روزرسانی‌های پیکربندی
+- اضافه شدن نگاشت برای گزینه‌های پیکربندی اضافی `flnd` و همگام‌سازی مقادیر پیش‌فرض جهت اطمینان از سازگاری با پیاده‌سازی اصلی لایتنینگ.
+
+### جدید: مودال پیکربندی لایتنینگ
+یک مودال جدید برای پیکربندی از طریق میانبر `Ctrl+N` در دسترس است.
+
+- **جزئیات اتصال**: نمایش آدرس RPC، آدرس همتا (Peer) و کلید عمومی شناسه (Identity PubKey).
+- **اطلاعات دسترسی (Credentials)**: خروجی Macaroon و گواهی TLS در فرمت هگز (Hex) برای پیکربندی ابزارهای خارجی مانند `LokiHub` ، `flncli` یا داشبوردهای تحت وب.
+- **حافظه موقت (Clipboard)**: پیاده‌سازی مکانیزم کپی جدید کراس‌پلتفرم با پشتیبانی قوی (مانند OSC 52 و دستورات بومی سیستم‌عامل) برای استفاده راحت در محیط‌های محلی و ریموت.
+
+### باز شدن خودکار قفل در اولین اجرا
+برای پشتیبانی از استقرار خودکار و جریان‌های کاری Ops، گزینه جدید `autounlock` به پیکربندی اضافه شده است.
+- **راه‌اندازی خودکار**: هنگامی که این گزینه در کنار `defaultpassword` فعال باشد، کیف پول در اولین اجرای اپلیکیشن، بدون نیاز به تعامل کاربر و به صورت بی‌صدا قفل خود را باز می‌کند.
+- **رابط کاربری مخفی**: فرم باز کردن قفل در طول فرآیند خودکار پنهان می‌شود و تنها یک نشانگر وضعیت نمایش داده می‌شود.
+- **امنیت**: این رفتار فقط به اولین اجرا محدود می‌شود؛ قفل و باز کردن‌های دستی بعدی برای حفظ امنیت همچنان نیاز به وارد کردن رمز عبور دارند.
+
+## فایل‌های اجرایی
+
+| سیستم‌عامل/معماری | فایل |
+| --- | --- |
+| macOS (Apple Silicon) | https://github.com/flokiorg/tWallet/releases/download/v1.0.9-beta/twallet-darwin-arm64-v1.0.9-beta.tar.gz |
+| macOS (Intel) | https://github.com/flokiorg/tWallet/releases/download/v1.0.9-beta/twallet-darwin-amd64-v1.0.9-beta.tar.gz |
+| Linux x86_64 | https://github.com/flokiorg/tWallet/releases/download/v1.0.9-beta/twallet-linux-amd64-v1.0.9-beta.tar.gz |
+| Linux arm64 (Raspberry Pi) | https://github.com/flokiorg/tWallet/releases/download/v1.0.9-beta/twallet-linux-arm64-v1.0.9-beta.tar.gz |
+| Windows x86_64 | https://github.com/flokiorg/tWallet/releases/download/v1.0.9-beta/twallet-windows-amd64-v1.0.9-beta.zip |
+| Windows 32-bit | https://github.com/flokiorg/tWallet/releases/download/v1.0.9-beta/twallet-windows-386-v1.0.9-beta.zip |
+
+سایر نسخه‌های ساخت (ppc64, mips و *BSD) در [صفحه نسخه‌های گیت‌هاب](https://github.com/flokiorg/tWallet/releases/tag/v1.0.9-beta) در دسترس هستند.

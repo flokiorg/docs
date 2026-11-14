@@ -1,0 +1,75 @@
+---
+sourceTitle: "Features"
+title: "Fonctionnalités"
+description: "Aperçu des capacités de Lokihub, y compris la gestion du portefeuille, les canaux, NWC et la configuration des services."
+sidebar_position: 4
+---
+
+# Fonctionnalités
+
+Lokihub fournit tout ce dont vous avez besoin pour faire fonctionner un nœud Lightning en auto-conservation (self-custodial).
+
+## Portefeuille Lightning
+
+Envoyez et recevez des fonds via des canaux Lightning et des transactions on-chain.
+
+**Capacités :**
+- **Envoyer & Recevoir** — Créez des factures Lightning et payez d'autres personnes
+- **On-Chain** — Transactions Flokicoin classiques
+- **Sous-portefeuilles** — Portefeuilles séparés pour différents usages
+- **Historique** — Visualisez toutes les transactions on-chain et Lightning
+
+:::tip
+L'unité monétaire par défaut de Lokihub est le **Loki**. `1 FLC = 100 000 000 Loki`.
+:::
+
+## Gestion des Canaux
+
+Les canaux Lightning vous permettent d'effectuer des paiements instantanés. Lokihub vous aide à les gérer.
+
+**Fonctionnalités :**
+- **Ouvrir des Canaux** — Connectez-vous à d'autres nœuds pour activer le routage
+- **Fermer des Canaux** — Fermez les canaux et récupérez les fonds on-chain
+- **Contrôle Manuel** — Ouvrez/fermez des canaux vers des pairs spécifiques
+- **Visualisation de la Liquidité** — Voyez combien vous pouvez envoyer (sortant) vs recevoir (entrant)
+
+
+## Gestion des Pairs
+
+Affichez et gérez vos connexions au réseau Lightning.
+
+- Voir les pairs connectés
+- Ajouter de nouveaux pairs manuellement
+- Se déconnecter des pairs dont vous n'avez plus besoin
+- Mettre à jour l'alias du nœud
+
+## Connexions d'Applications (NWC)
+
+Connectez des applications externes à votre nœud Lightning en utilisant [**Nostr WalletConnect**](https://nwc.dev) (NWC).
+
+NWC est un standard ouvert qui permet aux applications de demander des paiements depuis votre portefeuille sans détenir vos clés. Vous accordez des permissions et pouvez révoquer l'accès à tout moment.
+
+**Comment ça marche :**
+1. Ouvrez une application qui supporte NWC
+2. Dans Lokihub, générez une chaîne de connexion
+3. Scannez le code QR ou collez la chaîne de connexion dans l'application
+4. Accordez les permissions (lecture seule, envoi jusqu'à un montant X, etc.)
+5. Utilisez l'application — elle peut désormais demander des paiements à votre nœud
+
+**Exemples de ce que vous pouvez connecter :**
+- Applications sociales nécessitant des "zaps" ou des pourboires
+- Services nécessitant une autorisation de paiement
+- Toute application compatible NWC
+
+Pour en savoir plus sur le standard NWC, visitez [nwc.dev](https://nwc.dev).
+
+## Liberté de Services
+
+Lokihub est conçu pour être géré par la communauté. Les utilisateurs peuvent soumettre des Pull Requests pour ajouter leurs propres services. C'est vous qui choisissez.
+
+**Services Configurables :**
+- **LSP** — Fournisseur de services Lightning (LSP) pour la liquidité entrante
+- **Nostr Relay** — Routage des messages pour les connexions NWC
+- **Explorateur de Blocs** — Consultation et surveillance des transactions
+
+Changez de fournisseur à tout moment dans les paramètres Services. [En savoir plus →](/lokihub/services)

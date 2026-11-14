@@ -1,0 +1,64 @@
+---
+slug: /mining
+title: Minería
+description: Guía completa de minería de Flokicoin que cubre requisitos de hardware, merge mining con AuxPoW, pasos de configuración y seguridad operativa.
+---
+
+
+
+
+import { Rocket, Users, User, Handshake, FlaskConical } from 'lucide-react';
+
+
+## Empieza a Ganar Flokicoin
+La minería es la forma en que ayudas a asegurar la red y ganas monedas al hacerlo. Flokicoin utiliza el algoritmo **Scrypt**, lo que significa que puedes minarlo junto con Litecoin y Dogecoin.
+
+### ¿Por Qué Minar Flokicoin?
+- **Algoritmo Scrypt** — Únete a un ecosistema de minería reconocido globalmente, utilizado por LTC y DOGE.
+- **Apoya la red** — Cada minero contribuye a mantener Flokicoin descentralizado y resiliente.
+- **AuxPoW (Merge Mining)** — Gana Flokicoin "gratis" mientras minas otras monedas Scrypt.
+
+:::warning[Seguridad Ante Todo]
+La minería consume muchos recursos de hardware. Mantén tu equipo de minería separado de los datos personales, asegúrate de que permanezca refrigerado y descarga software únicamente de fuentes confiables.
+:::
+
+## Inicio Rápido en 3 Pasos
+1. **Elige tu hardware** — ASIC Scrypt para minería seria, GPU si eres aficionado.
+2. **Únete a un pool** — Pagos regulares en lugar de esperar semanas por un bloque en solitario. [Explorar pools](/mining/pools).
+3. **Apunta y gana** — Configura la dirección stratum de tu pool y tu monedero FLC como nombre de usuario.
+
+## Guía de Hardware
+
+| Configuración | Dificultad  | Recomendado para     |
+| :---          | :---        | :---                 |
+| **ASIC**      | Fácil       | **Máximas Ganancias** |
+| **GPU**       | Moderada    | **Minería de Aficionado** |
+| **CPU**       | Fácil       | **Solo Testnet/Aprendizaje** |
+
+## Conceptos Básicos de la Red
+- **Algoritmo**: Scrypt
+- **Tiempo de Bloque**: 1 Minuto
+- **Merge Mining**: Compatible (gana monedas gratis mientras minas LTC/DOGE)
+
+## Formas de Minar
+
+### Unirse a un Pool (Recomendado)
+Trabaja junto con otros para encontrar bloques. Recibes una parte de las recompensas según tu contribución. [Consulta los pools](/mining/pools).
+
+### Minería en Solitario (Avanzado)
+Mina por tu cuenta. Te quedas con la recompensa completa de cada bloque que encuentres, pero los pagos pueden ser infrecuentes.
+
+### Merge Mining (AuxPoW)
+Si tu pool lo admite, puedes minar Flokicoin *al mismo tiempo* que Litecoin o Dogecoin sin usar electricidad adicional.
+
+## Aplicaciones de Minería
+- **GPU NVIDIA**: [ccminer](https://github.com/tpruvot/ccminer)
+- **GPU AMD/NVIDIA**: [nevermore](https://github.com/brian112358/nevermore-miner)
+- **Soporte ASIC**: [CGMiner](https://github.com/ckolivas/cgminer) o [BFGMiner](https://github.com/luke-jr/bfgminer)
+
+### Pruébalo en Testnet
+Si estás aprendiendo, prueba a minar con tu CPU en nuestra testnet:
+- [GMiner](/mining/gminer) — Una herramienta sencilla de minería CPU para practicar.
+
+## Soporte
+Únete al canal [#mining](https://flokicoin.org/discord) en Discord para obtener ayuda.

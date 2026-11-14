@@ -1,0 +1,127 @@
+---
+title: کیف‌پول‌ها
+sidebar_label: مرور کلی
+description: کیف‌پول مناسب نیازهای خود را انتخاب کنید. از ابزارهای ترمینال برای کاربران پیشرفته تا رابط‌های گرافیکی کاربرپسند.
+sidebar_position: 0
+---
+
+import Link from '@docusaurus/Link';
+
+# کیف‌پول‌های Flokicoin
+
+برای تعامل با شبکه Flokicoin، به یک مکان امن برای مدیریت کلیدهای خود نیاز دارید. چه کاربر پیشرفته‌ای باشید که به پشتیبانی Lightning نیاز دارد، چه مبتدی که به دنبال رابط ساده است، ما گزینه‌ای برای شما داریم.
+
+<div className="row">
+  {/* --- Tap Wallet --- */}
+  <div className="col col--6 margin-bottom--lg">
+    <div className="card shadow--md" style={{height: '100%', display: 'flex', flexDirection: 'column'}}>
+      <div className="card__header">
+        <h3>Tap Wallet (PWA)</h3>
+      </div>
+      <div className="card__body" style={{flex: '1 1 auto'}}>
+        <p><strong>ساده‌ترین راه برای شروع.</strong> یک کیف‌پول سبک و موبایل‌محور که مستقیماً در مرورگر شما اجرا می‌شود یا به عنوان Mini App در Discord و Telegram.</p>
+        <ul>
+          <li>بدون نیاز به نصب از فروشگاه برنامه</li>
+          <li>اتصال به حساب‌های Discord و Telegram</li>
+          <li>تجربه Tap Days و فاست</li>
+        </ul>
+      </div>
+      <div className="card__footer">
+        <Link className="button button--primary button--block" to="/wallets/tap-wallet">دریافت Tap Wallet</Link>
+      </div>
+    </div>
+  </div>
+
+  {/* --- Lokinode Card --- */}
+  <div className="col col--6 margin-bottom--lg">
+    <div className="card shadow--md" style={{height: '100%', display: 'flex', flexDirection: 'column'}}>
+      <div className="card__header">
+        <h3>Lokinode (GUI)</h3>
+      </div>
+      <div className="card__body" style={{flex: '1 1 auto'}}>
+        <p>کلاینت دسکتاپ بومی برای Flokicoin Lightning Network. گره Lightning خود را به عنوان یک سرویس پس‌زمینه بدون وقفه مستقر و اجرا کنید.</p>
+        <ul>
+          <li>سرویس پس‌زمینه بومی</li>
+          <li>مدیریت پروفایل‌های گره</li>
+          <li>کیف‌پول On-chain داخلی</li>
+        </ul>
+      </div>
+      <div className="card__footer">
+        <Link className="button button--secondary button--block button--lazereyes" to="/wallets/lokinode">دریافت Lokinode</Link>
+      </div>
+    </div>
+  </div>
+
+  {/* --- tWallet --- */}
+  <div className="col col--6 margin-bottom--lg">
+    <div className="card shadow--md" style={{height: '100%', display: 'flex', flexDirection: 'column'}}>
+      <div className="card__header">
+        <h3>tWallet</h3>
+      </div>
+      <div className="card__body" style={{flex: '1 1 auto'}}>
+        <p><strong>انتخاب کاربران پیشرفته.</strong> یک کیف‌پول سریع مبتنی بر ترمینال (TUI) با گره Lightning داخلی. ایده‌آل برای کسانی که کنترل کامل و حریم خصوصی را بدون حجم اضافی می‌خواهند.</p>
+        <ul>
+          <li>Lightning Network یکپارچه</li>
+          <li>متمرکز بر حریم خصوصی (Neutrino)</li>
+          <li>سریع، سبک، و کم‌مصرف</li>
+        </ul>
+      </div>
+      <div className="card__footer">
+        <Link className="button button--secondary button--block" to="/wallets/twallet">دریافت tWallet</Link>
+      </div>
+    </div>
+  </div>
+
+  {/* --- flnd --- */}
+  <div className="col col--6 margin-bottom--lg">
+    <div className="card shadow--md" style={{height: '100%', display: 'flex', flexDirection: 'column'}}>
+      <div className="card__header">
+        <h3>flnd (Daemon)</h3>
+      </div>
+      <div className="card__body" style={{flex: '1 1 auto'}}>
+        <p><strong>انتخاب اپراتورهای گره.</strong> یک daemon شبکه Lightning و کیف‌پول پرکارایی. موتور اتوماسیون و عملیات گره قوی.</p>
+        <ul>
+          <li>تجربه کامل Daemon و CLI</li>
+          <li>API قوی gRPC/REST</li>
+          <li>ایده‌آل برای گره‌های سرور ۲۴/۷</li>
+        </ul>
+      </div>
+      <div className="card__footer">
+        <Link className="button button--secondary button--block" to="/wallets/flnd">کاوش flnd</Link>
+      </div>
+    </div>
+  </div>
+
+  {/* --- Komodo --- */}
+  <div className="col col--6 margin-bottom--lg">
+    <div className="card shadow--md" style={{height: '100%', display: 'flex', flexDirection: 'column'}}>
+      <div className="card__header">
+        <h3>Komodo Wallet</h3>
+      </div>
+      <div className="card__body" style={{flex: '1 1 auto'}}>
+        <p>یک کیف‌پول چندسکه با رابط گرافیکی سنتی. مناسب برای کاربران روزمره در دسکتاپ یا موبایل.</p>
+        <ul>
+          <li>رابط کاربری گرافیکی (GUI)</li>
+          <li>پشتیبانی از آدرس‌های F و Segwit</li>
+          <li>کار بر روی موبایل، دسکتاپ، و وب</li>
+        </ul>
+      </div>
+      <div className="card__footer">
+        <Link className="button button--secondary button--block" to="/wallets/komodo-wallet">دریافت Komodo</Link>
+      </div>
+    </div>
+  </div>
+</div>
+
+## مقایسه سریع
+
+| ویژگی | Tap Wallet | Lokinode | tWallet | flnd | Komodo Wallet |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **رابط** | وب / Mini App | گرافیکی (GUI) | ترمینال (TUI) | خط فرمان (CLI) | گرافیکی (GUI) |
+| **Lightning** | خیر | بله (داخلی) | بله (داخلی) | بله (بومی) | خیر |
+| **تجربه** | مبتدی | مبتدی | متوسط | پیشرفته | مبتدی |
+| **بهترین برای** | موبایل و اجتماعی | گره دسکتاپ | حریم خصوصی دسکتاپ | اپراتورهای گره | کاربران روزمره |
+
+:::tip[از Lokihub استفاده می‌کنید؟]
+اگر قصد استفاده از [**Lokihub**](/lokihub) را دارید، به شدت توصیه می‌کنیم با [**Lokinode**](/wallets/lokinode) شروع کنید، زیرا backend بومی Lightning لازم برای عملیات گره را فراهم می‌کند.
+:::

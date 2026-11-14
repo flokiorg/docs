@@ -1,0 +1,28 @@
+.wikiButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.wikiButtonButton {
+  display: flex;
+  line-height: 2rem;
+}
+
+.wikiButtonIcon {
+  align-items: center;
+  display: inline-flex;
+  padding-right: 0.25rem;
+  svg {
+    height: 1.5rem;
+    width: 1.5rem;
+    display: inline-block;
+    justify-self: baseline;
+  }
+}
+
+.wikiButtonText {
+  display: inline-flex;
+  align-items: center;
+}

@@ -1,0 +1,336 @@
+---
+title: Tap Wallet
+description: La forma más fácil de empezar con Flokicoin. Una billetera multiplataforma para iOS, Android y escritorio sin requisitos de App Store.
+sidebar_position: 2
+hide_title: true
+hide_table_of_contents: true
+keywords: [Tap Wallet, Flokicoin, Discord Mini App, Telegram Mini App, iOS wallet, Android wallet, Desktop wallet, cross-platform]
+custom_edit_url: null
+---
+
+
+import Link from '@docusaurus/Link';
+import { Smartphone, Zap, Globe, MessageSquare, Award, Share2, MoreVertical, PlusSquare, Monitor, Wallet, ShieldCheck, Layers, Apple, Bot, Link as LinkIcon, PartyPopper } from 'lucide-react';
+import Image from '@theme/IdealImage';
+import tapHomeImage from '@site/docs/wallets/tapwallet_home.png';
+import Heading from '@theme/Heading';
+
+<div className="tap-hero-container">
+  <div className="container">
+    <div className="tap-hero-inner">
+      <div className="tap-hero-content">
+        <Heading as="h1" className="tap-hero-title">Tap Wallet</Heading>
+        <p className="tap-hero-subtitle">Una billetera. Todos los dispositivos. Acceso directo a FLC sin pasar por la App Store.</p>
+
+        <div className="hero-modern__actions tap-hero-actions-override">
+          <Link className="hero-button hero-button--primary no-external-icon" href="https://taploki.com/wallet">
+            <span><Globe size={18} /></span><span>Iniciar Billetera Web</span>
+          </Link>
+          <div className="tap-social-btns">
+            <Link className="hero-button no-external-icon" href="https://flokicoin.org/discord">
+              <span><MessageSquare size={18} /></span><span>Aplicación de Discord</span>
+            </Link>
+            <Link className="hero-button no-external-icon" href="https://t.me/taplokibot">
+              <span><Zap size={18} /></span><span>Bot de Telegram</span>
+            </Link>
+          </div>
+        </div>
+
+        <div className="tap-hero-faucet-card">
+          <div className="faucet-icon-wrapper"><Award size={22} /></div>
+          <div>
+            <strong>Tap Days y Grifo</strong>
+            <p>Ingresa un Código Tap y recibe FLC real en la cadena. Sin necesidad de registro.</p>
+          </div>
+        </div>
+      </div>
+
+      <div className="tap-hero-visual">
+        <div className="tap-visual-wrapper">
+          <Image img={tapHomeImage} alt="Tap Wallet" className="tap-main-screenshot" />
+          <div className="tap-visual-glow"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>{`
+  .tap-hero-container {
+    margin: 0 -2rem 4rem;
+    padding: 5rem 2rem 6rem;
+    /* Base color matching the theme */
+    background-color: var(--ifm-background-color);
+    background-image: 
+      radial-gradient(circle at 70% 30%, rgba(208, 151, 15, 0.1) 0%, rgba(208, 151, 15, 0) 70%),
+      radial-gradient(circle at 20% 80%, rgba(208, 151, 15, 0.04) 0%, rgba(208, 151, 15, 0) 60%);
+
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tap-hero-inner {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    align-items: center;
+    text-align: left;
+    gap: 4rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .tap-hero-content {
+    /* No flex: 1 needed in grid */
+  }
+
+  /* Typography */
+  .tap-hero-title {
+    font-size: clamp(2.2rem, 8vw, 4.5rem);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.04em;
+    color: var(--ifm-heading-color);
+    display: inline-block;
+  }
+
+  [data-theme='dark'] .tap-hero-title {
+    background: linear-gradient(135deg, #ffffff 0%, #f0b832 55%, rgba(255,255,255,0.85) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .tap-hero-subtitle {
+    font-size: clamp(1rem, 1.8vw, 1.3rem);
+    color: var(--ifm-color-emphasis-700);
+    margin: 0 0 2rem;
+    max-width: 580px;
+    line-height: 1.55;
+  }
+
+  /* Button row override */
+  .tap-hero-actions-override {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 1rem;
+    margin-bottom: 2rem !important;
+    margin-top: 0 !important;
+  }
+
+  .tap-social-btns {
+    display: flex;
+    gap: 1rem;
+    flex: 0 1 auto;
+  }
+
+  .tap-social-btns .hero-button {
+    flex: 1;
+    justify-content: center;
+    white-space: nowrap;
+  }
+
+  /* Faucet Card */
+  .tap-hero-faucet-card {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.1rem 1.4rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 18px;
+    max-width: 440px;
+    backdrop-filter: blur(12px);
+    text-align: left;
+  }
+
+  .tap-hero-faucet-card strong {
+    display: block;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--ifm-font-color-base);
+    margin-bottom: 0.2rem;
+  }
+
+  .tap-hero-faucet-card p {
+    margin: 0;
+    font-size: 0.875rem;
+    color: var(--ifm-color-emphasis-600);
+    line-height: 1.4;
+  }
+
+  .faucet-icon-wrapper {
+    flex-shrink: 0;
+    background: var(--ifm-color-primary);
+    color: #000;
+    padding: 10px;
+    border-radius: 12px;
+    display: flex;
+    box-shadow: 0 6px 14px rgba(208, 151, 15, 0.35);
+  }
+
+  /* Phone visual with 3D perspective */
+  .tap-hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1200px;
+  }
+
+  .tap-visual-wrapper {
+    position: relative;
+    transform: rotateY(-12deg) rotateX(2deg);
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .tap-visual-wrapper:hover {
+    transform: rotateY(-2deg) rotateX(0deg) scale(1.03);
+  }
+
+  .tap-main-screenshot {
+    width: 100%;
+    max-width: 260px;
+    border-radius: 36px;
+    box-shadow: 0 40px 100px -15px rgba(0,0,0,0.8);
+    display: block;
+    border: 1px solid rgba(255,255,255,0.1);
+    animation: tapFadeIn 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes tapFadeIn {
+    0% { 
+      opacity: 0; 
+      transform: translateY(60px) rotateY(-30deg) scale(0.8);
+      filter: blur(15px);
+    }
+    100% { 
+      opacity: 1; 
+      transform: translateY(0) rotateY(-12deg) scale(1);
+      filter: blur(0px);
+    }
+  }
+
+  .tap-visual-glow {
+    position: absolute;
+    inset: -20%;
+    background: radial-gradient(circle, rgba(208, 151, 15, 0.15) 0%, transparent 65%);
+    z-index: -1;
+    filter: blur(35px);
+    pointer-events: none;
+  }
+
+  @media (max-width: 996px) {
+    .tap-hero-container {
+      padding: 3.5rem 1.5rem 5rem;
+      margin: 0 -1rem 3rem;
+    }
+    .tap-hero-inner {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      gap: 2.5rem;
+    }
+    .tap-hero-subtitle {
+      margin: 0 auto 2rem;
+    }
+    .tap-hero-faucet-card {
+      margin: 0 auto;
+    }
+    .tap-visual-wrapper { transform: none !important; }
+    .tap-main-screenshot { max-width: 220px; }
+    .tap-hero-visual {
+      justify-content: center;
+    }
+    
+    .tap-hero-actions-override {
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .tap-hero-actions-override {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 0.5rem !important;
+    }
+    
+    .tap-social-btns {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 0.5rem !important;
+      width: 100%;
+      min-width: unset;
+    }
+  }
+`}</style>
+
+**Tap Wallet** es una aplicación de alto rendimiento que ofrece una experiencia fluida, similar a una app nativa, en todas las plataformas. Al evitar las tiendas de aplicaciones tradicionales, obtienes actualizaciones instantáneas y privacidad total sin fricciones.
+
+<div className="row margin-top--lg">
+  <div className="col col--4 margin-bottom--lg">
+    <div className="card shadow--md padding--lg" style={{height: '100%', background: 'rgba(255,255,255,0.01)', border: '1px solid rgba(255,255,255,0.04)'}}>
+      <Heading as="h3"><Smartphone size={20} style={{verticalAlign: 'middle', marginRight: '8px', color: 'var(--ifm-color-primary)'}} /> App en Pantalla de Inicio</Heading>
+      <p>Instálala directamente en la pantalla de inicio de tu <strong>iOS</strong> o <strong>Android</strong>. Se ve, se siente y se comporta como una aplicación dedicada.</p>
+    </div>
+  </div>
+  <div className="col col--4 margin-bottom--lg">
+    <div className="card shadow--md padding--lg" style={{height: '100%', background: 'rgba(255,255,255,0.01)', border: '1px solid rgba(255,255,255,0.04)'}}>
+      <Heading as="h3"><Monitor size={20} style={{verticalAlign: 'middle', marginRight: '8px', color: 'var(--ifm-color-primary)'}} /> Escritorio para Mineros</Heading>
+      <p>Un compañero perfecto para <strong>Mineros</strong> y usuarios avanzados. Ejecútalo como una aplicación dedicada en Windows, macOS o Linux.</p>
+    </div>
+  </div>
+  <div className="col col--4 margin-bottom--lg">
+    <div className="card shadow--md padding--lg" style={{height: '100%', background: 'rgba(255,255,255,0.01)', border: '1px solid rgba(255,255,255,0.04)'}}>
+      <Heading as="h3"><ShieldCheck size={20} style={{verticalAlign: 'middle', marginRight: '8px', color: 'var(--ifm-color-primary)'}} /> Sin Tiendas</Heading>
+      <p>No se requiere Apple App Store ni Google Play Store. Independencia total de los guardianes de las grandes tecnológicas.</p>
+    </div>
+  </div>
+</div>
+
+## <Smartphone size={24} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Inicio Rápido (Sin Tienda de Apps)
+
+Puedes instalar Tap Wallet directamente en tu dispositivo en segundos. Abre [taploki.com](https://taploki.com) en tu navegador y sigue estos pasos:
+
+<div className="row margin-top--lg">
+  <div className="col col--4 margin-bottom--md">
+    <div className="card padding--lg shadow--lw" style={{height: '100%'}}>
+      <Heading as="h3"><Apple size={22} style={{verticalAlign: 'middle', marginRight: '8px'}} /> iPhone (Safari)</Heading>
+      <ol style={{paddingLeft: '1.2rem', marginBottom: 0}}>
+        <li>Toca el icono de <strong>Compartir</strong> (<Share2 size={16} inline />) en la parte inferior.</li>
+        <li>Desplázate hacia abajo y selecciona <strong>Añadir a la pantalla de inicio</strong>.</li>
+      </ol>
+    </div>
+  </div>
+  <div className="col col--4 margin-bottom--md">
+    <div className="card padding--lg shadow--lw" style={{height: '100%'}}>
+      <Heading as="h3"><Bot size={22} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Android (Chrome)</Heading>
+      <ol style={{paddingLeft: '1.2rem', marginBottom: 0}}>
+        <li>Toca el icono de <strong>Menú</strong> (<MoreVertical size={16} />) en la parte superior derecha.</li>
+        <li>Selecciona <strong>Instalar aplicación</strong> o <strong>Añadir a la pantalla de inicio</strong>.</li>
+      </ol>
+    </div>
+  </div>
+  <div className="col col--4 margin-bottom--md">
+    <div className="card padding--lg shadow--lw" style={{height: '100%'}}>
+      <Heading as="h3"><Monitor size={22} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Escritorio (Chrome/Edge)</Heading>
+      <ol style={{paddingLeft: '1.2rem', marginBottom: 0}}>
+        <li>Haz clic en el icono de <strong>Instalar</strong> (<PlusSquare size={16} inline />) en el lado derecho de la barra de direcciones.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+## <LinkIcon size={24} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Una Billetera, en Todas Partes
+
+Vincula tu dirección de Flokicoin a tus cuentas sociales para desbloquear funciones multiplataforma. Tu FLC se mantiene sincronizado ya sea que estés en una computadora portátil o en tu teléfono.
+
+*   **Discord**: Únete al [Discord de Flokicoin](https://flokicoin.org/discord) y abre el **Lanzador de Apps**.
+*   **Telegram**: Inicia a través de [@taplokiBot](https://t.me/taplokibot).
+*   **Web**: Accede en cualquier momento en [taploki.com](https://taploki.com).
+
+## <PartyPopper size={24} style={{verticalAlign: 'middle', marginRight: '8px'}} /> Tap Days
+
+**Tap Days** son eventos comunitarios donde mineros y poseedores financian el grifo para que los nuevos usuarios puedan experimentar la red Flokicoin de primera mano. Durante estos eventos, se lanzan **Códigos Tap** (`TAP-XXXXXXXXXX`) por tiempo limitado exclusivamente en nuestras comunidades de Discord y Telegram.
+
+<Link className="no-external-icon" to="https://taploki.com/wallet">Comienza a usarlo hoy →</Link>

@@ -1,0 +1,192 @@
+---
+title: Services
+description: Configure Lightning Service Providers, Nostr relays, and block explorers for Lokihub.
+sidebar_position: 6
+---
+
+# Lokihub Services
+
+Lokihub uses external services for Lightning operations, [NWC](https://nwc.dev) communication, and blockchain lookups. You can choose from community defaults or configure your own.
+
+## Service Types
+
+### LSP (Lightning Service Provider)
+
+**Optional** — Provides inbound liquidity for receiving payments.
+
+When you open a Lightning channel, you can only send the funds you put in. To receive payments, you need inbound liquidity—either from natural channel balancing or from an LSP opening a channel to you.
+
+**What LSPs offer:**
+- Open channels to your node
+- Provide inbound liquidity
+- Just-in-time (JIT) channel creation
+
+**In Lokihub:**
+Select from community LSPs or add your own. Lokihub LSPs use the **LSPS specifications** ([LSPS0 to LSPS5](https://github.com/lightning/blips)) for standardized liquidity.
+
+### Nostr Relay
+
+Routes [NWC](https://nwc.dev) connection messages between your node and connected apps.
+
+When you connect an app via NWC, your node and the app communicate through a Nostr relay. The relay doesn't see payment data—just encrypted connection messages.
+
+**In Lokihub:**
+Choose a public relay or run your own. You can select as many relays as you want to ensure strong communication fallbacks and reliability.
+
+### Block Explorer
+
+Looks up on-chain transaction details, blockchain information, and Lightning node statistics.
+
+**In Lokihub:**
+Point to any Flokicoin-compatible block explorer.
+
+### Widget Messageboard
+
+Interactive chat widgets where community members can post messages with zaps. Collected funds can be used for community airdrops or other purposes. Configure multiple widgets for different channels.
+
+**In Lokihub:**
+Choose from community messageboards or configure your own.
+
+### Swap Service
+
+**Optional** — Swap funds between your on-chain wallet and Lightning channels.
+
+Useful when you need to move funds from your on-chain balance to Lightning (loop in) or from Lightning to on-chain (loop out).
+
+**In Lokihub:**
+Use the built-in swap interface powered by your chosen swap provider.
+
+## For Service Providers: Submit Your Service
+
+The Services directory is open-source and community-maintained.
+
+### Repository Structure
+
+Service configurations live at: [flokiorg/lokihub-services](https://github.com/flokiorg/lokihub-services)
+
+```
+lokihub-services/
+├── services.json      # LSPs, relays, explorers
+├── rates.json         # Exchange rates
+├── currencies.json    # Supported currencies
+└── info.json          # General info and MOTD
+```
+
+### Adding a Service
+
+**1. Fork the Repository**
+
+Fork [flokiorg/lokihub-services](https://github.com/flokiorg/lokihub-services) on GitHub.
+
+**2. Edit `services.json`**
+
+Add your service to the appropriate section.
+
+#### Adding an LSP
+
+Add to the `lsp` array:
+
+```json
+{
+  "name": "My LSP",
+  "uri": "pubkey@host:port",
+  "description": "Supports JIT Channels & Inbound Liquidity"
+}
+```
+
+**Fields:**
+- `name` — Display name of your LSP
+- `uri` — Connection string (`pubkey@host:port`)
+- `description` — Brief description of services offered
+
+#### Adding a Nostr Relay
+
+Add to the `relay` array:
+
+```json
+{
+  "name": "My Relay",
+  "url": "wss://relay.example.com",
+  "description": "Fast Nostr relay for NWC"
+}
+```
+
+**Fields:**
+- `name` — Display name
+- `url` — WebSocket URL
+- `description` — Brief description
+
+#### Adding a Block Explorer
+
+Add to the `explorer` array:
+
+```json
+{
+  "name": "My Explorer",
+  "url": "https://explorer.example.com",
+  "description": "Flokicoin blockchain explorer"
+}
+```
+
+**Fields:**
+- `name` — Display name
+- `url` — HTTPS URL
+- `description` — Brief description
+
+#### Adding a Widget Messageboard
+
+Add to the `widget` array:
+
+```json
+{
+  "name": "Community Board",
+  "url": "nostr+walletconnect://b889...4f1?relay=wss://relay.example.com/v1&secret=79...a1",
+  "description": "Funds collected in this messageboard are destined for airdrop sessions and game payouts"
+}
+```
+
+**Fields:**
+- `name` — Display name
+- `url` — NWC connection string (`nostr+walletconnect://...`)
+- `description` — Brief description
+
+**3. Create Pull Request**
+
+Submit your changes for review.
+
+### Review Process
+
+Pull requests are reviewed for:
+- Valid JSON structure
+- Working service endpoints
+- Accurate service information
+- Reliability and uptime (for community defaults)
+
+## File Descriptions
+
+### `services.json`
+
+Directory of recommended community services:
+- **LSPs** — Lightning Service Providers
+- **Relays** — Nostr relays for NWC
+- **Explorers** — Block explorers
+- **Widgets** — Chat messageboards with zaps
+- **Swap Services** — On-chain/off-chain fund swaps
+
+### `rates.json`
+
+Current exchange rates for FLC (Flokicoin) against fiat currencies.
+
+### `currencies.json`
+
+List of supported fiat currencies and their symbols.
+
+### `info.json`
+
+General information and message of the day (MOTD) for Lokihub users.
+
+## Questions?
+
+- Repository: [flokiorg/lokihub-services](https://github.com/flokiorg/lokihub-services)
+- Issues: [GitHub Issues](https://github.com/flokiorg/lokihub-services/issues)
+- Community: [Discord](https://flokicoin.org/discord) #lokihub

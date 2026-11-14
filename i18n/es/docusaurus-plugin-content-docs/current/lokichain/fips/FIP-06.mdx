@@ -1,0 +1,116 @@
+---
+title: "FIP-06: Minería combinada (Merge Mining)"
+description: "El FIP-06 detalla la minería combinada de Lokichain a través de AuxPoW, cubriendo la estructura de la carga útil, las reglas de validación y los planes de activación."
+sidebar_position: 5
+---
+
+Autor: Izimmerma &lt;izimer@ohstr.com&gt;  
+Estado: Final   
+Creado: 15-08-2025
+
+## Resumen
+
+Lokichain adopta la prueba de trabajo auxiliar (Auxiliary Proof-of-Work, AuxPoW) para que los mineros puedan reutilizar el trabajo realizado en una cadena de prueba de trabajo principal (parent). El paquete (envelope) AuxPoW suministra la cabecera principal, el compromiso coinbase y las pruebas Merkle necesarias para demostrar que la cabecera del bloque de Lokichain se incrustó en el trabajo del bloque principal.
+
+## Motivación
+
+La minería combinada permite a Lokichain heredar la tasa de hash (hashrate) de una red más grande sin exigir a los mineros que dividan su esfuerzo. Seguir las convenciones establecidas de AuxPoW reduce la carga de integración para los pools de minería al tiempo que preserva la claridad del consenso.
+
+## Terminología
+
+- **Cadena de bloques principal (Parent blockchain):** La red cuya cabecera de bloque válida y prueba de trabajo son reutilizadas por Lokichain (por ejemplo, cualquier cadena PoW de la familia scrypt).
+- **Cadena de bloques auxiliar (Auxiliary blockchain):** Lokichain, que valida los datos AuxPoW y acepta el trabajo principal como propio.
+- **Bloque AuxPoW:** Un bloque de Lokichain que podría no satisfacer el objetivo de dificultad secundario (child) por sí solo, pero que incluye pruebas de que el trabajo del bloque principal sí lo hace.
+- **Árbol Merkle de trabajo auxiliar (Aux work merkle tree):** La estructura del compromiso arraigada en la coinbase principal que produce tanto la rama coinbase (hacia la raíz Merkle principal) como la rama de la cadena (hasta el compromiso de la cabecera de Lokichain), permitiendo que múltiples cadenas auxiliares compartan un solo bloque principal.
+
+## Especificación
+
+Lokichain marca una cabecera como habilitada para AuxPoW estableciendo el bit 8 del campo de versión (`VersionAuxPow`) y escribiendo el identificador de cadena de seis bits en los bits [16..21]. Cuando este indicador está presente, el nodo añade la siguiente carga útil (payload) inmediatamente después de la cabecera base de 80 bytes y antes del vector de transacción:
+
+| Campo | Tipo | Propósito |
+| --- | --- | --- |
+| `aux_version` | 1 byte | Versión de la carga útil AuxPoW. Lokichain usa `0x00`. |
+| `parent_coinbase_tx` | Transacción serializada | Transacción coinbase principal completa que contiene el compromiso de minería combinada. |
+| `coinbase_branch` | Rama Merkle (longitud `var_int`, hashes de 32 bytes, máscara lateral de 32 bits) | Prueba que la transacción coinbase está incluida en la raíz Merkle principal. |
+| `chain_branch` | Rama Merkle (opcional) | Prueba el compromiso de Lokichain dentro del árbol Merkle de trabajo auxiliar; vacío cuando el bloque principal solo sirve a Lokichain. |
+| `parent_header` | Cabecera serializada de 80 bytes | Cabecera de la cadena principal cuya prueba de trabajo será validada frente al requisito de Lokichain. |
+
+### Bloque de prueba de trabajo auxiliar
+
+Los campos se serializan en el orden de la tabla anterior. `aux_version` se fija en `0x00`; `coinbase_branch` debe tener una máscara lateral de `0` porque la coinbase reside en el índice 0; `chain_branch` puede tener longitud cero cuando Lokichain es la única cadena auxiliar. Lokichain omite el elemento heredado independiente `block_hash`: los nodos lo recalculan a partir de la cabecera y los datos Merkle proporcionados.
+
+### Compromiso de la coinbase principal
+
+Los mineros colocan el marcador de minería combinada `0xfa 0xbe 'm' 'm'` en el `scriptSig` de `parent_coinbase_tx`, seguido inmediatamente por:
+
+1. `chain_root`: la raíz doble SHA256 obtenida al plegar `chain_branch` sobre el hash del bloque Lokichain actual, codificada en little-endian en el script.
+2. `tree_size`: un `uint32` en little-endian que debe ser igual a `1 << chain_branch.Size()`.
+3. `merkle_nonce`: un `uint32` en little-endian mezclado con el `chain_id` de AuxPoW para elegir el espacio determinista de Lokichain en el árbol de trabajo auxiliar.
+
+:::tip
+Lokichain utiliza `0x21` como su `chain_id` de AuxPoW.
+:::
+
+Cuando solo participa Lokichain, `chain_branch` tiene longitud cero y `chain_root` es simplemente el hash del bloque Lokichain actual. Con múltiples cadenas auxiliares, los mineros proporcionan la rama que prueba la hoja de Lokichain dentro del árbol de trabajo auxiliar compartido.
+
+### Reglas de validación
+
+El consenso de Lokichain valida los bloques AuxPoW de la siguiente manera:
+
+- Requiere el bit de cabecera AuxPoW y la codificación `ChainID` correcta para los parámetros actuales de la red.
+- Realiza el hash de `parent_header` y asegura que la prueba de trabajo resultante cumpla o supere el objetivo de dificultad de Lokichain para la altura del bloque.
+- Recalcula la raíz Merkle principal utilizando `parent_coinbase_tx` y `coinbase_branch`, asegurándose de que coincida con la raíz en `parent_header`.
+- Verifica que `coinbase_branch.SideMask` sea cero y que el tamaño de la transacción coinbase se mantenga dentro de los límites del consenso.
+- Combina el hash del bloque Lokichain actual con `chain_branch` (si está presente) para derivar `chain_root`, y verifica que los bytes en little-endian aparezcan en la coinbase principal exactamente después del marcador de minería combinada.
+- Comprueba que `tree_size` sea igual a `1 << chain_branch.Size()` y que la `SideMask` de `chain_branch` coincida con el índice determinista `getExpectedIndex(merkle_nonce, chain_id, branch_size)`.
+- Confirma las reglas estándar de consenso de Lokichain en la cabecera del bloque actual (vinculación del hash anterior, bits de dificultad, tiempo medio y comprobaciones contextuales).
+- Rechaza las cargas útiles AuxPoW que incluyan el campo obsoleto `block_hash` o que no coincidan con la serialización esperada.
+
+:::important
+**Activación (mainnet):** bloque 115,840.
+:::
+
+## Justificación
+
+Reutilizar la estructura de minería combinada de larga data mantiene la semántica conforme a BIP, mientras que la omisión del campo redundante `block_hash` ofrece una modesta optimización del ancho de banda y del almacenamiento. La estructura es compatible con el software de pool existente que ya admite redes AuxPoW.
+
+## Implementación de referencia
+
+Implementado en `go-flokicoin` (red + consenso). Consulte el lanzamiento [0.25.7-beta](/lokichain/releases/0.25.7-beta) para conocer los parámetros de activación y las estructuras de red.
+
+### Soporte RPC
+
+La minería AuxPoW se expone a través de la interfaz RPC estándar:
+
+```
+createauxblock <payout_address>
+```
+
+Devuelve un objeto que contiene:
+
+- `hash`: identificador que los mineros deben hashear en la coinbase de la cadena principal.
+- `chainid`: identificador de cadena de Lokichain (decimal `33`, hexadecimal `0x21`).
+- `previousblockhash`, `height`, `bits`, `target`: contexto de la cadena secundaria y objetivo de trabajo.
+- `coinbasevalue`: pago de la coinbase de la cadena secundaria en unidades atómicas.
+
+Ejemplo de respuesta:
+
+```json
+{
+  "hash": "0c63598bf66646ee9bf80797a40d607d12db9a6bc97fd4b98da70c904dd250c8",
+  "chainid": 33,
+  "previousblockhash": "94f1f588f620713ef99dfb1b2f3079a0f4545d4e15035e8227c5534dea965f33",
+  "coinbasevalue": 100000000000,
+  "bits": "202f725e",
+  "height": 13,
+  "target": "2f725e0000000000000000000000000000000000000000000000000000000000"
+}
+```
+
+Los mineros llaman a:
+
+```
+submitauxblock <hash> <auxpow_hex>
+```
+
+Donde `auxpow_hex` es la carga útil AuxPoW serializada construida a partir de la plantilla del bloque principal.

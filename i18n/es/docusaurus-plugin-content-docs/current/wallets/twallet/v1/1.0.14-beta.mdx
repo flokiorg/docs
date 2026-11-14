@@ -1,0 +1,39 @@
+---
+title: 1.0.14-beta
+description: "Notas de la versión de tWallet v1.0.14-beta que cubre CI, una corrección de formateo de errores, la restauración del comportamiento de un ayudante de pruebas y la restricción de las pruebas de integración detrás de una etiqueta de compilación."
+sidebar_position: 1
+---
+
+<div className="release-header-meta release-header-left">
+  <a className="github-link release-github no-external-icon" href="https://github.com/flokiorg/tWallet/releases/tag/v1.0.14-beta" target="_blank" rel="noreferrer" title="Ver v1.0.14-beta en GitHub">
+    <span className="release-header-label">GitHub</span>
+  </a>
+</div>
+
+Por favor, reporte cualquier error utilizando el rastreador de problemas en GitHub:
+
+https://github.com/flokiorg/tWallet/issues
+
+## Cambios notables
+
+### Correcciones
+- **`flnd/client.go`**: `PublishTransaction` pasaba una cadena dinámica como cadena de formato a `fmt.Errorf`; se cambió a `errors.New`, ya que no se necesita formateo.
+- **Ayudante de pruebas**: se restauró la implementación real de `os.MkdirTemp` en `createTestTempDir` (había sido reemplazada por una ruta absoluta codificada de la máquina de un desarrollador).
+- **Nomenclatura de pruebas**: una función llamada `TestMain` pero que recibía `*testing.T` (no `*testing.M`) nunca funcionó realmente como el gancho de entrada de pruebas del paquete; simplemente se ejecutaba como una prueba normal, muy pesada, que lanzaba un demonio real, bajo un nombre confuso. Renombrada a `TestManualFlndTestnetLaunch`.
+- **Pruebas de integración**: los 4 archivos de prueba en `flnd/` lanzan un demonio `flnd` real y/o necesitan conectividad testnet real. Ahora están protegidos con `//go:build integration`, de modo que un simple `go test ./...` (usado en CI) los omite limpiamente; siguen siendo ejecutables explícitamente con `-tags=integration`.
+
+### CI
+- Se agregó `.github/workflows/ci.yaml`: ejecuta `go build`, `go vet` y `go test` en cada push a `main` y en cada pull request.
+
+## Activos
+
+| SO/Arq | Activo |
+| --- | --- |
+| macOS (Apple Silicon) | https://github.com/flokiorg/tWallet/releases/download/v1.0.14-beta/twallet-darwin-arm64-v1.0.14-beta.tar.gz |
+| macOS (Intel) | https://github.com/flokiorg/tWallet/releases/download/v1.0.14-beta/twallet-darwin-amd64-v1.0.14-beta.tar.gz |
+| Linux x86_64 | https://github.com/flokiorg/tWallet/releases/download/v1.0.14-beta/twallet-linux-amd64-v1.0.14-beta.tar.gz |
+| Linux arm64 | https://github.com/flokiorg/tWallet/releases/download/v1.0.14-beta/twallet-linux-arm64-v1.0.14-beta.tar.gz |
+| Windows x86_64 | https://github.com/flokiorg/tWallet/releases/download/v1.0.14-beta/twallet-windows-amd64-v1.0.14-beta.zip |
+| Windows 32 bits | https://github.com/flokiorg/tWallet/releases/download/v1.0.14-beta/twallet-windows-386-v1.0.14-beta.zip |
+
+Hay construcciones adicionales (ppc64, mips y *BSD) disponibles en la [página de lanzamientos en GitHub](https://github.com/flokiorg/tWallet/releases/tag/v1.0.14-beta).

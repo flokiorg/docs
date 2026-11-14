@@ -1,0 +1,49 @@
+---
+title: 0.25.12-alpha
+description: "Notes de version pour go-flokicoin v0.25.12-alpha couvrant les améliorations de l'estimation des frais, les mises à jour de la persistance et d'autres points forts."
+sidebar_position: -1
+---
+
+<div className="release-header-meta release-header-left">
+  <a className="github-link release-github no-external-icon" href="https://github.com/flokiorg/go-flokicoin/releases/tag/v0.25.12-alpha" target="_blank" rel="noreferrer" title="Voir v0.25.12-alpha sur GitHub">
+    <span className="release-header-label">GitHub</span>
+  </a>
+</div>
+
+Veuillez signaler les bogues en utilisant le gestionnaire de problèmes sur GitHub :
+
+https://github.com/flokiorg/go-flokicoin/issues
+
+Cette version introduit des améliorations significatives de la logique d'estimation des frais, notamment la persistance atomique sur le disque, un meilleur suivi de l'historique et une gestion plus intelligente des raisons de suppression.
+
+## Notes de mise à jour
+
+- Les instantanés de l'estimateur de frais se trouvent désormais sur le disque sous le nom de `fee_estimates.dat` dans le répertoire des données (écriture/lecture atomique). Assurez-vous que le démon peut y écrire lors de l'arrêt ; les fichiers obsolètes datant de plus de ~60h sont ignorés au démarrage.
+
+## Points forts
+
+- **Estimation des frais**
+  - Suit jusqu'à 1008 blocs d'historique et plafonne les requêtes à long horizon au lieu de les rejeter, s'alignant sur le comportement de Bitcoin Core (`mempool/estimatefee.go`).
+  - Enregistre les raisons de suppression du mempool afin que les abandons non confirmés (conflits, réorganisations, évictions, rejets) nettoient l'état de l'estimateur et réduisent les observations obsolètes (plomberie `mempool`, `netsync/manager.go`, `rpcserver.go`).
+  - `estimatesmartfee` accepte les modes `economical` ou `conservative` (conservateur par défaut) et signale proprement les modes invalides ; le résultat inclut désormais un champ `errors` explicite (`rpcserver.go`).
+- **Persistance**
+  - L'état de l'estimateur de frais est enregistré de manière atomique sur le disque lors de l'arrêt et restauré au démarrage lorsqu'il est récent ; les données obsolètes font apparaître une erreur et sont ignorées. Les assistants et les tests couvrent le format binaire et l'application de l'âge maximal (`mempool/fee_persist*.go`, `server.go`).
+
+## Commits notables (lot prévu)
+
+- mempool : suivre les raisons de suppression dans l'estimation des frais ; élargir l'historique à 1008 blocs et plafonner les requêtes.
+- mempool : persister l'estimateur de frais sur le disque avec des écritures atomiques et des vérifications d'obsolescence.
+- Ajout du flux de signature de nonce agrégé pour MuSig2, incluant une gestion du contexte mise à jour et des tests complets.
+
+## Actifs (Assets)
+
+| OS/Arch | Actif |
+| --- | --- |
+| macOS (Apple Silicon) | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.12-alpha/lokid-darwin-arm64-v0.25.12-alpha.tar.gz |
+| macOS (Intel) | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.12-alpha/lokid-darwin-amd64-v0.25.12-alpha.tar.gz |
+| Linux x86_64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.12-alpha/lokid-linux-amd64-v0.25.12-alpha.tar.gz |
+| Linux arm64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.12-alpha/lokid-linux-arm64-v0.25.12-alpha.tar.gz |
+| Windows x86_64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.12-alpha/lokid-windows-amd64-v0.25.12-alpha.zip |
+| Windows 32-bit | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.12-alpha/lokid-windows-386-v0.25.12-alpha.zip |
+
+Des versions supplémentaires (ppc64, mips, *BSD, illumos/solaris) sont disponibles sur la [page de version GitHub](https://github.com/flokiorg/go-flokicoin/releases/tag/v0.25.12-alpha).

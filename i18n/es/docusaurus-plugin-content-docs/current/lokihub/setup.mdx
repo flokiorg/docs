@@ -1,0 +1,122 @@
+---
+sourceTitle: "Setup Guide"
+title: "Guía de Configuración"
+description: "Guía de configuración rápida para conectar Lokihub a su nodo FLND Lightning a través de Lokinode o tWallet."
+sidebar_position: 3
+---
+import Heading from '@theme/Heading';
+import { Terminal } from 'lucide-react';
+
+import setupFlndImage from '@site/docs/lokihub/setup-flnd.png';
+
+
+# Guía de Configuración
+
+Conecte Lokihub a su nodo y comience a gestionar su liquidez de Lightning en minutos.
+
+## Antes de empezar
+
+Para usar Lokihub, necesitará:
+
+- **App Lokihub**: [Descárguela aquí](/lokihub/downloads).
+- **Un nodo FLND activo** — elija una de las siguientes opciones:
+  - **Lokinode** *(Recomendado)*: El cliente de escritorio GUI para ejecutar su nodo Lightning. [Descargar Lokinode →](/wallets/lokinode)
+  - **tWallet v1** *(usuarios TUI)*: El monedero terminal también funciona como backend del nodo. [Ver guía de tWallet →](/wallets/twallet)
+
+:::tip
+Si está ejecutando **Lokinode** en la misma computadora, Lokihub lo encontrará automáticamente. ¡Utilice la opción de [Conexión Automatizada](#automated-connection)!
+:::
+
+## Primer Lanzamiento
+
+1. Abra Lokihub.
+2. Siga el asistente de configuración para comenzar.
+
+## Alternativa: Configuración Plug-and-Play
+
+:::info[Despliegue automatizado de servidor]
+¿Quiere ejecutar un nodo 24/7 en un VPS o servidor dedicado? Este **paquete listo para servidor** utiliza Docker para automatizar la instalación de `flnd` y Lokihub, con un script sencillo para la inicialización de la billetera — sin configuración manual.
+
+[**Ver guía de configuración en GitHub →**](https://github.com/myfloki/lokinode-operator)
+:::
+
+## Configuración Paso a Paso
+
+
+### 1. Cree una Contraseña
+
+Establezca una contraseña segura para proteger sus datos. Esta contraseña cifra los detalles de su conexión y los ajustes de la aplicación.
+
+> **Importante**: No podemos recuperar esta contraseña por usted. Por favor, anótela y guárdela en un lugar seguro.
+
+### 2. Elija sus Servicios
+
+Lokihub utiliza servicios específicos para interactuar con la red:
+- **Nostr Relay**: Conecta su nodo a aplicaciones externas.
+- **Explorador de Bloques**: Muestra los detalles de sus transacciones.
+- **Opcional**: También puede añadir servicios de Liquidez (LSP) o Swap más adelante.
+
+### 3. Conéctese a su nodo FLND
+
+Lokihub se conecta al nodo Lightning activo en su máquina (Lokinode o tWallet v1).
+
+<img src={setupFlndImage.src ?? setupFlndImage} alt="Configuración de Nodo Local" style={{ display: 'block', margin: '1.5rem auto', width: '450px', borderRadius: '8px', boxShadow: '0 4px 12px rgba(0,0,0,0.3)' }} />
+
+<Heading as="h4" id="automated-connection">Opción A: Conexión Automatizada (Recomendado)</Heading>
+
+Si **Lokinode** (o tWallet v1) se está ejecutando en la **misma máquina**:
+1. Elija **"Local Node"** durante el asistente de configuración.
+2. Lokihub detectará automáticamente su nodo activo y se conectará.
+3. ¡Ya está listo para empezar!
+
+<Heading as="h4" id="manual-connection">Opción B: Conexión de nodo personalizada (Avanzado)</Heading>
+
+Si su nodo está en una máquina remota (VPS, Raspberry Pi, etc.) o desea conectarse manualmente:
+
+1. Seleccione "Advanced Mode"
+2. Introduzca los detalles de conexión:
+   - **Dirección gRPC**: IP y puerto (ejemplo: `127.0.0.1:10005`)
+   - **Macaroon**: Pegue el contenido hexadecimal de `admin.macaroon`
+   - **Certificado TLS**: Pegue el contenido hexadecimal de `tls.cert` (Opcional)
+
+3. Haga clic en "Connect"
+
+:::tip[Cómo encontrar estas credenciales]
+- **tWallet**: Presione <kbd>CTRL</kbd> + <kbd>N</kbd> para abrir la ventana de configuración de Lightning. Muestra su **Dirección gRPC**, **Macaroon Hex** y **Certificado TLS Hex** — cópielos y péguelos en Lokihub.
+- **Lokinode**: Abra el panel de configuración del nodo dentro de la aplicación para encontrar los mismos detalles de conexión.
+:::
+
+## Solución de Problemas
+
+**¿No puede conectarse al nodo local?**
+- Asegúrese de que Lokinode (o tWallet) esté en ejecución y completamente sincronizado.
+- Compruebe que los puertos no estén bloqueados por el cortafuegos.
+
+**¿Falla la conexión remota?**
+- Verifique que la dirección gRPC sea correcta.
+- Asegúrese de que su nodo sea accesible desde su red.
+- Compruebe que las cadenas hexadecimales del macaroon y el certificado TLS sean correctas.
+
+**¿Necesita ayuda?**  
+Únase a la comunidad en [Discord](https://flokicoin.org/discord) en el canal #lokihub.
+
+## Siguientes Pasos
+
+### 1. Asegure su Soberanía (Requerido)
+
+Antes de abrir su primer canal, debe establecer un plan de recuperación confiable. A diferencia de los fondos tradicionales on-chain, la liquidez de Lightning necesita protección activa.
+
+:::important[LAS COPIAS DE SEGURIDAD DE CANALES NO SON AUTOMÁTICAS]
+Su frase semilla de 24 palabras **SOLO** recupera fondos en la blockchain. Para proteger la liquidez de sus canales frente a fallos del sistema, DEBE mantener una copia de su archivo `channel.backup`.
+:::
+
+1.  **Localizar**: En Linux, suele estar en `~/.flnd/data/chain/flokicoin/mainnet/channel.backup`.
+2.  **Respaldar**: Copie este archivo en un dispositivo aparte (USB, Nube, etc.) cada vez que abra o cierre un canal.
+3.  **Más información**: Lea la [Guía completa de copia de seguridad de Lightning](/wallets/lokinode#critical-lightning-backups).
+
+### 2. Lecturas adicionales
+
+Una vez conectado, puede:
+- [Gestionar su billetera y canales](/lokihub/features)
+- [Conectar aplicaciones externas a través de NWC](/lokihub/store)
+- [Configurar proveedores de servicios](/lokihub/services)

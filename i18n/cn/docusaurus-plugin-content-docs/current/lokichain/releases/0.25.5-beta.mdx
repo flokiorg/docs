@@ -1,0 +1,31 @@
+---
+title: 0.25.5-beta
+description: "Flokicoin Core 0.25.5-beta 要点说明，包括 PSBT 升级、新检查点以及更名的命令行工具下载。"
+sidebar_position: 3
+---
+
+请在 GitHub 上使用问题报告器报告 Bug：
+
+https://github.com/flokiorg/go-flokicoin/issues
+
+## 显著变更
+
+- 添加了新的区块链检查点 (checkpoints)，包括区块高度 0 及之后的高度。
+- 增强了 PSBT 处理能力：支持扩展公钥 (XPubs) 和路径验证。
+- 添加了关于 BIP32 路径序列化/反序列化的 PSBT 测试覆盖。
+- 改进了 PSBT 路径最小长度的验证。
+- 改进了区块头时间戳的验证。
+- 更新了 mempool、txscript 和 wallet，使用 `maps.Copy` 以实现更安全、更简洁的 map 处理。
+- 修复拼写错误：将 PSBT 常量从 `XpubType` 修正为 `XPubType`。
+- 修复了 PSBT 编码/解码及注释中的微小问题。
+- 在所有二进制文件、配置路径和文档中，将 `flokicoin-cli` 重命名为 `flokicoind-cli`。
+
+## 资源文件 (Assets)
+
+| 操作系统/架构 | 资源链接 |
+| --- | --- |
+| macOS (Apple Silicon) | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.5-beta/flokicoind-darwin-arm64-v0.25.5-beta.tar.gz |
+| macOS (Intel) | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.5-beta/flokicoind-darwin-amd64-v0.25.5-beta.tar.gz |
+| Linux x86_64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.5-beta/flokicoind-linux-amd64-v0.25.5-beta.tar.gz |
+| Linux arm64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.5-beta/flokicoind-linux-arm64-v0.25.5-beta.tar.gz |
+| Windows x86_64 | https://github.com/flokiorg/go-flokicoin/releases/download/v0.25.5-beta/flokicoind-windows-amd64-v0.25.5-beta.zip |

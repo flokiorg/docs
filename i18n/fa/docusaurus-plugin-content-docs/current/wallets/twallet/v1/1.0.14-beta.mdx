@@ -1,0 +1,39 @@
+---
+title: ۱.۰.۱۴-بیتا
+description: "یادداشت‌های انتشار tWallet v1.0.14-beta شامل CI، رفع یک اشکال در قالب‌بندی خطا، بازگردانی رفتار یک تابع کمکی تست، و محدود کردن تست‌های یکپارچه‌سازی پشت یک برچسب بیلد."
+sidebar_position: 1
+---
+
+<div className="release-header-meta release-header-left">
+  <a className="github-link release-github no-external-icon" href="https://github.com/flokiorg/tWallet/releases/tag/v1.0.14-beta" target="_blank" rel="noreferrer" title="مشاهده نسخه v1.0.14-beta در گیت‌هاب">
+    <span className="release-header-label">GitHub</span>
+  </a>
+</div>
+
+لطفاً باگ‌ها را از طریق سیستم گزارش موجود در گیت‌هاب اعلام کنید:
+
+https://github.com/flokiorg/tWallet/issues
+
+## تغییرات قابل توجه
+
+### رفع اشکالات
+- **`flnd/client.go`**: تابع `PublishTransaction` یک رشته‌ی پویا را به‌عنوان رشته‌ی قالب (format string) به `fmt.Errorf` ارسال می‌کرد؛ از آنجا که نیازی به قالب‌بندی نبود، به `errors.New` تغییر یافت.
+- **تابع کمکی تست**: پیاده‌سازی واقعی `os.MkdirTemp` در `createTestTempDir` بازگردانده شد (پیش‌تر با یک مسیر مطلق ثابت از دستگاه یکی از توسعه‌دهندگان جایگزین شده بود).
+- **نام‌گذاری تست**: تابعی با نام `TestMain` که در واقع `*testing.T` می‌گرفت (نه `*testing.M`)، هرگز واقعاً به‌عنوان نقطه‌ی ورود تست‌های بسته عمل نمی‌کرد — بلکه صرفاً به‌عنوان یک تست معمولی، بسیار سنگین و راه‌انداز یک دیمون واقعی، با نامی گمراه‌کننده اجرا می‌شد. به `TestManualFlndTestnetLaunch` تغییر نام یافت.
+- **تست‌های یکپارچه‌سازی**: هر ۴ فایل تست در `flnd/` یک دیمون واقعی `flnd` را اجرا می‌کنند و/یا به اتصال واقعی تست‌نت نیاز دارند. اکنون پشت `//go:build integration` قرار گرفته‌اند تا اجرای ساده‌ی `go test ./...` (که در CI استفاده می‌شود) آن‌ها را به‌طور تمیز نادیده بگیرد؛ همچنان با `-tags=integration` به‌صورت صریح قابل اجرا هستند.
+
+### CI
+- افزودن `.github/workflows/ci.yaml`: با هر push به شاخه‌ی `main` و هر pull request، دستورات `go build`، `go vet` و `go test` را اجرا می‌کند.
+
+## فایل‌های اجرایی
+
+| سیستم‌عامل/معماری | فایل |
+| --- | --- |
+| macOS (Apple Silicon) | https://github.com/flokiorg/tWallet/releases/download/v1.0.14-beta/twallet-darwin-arm64-v1.0.14-beta.tar.gz |
+| macOS (Intel) | https://github.com/flokiorg/tWallet/releases/download/v1.0.14-beta/twallet-darwin-amd64-v1.0.14-beta.tar.gz |
+| Linux x86_64 | https://github.com/flokiorg/tWallet/releases/download/v1.0.14-beta/twallet-linux-amd64-v1.0.14-beta.tar.gz |
+| Linux arm64 | https://github.com/flokiorg/tWallet/releases/download/v1.0.14-beta/twallet-linux-arm64-v1.0.14-beta.tar.gz |
+| Windows x86_64 | https://github.com/flokiorg/tWallet/releases/download/v1.0.14-beta/twallet-windows-amd64-v1.0.14-beta.zip |
+| Windows 32-bit | https://github.com/flokiorg/tWallet/releases/download/v1.0.14-beta/twallet-windows-386-v1.0.14-beta.zip |
+
+سایر نسخه‌های ساخت (ppc64, mips و *BSD) در [صفحه نسخه‌های گیت‌هاب](https://github.com/flokiorg/tWallet/releases/tag/v1.0.14-beta) در دسترس هستند.
