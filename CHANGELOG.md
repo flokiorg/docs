@@ -4,6 +4,21 @@ This site is continuously deployed: Cloudflare publishes docs.flokicoin.org on
 every push to `main`. There are no versions or tags to hang headings off, so
 entries are grouped by month, newest first, rather than by release.
 
+## [v2026.11.15]
+
+The first release cut from a tag.
+
+### Added
+
+- A container build (`dockerfile`, `Caddyfile`): the static site served by Caddy
+  on :8080 for any host, from digest-pinned bases.
+
+### Changed
+
+- Releases are now cut on org-flokicoin's grasp: a `vYYYY.MM.DD` heading
+  here, then a tag of the same name on its merge commit. chabka-flokicoin
+  builds and deploys the tag. Cloudflare still publishes `main` until the cutover.
+
 ## [2026-10]
 
 ### Added
