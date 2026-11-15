@@ -1,9 +1,10 @@
 {
+  admin off
   auto_https off
   email off
 }
 
-{$DOCUSAURUS_DOMAIN:localhost}:80 {
+:8080 {
   root * /var/docusaurus
   encode gzip
   try_files {path} /index.html
