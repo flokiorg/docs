@@ -1,8 +1,9 @@
 # syntax=docker/dockerfile:1
+# Bases are pinned by digest: chabka-flokicoin deploys only pinned images.
 
 # Stage 1: Base image.
 ## Start with a base image containing NodeJS so we can build Docusaurus.
-FROM node:lts AS base
+FROM node:22-alpine@sha256:1314fb30ec37592d5845e5a160d522c0e680972aa534549940b8d73bde88481a AS base
 ## Disable colour output from yarn to make logs easier to read.
 ENV FORCE_COLOR=0
 ## Enable corepack.
@@ -38,10 +39,12 @@ EXPOSE 3000
 CMD ["yarn", "serve", "--host", "0.0.0.0", "--no-open"]
 
 # Stage 3b: Serve with Caddy.
-FROM caddy:2-alpine AS caddy
-LABEL org.opencontainers.image.source="https://github.com/flokiorg/docs"
+FROM caddy:2-alpine@sha256:003a97808e781aa9f7e75cc2f43d34d461099031faf5e20faefb9f61126836f0 AS caddy
+LABEL org.opencontainers.image.source="nostr://npub1lfwkfe3kt60wa3nqeysmwz3t7h7n3p0zpruqd7yzlqf500rnp68qxzkjuj/grasp.flokicoin.org/docs"
 
 ## Copy the Caddyfile.
 COPY --from=prod /opt/docusaurus/Caddyfile /etc/caddy/Caddyfile
 ## Copy the Docusaurus build output.
 COPY --from=prod /opt/docusaurus/build /var/docusaurus
+## Serve on 8080, for any host name.
+EXPOSE 8080
