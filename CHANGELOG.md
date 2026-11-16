@@ -4,6 +4,13 @@ This site is continuously deployed: Cloudflare publishes docs.flokicoin.org on
 every push to `main`. There are no versions or tags to hang headings off, so
 entries are grouped by month, newest first, rather than by release.
 
+## [v2026.11.16]
+
+### Fixed
+
+- The build file is now named `Dockerfile`, so chabka-flokicoin can build the
+  release. It refused v2026.11.15: no Dockerfile at the repo's root.
+
 ## [v2026.11.15]
 
 The first release cut from a tag.
