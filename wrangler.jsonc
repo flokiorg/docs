@@ -1,0 +1,14 @@
+// Cloudflare Worker for docs.flokicoin.org: static assets only, no server code.
+// A release Worker, built from a release tag (`yarn build` → build/). Routes, names
+// and secrets live in org-flokicoin deploy/docs/cloudflare.yaml, not here.
+{
+  "name": "docs",
+  "compatibility_date": "2026-11-20",
+  "assets": {
+    "directory": "./build",
+    // Docusaurus builds /x/index.html (trailingSlash: true) and a 404.html:
+    // no SPA fallback, a missing path is a real 404 (as the Caddyfile does).
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  }
+}
