@@ -5,6 +5,10 @@
 }
 
 :8080 {
+  # Cloudflare sets X-Forwarded-Proto to the visitor's scheme: send plain http to https.
+  @http header X-Forwarded-Proto http
+  redir @http https://{host}{http.request.orig_uri} 308
+
   root * /var/docusaurus
   encode gzip
   # Docusaurus builds a page per route (trailingSlash: true, so /x/index.html)
