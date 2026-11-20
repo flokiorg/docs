@@ -28,8 +28,8 @@ WORKDIR /opt/docusaurus
 COPY . /opt/docusaurus/
 ## Install dependencies with `--immutable` to ensure reproducibility.
 RUN yarn install --immutable
-## Build the static site.
-RUN yarn build
+## Build the static site. No minify: with 6 locales, minifying put the build past its 55 min limit.
+RUN yarn build --no-minify
 
 # Stage 3a: Serve with `docusaurus serve`.
 FROM prod AS serve
