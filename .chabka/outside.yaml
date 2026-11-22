@@ -1,0 +1,7 @@
+# The docs Worker's release: chabka-flokicoin builds this tar from each docs tag,
+# beside the image, and puts its sha256 in the release PR on docs' cloudflare.yaml.
+worker:
+  target: prod             # the Dockerfile stage that has run `yarn build`
+  dir: /opt/docusaurus     # where that stage holds index.js and build/
+  modules: [index.js]      # the Worker's entry (main_module in cloudflare.yaml)
+  assets: build            # the static site, served by the ASSETS binding
