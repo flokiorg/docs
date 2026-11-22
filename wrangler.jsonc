@@ -1,6 +1,7 @@
 // Cloudflare Worker for docs.flokicoin.org: static assets only, no server code.
 // A release Worker, built from a release tag (`yarn build` → build/). Routes, names
-// and secrets live in org-flokicoin deploy/docs/cloudflare.yaml, not here.
+// and secrets live in docs/cloudflare.yaml of the deploys area's deploy repo, not here;
+// .chabka/outside.yaml says what goes in the release.
 {
   "name": "docs",
   "compatibility_date": "2026-11-20",
