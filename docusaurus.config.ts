@@ -386,6 +386,13 @@ const config: Config = {
       },
     ],
     'docusaurus-plugin-sass',
+    // Docusaurus names the client runtime chunk "runtime~main". The Worker
+    // release only takes plain relative paths, and "~" isn't one.
+    () => ({
+      name: 'runtime-chunk-name',
+      configureWebpack: (_config, isServer) =>
+        isServer ? {} : {optimization: {runtimeChunk: {name: 'runtime-main'}}},
+    }),
   ],
   themes: [],
   future: {
