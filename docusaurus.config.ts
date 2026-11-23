@@ -388,6 +388,14 @@ const config: Config = {
     'docusaurus-plugin-sass',
   ],
   themes: [],
+  future: {
+    // Rspack, SWC and Lightning CSS instead of webpack, Babel, Terser and
+    // cssnano (needs @docusaurus/faster). With 6 locales the webpack build
+    // took ~40 min, too close to the builder's 55 min limit.
+    faster: true,
+    // Needed by faster.ssgWorkerThreads, which renders pages on several threads.
+    v4: {removeLegacyPostBuildHeadAttribute: true},
+  },
   markdown: {
     format: 'detect',
     mermaid: true,
