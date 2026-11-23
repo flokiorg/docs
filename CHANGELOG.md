@@ -4,6 +4,15 @@ This site is continuously deployed: Cloudflare publishes docs.flokicoin.org on
 every push to `main`. There are no versions or tags to hang headings off, so
 entries are grouped by month, newest first, rather than by release.
 
+## [Unreleased]
+
+### Changed
+
+- The site builds with Docusaurus' faster bundler (`@docusaurus/faster`:
+  Rspack, SWC, Lightning CSS), so the image and the Worker tar build well
+  under chabka-flokicoin's 55 min limit. v2026.11.22 passed it. The build
+  minifies again (`--no-minify` dropped).
+
 ## [v2026.11.16]
 
 ### Fixed
