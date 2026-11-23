@@ -46,5 +46,7 @@ LABEL org.opencontainers.image.source="nostr://npub1lfwkfe3kt60wa3nqeysmwz3t7h7n
 COPY --from=prod /opt/docusaurus/Caddyfile /etc/caddy/Caddyfile
 ## Copy the Docusaurus build output.
 COPY --from=prod /opt/docusaurus/build /var/docusaurus
+## Copy the Worker's entry: the Worker release takes it from this stage too (one build).
+COPY --from=prod /opt/docusaurus/index.js /var/index.js
 ## Serve on 8080, for any host name.
 EXPOSE 8080
